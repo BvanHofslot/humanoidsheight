@@ -30,5 +30,6 @@ x0ksi2 = -ksi02;
 tspan = [0 500];
 [t,y] =ode45(@qfunbal, tspan, [x0;dx0;z0;dz0]);
 
+figure;
 plot(y(:,1),y(:,3))
 axis([-0.2 0.5 0 2]);
