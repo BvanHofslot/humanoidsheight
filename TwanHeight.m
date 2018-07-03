@@ -3,8 +3,8 @@ clear all;
 close all;
 
 vec(1,:) = [-0.18672 0.6398 1.0815 -0.06219];
-vec(2,:) = [-0.12 0.5 1 -1];
-vec(3,:) = [-0.12 0.5 1 -1];
+vec(2,:) = [-0.3 1 1 0];
+vec(3,:) = [-0.3 1 1 0];
 vec(4,:) = [-0.3 1 1 0];
 
 
@@ -109,7 +109,7 @@ m=10;
 
 figure('rend','painters','pos', [0 0 1600 600]);
 
-% subplot(1,4,1);
+subplot(1,4,1);
 %plot(y(:,1)-x0ksi,y(:,3),'linewidth',1.8)
 plot(y(:,1),y(:,3),'linewidth',5)
 hold on;
@@ -126,62 +126,62 @@ axis([-0.15 0.05 0.9 1.15]);
 grid on;
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'dzf1.4.eps', opts)
-
-
-% subplot(1,4,2);
-% plot(y(:,1),y(:,2),'linewidth',5)
-% hold on;
-% %plot(yksi(:,1),yksi(:,2),'--','linewidth',5)
-% % hold on;
-% plot(y2(:,1),y2(:,2),'-.','linewidth',5)
-% %plot(yksi(:,2),'--')
-% set(gca,'fontsize',13);
-% xlabel('x', 'FontSize', 35)
-% ylabel('dx', 'FontSize', 35)
-% axis([-0.47 0.05 -1.5 1.5]);
-% grid on;
-% set(gca,'LineWidth',1)
-% set(gca,'GridAlpha',0.4)
-% 
-% 
-% 
-% subplot(1,4,3);
-% plot(y(:,1),y(:,4),'linewidth',5)
-% hold on;
-%  %plot(yksi(:,1),yksi(:,4),'--','linewidth',5)
-% hold on;
-% plot(y2(:,1),y2(:,4),'-.','linewidth',5)
-% %plot(yksi(:,4),'--')
-% axis([-0.47 0.05 -5 5]);
-% set(gca,'fontsize',13);
-% xlabel('x', 'FontSize', 35)
-% ylabel('dz', 'FontSize', 35)
-% grid on;
-% set(gca,'LineWidth',1)
-% set(gca,'GridAlpha',0.4)
-% 
-% 
-% subplot(1,4,4);
-% plot(y(:,1),ddz,'linewidth',5)
-% hold on;
-% %plot(yksi(:,1),ddzksi,'--','linewidth',5)
-% % hold on;
-%  plot(y2(:,1),ddz2,'-.','linewidth',5)
-% %plot(ddzksi,'--')
-% axis([-0.47 0.05 -20 110]);
-% legend({'zf=z0','dzf=0'},'FontSize', 16)
-% set(gca,'fontsize',13);
-% xlabel('x', 'FontSize', 35)
-% ylabel('ddz', 'FontSize', 35)
-% grid on;
-% set(gca,'LineWidth',1)
-% set(gca,'GridAlpha',0.4)
-% opts.Format = 'eps';
-% opts.color = 'CMYK';
-% set(gca,'LineWidth',1)
-% set(gca,'GridAlpha',0.4)
 % exportfig(gcf,'dzf1.4.eps', opts)
+
+
+subplot(1,4,2);
+plot(y(:,1),y(:,2),'linewidth',5)
+hold on;
+%plot(yksi(:,1),yksi(:,2),'--','linewidth',5)
+% hold on;
+plot(y2(:,1),y2(:,2),'-.','linewidth',5)
+%plot(yksi(:,2),'--')
+set(gca,'fontsize',13);
+xlabel('x', 'FontSize', 35)
+ylabel('dx', 'FontSize', 35)
+axis([-0.47 0.05 -1.5 1.5]);
+grid on;
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
+
+
+
+subplot(1,4,3);
+plot(y(:,1),y(:,4),'linewidth',5)
+hold on;
+ %plot(yksi(:,1),yksi(:,4),'--','linewidth',5)
+hold on;
+plot(y2(:,1),y2(:,4),'-.','linewidth',5)
+%plot(yksi(:,4),'--')
+axis([-0.47 0.05 -5 5]);
+set(gca,'fontsize',13);
+xlabel('x', 'FontSize', 35)
+ylabel('dz', 'FontSize', 35)
+grid on;
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
+
+
+subplot(1,4,4);
+plot(y(:,1),ddz,'linewidth',5)
+hold on;
+%plot(yksi(:,1),ddzksi,'--','linewidth',5)
+% hold on;
+ plot(y2(:,1),ddz2,'-.','linewidth',5)
+%plot(ddzksi,'--')
+axis([-0.47 0.05 -20 110]);
+legend({'zf=z0','dzf=0'},'FontSize', 16)
+set(gca,'fontsize',13);
+xlabel('x', 'FontSize', 35)
+ylabel('ddz', 'FontSize', 35)
+grid on;
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
+opts.Format = 'eps';
+opts.color = 'CMYK';
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
+exportfig(gcf,'dzf1.4.eps', opts)
 
 tau = 10*sqrt(x.^2 + z.^2).*u;
 %tau2 = 10*sqrt(x2.^2 + z2.^2).*u2;
@@ -189,23 +189,24 @@ tau3 = 10*sqrt(x3.^2 + z3.^2).*u3;
 tauksi = 10*sqrt(xksi.^2 + zksi.^2).*uksi;
 % subplot(1,5,5);
 % 
-% plot(tau,'linewidth',5)
+figure;
+plot(tau,'linewidth',5)
+hold on;
+%plot(y2(:,1),tau2,'-.','linewidth',5)
+%plot(yksi(:,1),tauksi,'--','linewidth',5)
 % hold on;
-% %plot(y2(:,1),tau2,'-.','linewidth',5)
-% %plot(yksi(:,1),tauksi,'--','linewidth',5)
-% % hold on;
 % plot(tau2,'-.')
-% % plot(tauksi,'--')
-% legend({'x0=-0.3','x0=-0.319'},'FontSize', 16)
-% axis([0 150 0 500]);
-% set(gca,'fontsize',13);
-% xlabel('x', 'FontSize', 35)
-% ylabel('tau', 'FontSize', 35)
-% grid on;
-% opts.Format = 'eps';
-% opts.color = 'CMYK';
-% set(gca,'LineWidth',1)
-% set(gca,'GridAlpha',0.4)
+% plot(tauksi,'--')
+legend({'x0=-0.3','x0=-0.319'},'FontSize', 16)
+axis([0 150 0 500]);
+set(gca,'fontsize',13);
+xlabel('x', 'FontSize', 35)
+ylabel('tau', 'FontSize', 35)
+grid on;
+opts.Format = 'eps';
+opts.color = 'CMYK';
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
 % exportfig(gcf,'impactzdot2.eps', opts)
 % 
 % 

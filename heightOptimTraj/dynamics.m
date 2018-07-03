@@ -12,8 +12,5 @@ dz = q(4,:);
 g = p.g;    m = p.m;
 ddx = (x/m).*u;
 ddz = -g + (z/m).*u;
-if x > 0
-    x = -sqrt(1/9.81)*dx;
-end;
 dq = [dx;dz;ddx;ddz];
 end
