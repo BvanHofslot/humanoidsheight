@@ -7,13 +7,14 @@ addpath ../../
 
 p.m = 10;
 p.g = 9.81;  % (m/s^2) gravity
-w1 = 10000;
+w1 = 100000;
 nSteps=2;
+nSegments=100;
 
 maxForce =inf;  %Maximum actuator forces
 x0 = -0.3;   %-0.319275
 z0 = 1.0;
-dx0 = 1.0;
+dx0 = 1.5;
 dz0 = 0.0;
 duration = 2;
 
@@ -56,7 +57,7 @@ problem.bounds.control.upp = maxForce;
 
 problem.guess.time = [0,duration];
 finalStateGuess= (problem.bounds.finalState.low+problem.bounds.finalState.upp)/2;
-problem.guess.state = [problem.bounds.initialState.low,problem.bounds.finalState.upp];
+problem.guess.state = [problem.bounds.initialState.low, problem.bounds.finalState.low];
 problem.guess.control = [0,0];
 
 
@@ -71,7 +72,7 @@ problem.options.nlpOpt = optimset(...
 % problem.options.method = 'trapezoid';
 problem.options.method = 'hermiteSimpson';
 problem.options.defaultAccuracy = 'high';
-problem.options.hermiteSimpson.nSegments = 100;
+problem.options.hermiteSimpson.nSegments = nSegments;
 % problem.options.method = 'rungeKutta';
 % problem.options.method = 'chebyshev';
 
@@ -89,7 +90,7 @@ soln = optimTraj(problem);
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
 
 %%%% Unpack the simulation
-t = linspace(soln.grid.time(1), soln.grid.time(end), 150);
+t = linspace(soln.grid.time(1), soln.grid.time(end), 20);
 q = soln.interp.state(t);
 u = soln.interp.control(t);
 
@@ -127,6 +128,8 @@ problem2.bounds.initialState.upp = [x02;z02;dx02;dz02];
 problem2.bounds.finalState.low = [0;z0;0;0];
 problem2.bounds.finalState.upp = [0;z0;dx02;0];
 
+
+
 problem2.bounds.state.low = [x02;0;-inf;-inf];
 problem2.bounds.state.upp = [0;1.1*z0;inf;inf];
 
@@ -153,7 +156,7 @@ problem2.options.nlpOpt = optimset(...
 % problem.options.method = 'trapezoid';
 problem2.options.method = 'hermiteSimpson';
 problem2.options.defaultAccuracy = 'high';
-problem2.options.hermiteSimpson.nSegments = 100;
+problem2.options.hermiteSimpson.nSegments = nSegments;
 % problem.options.method = 'rungeKutta';
 % problem.options.method = 'chebyshev';
 
@@ -182,24 +185,31 @@ end
 figure();
 plot(q(1,:),q(2,:),'Color','b');
 hold on;
-plot(q2(1,:)-x02,q2(2,:),'Color','b');
-x=[0,-x02];
-z=[z02,0];
-hold on;
-line(x,z,'LineStyle','--','Color','r');
 x=[0,0];
 z=[0,qf(2)];
-line(x,z,'LineStyle','--','Color','r');
-x=[-x02,-x02];
-z=[0,qf2(2)];
 line(x,z,'LineStyle','--','Color','r');
 x=[xinit,0];
 z=[zinit,0];
 hold on;
 line(x,z,'LineStyle','--','Color','r');
+
+if (dx02>0.01)
+plot(q2(1,:)-x02,q2(2,:),'Color','b');
+x=[0,-x02];
+z=[z02,0];
+hold on;
+line(x,z,'LineStyle','--','Color','r');
+x=[-x02,-x02];
+z=[0,qf2(2)];
+line(x,z,'LineStyle','--','Color','r');
 axis([-0.5 0.5 0.0 1.5])
+end
 figure;
 plot(q(1,:),u)
+figure;
+plot(t,q(1,:))
+figure;
+plot(t,q(3,:))
 
 
 
