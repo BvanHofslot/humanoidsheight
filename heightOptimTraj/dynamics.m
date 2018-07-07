@@ -10,7 +10,7 @@ dx = q(3,:);
 dz = q(4,:);
 
 g = p.g;    m = p.m;
-ddx = (x/m).*u;
-ddz = -g + (z/m).*u;
+ddx = ((x/m)./sqrt(x.^2+z.^2)).*u;
+ddz = -g + ((z/m)./sqrt(x.^2+z.^2)).*u;
 dq = [dx;dz;ddx;ddz];
 end
