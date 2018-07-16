@@ -3,8 +3,8 @@ clear all;
 close all;
 
 vec(1,:) = [-0.18672 0.6398 1.0815 -0.06219];
-vec(2,:) = [-0.3 1 1 0];
-vec(3,:) = [-0.3 1 1 0];
+vec(2,:) = [-0.44 1 1 0];
+vec(3,:) = [-0.44 1 1 0];
 vec(4,:) = [-0.3 1 1 0];
 
 
@@ -122,7 +122,7 @@ set(gca,'fontsize',13);
 legend({'zf=z0','dzf=0'},'FontSize', 16)
 xlabel('x', 'FontSize', 35)
 ylabel('z', 'FontSize', 35)
-axis([-0.15 0.05 0.9 1.15]);
+axis([-0.4 0.05 0.9 1.15]);
 grid on;
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
@@ -181,7 +181,7 @@ opts.Format = 'eps';
 opts.color = 'CMYK';
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'dzf1.4.eps', opts)
+% exportfig(gcf,'dzf1.4.eps', opts)
 
 tau = 10*sqrt(x.^2 + z.^2).*u;
 %tau2 = 10*sqrt(x2.^2 + z2.^2).*u2;
