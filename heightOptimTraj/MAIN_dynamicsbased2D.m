@@ -12,9 +12,9 @@ nSteps=2;
 nSegments=100;
 
 maxForce =inf;  %Maximum actuator forces
-x0 = -0.3;   %-0.319275
+x0 = -0.25;   %-0.319275
 z0 = 1.0;
-dx0 = 1.5;
+dx0 = 1.0;
 dz0 = 0.0;
 duration = 2;
 
@@ -183,33 +183,51 @@ end
 
 %%%% Draw Trajectory:
 figure();
-plot(q(1,:),q(2,:),'Color','b');
+plot(q(1,:),q(2,:),'Color','b','linewidth',2);
 hold on;
 x=[0,0];
 z=[0,qf(2)];
-line(x,z,'LineStyle','--','Color','r');
+line(x,z,'LineStyle','--','Color','r','linewidth',2);
 x=[xinit,0];
 z=[zinit,0];
 hold on;
-line(x,z,'LineStyle','--','Color','r');
+line(x,z,'LineStyle','--','Color','r','linewidth',2);
+axis([-0.4 0.4 0.0 1.5])
+xlabel('x','FontSize', 35)
+ylabel('z','FontSize', 35)
+grid off;
 
 if (dx02>0.01)
-plot(q2(1,:)-x02,q2(2,:),'Color','b');
+plot(q2(1,:)-x02,q2(2,:),'Color','b','linewidth',2);
 x=[0,-x02];
 z=[z02,0];
 hold on;
-line(x,z,'LineStyle','--','Color','r');
+line(x,z,'LineStyle','--','Color','r','linewidth',2);
 x=[-x02,-x02];
 z=[0,qf2(2)];
-line(x,z,'LineStyle','--','Color','r');
-axis([-0.5 0.5 0.0 1.5])
+line(x,z,'LineStyle','--','Color','r','linewidth',2);
 end
+
+opts.Format = 'eps';
+opts.color = 'CMYK';
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
+exportfig(gcf,'optimTraj03untuned.eps', opts)
+
 figure;
-plot(q(1,:),u)
-figure;
-plot(t,q(1,:))
-figure;
-plot(t,q(3,:))
+subplot(1,2,1)
+plot(q(1,:),q(2,:),'Color','b','linewidth',2);
+xlabel('x','FontSize', 35)
+ylabel('z','FontSize', 35)
+subplot(1,2,2)
+plot(q(1,:),u,'Color','b','linewidth',2)
+xlabel('x','FontSize', 35)
+ylabel('u','FontSize', 35)
+opts.Format = 'eps';
+opts.color = 'CMYK';
+set(gca,'LineWidth',1)
+set(gca,'GridAlpha',0.4)
+exportfig(gcf,'weirdInput.eps', opts)
 
 
 
