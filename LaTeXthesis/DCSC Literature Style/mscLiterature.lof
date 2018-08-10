@@ -1,0 +1,15 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1-1}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot at the base and a mass with inertia at the tip. The \ac {CoM} moves at constant height.\relax }}{2}{figure.caption.18}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2-1}{\ignorespaces A selection of currently popular humanoid robots. \textbf {(a)} Boston Dynamics' new Atlas \cite {newatlas}. \textbf {(b)} Previous version of Atlas \cite {oldatlas} and \textbf {(c)} NASA's Valkryie \cite {valkyrie} walking over rough terrain at IHMC. \textbf {(d)} ATRIAS, a bipedal robot \cite {atrias}.\relax }}{4}{figure.caption.20}
+\contentsline {figure}{\numberline {2-2}{\ignorespaces \ac {3D} motion of \ac {LIP} model.\relax }}{5}{figure.caption.26}
+\contentsline {figure}{\numberline {2-3}{\ignorespaces Visualization of path and states by the capture of the point mass according \ac {ICP} theory.\relax }}{6}{figure.caption.30}
+\contentsline {figure}{\numberline {2-4}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot. The yellow cross points out the \ac {CoP} location.\relax }}{7}{figure.caption.33}
+\contentsline {figure}{\numberline {2-5}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot and body inertia. The blue cross points out the \ac {CMP} location.\relax }}{9}{figure.caption.36}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3-1}{\ignorespaces Valkyrie walking in \ac {SCS}. In the left window a footstep plan is made visible together with the swing leg trajectories with their knot points. The red arrow indicates the ground reaction wrench and the window on the right displays the current ground contact with some reference and measured points.\relax }}{12}{figure.caption.46}
+\contentsline {figure}{\numberline {3-2}{\ignorespaces Overview of control framework used at IHMC, retrieved from \cite {koolen2016design}\relax }}{14}{figure.caption.50}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4-1}{\ignorespaces Nonlinear simplified system in \ac {2D}.\relax }}{16}{figure.caption.57}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -3,12 +3,12 @@ g=9.81;
 
 fstConst= [1 0 0 0];
 fstObj =  1.0;
-maxHeight=1.1;
+maxHeight=1.3;
 maxLengthSquared=1.21;
 stepUp=0.2;
 
 %% First step
-x=-0.25; %-0.319275
+x=-0.3193;
 z=1;
 dx=1.0;
 dz=0.0;
@@ -36,22 +36,22 @@ c2 = c(3);
 c3 = c(4);
 c4=0;
 
-% xmax1 = (-2*c2+sqrt(4*c2^2-12*c3*c1))/(6*c3);
-% xmax2 = (-2*c2-sqrt(4*c2^2-12*c3*c1))/(6*c3);
-% xmax=max(xmax1,xmax2); % the peak within the interval is always the highest x
-% zmax = c0 + c1*xmax+c2*xmax^2+c3*xmax^3;
-% if (zmax<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30) 
-%     break
-% end
-
-xl2max1 = (-4*c2^2+sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
-xl2max2 = (-4*c2^2-sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
-xlmax1=-abs(sqrt(max(xl2max1,xl2max2)));
-
-l2max = xlmax1^2 + (c0 + c1*xlmax1+c2*xlmax1^2+c3*xlmax1^3)^2;
-if (l2max<maxLengthSquared)
+xmax1 = (-2*c2+sqrt(4*c2^2-12*c3*c1))/(6*c3);
+xmax2 = (-2*c2-sqrt(4*c2^2-12*c3*c1))/(6*c3);
+xmax=max(xmax1,xmax2); % the peak within the interval is always the highest x
+zmax = c0 + c1*xmax+c2*xmax^2+c3*xmax^3;
+if (zmax<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30)
     break
 end
+
+% xl2max1 = (-4*c2^2+sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
+% xl2max2 = (-4*c2^2-sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
+% xlmax1=-abs(sqrt(max(xl2max1,xl2max2)));
+% 
+% l2max = xlmax1^2 + (c0 + c1*xlmax1+c2*xlmax1^2+c3*xlmax1^3)^2;
+% if (l2max<maxLengthSquared)
+%     break
+% end
 
 dxf=dxf+0.001;% + (l2max-maxLengthSquared)*0.01;
 iter = iter+1;
@@ -85,22 +85,22 @@ c21 = c_1(3);
 c31 = c_1(4);
 c41=0;
 
-% xmax11 = (-2*c21+sqrt(4*c21^2-12*c31*c11))/(6*c31);
-% xmax21 = (-2*c21-sqrt(4*c21^2-12*c31*c11))/(6*c31);
-% xmax_1=max(xmax11,xmax21); % the peak within the interval is always the highest x
-% zmax1 = c01 + c11*xmax_1+c21*xmax_1^2+c31*xmax_1^3;
-% if (zmax1<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30) 
-%     break
-% end
-
-xl2max11 = (-4*c21^2+sqrt(16*c21^4-24*(c31^2)*(2+2*c11^2)))/(12*c31^2);
-xl2max21 = (-4*c21^2-sqrt(16*c21^4-24*(c31^2)*(2+2*c11^2)))/(12*c31^2);
-xlmax11=-abs(sqrt(max(xl2max11,xl2max21)));
-
-l2max1 = xlmax11^2 + (c01 + c11*xlmax11+c21*xlmax11^2+c31*xlmax11^3)^2;
-if (l2max1<maxLengthSquared)
+xmax11 = (-2*c21+sqrt(4*c21^2-12*c31*c11))/(6*c31);
+xmax21 = (-2*c21-sqrt(4*c21^2-12*c31*c11))/(6*c31);
+xmax_1=max(xmax11,xmax21); % the peak within the interval is always the highest x
+zmax1 = c01 + c11*xmax_1+c21*xmax_1^2+c31*xmax_1^3;
+if (zmax1<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30) 
     break
 end
+
+% xl2max11 = (-4*c21^2+sqrt(16*c21^4-24*(c31^2)*(2+2*c11^2)))/(12*c31^2);
+% xl2max21 = (-4*c21^2-sqrt(16*c21^4-24*(c31^2)*(2+2*c11^2)))/(12*c31^2);
+% xlmax11=-abs(sqrt(max(xl2max11,xl2max21)));
+% 
+% l2max1 = xlmax11^2 + (c01 + c11*xlmax11+c21*xlmax11^2+c31*xlmax11^3)^2;
+% if (l2max1<maxLengthSquared)
+%     break
+% end
 
 dxf1=dxf1+0.001;% + (l2max-maxLengthSquared)*0.01;
 iter1 = iter1+1;
@@ -151,7 +151,7 @@ opts.Color = 'CMYK';
 opts.Resolution = 10000000;
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'twanInequalityLength2step066.eps', opts)
+exportfig(gcf,'cubicPolMultiStepUp.eps', opts)
 
 u = (g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3);
 % figure;
