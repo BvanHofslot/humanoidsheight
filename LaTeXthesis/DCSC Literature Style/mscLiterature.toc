@@ -12,10 +12,10 @@
 \contentsline {section}{\numberline {2-3}\ac {LIP} Models}{5}{section.2.3}
 \contentsline {subsection}{\numberline {2-3-1}Conservation of \ac {Elip}}{6}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2-3-2}The \acf {ICP}}{6}{subsection.2.3.2}
-\contentsline {subsubsection}{\ac {ICP} dynamics}{7}{section*.31}
+\contentsline {subsubsection}{\ac {ICP} dynamics}{7}{section*.32}
 \contentsline {section}{\numberline {2-4}Humanoid Robot Terminology}{7}{section.2.4}
 \contentsline {subsection}{\numberline {2-4-1}The \ac {CoP}}{7}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2-4-2}The \ac {ZMP}}{8}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2-4-2}The \ac {ZMP}}{7}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2-4-3}The \ac {CMP}}{8}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2-4-4}Linear momentum rate}{8}{subsection.2.4.4}
 \contentsline {subsection}{\numberline {2-4-5}Other points}{9}{subsection.2.4.5}
@@ -32,13 +32,13 @@
 \contentsline {section}{\numberline {3-3}State Estimation}{14}{section.3.3}
 \contentsline {section}{\numberline {3-4}Analysis \& Discussion}{14}{section.3.4}
 \contentsline {chapter}{\numberline {4}Varying CoM Height}{15}{chapter.4}
-\contentsline {section}{\numberline {4-1}Orbital Energy for Nonlinear \ac {CoM} Trajectories}{15}{section.4.1}
-\contentsline {section}{\numberline {4-2}\ac {DCM} for Varying Height}{16}{section.4.2}
+\contentsline {section}{\numberline {4-1}Orbital Energy for Nonlinear \ac {CoM} Trajectories}{16}{section.4.1}
+\contentsline {section}{\numberline {4-2}\ac {DCM} for Varying Height}{17}{section.4.2}
 \contentsline {section}{\numberline {4-3}Other Approaches}{17}{section.4.3}
 \contentsline {section}{\numberline {4-4}Trajectory Optimization for Nonlinear Systems}{18}{section.4.4}
 \contentsline {section}{\numberline {4-5}Analysis \& Discussion}{18}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{23}{section*.69}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{27}{chapter*.71}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{27}{section*.72}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{28}{section*.74}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{23}{section*.75}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{27}{chapter*.77}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{27}{section*.78}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{28}{section*.80}

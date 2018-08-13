@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.12)  9 AUG 2018 23:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.12)  12 AUG 2018 23:14
 entering extended mode
-**"C:/Users/shadylady/Downloads/MScTemplateLatex_new/DCSC Literature Style/mscL
-iterature.tex"
+**"C:/humanoidsheight-master/humanoidsheight/LaTeXthesis/DCSC Literature Style/
+mscLiterature.tex"
 
-("C:/Users/shadylady/Downloads/MScTemplateLatex_new/DCSC Literature Style/mscLi
-terature.tex"
+("C:/humanoidsheight-master/humanoidsheight/LaTeXthesis/DCSC Literature Style/m
+scLiterature.tex"
 LaTeX2e <2018-04-01> patch level 5
 (mscLiterature.cls
 Document Class: mscLiterature 12/03/2007 Standard Systems and Control Literatur
@@ -701,13 +701,14 @@ although it is yet undefined on input line 13.
 Chapter 1.
 Package acronym Info: Label `acro:LIP' overridden on input line 6.
 Package acronym Info: Label `acro:CoM' overridden on input line 8.
-<STYLESTUFF/3DCoMfootinertiaz0.png, id=413, 2323.68124pt x 1796.7125pt>
+Package acronym Info: Label `acro:2D' overridden on input line 9.
+Package acronym Info: Label `acro:3D' overridden on input line 9.
+<STYLESTUFF/3DCoMfootinertiaz0.png, id=427, 2323.68124pt x 1796.7125pt>
 File: STYLESTUFF/3DCoMfootinertiaz0.png Graphic file (type png)
 <use STYLESTUFF/3DCoMfootinertiaz0.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMfootinertiaz0.png  used on input line 
-12.
+13.
 (pdftex.def)             Requested size: 221.32687pt x 171.12811pt.
-Package acronym Info: Label `acro:3D' overridden on input line 13.
 [1
 
 
@@ -722,22 +723,22 @@ Chapter 2.
 
 
 ]
-<STYLESTUFF/AtlasNew.jpg, id=463, 642.14906pt x 857.45343pt>
+<STYLESTUFF/AtlasNew.jpg, id=478, 642.14906pt x 857.45343pt>
 File: STYLESTUFF/AtlasNew.jpg Graphic file (type jpg)
 <use STYLESTUFF/AtlasNew.jpg>
 Package pdftex.def Info: STYLESTUFF/AtlasNew.jpg  used on input line 19.
 (pdftex.def)             Requested size: 81.44707pt x 108.75145pt.
-<STYLESTUFF/AtlasOld.png, id=464, 277.78781pt x 369.63094pt>
+<STYLESTUFF/AtlasOld.png, id=479, 277.78781pt x 369.63094pt>
 File: STYLESTUFF/AtlasOld.png Graphic file (type png)
 <use STYLESTUFF/AtlasOld.png>
 Package pdftex.def Info: STYLESTUFF/AtlasOld.png  used on input line 25.
 (pdftex.def)             Requested size: 81.44707pt x 108.37463pt.
-<STYLESTUFF/Valkyrie.jpeg, id=465, 277.035pt x 369.38pt>
+<STYLESTUFF/Valkyrie.jpeg, id=480, 277.035pt x 369.38pt>
 File: STYLESTUFF/Valkyrie.jpeg Graphic file (type jpg)
 <use STYLESTUFF/Valkyrie.jpeg>
 Package pdftex.def Info: STYLESTUFF/Valkyrie.jpeg  used on input line 31.
 (pdftex.def)             Requested size: 81.44707pt x 108.59415pt.
-<STYLESTUFF/ATRIAS.png, id=466, 135.50626pt x 180.675pt>
+<STYLESTUFF/ATRIAS.png, id=481, 135.50626pt x 180.675pt>
 File: STYLESTUFF/ATRIAS.png Graphic file (type png)
 <use STYLESTUFF/ATRIAS.png>
 Package pdftex.def Info: STYLESTUFF/ATRIAS.png  used on input line 37.
@@ -754,7 +755,7 @@ Package acronym Info: Label `acro:LIP' overridden on input line 49.
 Package acronym Info: Label `acro:2D' overridden on input line 50.
 Package acronym Info: Label `acro:3D' overridden on input line 55.
 Package acronym Info: Label `acro:CoM' overridden on input line 55.
-<STYLESTUFF/3DCoMwithoutfoot.png, id=498, 2323.68124pt x 1759.57375pt>
+<STYLESTUFF/3DCoMwithoutfoot.png, id=513, 2323.68124pt x 1759.57375pt>
 File: STYLESTUFF/3DCoMwithoutfoot.png Graphic file (type png)
 <use STYLESTUFF/3DCoMwithoutfoot.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMwithoutfoot.png  used on input line 58
@@ -780,22 +781,26 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package acronym Info: Label `acro:ICP' overridden on input line 71.
 Package acronym Info: Label `acro:CP' newly defined as it shall be overridden
 although it is yet undefined on input line 72.
-<STYLESTUFF/2DICP.png, id=535, 1440.38126pt x 1303.87125pt>
+<STYLESTUFF/2DICP.png, id=550, 1440.38126pt x 1303.87125pt>
 File: STYLESTUFF/2DICP.png Graphic file (type png)
 <use STYLESTUFF/2DICP.png>
 Package pdftex.def Info: STYLESTUFF/2DICP.png  used on input line 80.
 (pdftex.def)             Requested size: 177.05879pt x 160.27773pt.
  [6 <./STYLESTUFF/2DICP.png>]
 Package acronym Info: Label `acro:CoP' overridden on input line 102.
-<STYLESTUFF/3DCoMwithfoot.png, id=574, 2323.68124pt x 1759.57375pt>
+<STYLESTUFF/3DCoMwithfoot.png, id=589, 2323.68124pt x 1759.57375pt>
 File: STYLESTUFF/3DCoMwithfoot.png Graphic file (type png)
 <use STYLESTUFF/3DCoMwithfoot.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMwithfoot.png  used on input line 106.
 (pdftex.def)             Requested size: 221.32687pt x 167.59082pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 Package acronym Info: Label `acro:ZMP' overridden on input line 111.
- [7 <./STYLESTUFF/3DCoMwithfoot.png>]
 Package acronym Info: Label `acro:CMP' overridden on input line 114.
-<STYLESTUFF/3DCoMwithfootinertia.png, id=618, 2323.68124pt x 1796.7125pt>
+[7]
+<STYLESTUFF/3DCoMwithfootinertia.png, id=635, 2323.68124pt x 1796.7125pt>
 File: STYLESTUFF/3DCoMwithfootinertia.png Graphic file (type png)
 <use STYLESTUFF/3DCoMwithfootinertia.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMwithfootinertia.png  used on input lin
@@ -810,7 +815,8 @@ Package acronym Info: Label `acro:eCMP' newly defined as it shall be overridden
 although it is yet undefined on input line 135.
 Package acronym Info: Label `acro:VRP' newly defined as it shall be overridden
 although it is yet undefined on input line 135.
-[8]) [9 <./STYLESTUFF/3DCoMwithfootinertia.png>]
+[8 <./STYLESTUFF/3DCoMwithfoot.png>]) [9 <./STYLESTUFF/3DCoMwithfootinertia.png
+>]
 \openout2 = `planningcontrol.aux'.
 
  (planningcontrol.tex [10
@@ -828,7 +834,7 @@ Package acronym Info: Label `acro:CMP' overridden on input line 13.
 Package acronym Info: Label `acro:LIP' overridden on input line 13.
 [11]
 Package acronym Info: Label `acro:SCS' overridden on input line 16.
-<STYLESTUFF/SCSValSS.png, id=693, 1257.19687pt x 398.99063pt>
+<STYLESTUFF/SCSValSS.png, id=708, 1257.19687pt x 398.99063pt>
 File: STYLESTUFF/SCSValSS.png Graphic file (type png)
 <use STYLESTUFF/SCSValSS.png>
 Package pdftex.def Info: STYLESTUFF/SCSValSS.png  used on input line 20.
@@ -838,7 +844,7 @@ although it is yet undefined on input line 26.
 Package acronym Info: Label `acro:2D' overridden on input line 26.
 Package acronym Info: Label `acro:3D' overridden on input line 26.
  [12 <./STYLESTUFF/SCSValSS.png>]
-<STYLESTUFF/controlframework.png, id=725, 1114.1625pt x 370.38374pt>
+<STYLESTUFF/controlframework.png, id=740, 1114.1625pt x 370.38374pt>
 File: STYLESTUFF/controlframework.png Graphic file (type png)
 <use STYLESTUFF/controlframework.png>
 Package pdftex.def Info: STYLESTUFF/controlframework.png  used on input line 33
@@ -860,61 +866,72 @@ although it is yet undefined on input line 41.
 Chapter 4.
 Package acronym Info: Label `acro:CoP' overridden on input line 4.
 Package acronym Info: Label `acro:LIP' overridden on input line 4.
+Package acronym Info: Label `acro:CP' overridden on input line 4.
 Package acronym Info: Label `acro:CoM' overridden on input line 4.
-Package acronym Info: Label `acro:2D' overridden on input line 5.
-<STYLESTUFF/2Dnonlin.png, id=764, 849.1725pt x 1303.87125pt>
+<STYLESTUFF/VaryingHeightCP.png, id=784, 1277.77374pt x 1355.0625pt>
+File: STYLESTUFF/VaryingHeightCP.png Graphic file (type png)
+<use STYLESTUFF/VaryingHeightCP.png>
+Package pdftex.def Info: STYLESTUFF/VaryingHeightCP.png  used on input line 7.
+(pdftex.def)             Requested size: 77.90778pt x 82.60286pt.
+<STYLESTUFF/VaryingHeightflat.png, id=785, 2670.97874pt x 1419.3025pt>
+File: STYLESTUFF/VaryingHeightflat.png Graphic file (type png)
+<use STYLESTUFF/VaryingHeightflat.png>
+Package pdftex.def Info: STYLESTUFF/VaryingHeightflat.png  used on input line 9
+.
+(pdftex.def)             Requested size: 144.12695pt x 76.57838pt.
+<STYLESTUFF/VaryingHeightunflat.png, id=786, 2565.585pt x 1617.04124pt>
+File: STYLESTUFF/VaryingHeightunflat.png Graphic file (type png)
+<use STYLESTUFF/VaryingHeightunflat.png>
+Package pdftex.def Info: STYLESTUFF/VaryingHeightunflat.png  used on input line
+ 11.
+(pdftex.def)             Requested size: 144.12695pt x 90.8251pt.
+Package acronym Info: Label `acro:2D' overridden on input line 13.
+<STYLESTUFF/2Dnonlin.png, id=795, 849.1725pt x 1303.87125pt>
 File: STYLESTUFF/2Dnonlin.png Graphic file (type png)
 <use STYLESTUFF/2Dnonlin.png>
-Package pdftex.def Info: STYLESTUFF/2Dnonlin.png  used on input line 8.
-(pdftex.def)             Requested size: 110.66344pt x 169.90712pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+Package pdftex.def Info: STYLESTUFF/2Dnonlin.png  used on input line 19.
+(pdftex.def)             Requested size: 66.39536pt x 101.94427pt.
 [15
 
 
 
-]
-Package acronym Info: Label `acro:Elip' overridden on input line 27.
+ <./STYLESTUFF/VaryingHeightCP.png> <./STYLESTUFF/VaryingHeightflat.png> <./STY
+LESTUFF/VaryingHeightunflat.png>]
+Package acronym Info: Label `acro:Elip' overridden on input line 38.
 Package acronym Info: Label `acro:Eorbit' newly defined as it shall be overridd
 en
-although it is yet undefined on input line 27.
+although it is yet undefined on input line 38.
 Package acronym Info: Label `acro:MPC' newly defined as it shall be overridden
-although it is yet undefined on input line 28.
-Package acronym Info: Label `acro:DCM' overridden on input line 30.
-Package acronym Info: Label `acro:ICP' overridden on input line 31.
-Package acronym Info: Label `acro:ZMP' overridden on input line 31.
-Package acronym Info: Label `acro:3D' overridden on input line 37.
+although it is yet undefined on input line 39.
+Package acronym Info: Label `acro:DCM' overridden on input line 41.
+Package acronym Info: Label `acro:ICP' overridden on input line 42.
+Package acronym Info: Label `acro:ZMP' overridden on input line 42.
  [16 <./STYLESTUFF/2Dnonlin.png>]
+Package acronym Info: Label `acro:3D' overridden on input line 48.
 Package acronym Info: Label `acro:SLIP' newly defined as it shall be overridden
 
-although it is yet undefined on input line 57.
-Package acronym Info: Label `acro:HZD' overridden on input line 58.
+although it is yet undefined on input line 68.
+Package acronym Info: Label `acro:HZD' overridden on input line 69.
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--60
-
- []
-
-[17] [18])
-Underfull \hbox (badness 10000) in paragraph at lines 69--62
+Underfull \hbox (badness 10000) in paragraph at lines 67--71
 
  []
 
-[19]
+[17] [18] [19]) [20]
 \openout2 = `conclusion.aux'.
 
- (conclusion.tex [20
-
-
-
-]
+ (conclusion.tex
 Chapter 5.
 Package acronym Info: Label `acro:LIP' overridden on input line 4.
-Package acronym Info: Label `acro:MPC' overridden on input line 4.
-) [21] [22
+Package acronym Info: Label `acro:CoM' overridden on input line 5.
+Package acronym Info: Label `acro:2D' overridden on input line 8.
+Package acronym Info: Label `acro:3D' overridden on input line 8.
+Package acronym Info: Label `acro:MPC' overridden on input line 14.
+) [21
 
 
-] (mscLiterature.bbl
+
+] [22] (mscLiterature.bbl
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 5.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
@@ -940,6 +957,8 @@ ying-[]wheeled-[]robot$[][]\T1/lmr/m/n/10.95 .  Ac-
 [23
 
 
+
+
 ] [24] [25]) [26]
 \openout2 = `glossary.aux'.
 
@@ -958,7 +977,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 84.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
 Package rerunfilecheck Info: File `mscLiterature.out' has not changed.
-(rerunfilecheck)             Checksum: 7A33D9634421966792F68C6BDEACF0D1;3514.
+(rerunfilecheck)             Checksum: 36C1CC9919EC697FBF04E5A33C1230BF;3514.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -966,13 +985,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  ) 
 Here is how much of TeX's memory you used:
- 10761 strings out of 492973
- 159124 string characters out of 3135920
- 263322 words of memory out of 3000000
- 14106 multiletter control sequences out of 15000+200000
+ 10790 strings out of 492973
+ 159938 string characters out of 3135920
+ 266585 words of memory out of 3000000
+ 14126 multiletter control sequences out of 15000+200000
  96962 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,15n,48p,1732b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,15n,48p,1788b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy
@@ -995,9 +1014,9 @@ iles/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/bookman/ubkl8a.pfb>
-Output written on mscLiterature.pdf (38 pages, 4282085 bytes).
+Output written on mscLiterature.pdf (38 pages, 4618468 bytes).
 PDF statistics:
- 1094 PDF objects out of 1200 (max. 8388607)
- 235 named destinations out of 1000 (max. 500000)
- 481 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1161 PDF objects out of 1200 (max. 8388607)
+ 241 named destinations out of 1000 (max. 500000)
+ 496 words of extra memory for PDF output out of 10000 (max. 10000000)
 
