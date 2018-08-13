@@ -61,12 +61,12 @@ where $l$ is the pendulum length and $x$ the Cartesian x-coordinate of the pendu
 \end{figure}
 
 \subsection{Conservation of \ac{Elip}}
-\cite{kajita1992dynamic} had a crucial finding in an extended use of \ac{LIP} models. Because $F=ma$, $I=Fv$ and $E = Fs = \int Fv dt$, there can be reasoned that if one takes the time integral of the product of the second and the first derivative of a state, an expression for a normalized energy can be achieved: $\frac{E}{m}=\int av dt$. In the mentioned publication that same action is applied on Eq. \eqref{eq:LIPeom}:
+A crucial finding in an extended use of \ac{LIP} models can be found in \cite{kajita1992dynamic}. Because $F=ma$, $I=Fv$ and $E = Fs = \int Fv dt$, there can be reasoned that if one takes the time integral of the product of the second and the first derivative of a state, an expression for a normalized energy can be achieved: $\frac{E}{m}=\int av dt$. In the mentioned publication that same action is applied on Eq. \eqref{eq:LIPeom}:
 \begin{equation}
 \int (\ddot{x}-\frac{g}{l}x)\dot{x} dt = \frac{1}{2}\dot{x}^2-\frac{g}{2z_0}x +C=0
 \label{eq:Elip}
 \end{equation}
-with $C$ the integration constant. The \ac{LIP} Orbital Energy is defined as $E_{LIP}=-C$. 
+with $C$ the integration constant. The \ac{LIP} Orbital Energy is defined as $E_{LIP}=-C$. If $E_{LIP}>0$, the point mass will cross the $x$ position of the pendulum base with its current velocity. If $E_{LIP}>0$, the point mass will not cross the pendulum base and will have a turning point where the velocity becomes zero.
 
 \subsection{The \acf{ICP}}
 Although the finding of the \ac{LIP} Orbital Energy was very important for future robot motion modeling, more than a decade later \cite{pratt2006capture} introduced the \ac{CP}. Taking $E_{LIP}=0$ and taking the square root of Eq.  \eqref{eq:Elip} gives
@@ -74,7 +74,7 @@ Although the finding of the \ac{LIP} Orbital Energy was very important for futur
 x_{CP}=\sqrt{ \frac{z_0}{g}}\dot{x} 
 \label{eq:cp}
 \end{equation}
-where $x_{CP}$ is the \ac{CP}, measured from the current pendulum tip position, based on the current tip velocity $\dot{x}$. This is the point where the velocity is driven to zero and the pendulum is upright. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point.
+where $x_{CP}$ is the \ac{CP}, measured from the current pendulum tip position, based on the current tip velocity $\dot{x}$. This is the point where the velocity is exactly driven to zero and the pendulum is upright, where neither crossing of the pendulum base ocurred nor turning of body velocity. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.4\textwidth]{STYLESTUFF/2DICP.png}
