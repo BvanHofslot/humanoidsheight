@@ -13,11 +13,13 @@ z = z0+dz0*tspan -0.5*9.81*tspan.^2;
 figure;
 plot([-0.5,0],[1 1]*1.1);
 hold on;
+plot([1 1]*-x0,[0 2]);
 plot(x,z)
 axis([-0.5 0.0 0.0 1.2])
 circle(0,0,1.118);
 tspan=[0:0.0001:100];
 [t,y] =ode45(@qfun, tspan, [-0.3;1;1;0]);
 hold on;
+axis([-1 0 0 2])
 plot(y(:,1),y(:,3));
 legend('heightconstraint','minheightcapture','leglengthconstraint','Twan')
