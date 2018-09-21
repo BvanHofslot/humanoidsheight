@@ -1215,12 +1215,12 @@
         % TITELBLOK EN OORMERK
         \setlength{\fboxsep}{0cm}
         \setlength{\unitlength}{\textwidth}
-        \begin{picture}(1,0.45)%
+        \begin{picture}(1,1.2)%
             % black box for title and name
             \put(0,0){%
 %PH 7-1-11 REPLACED NEXT LINE
 %                \colorbox{black}{\makebox(1,.45){}}
-                \colorbox[cmyk]{1,1,1,1}{\makebox(0.9,.45){}}
+                \colorbox[cmyk]{1,1,1,1}{\makebox(0.9,0.45){}}
             }%
             % Title text (white)
             \put(0.05,0.40){%
@@ -1243,10 +1243,10 @@
                 }%
             }%      
             % cyan `oormerk' box
-            \put(-0.25,-0.45){%
+            \put(-0.25,0.45){%
                 \colorbox{cyan}{\makebox(0.25,0.45){}}
             }%
-            \put(-0.05,-0.42){%
+            \put(-0.05,0.48){%
                 \rotatebox{90}{%
                     \Large{\textsf{\color{white} Literature Survey}}
                 }%

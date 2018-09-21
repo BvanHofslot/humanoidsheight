@@ -10,7 +10,7 @@
 \contentsline {figure}{\numberline {3-1}{\ignorespaces Valkyrie walking in \ac {SCS}. In the left window a footstep plan is made visible together with the swing leg trajectories with their knot points. The red arrow indicates the ground reaction wrench and the window on the right displays the current ground contact with some reference and measured points.\relax }}{12}{figure.caption.47}
 \contentsline {figure}{\numberline {3-2}{\ignorespaces Overview of control framework used at IHMC, retrieved from \cite {koolen2016design}\relax }}{14}{figure.caption.51}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4-1}{\ignorespaces \ac {2D} illustrations of how the trajectories of a point foot model (dotted) differ from the \ac {LIP} trajectories (grey). (a) Displays how the trajectory can influence the capture problem. (b) Shows how over flat terrain the trajectory can differ from the \ac {LIP} model. (c) Shows the the differenes over un-flat terrain.\relax }}{15}{figure.caption.58}
+\contentsline {figure}{\numberline {4-1}{\ignorespaces \ac {2D} illustrations of how the trajectories of a point foot model (dotted) differ from the \ac {LIP} trajectories (grey). \textbf {(a)} Displays how the trajectory can influence the capture problem. \textbf {(b)} Shows how over flat terrain the trajectory can differ from the \ac {LIP} model. \textbf {(c)} Shows the the differenes over un-flat terrain.\relax }}{15}{figure.caption.58}
 \contentsline {figure}{\numberline {4-2}{\ignorespaces Nonlinear simplified system in \ac {2D}.\relax }}{16}{figure.caption.60}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
