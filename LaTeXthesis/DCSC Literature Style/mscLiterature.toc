@@ -38,7 +38,7 @@
 \contentsline {section}{\numberline {4-4}Trajectory Optimization for Nonlinear Systems}{18}{section.4.4}
 \contentsline {section}{\numberline {4-5}Analysis \& Discussion}{18}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{23}{section*.75}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{27}{chapter*.77}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{27}{section*.78}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{28}{section*.80}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{23}{section*.76}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{27}{chapter*.78}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{27}{section*.79}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{28}{section*.81}

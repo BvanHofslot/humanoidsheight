@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.12)  12 AUG 2018 23:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.7.12)  13 AUG 2018 19:20
 entering extended mode
 **"C:/humanoidsheight-master/humanoidsheight/LaTeXthesis/DCSC Literature Style/
 mscLiterature.tex"
@@ -470,6 +470,10 @@ Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
 \WF@everypar=\toks28
 Package: wrapfig 2003/01/31  v 3.6
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\transparent.sty"
+Package: transparent 2016/05/16 v1.1 Transparency via pdfTeX's color stack (HO)
+
+)
 \@nomenclaturefile=\write4
 \openout4 = `mscLiterature.nlo'.
 
@@ -486,21 +490,21 @@ LaTeX Warning: Label `eq:cp' multiply defined.
 ) (planningcontrol.aux) (varyingheight.aux) (conclusion.aux) (glossary.aux))
 \openout1 = `mscLiterature.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 40.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -525,7 +529,7 @@ Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box31
 \c@lstlisting=\count129
-Package hyperref Info: Link coloring ON on input line 38.
+Package hyperref Info: Link coloring ON on input line 40.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -535,24 +539,24 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count130
 )
-LaTeX Info: Redefining \ref on input line 38.
-LaTeX Info: Redefining \pageref on input line 38.
-LaTeX Info: Redefining \nameref on input line 38.
+LaTeX Info: Redefining \ref on input line 40.
+LaTeX Info: Redefining \pageref on input line 40.
+LaTeX Info: Redefining \nameref on input line 40.
 
 (mscLiterature.out) (mscLiterature.out)
 \@outlinefile=\write6
 \openout6 = `mscLiterature.out'.
 
-LaTeX Font Info:    Try loading font information for T1+pbk on input line 46.
+LaTeX Font Info:    Try loading font information for T1+pbk on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pbk.fd"
 File: t1pbk.fd 2001/06/04 font definitions for T1/pbk.
 )
 LaTeX Font Info:    Font shape `T1/pbk/m/n' in size <24.88> not available
-(Font)              Font shape `T1/pbk/l/n' tried instead on input line 46.
+(Font)              Font shape `T1/pbk/l/n' tried instead on input line 48.
 LaTeX Font Info:    Font shape `T1/pbk/m/n' in size <14.4> not available
-(Font)              Font shape `T1/pbk/l/n' tried instead on input line 46.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 46.
+(Font)              Font shape `T1/pbk/l/n' tried instead on input line 48.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -560,12 +564,12 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 <STYLESTUFF/COVER.jpg, id=203, 722.7pt x 963.6pt>
 File: STYLESTUFF/COVER.jpg Graphic file (type jpg)
 <use STYLESTUFF/COVER.jpg>
-Package pdftex.def Info: STYLESTUFF/COVER.jpg  used on input line 46.
+Package pdftex.def Info: STYLESTUFF/COVER.jpg  used on input line 48.
 (pdftex.def)             Requested size: 597.51404pt x 845.07408pt.
 <STYLESTUFF/TU_LOGO.png, id=204, 145.71439pt x 42.42851pt>
 File: STYLESTUFF/TU_LOGO.png Graphic file (type png)
 <use STYLESTUFF/TU_LOGO.png>
-Package pdftex.def Info: STYLESTUFF/TU_LOGO.png  used on input line 46.
+Package pdftex.def Info: STYLESTUFF/TU_LOGO.png  used on input line 48.
 (pdftex.def)             Requested size: 145.714pt x 42.4284pt.
  [1{C:/Users/shadylady/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
@@ -574,45 +578,45 @@ Package pdftex.def Info: STYLESTUFF/TU_LOGO.png  used on input line 46.
  <./STYLESTUFF/COVER.jpg> <./STYLESTUFF/TU_LOGO.png>] [2
 
 ]
-LaTeX Font Info:    Try loading font information for OML+lmr on input line 46.
+LaTeX Font Info:    Try loading font information for OML+lmr on input line 48.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmr.fd"
 File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 46.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 48.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OML/lmr/m/it' in size <14.4> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 46.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 46.
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 48.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 46.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 48.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 46.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 48.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 46.
+(Font)              <10.95> on input line 48.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 46.
+(Font)              <8> on input line 48.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 46.
-LaTeX Font Info:    Try loading font information for U+msa on input line 46.
+(Font)              <6> on input line 48.
+LaTeX Font Info:    Try loading font information for U+msa on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 46.
+LaTeX Font Info:    Try loading font information for U+msb on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -620,28 +624,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <STYLESTUFF/EXAMPLELOGO.png, id=228, 948.54375pt x 282.05376pt>
 File: STYLESTUFF/EXAMPLELOGO.png Graphic file (type png)
 <use STYLESTUFF/EXAMPLELOGO.png>
-Package pdftex.def Info: STYLESTUFF/EXAMPLELOGO.png  used on input line 46.
+Package pdftex.def Info: STYLESTUFF/EXAMPLELOGO.png  used on input line 48.
 (pdftex.def)             Requested size: 150.0pt x 44.60014pt.
 File: STYLESTUFF/TU_LOGO.png Graphic file (type png)
 <use STYLESTUFF/TU_LOGO.png>
-Package pdftex.def Info: STYLESTUFF/TU_LOGO.png  used on input line 46.
+Package pdftex.def Info: STYLESTUFF/TU_LOGO.png  used on input line 48.
 (pdftex.def)             Requested size: 154.92813pt x 45.11449pt.
 <STYLESTUFF/DCSC.png, id=229, 440.39531pt x 224.33812pt>
 File: STYLESTUFF/DCSC.png Graphic file (type png)
 <use STYLESTUFF/DCSC.png>
-Package pdftex.def Info: STYLESTUFF/DCSC.png  used on input line 46.
+Package pdftex.def Info: STYLESTUFF/DCSC.png  used on input line 48.
 (pdftex.def)             Requested size: 99.5964pt x 50.73405pt.
 
-Overfull \hbox (121.93481pt too wide) in paragraph at lines 46--46
+Overfull \hbox (121.93481pt too wide) in paragraph at lines 48--48
 []$[]$  $[]$ 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 46.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 48.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 46.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 48.
  [4 <./STYLESTUFF/EXAMPLELOGO.png> <./STYLESTUFF/DCSC.png>]
 \openout2 = `abstract.aux'.
 
@@ -703,11 +707,11 @@ Package acronym Info: Label `acro:LIP' overridden on input line 6.
 Package acronym Info: Label `acro:CoM' overridden on input line 8.
 Package acronym Info: Label `acro:2D' overridden on input line 9.
 Package acronym Info: Label `acro:3D' overridden on input line 9.
-<STYLESTUFF/3DCoMfootinertiaz0.png, id=427, 2323.68124pt x 1796.7125pt>
+<STYLESTUFF/3DCoMfootinertiaz0.png, id=428, 2323.68124pt x 1796.7125pt>
 File: STYLESTUFF/3DCoMfootinertiaz0.png Graphic file (type png)
 <use STYLESTUFF/3DCoMfootinertiaz0.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMfootinertiaz0.png  used on input line 
-13.
+14.
 (pdftex.def)             Requested size: 221.32687pt x 171.12811pt.
 [1
 
@@ -723,22 +727,22 @@ Chapter 2.
 
 
 ]
-<STYLESTUFF/AtlasNew.jpg, id=478, 642.14906pt x 857.45343pt>
+<STYLESTUFF/AtlasNew.jpg, id=480, 642.14906pt x 857.45343pt>
 File: STYLESTUFF/AtlasNew.jpg Graphic file (type jpg)
 <use STYLESTUFF/AtlasNew.jpg>
 Package pdftex.def Info: STYLESTUFF/AtlasNew.jpg  used on input line 19.
 (pdftex.def)             Requested size: 81.44707pt x 108.75145pt.
-<STYLESTUFF/AtlasOld.png, id=479, 277.78781pt x 369.63094pt>
+<STYLESTUFF/AtlasOld.png, id=481, 277.78781pt x 369.63094pt>
 File: STYLESTUFF/AtlasOld.png Graphic file (type png)
 <use STYLESTUFF/AtlasOld.png>
 Package pdftex.def Info: STYLESTUFF/AtlasOld.png  used on input line 25.
 (pdftex.def)             Requested size: 81.44707pt x 108.37463pt.
-<STYLESTUFF/Valkyrie.jpeg, id=480, 277.035pt x 369.38pt>
+<STYLESTUFF/Valkyrie.jpeg, id=482, 277.035pt x 369.38pt>
 File: STYLESTUFF/Valkyrie.jpeg Graphic file (type jpg)
 <use STYLESTUFF/Valkyrie.jpeg>
 Package pdftex.def Info: STYLESTUFF/Valkyrie.jpeg  used on input line 31.
 (pdftex.def)             Requested size: 81.44707pt x 108.59415pt.
-<STYLESTUFF/ATRIAS.png, id=481, 135.50626pt x 180.675pt>
+<STYLESTUFF/ATRIAS.png, id=483, 135.50626pt x 180.675pt>
 File: STYLESTUFF/ATRIAS.png Graphic file (type png)
 <use STYLESTUFF/ATRIAS.png>
 Package pdftex.def Info: STYLESTUFF/ATRIAS.png  used on input line 37.
@@ -755,7 +759,7 @@ Package acronym Info: Label `acro:LIP' overridden on input line 49.
 Package acronym Info: Label `acro:2D' overridden on input line 50.
 Package acronym Info: Label `acro:3D' overridden on input line 55.
 Package acronym Info: Label `acro:CoM' overridden on input line 55.
-<STYLESTUFF/3DCoMwithoutfoot.png, id=513, 2323.68124pt x 1759.57375pt>
+<STYLESTUFF/3DCoMwithoutfoot.png, id=515, 2323.68124pt x 1759.57375pt>
 File: STYLESTUFF/3DCoMwithoutfoot.png Graphic file (type png)
 <use STYLESTUFF/3DCoMwithoutfoot.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMwithoutfoot.png  used on input line 58
@@ -781,7 +785,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package acronym Info: Label `acro:ICP' overridden on input line 71.
 Package acronym Info: Label `acro:CP' newly defined as it shall be overridden
 although it is yet undefined on input line 72.
-<STYLESTUFF/2DICP.png, id=550, 1440.38126pt x 1303.87125pt>
+<STYLESTUFF/2DICP.png, id=552, 1440.38126pt x 1303.87125pt>
 File: STYLESTUFF/2DICP.png Graphic file (type png)
 <use STYLESTUFF/2DICP.png>
 Package pdftex.def Info: STYLESTUFF/2DICP.png  used on input line 80.
@@ -797,10 +801,10 @@ Package pdftex.def Info: STYLESTUFF/3DCoMwithfoot.png  used on input line 106.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package acronym Info: Label `acro:ZMP' overridden on input line 111.
+Package acronym Info: Label `acro:ZMP' overridden on input line 110.
 Package acronym Info: Label `acro:CMP' overridden on input line 114.
 [7]
-<STYLESTUFF/3DCoMwithfootinertia.png, id=635, 2323.68124pt x 1796.7125pt>
+<STYLESTUFF/3DCoMwithfootinertia.png, id=636, 2323.68124pt x 1796.7125pt>
 File: STYLESTUFF/3DCoMwithfootinertia.png Graphic file (type png)
 <use STYLESTUFF/3DCoMwithfootinertia.png>
 Package pdftex.def Info: STYLESTUFF/3DCoMwithfootinertia.png  used on input lin
@@ -834,7 +838,7 @@ Package acronym Info: Label `acro:CMP' overridden on input line 13.
 Package acronym Info: Label `acro:LIP' overridden on input line 13.
 [11]
 Package acronym Info: Label `acro:SCS' overridden on input line 16.
-<STYLESTUFF/SCSValSS.png, id=708, 1257.19687pt x 398.99063pt>
+<STYLESTUFF/SCSValSS.png, id=709, 1257.19687pt x 398.99063pt>
 File: STYLESTUFF/SCSValSS.png Graphic file (type png)
 <use STYLESTUFF/SCSValSS.png>
 Package pdftex.def Info: STYLESTUFF/SCSValSS.png  used on input line 20.
@@ -844,10 +848,10 @@ although it is yet undefined on input line 26.
 Package acronym Info: Label `acro:2D' overridden on input line 26.
 Package acronym Info: Label `acro:3D' overridden on input line 26.
  [12 <./STYLESTUFF/SCSValSS.png>]
-<STYLESTUFF/controlframework.png, id=740, 1114.1625pt x 370.38374pt>
+<STYLESTUFF/controlframework.png, id=741, 1114.1625pt x 370.38374pt>
 File: STYLESTUFF/controlframework.png Graphic file (type png)
 <use STYLESTUFF/controlframework.png>
-Package pdftex.def Info: STYLESTUFF/controlframework.png  used on input line 33
+Package pdftex.def Info: STYLESTUFF/controlframework.png  used on input line 35
 .
 (pdftex.def)             Requested size: 354.12434pt x 117.72269pt.
 
@@ -856,9 +860,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [13]
 Package acronym Info: Label `acro:IMU' newly defined as it shall be overridden
-although it is yet undefined on input line 41.
+although it is yet undefined on input line 43.
 Package acronym Info: Label `acro:EKF' newly defined as it shall be overridden
-although it is yet undefined on input line 41.
+although it is yet undefined on input line 43.
 ) [14 <./STYLESTUFF/controlframework.png>]
 \openout2 = `varyingheight.aux'.
 
@@ -868,25 +872,25 @@ Package acronym Info: Label `acro:CoP' overridden on input line 4.
 Package acronym Info: Label `acro:LIP' overridden on input line 4.
 Package acronym Info: Label `acro:CP' overridden on input line 4.
 Package acronym Info: Label `acro:CoM' overridden on input line 4.
-<STYLESTUFF/VaryingHeightCP.png, id=784, 1277.77374pt x 1355.0625pt>
+<STYLESTUFF/VaryingHeightCP.png, id=785, 1277.77374pt x 1355.0625pt>
 File: STYLESTUFF/VaryingHeightCP.png Graphic file (type png)
 <use STYLESTUFF/VaryingHeightCP.png>
 Package pdftex.def Info: STYLESTUFF/VaryingHeightCP.png  used on input line 7.
-(pdftex.def)             Requested size: 77.90778pt x 82.60286pt.
-<STYLESTUFF/VaryingHeightflat.png, id=785, 2670.97874pt x 1419.3025pt>
+(pdftex.def)             Requested size: 79.6759pt x 84.48442pt.
+<STYLESTUFF/VaryingHeightflat.png, id=786, 2670.97874pt x 1419.3025pt>
 File: STYLESTUFF/VaryingHeightflat.png Graphic file (type png)
 <use STYLESTUFF/VaryingHeightflat.png>
 Package pdftex.def Info: STYLESTUFF/VaryingHeightflat.png  used on input line 9
 .
-(pdftex.def)             Requested size: 144.12695pt x 76.57838pt.
-<STYLESTUFF/VaryingHeightunflat.png, id=786, 2565.585pt x 1617.04124pt>
+(pdftex.def)             Requested size: 163.16446pt x 86.69211pt.
+<STYLESTUFF/VaryingHeightunflat.png, id=787, 2565.585pt x 1617.04124pt>
 File: STYLESTUFF/VaryingHeightunflat.png Graphic file (type png)
 <use STYLESTUFF/VaryingHeightunflat.png>
 Package pdftex.def Info: STYLESTUFF/VaryingHeightunflat.png  used on input line
  11.
-(pdftex.def)             Requested size: 144.12695pt x 90.8251pt.
+(pdftex.def)             Requested size: 158.11835pt x 99.6584pt.
 Package acronym Info: Label `acro:2D' overridden on input line 13.
-<STYLESTUFF/2Dnonlin.png, id=795, 849.1725pt x 1303.87125pt>
+<STYLESTUFF/2Dnonlin.png, id=797, 849.1725pt x 1303.87125pt>
 File: STYLESTUFF/2Dnonlin.png Graphic file (type png)
 <use STYLESTUFF/2Dnonlin.png>
 Package pdftex.def Info: STYLESTUFF/2Dnonlin.png  used on input line 19.
@@ -910,10 +914,10 @@ Package acronym Info: Label `acro:ZMP' overridden on input line 42.
 Package acronym Info: Label `acro:3D' overridden on input line 48.
 Package acronym Info: Label `acro:SLIP' newly defined as it shall be overridden
 
-although it is yet undefined on input line 68.
-Package acronym Info: Label `acro:HZD' overridden on input line 69.
+although it is yet undefined on input line 69.
+Package acronym Info: Label `acro:HZD' overridden on input line 70.
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--71
+Underfull \hbox (badness 10000) in paragraph at lines 67--72
 
  []
 
@@ -924,42 +928,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--71
 Chapter 5.
 Package acronym Info: Label `acro:LIP' overridden on input line 4.
 Package acronym Info: Label `acro:CoM' overridden on input line 5.
-Package acronym Info: Label `acro:2D' overridden on input line 8.
-Package acronym Info: Label `acro:3D' overridden on input line 8.
-Package acronym Info: Label `acro:MPC' overridden on input line 14.
+Package acronym Info: Label `acro:2D' overridden on input line 9.
+Package acronym Info: Label `acro:3D' overridden on input line 9.
+Package acronym Info: Label `acro:MPC' overridden on input line 15.
+Package acronym Info: Label `acro:Eorbit' overridden on input line 18.
 ) [21
 
 
 
-] [22] (mscLiterature.bbl
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 5.
+] [22] (mscLiterature.bbl [23
+
+
+
+
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 100.
+
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 13--16
+Underfull \hbox (badness 10000) in paragraph at lines 108--111
 []\T1/lmr/m/n/10.95 ``Image of the Valkyrie hu-manoid robot.'' [][]$\T1/lmtt/m/
 n/10.95 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--16
+Underfull \hbox (badness 10000) in paragraph at lines 108--111
 \T1/lmtt/m/n/10.95 / / spectrum . ieee . org / automaton / robotics / humanoids
  /
  []
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 13--16
+Underfull \hbox (badness 1184) in paragraph at lines 108--111
 \T1/lmtt/m/n/10.95 video-[]friday-[]ihmc-[]valkyrie-[]harvard-[]arthropods-[]fl
 ying-[]wheeled-[]robot$[][]\T1/lmr/m/n/10.95 .  Ac-
  []
 
-[23
-
-
-
-
-] [24] [25]) [26]
+[24] [25]) [26]
 \openout2 = `glossary.aux'.
 
  (glossary.tex
@@ -970,28 +976,28 @@ No file mscLiterature.nls.
 
 ] [28]
 No file mscLiterature.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
 (mscLiterature.aux (abstract.aux) (introduction.aux) (modeling.aux)
 (planningcontrol.aux) (varyingheight.aux) (conclusion.aux) (glossary.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 84.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 86.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
 Package rerunfilecheck Info: File `mscLiterature.out' has not changed.
-(rerunfilecheck)             Checksum: 36C1CC9919EC697FBF04E5A33C1230BF;3514.
+(rerunfilecheck)             Checksum: C387555C4179222C7505427C2FC7D164;3514.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 10790 strings out of 492973
- 159938 string characters out of 3135920
- 266585 words of memory out of 3000000
- 14126 multiletter control sequences out of 15000+200000
+ 10811 strings out of 492973
+ 160339 string characters out of 3135920
+ 267022 words of memory out of 3000000
+ 14142 multiletter control sequences out of 15000+200000
  96962 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,15n,48p,1788b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,15n,48p,1759b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy
@@ -1014,9 +1020,9 @@ iles/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/bookman/ubkl8a.pfb>
-Output written on mscLiterature.pdf (38 pages, 4618468 bytes).
+Output written on mscLiterature.pdf (38 pages, 4623072 bytes).
 PDF statistics:
- 1161 PDF objects out of 1200 (max. 8388607)
- 241 named destinations out of 1000 (max. 500000)
+ 1171 PDF objects out of 1200 (max. 8388607)
+ 243 named destinations out of 1000 (max. 500000)
  496 words of extra memory for PDF output out of 10000 (max. 10000000)
 
