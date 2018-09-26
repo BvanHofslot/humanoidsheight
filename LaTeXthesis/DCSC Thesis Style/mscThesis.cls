@@ -1211,7 +1211,7 @@
                 \put(0,90){\color{black} \line(1,0){614}}%
                 \put(0,14){\color{white} \line(1,0){614}}%
                 \put(80,43){\includegraphics{STYLESTUFF/TU_LOGO}}%
-                \put(352,45){\textsf{Delft Center for Systems and Control}}%
+                \put(352,45){\textsf{Cognitive Robotics}}%
             \end{picture}%
         }
     }
