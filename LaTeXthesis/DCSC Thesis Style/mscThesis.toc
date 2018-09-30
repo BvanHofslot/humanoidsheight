@@ -1,0 +1,27 @@
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface}{ix}{chapter*.12}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Acknowledgements}{xi}{chapter*.13}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1-1}Motivation}{1}{section.1.1}
+\contentsline {section}{\numberline {1-2}Research Objective}{1}{section.1.2}
+\contentsline {section}{\numberline {1-3}Contributions}{1}{section.1.3}
+\contentsline {section}{\numberline {1-4}Thesis Outline}{1}{section.1.4}
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
+\contentsline {section}{\numberline {2-1}Linear Inverted Pendulum Model}{3}{section.2.1}
+\contentsline {section}{\numberline {2-2}Ground Reference Points}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2-2-1}The \ac {CoP}}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2-2-2}The \ac {ZMP}}{4}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2-2-3}The \ac {CMP}}{5}{subsection.2.2.3}
+\contentsline {section}{\numberline {2-3}Energy of Walking}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2-3-1}The \ac {ICP}}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2-3-2}Conservation of \ac {Elip}}{5}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2-3-3}The \acf {ICP}}{6}{subsection.2.3.3}
+\contentsline {subsubsection}{\ac {ICP} dynamics}{7}{section*.28}
+\contentsline {subsection}{\numberline {2-3-4}Orbital Energy}{7}{subsection.2.3.4}
+\contentsline {section}{\numberline {2-4}CoM Height Variation}{7}{section.2.4}
+\contentsline {section}{\numberline {2-5}Control Framework IHMC}{7}{section.2.5}
+\contentsline {chapter}{\numberline {A}Yet Another Appendix}{9}{appendix.A}
+\contentsline {section}{\numberline {A-1}Test Section (Again?)}{9}{section.A.1}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{11}{section*.29}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{13}{appendix*.31}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{13}{section*.32}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{13}{section*.34}

@@ -1,0 +1,63 @@
+\begin{thebibliography}{10}
+
+\bibitem{koolen2016balance}
+T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
+  height variation: limitations imposed by unilateral contact,'' in {\em
+  Humanoid Robots (Humanoids), 2016 IEEE-RAS 16th International Conference on},
+  pp.~8--15, IEEE, 2016.
+
+\bibitem{pratt2007derivation}
+J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
+  orbital energy for the inverted pendulum bipedal walking model,'' in {\em
+  Robotics and Automation, 2007 IEEE International Conference on},
+  pp.~4653--4660, IEEE, 2007.
+
+\bibitem{kajita20013d}
+S.~Kajita, F.~Kanehiro, K.~Kaneko, K.~Yokoi, and H.~Hirukawa, ``The 3d linear
+  inverted pendulum mode: A simple modeling for a biped walking pattern
+  generation,'' in {\em Intelligent Robots and Systems, 2001. Proceedings. 2001
+  IEEE/RSJ International Conference on}, vol.~1, pp.~239--246, IEEE, 2001.
+
+\bibitem{kuo2005energetic}
+A.~D. Kuo, J.~M. Donelan, and A.~Ruina, ``Energetic consequences of walking
+  like an inverted pendulum: step-to-step transitions,'' {\em Exercise and
+  sport sciences reviews}, vol.~33, no.~2, pp.~88--97, 2005.
+
+\bibitem{kajita1992dynamic}
+S.~Kajita, T.~Yamaura, and A.~Kobayashi, ``Dynamic walking control of a biped
+  robot along a potential energy conserving orbit,'' {\em IEEE Transactions on
+  robotics and automation}, vol.~8, no.~4, pp.~431--438, 1992.
+
+\bibitem{pratt2006capture}
+J.~Pratt, J.~Carff, S.~Drakunov, and A.~Goswami, ``Capture point: A step toward
+  humanoid push recovery,'' in {\em Humanoid Robots, 2006 6th IEEE-RAS
+  International Conference on}, pp.~200--207, IEEE, 2006.
+
+\bibitem{koolen2012capturability}
+T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
+  ``Capturability-based analysis and control of legged locomotion, part 1:
+  Theory and application to three simple gait models,'' {\em The International
+  Journal of Robotics Research}, vol.~31, no.~9, pp.~1094--1113, 2012.
+
+\bibitem{vukobratovic2004zero}
+M.~Vukobratovi{\'c} and B.~Borovac, ``Zero-moment point—thirty five years of
+  its life,'' {\em International journal of humanoid robotics}, vol.~1, no.~01,
+  pp.~157--173, 2004.
+
+\bibitem{sardain2004forces}
+P.~Sardain and G.~Bessonnet, ``Forces acting on a biped robot. center of
+  pressure-zero moment point,'' {\em IEEE Transactions on Systems, Man, and
+  Cybernetics-Part A: Systems and Humans}, vol.~34, no.~5, pp.~630--637, 2004.
+
+\bibitem{vukobratovic1969contribution}
+M.~Vukobratovic and D.~Juricic, ``Contribution to the synthesis of biped
+  gait,'' {\em IEEE Transactions on Biomedical Engineering}, no.~1, pp.~1--6,
+  1969.
+
+\bibitem{popovic2005ground}
+M.~B. Popovic, A.~Goswami, and H.~Herr, ``Ground reference points in legged
+  locomotion: Definitions, biological trajectories and control implications,''
+  {\em The International Journal of Robotics Research}, vol.~24, no.~12,
+  pp.~1013--1032, 2005.
+
+\end{thebibliography}

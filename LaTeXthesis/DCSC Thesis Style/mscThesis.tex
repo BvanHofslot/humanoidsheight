@@ -1,4 +1,6 @@
 \documentclass[nosignatures]{mscThesis}
+\newcommand{\Elip}{\lsymb{$E_{LIP}$}{Linear inverted pendulum orbital energy}}
+\newcommand{\Eorbit}{\lsymb{$E_{orbit}$}{Nonlinear orbital energy}}
 % replace the previous line with the next to include a signature page
 %\documentclass{mscThesis}
 % use the option 'nosignatures' to turn off the signatures page
@@ -74,13 +76,11 @@
 %
 \include{introduction}
 \include{background}
-\include{basics}
 %
 %
 %========================== Appendices =======================================
 \appendix
 %
-\include{app_back}
 \include{app_another}
 
 %========================== Back matter ======================================
@@ -88,7 +88,7 @@
 %
 % Bibliography
 \bibliographystyle{ieeetr}
-%\printbib{MyBib}
+\printbib{MyBib}
 %
 \include{glossary}
 %
