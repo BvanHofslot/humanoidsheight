@@ -1,0 +1,10 @@
+\begin{thenomenclature} 
+
+ \nomgroup{C}
+
+  \item [{$E_{LIP}$}]\begingroup \MakeUppercase LIP orbital energy\nomeqref {2-0}
+		\nompageref{3}
+  \item [{$E_{orbit}$}]\begingroup \MakeUppercase Nonlinear orbital energy\nomeqref {2-0}
+		\nompageref{3}
+
+\end{thenomenclature}
