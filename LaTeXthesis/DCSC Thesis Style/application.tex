@@ -5,6 +5,28 @@
 % Challenges
 \section{Challenges}
 \subsection{Angular Momentum and Height Variation}
+\begin{figure}[h]
+  \begin{subfigure}{0.3\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{STYLESTUFF/2DCMPVIZ.png}
+   \caption{}
+    \label{fig:cmpFza}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+    \centering
+  \includegraphics[width=.8\linewidth]{STYLESTUFF/2DCMPVIZCoPzero.png}
+  \caption{}
+   \label{fig:cmpFzb}
+  \end{subfigure}
+  \begin{subfigure}{0.35\textwidth}
+    \centering
+  \includegraphics[width=.8\linewidth]{STYLESTUFF/2DCMPVIZFgradjusted.png}
+    \caption{}
+     \label{fig:cmpFzc}
+  \end{subfigure}
+  \caption{}
+  \label{fig:cmpFz}
+\end{figure}
 \subsection{From 2D to 3D}
 \subsection{Predictability of Dynamics}
 \subsection{Singularity Avoidance}
@@ -14,6 +36,21 @@
 \subsection{Adjust Quadratic Program Structure}
 \subsection{Adjust Quadratic Program Inputs}
 
+\begin{equation}
+\dot{\mathbf{l}}_d=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}}{z}F_z
+\end{equation}
+
+\begin{equation}
+\dot{\mathbf{l}}_d=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}+\frac{\tau_y}{F_z}}{z}F_z
+\end{equation}
+
+\begin{equation}
+\dot{\mathbf{l}}_d=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m(g+\ddot{z}_d) + \frac{\tau_y}{z}
+\end{equation}
+ 
+ \begin{equation}
+\dot{\mathbf{l}}_d=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z}mg}_{\dot{\mathbf{l}}_{d,lip}}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dot{\mathbf{l}}_{d,heightcontrol}}
+\end{equation}
 % Experimental Setup
 \section{Experimental Setup}
 
