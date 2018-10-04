@@ -8,7 +8,7 @@ maxLengthSquared=1.21;
 stepUp=0.2;
 
 %% First step
-x=-0.3193;
+x=-0.2;
 z=1;
 dx=1.0;
 dz=0.0;
