@@ -2,4 +2,76 @@
 % Another appendix chapter
 \chapter{Orbital Energy MPC}
 
+\section{2D Polynomial}
+\begin{equation}
+    \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0).
+\end{equation}
 
+\begin{equation}
+    u = \frac{g + f''(x)\dot{x}^2}{\bar{f}(x)}
+\end{equation}
+
+\begin{equation}
+    \underbrace{\begin{bmatrix}1 & 0 & 0 & 0 \\ 
+     1 & x_0 & x_0^2 & x_0^3\\
+     0 & 1 & 2x_0 & 3x_0^2\\
+     \frac{3}{2}gx_0^2 & gx_0^3 & \frac{3}{4}gx_0^4 & \frac{3}{5}gx_0^5\\
+     \end{bmatrix}}_A
+     \underbrace{\begin{bmatrix}
+     c_0\\
+     c_1\\
+     c_2\\
+     c_3\\
+     \end{bmatrix}}_{\boldsymbol{c}}=
+     \underbrace{\begin{bmatrix}
+     z_f\\
+     z_0\\
+     \frac{\dot{z}_0}{\dot{x}_0}\\
+     k\\
+     \end{bmatrix}}_{\boldsymbol{b}}
+\end{equation}
+
+where $k=\frac{1}{2}(\dot{x}_0z_0-\dot{x}_0x_0)^2 + gx_0^2z_0 - \frac{1}{2}z_f^2\dot{x}_f^2$.
+
+% Height Constraint
+\subsection{Height Constraint}
+\begin{algorithm}
+\caption{Find cubic polynomial constants under height constraint}\label{findpolz}
+\begin{algorithmic}[1]
+\Procedure{FindPolZ}{$A^{-1},\boldsymbol{b}(\dot{x}_{f})$}
+    \State $\dot{x}_{f}\gets 0$\Comment{Initial guess}
+        \Repeat
+            \State $\boldsymbol{c}\gets A^{-1}\boldsymbol{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
+            \State $x_{zmax}\gets max(\frac{-2c_2 \pm \sqrt{4c_2^2-12c_3c_1}}{6c_3})$ \Comment{Traj. peak lies on highest x}
+            \State $z_{max} \gets c_0 + c_1x_{zmax}^2 + c_2x_{zmax}^3+ c_3x_{zmax}^3$ \Comment{Corresponding height}
+            \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Some smart increment}
+        \Until{$z_{max}<z_{const}$}\\
+    \Return $\boldsymbol{c}$
+    \EndProcedure       
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Leg Length Constraint}
+\begin{algorithm}
+\caption{Find cubic polynomial constants under leg length constraint}\label{findpoll}
+\begin{algorithmic}[1]
+\Procedure{FindPolL}{$A^{-1},\boldsymbol{b}(\dot{x}_{f})$}
+    \State $\dot{x}_{f}\gets 0$\Comment{Initial guess}
+        \Repeat
+            \State $\boldsymbol{c}\gets A^{-1}\boldsymbol{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
+            \State $x_{l^2max,1} \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}
+            \State $x_{l^2max,2} \gets \frac{-4c_2^2-\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{Complex solutions}
+            \State $x_{lmax}\gets-|\sqrt{max(x_{l^2max,1},x_{l^2max,2)}}|$                
+            \State $l_{max}^2 \gets x_{lmax}^2 + (c_0 + c_1x_{zmax}^2 + c_2x_{zmax}^3+ c_3x_{zmax}^3)^2$ 
+            \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Some smart increment}
+        \Until{$l_{max}^2<l_{const}^2$}\\
+    \Return $\boldsymbol{c}$
+    \EndProcedure       
+\end{algorithmic}
+\end{algorithm}
+
+\section{Challenges 3D Orbital Energy}
+
+\section{Results}
+
+\section{Discussion}
