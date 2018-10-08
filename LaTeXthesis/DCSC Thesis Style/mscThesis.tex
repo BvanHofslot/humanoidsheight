@@ -1,6 +1,10 @@
 \documentclass[nosignatures]{mscThesis}
 \newcommand{\Elip}{\lsymb{$E_{LIP}$}{Linear inverted pendulum orbital energy}}
 \newcommand{\Eorbit}{\lsymb{$E_{orbit}$}{Nonlinear orbital energy}}
+\newcommand{\x}{\lsymb{$x$}{CoM state in Eucledian space}}
+\newcommand{\y}{\lsymb{$y$}{CoM state in Eucledian space}}
+\newcommand{\z}{\lsymb{$z$}{CoM state in Eucledian space}}
+\newcommand{\rcmp}{\lsymb{$\mathbf{r}_cmp$}{CoM state in Eucledian space}}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{subcaption}
@@ -23,7 +27,7 @@
 %-name, date, title
 \mscName{B.J. van Hofslot}%
 \mscDate{\today}%
-\mscTitle{Extending the Control Authority of a Humanoid Robot by Considering Height Variations}%
+\mscTitle{Humanoid Robot Balance Control Using CoM Height Variations}%
 \mscSubTitle{}%
 \mscKeyWords{thesis, msc, subject}% only used in PDF properties
 %
@@ -88,7 +92,7 @@
 %========================== Appendices =======================================
 \appendix
 %
-\include{app_another}
+%\include{app_another}
 
 %========================== Back matter ======================================
 \backmatter

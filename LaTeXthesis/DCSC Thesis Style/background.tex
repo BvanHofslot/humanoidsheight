@@ -1,11 +1,12 @@
 %
 % A Real Chapter
 \chapter{Background}
+
 % Modeling of Walking
 \section{Modeling of Walking}
 
-\subsection{Inverted Pendulum}
-
+\subsection{Simple Walking Model}
+Mass, inertia, finite-sized foot.
 \subsection{Linear Inverted Pendulum Model}
 In modeling of walking, one of the most important assumptions often made is the modeling of the stance leg as a \acf{LIP}, as for example in \cite{kajita20013d}. Besides this, a not-linearized inverted pendulum is also widely used in the modeling of walking \cite{kuo2005energetic}. For planning and control however, a linearized description is desirable. In the \ac{2D} \ac{LIP} equations of motion
 \begin{equation}
@@ -19,11 +20,14 @@ where $l$ is the pendulum length and $x$ the Cartesian x-coordinate of the pendu
 \caption{\ac{3D} motion of \ac{LIP} model.}
 \label{fig:3dlip}
 \end{figure}
+\subsection{Nonlinear Models}
 
 % Ground Reference Points
-\section{Ground Reference Points}
+\section{Measured Quantities \& Ground Reference Points in Walking}
 
-\subsection{Ground Reaction Forces}
+\subsection{Ground Reaction Force}
+A common approach for quantifying the dynamics of a walker, either a human or a robot, is the use of a \ac{GRF}, coming a from a single point of application on the ground. The magnitude and direction of the force vector, the gravitational vector, other external forces and the robots state determine the dynamics of the system. 
+
 
 \subsection{The \ac{CoP}}
 The feet attached to the \ac{LIP} robot model increase the possibilities to control its motion. The ankles can apply a torque that would virtually move the position of the base of the inverted pendulum, so that the linear acceleration on the \ac{CoM} as in Eq. \eqref{eq:LIPeom} and the capture point as in Eq. \eqref{eq:cp} change. The new virtual base is called the \ac{CoP}. By its definition, this point only lives within the support polygon \cite{vukobratovic2004zero}. In \figref{fig:3dlipfoot} the definition of the \ac{CoP} is visualized. If the point mass is restricted to move on a constant height, the vertical component of $\boldsymbol{f'}$ counteracts gravity: $f'_z=g$. 
@@ -99,7 +103,27 @@ where $\boldsymbol{x}_{ICP}$ is the $xy$-vector of the \ac{ICP} location and ass
 \Eorbit  \cite{pratt2007derivation}
 
 \subsection{Boundedness Condition}
-% Energy of Walking
-\section{CoM Height Variation}
+\cite{lanari2014boundedness}
 
-\section{Control Framework IHMC}
+% CoM Height Variation
+\section{Related Works CoM Height Variation}
+\subsection{Planning \& Gait Generation}
+\cite{englsberger2013three} \cite{hopkins2014humanoid}
+\subsection{Effects of Height Variation}
+\cite{kuo2005energetic} \cite{lee1998determinants} \cite{gao2017increase}
+\subsection{Control for Balance}
+\cite{koolen2016balance} \cite{caron2018capturability}
+
+% Control Framework IHMC
+\section{Humanoid Robotics at IHMC}
+\subsection{Robots}
+Atlas, Valkyrie.
+\subsection{Planning}
+\subsubsection{Footstep Planning}
+User defined. A*. Terrain information given (LiDAR).
+\subsubsection{ICP Planning}
+Dynamic planning. Basic approach (CoP knotpoints, integration of icp dynamics). Current improvements (double support, heel-toe, angular momentum, continous cop/cmp trajectories).
+\subsection{ICP Control}
+CMPd - linear momentum rate of change. 
+\subsection{Momentum-based Control \& Inverse Dynamics}
+QP inputs. Robot Joints. Trade off between different tasks. Jacobian. Accounting for robustness compared to linear plan (height variations / impact). Task-priority (null space projection/singularity avoidance).
