@@ -60,4 +60,37 @@ J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
   Robotics and Automation, 2007 IEEE International Conference on},
   pp.~4653--4660, IEEE, 2007.
 
+\bibitem{lanari2014boundedness}
+L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
+  of locomotion trajectories for biped robots,'' in {\em Humanoid Robots
+  (Humanoids), 2014 14th IEEE-RAS International Conference on}, pp.~951--958,
+  IEEE, 2014.
+
+\bibitem{englsberger2013three}
+J.~Englsberger, C.~Ott, and A.~Albu-Sch{\"a}ffer, ``Three-dimensional bipedal
+  walking control using divergent component of motion,'' in {\em Intelligent
+  Robots and Systems (IROS), 2013 IEEE/RSJ International Conference on},
+  pp.~2600--2607, IEEE, 2013.
+
+\bibitem{hopkins2014humanoid}
+M.~A. Hopkins, D.~W. Hong, and A.~Leonessa, ``Humanoid locomotion on uneven
+  terrain using the time-varying divergent component of motion,'' in {\em
+  Humanoid Robots (Humanoids), 2014 14th IEEE-RAS International Conference on},
+  pp.~266--272, IEEE, 2014.
+
+\bibitem{lee1998determinants}
+C.~R. Lee and C.~T. Farley, ``Determinants of the center of mass trajectory in
+  human walking and running.,'' {\em Journal of experimental biology},
+  vol.~201, no.~21, pp.~2935--2944, 1998.
+
+\bibitem{gao2017increase}
+W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
+  through active vertical flexion and extension motions,'' {\em Robotica},
+  vol.~35, no.~7, pp.~1541--1561, 2017.
+
+\bibitem{caron2018capturability}
+S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
+  analysis, optimization and control of 3d bipedal walking,'' {\em arXiv
+  preprint arXiv:1801.07022}, 2018.
+
 \end{thebibliography}

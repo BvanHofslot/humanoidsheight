@@ -1,14 +1,44 @@
 %
 % Another appendix chapter
 \chapter{Theoretic Limits on Capture}
+Common approach to model robot of a mass subject to a ground reaction force coming form a single point of application. Refer to sections in background. \\
+In this case there is looked at the point foot - point mass model, so no angular momentum is included.\\
+This chapter matches the goal of exploring the effects of height variation.\\
+Common habit is to formulate optimization problem, and to solve `let the optimization figure it out', but there is not looked at limits.\\
 
 
-
+ %% Capture Region
 \section{Unconstrained Capture Region}
+INCLUDE HEIGHT VELOCITY
+In the point-foot, point-mass model with prismatic leg joint, the constraints are:
+\begin{itemize}
+	\item Unilateral ground reaction force
+	\item Limit on leg length
+	\item Limit on leg force
+	\item Limit on ground friction
+\end{itemize}
+In this section the bounds are given with respect to capturability of a horizontally traveling CoM, like with the study of the capture point and orbital energy cousines. The only constraint taken into account is unilaterality of GRF. Also a measure of this limit is given in terms of the CP.\\
+Balistic touchdown time for a given height is:
+\begin{equation}
+	t = \sqrt{\frac{2z_0}{g}}
+\end{equation}
+The horizontal location is:
+\begin{equation}
+	x_{balistic}= \dot{x}t=\dot{x}\sqrt{\frac{2z_0}{g}} 
+\end{equation}
+which is then compares to the capture point as:
 \begin{equation}
     x_{balistic}=\sqrt{2}x_{cp}
-    \end{equation}
-
+\end{equation}
+This can also be reasoned from a leg force perspective, as no energy is substracted from the CoM during its travel. \\
+Using this formulation of the problem and \Elip:
+\begin{equation}
+   x_{balistic}^2 = \frac{z_0}{g}(\dot{x}_0^2 + \dot{x}_f^2) 
+\end{equation}
+Capture limits: leg can apply an infinite force just after the current position to stop on that horizontal location. The other side of the bound is the balistic touch down point, where the virtual leg can apply an impact when the mass hits the ground equal to its velocity and in the direction, then lift the mass up to the desired or default height. This limit on the capture region is defined as:
+\begin{equation}
+\{x_{cp} \in (0, \dot{x}\sqrt{\frac{2z_0}{g}} ]\}
+\end{equation}
 \cite{koolen2016balance}
 \begin{figure}[h]
 \centering
@@ -16,7 +46,10 @@
 \caption{}
 \label{fig:cpbal}
 \end{figure}
+
+%% Height Constrained
 \section{Height Constrained Capture}
+No leg length constriant, but height constraint.
 \begin{equation}
     x_{cp,height}=(\frac{\sqrt{2g\delta z_{max}}}{g}+\sqrt{\frac{z_o+\delta z_{max}}{g}})(\dot{x}_0-\frac{x_0}{z_0}\sqrt{2g\delta z_{max}}).
 \end{equation}
@@ -28,4 +61,15 @@
 \end{figure}
 
 \section{Impact Influenced Capture}
-\cite{kuo2005energetic}
+\begin{equation}
+x_{cp,impact} = \sqrt{\frac{z}{g}}(\dot{x}+\dot{x}_I)
+\end{equation}
+
+\begin{equation}
+x_{cp,impact} = \sqrt{\frac{z}{g}}(\dot{x}+\frac{x}{z}\dot{z})
+\end{equation}
+
+\begin{equation}
+x_{cp,impact} = \frac{z}{\sqrt{zg}-\dot{z}}
+\end{equation}
+\cite{kuo2005energetic}, mention also straight leg walking, planning.
