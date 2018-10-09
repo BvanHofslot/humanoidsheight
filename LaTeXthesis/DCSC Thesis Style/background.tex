@@ -100,18 +100,26 @@ Because the ankle is not always located at the same location as the \ac{ICP} for
 where $\boldsymbol{x}_{ICP}$ is the $xy$-vector of the \ac{ICP} location and assuming that the pendulum base is the origin.
 
 \subsection{Nonlinear Orbital Energy}
-\Eorbit  \cite{pratt2007derivation}
+Writing the nonlinear trajectory of a 2D model as $z=f(x)$, a similar expression of energy as \Elip  is derived in \cite{pratt2007derivation}
+\begin{equation}
+    E_{orbit}  = \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0).
+\end{equation}
+\Eorbit
+
 
 \subsection{Boundedness Condition}
-\cite{lanari2014boundedness}
+DO FOR MEETING \cite{lanari2014boundedness}
 
 % CoM Height Variation
 \section{Related Works CoM Height Variation}
 \subsection{Planning \& Gait Generation}
+A lot of publications on varying height terrain.
 \cite{englsberger2013three} \cite{hopkins2014humanoid}
 \subsection{Effects of Height Variation}
+Research that investigates the energetic influences of height variations and impacts, often human orientated.
 \cite{kuo2005energetic} \cite{lee1998determinants} \cite{gao2017increase}
 \subsection{Control for Balance}
+Two publications that consider height variations as control input for balance:
 \cite{koolen2016balance} \cite{caron2018capturability}
 
 % Control Framework IHMC
