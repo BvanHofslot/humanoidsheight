@@ -1,15 +1,9 @@
 %
 % Another appendix chapter
 \chapter{Theoretic Limits on Capture}
-Common approach to model robot of a mass subject to a ground reaction force coming form a single point of application. Refer to sections in background. \\
-In this case there is looked at the point foot - point mass model, so no angular momentum is included.\\
+In this chapter there is looked at the point foot - point mass model, so no angular momentum is included.\\
 This chapter matches the goal of exploring the effects of height variation.\\
-Common habit is to formulate optimization problem, and to solve `let the optimization figure it out', but there is not looked at limits.\\
-
-
- %% Capture Region
-\section{Unconstrained Capture Region}
-INCLUDE HEIGHT VELOCITY
+A common habit is to formulate an optimization problem, and to `let the optimization figure it out', but there is not looked at limits.\\
 In the point-foot, point-mass model with prismatic leg joint, the constraints are:
 \begin{itemize}
 	\item Unilateral ground reaction force
@@ -17,7 +11,10 @@ In the point-foot, point-mass model with prismatic leg joint, the constraints ar
 	\item Limit on leg force
 	\item Limit on ground friction
 \end{itemize}
-In this section the bounds are given with respect to capturability of a horizontally traveling CoM, like with the study of the capture point and orbital energy cousines. The only constraint taken into account is unilaterality of GRF. Also a measure of this limit is given in terms of the CP.\\
+
+ %% Capture Region
+\section{Unconstrained Capture Region}
+In this section the bounds are given with respect to capturability of a horizontal traveling CoM, like with the study of the capture point. The only constraint taken into account is unilaterality of \ac{GRF}. Also a measure of this limit is given in terms of the CP.\\
 Balistic touchdown time for a given height is:
 \begin{equation}
 	t = \sqrt{\frac{2z_0}{g}}
@@ -39,25 +36,25 @@ Capture limits: leg can apply an infinite force just after the current position 
 \begin{equation}
 \{x_{cp} \in (0, \dot{x}\sqrt{\frac{2z_0}{g}} ]\}
 \end{equation}
-\cite{koolen2016balance}
+\cite{koolen2016balance} \figref{fig:cpbal}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.3\textwidth]{STYLESTUFF/CPvsBalistic.png}
-\caption{}
+\caption{Unconstrained capture region and balistic limit, grey plots visualize intermediate trajectories and are made with the method of \cite{koolen2016balance}}
 \label{fig:cpbal}
 \end{figure}
 
 %% Height Constrained
 \section{Height Constrained Capture}
-No leg length constriant, but height constraint.
+No leg length constriant, but height constraint. \figref{fig:cpheight}
 \begin{equation}
     x_{cp,height}=(\frac{\sqrt{2g\delta z_{max}}}{g}+\sqrt{\frac{z_o+\delta z_{max}}{g}})(\dot{x}_0-\frac{x_0}{z_0}\sqrt{2g\delta z_{max}}).
 \end{equation}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.3\textwidth]{STYLESTUFF/CPvsHeight.png}
-\caption{}
-\label{fig:cpbal}
+\caption{Height constrained capture limit. Grey plot is made with the method of \cite{koolen2016balance} and shows that the final point lies between the limit and the \ac{CP}}
+\label{fig:cpheight}
 \end{figure}
 
 \section{Impact Influenced Capture}

@@ -1,8 +1,9 @@
 %
 % Another appendix chapter
 \chapter{Orbital Energy MPC}
-
+This \ac{MPC} method is based on the method of \cite{koolen2016balance}, which relies on \Eorbit~derived in \cite{pratt2007derivation}
 \section{2D Polynomial}
+Added a final velocity term $\dot{x_f}$ to the method of \cite{koolen2016balance}.
 \begin{equation}
     \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0).
 \end{equation}
@@ -33,16 +34,20 @@
 
 where $k=\frac{1}{2}(\dot{x}_0z_0-\dot{x}_0x_0)^2 + gx_0^2z_0 - \frac{1}{2}z_f^2\dot{x}_f^2$.
 
+Changing $\dot{x_f}$, changes the trajectory, which can be used in optimization.
+
 % Height Constraint
 \subsection{Height Constraint}
+Maximum height. Algorithm \ref{alg:h}.
 \begin{algorithm}
-\caption{Find cubic polynomial constants under height constraint}\label{findpolz}
+\caption{Find cubic polynomial constants under height constraint}
+\label{alg:h}
 \begin{algorithmic}[1]
 \Procedure{FindPolZ}{$A^{-1},\boldsymbol{b}(\dot{x}_{f})$}
     \State $\dot{x}_{f}\gets 0$\Comment{Initial guess}
         \Repeat
             \State $\boldsymbol{c}\gets A^{-1}\boldsymbol{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
-            \State $x_{zmax}\gets max(\frac{-2c_2 \pm \sqrt{4c_2^2-12c_3c_1}}{6c_3})$ \Comment{Traj. peak lies on highest x}
+            \State $x_{zmax}\gets \frac{-2c_2 + \sqrt{4c_2^2-12c_3c_1}}{6c_3}$ \Comment{Traj. peak lies on highest x}
             \State $z_{max} \gets c_0 + c_1x_{zmax}^2 + c_2x_{zmax}^3+ c_3x_{zmax}^3$ \Comment{Corresponding height}
             \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Some smart increment}
         \Until{$z_{max}<z_{const}$}\\
@@ -52,16 +57,21 @@ where $k=\frac{1}{2}(\dot{x}_0z_0-\dot{x}_0x_0)^2 + gx_0^2z_0 - \frac{1}{2}z_f^2
 \end{algorithm}
 
 \subsection{Leg Length Constraint}
+Algorithm \ref{alg:ll}
+\begin{equation}
+(\sum_{n=0}^3 c_n x^n)^2 = \sum_{n=0}^3 c_n^2 x^{2n} + \sum_{\substack{n=1 \\ i+j=n \\ i < j}}^3 c_i c_j x^n 
+\end{equation}
 \begin{algorithm}
-\caption{Find cubic polynomial constants under leg length constraint}\label{findpoll}
+\caption{Find cubic polynomial constants under leg length constraint}
+\label{alg:ll}
 \begin{algorithmic}[1]
 \Procedure{FindPolL}{$A^{-1},\boldsymbol{b}(\dot{x}_{f})$}
     \State $\dot{x}_{f}\gets 0$\Comment{Initial guess}
         \Repeat
             \State $\boldsymbol{c}\gets A^{-1}\boldsymbol{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
-            \State $x_{l^2max,1} \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}
-            \State $x_{l^2max,2} \gets \frac{-4c_2^2-\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{Complex solutions}
-            \State $x_{lmax}\gets-|\sqrt{max(x_{l^2max,1},x_{l^2max,2)}}|$                
+            \State $x_{lmax}^2 \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}
+            
+            \State $x_{lmax}\gets-|\sqrt{x_{l^2max}}|$                \Comment{Complex solutions}
             \State $l_{max}^2 \gets x_{lmax}^2 + (c_0 + c_1x_{zmax}^2 + c_2x_{zmax}^3+ c_3x_{zmax}^3)^2$ 
             \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Some smart increment}
         \Until{$l_{max}^2<l_{const}^2$}\\
@@ -70,8 +80,10 @@ where $k=\frac{1}{2}(\dot{x}_0z_0-\dot{x}_0x_0)^2 + gx_0^2z_0 - \frac{1}{2}z_f^2
 \end{algorithmic}
 \end{algorithm}
 
-\section{Challenges 3D Orbital Energy}
+\subsection{Challenges 3D Orbital Energy}
 
 \section{Results}
+A planar walker that recovers from a push, where conventional \ac{CoP} control does not let it recover.
 
 \section{Discussion}
+2D..

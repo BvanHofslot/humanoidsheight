@@ -3,8 +3,8 @@ g=9.81;
 
 fstConst= [1 0 0 0];
 fstObj =  1.0;
-maxHeight=1.3;
-maxLengthSquared=1.21;
+maxHeight=1.05;
+maxLengthSquared=1.1;
 stepUp=0.2;
 
 %% First step
@@ -36,22 +36,20 @@ c2 = c(3);
 c3 = c(4);
 c4=0;
 
-xmax1 = (-2*c2+sqrt(4*c2^2-12*c3*c1))/(6*c3);
-xmax2 = (-2*c2-sqrt(4*c2^2-12*c3*c1))/(6*c3);
-xmax=max(xmax1,xmax2); % the peak within the interval is always the highest x
-zmax = c0 + c1*xmax+c2*xmax^2+c3*xmax^3;
-if (zmax<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30)
-    break
-end
-
-% xl2max1 = (-4*c2^2+sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
-% xl2max2 = (-4*c2^2-sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
-% xlmax1=-abs(sqrt(max(xl2max1,xl2max2)));
+% xmax = (-2*c2-sqrt(4*c2^2-12*c3*c1))/(6*c3);
 % 
-% l2max = xlmax1^2 + (c0 + c1*xlmax1+c2*xlmax1^2+c3*xlmax1^3)^2;
-% if (l2max<maxLengthSquared)
+% zmax = c0 + c1*xmax+c2*xmax^2+c3*xmax^3;
+% if (zmax<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30)
 %     break
 % end
+
+xl2max1 = (-4*c2^2+sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
+xlmax1=-sqrt(abs(xl2max1));
+
+l2max = xlmax1^2 + (c0 + c1*xlmax1+c2*xlmax1^2+c3*xlmax1^3)^2;
+if (l2max<maxLengthSquared)
+    break
+end
 
 dxf=dxf+0.001;% + (l2max-maxLengthSquared)*0.01;
 iter = iter+1;
@@ -165,6 +163,7 @@ X=-1:0.0001:1;
 Y=c0+c1.*X+c2.*X.^2+c3*X.^3;
 figure;
 plot(X,Y);
+
 % circle(0,0,sqrt(maxLengthSquared));
 Xline=[-1:0.01:1];
 Zmax= 0*Xline+maxHeight;

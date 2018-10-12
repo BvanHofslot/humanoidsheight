@@ -108,30 +108,114 @@ Writing the nonlinear trajectory of a 2D model as $z=f(x)$, a similar expression
 
 
 \subsection{Boundedness Condition}
-DO FOR MEETING \cite{lanari2014boundedness}
+In \cite{lanari2014boundedness}:
+\begin{equation}
+x_u(t,z) = e^{\omega_0(t-t_0)}x_u(t_0) -\omega_0 \int_{t_0}^t e^{\omega_0(t-\tau)}r(\tau)d \tau
+\end{equation}
+bounded if:
+\begin{equation}
+x_u(t_0) = \omega_0 \int_{t_0}^{\infty} e^{-\omega_0(\tau-t_0)}r(\tau)d \tau
+\end{equation}
+
+This is extended in an varying height expression in...
 
 % CoM Height Variation
 \section{Related Works CoM Height Variation}
-\subsection{Planning \& Gait Generation}
-A lot of publications on varying height terrain.
-\cite{englsberger2013three} \cite{hopkins2014humanoid}
+\subsection{Varying Height Terrain}
+A lot of publications that incorporate the height variations in the terrain in the dynamic planning problem.
+\cite{englsberger2013three} \cite{hopkins2014humanoid} and more..
+\subsection{Mimic Natural Behavior}
+Straight leg walking.
+\cite{griffin2018straight} and more..
 \subsection{Effects of Height Variation}
 Research that investigates the energetic influences of height variations and impacts, often human orientated.
-\cite{kuo2005energetic} \cite{lee1998determinants} \cite{gao2017increase}
+\cite{kuo2005energetic} \cite{lee1998determinants} \cite{gao2017increase} and more..
 \subsection{Control for Balance}
 Two publications that consider height variations as control input for balance:
 \cite{koolen2016balance} \cite{caron2018capturability}
+This is the focus in this thesis.
 
 % Control Framework IHMC
 \section{Humanoid Robotics at IHMC}
 \subsection{Robots}
 Atlas, Valkyrie.
+\subsection{Walking States}
+\begin{itemize}
+	\item \ac{SS}
+	\item \ac{DS}
+	\item Toe-Off
+\end{itemize}
 \subsection{Planning}
 \subsubsection{Footstep Planning}
-User defined. A*. Terrain information given (LiDAR).
+User defined in \ac{GUI} or A* planner. Terrain information given by perception data (LiDAR).
 \subsubsection{ICP Planning}
-Dynamic planning. Basic approach (CoP knotpoints, integration of icp dynamics). Current improvements (double support, heel-toe, angular momentum, continous cop/cmp trajectories).
+\ac{ICP} planning is the creation of a dynamical plan based on predefined footstep locations, the desired step time and the \ac{LIP} model of the system . Earlier approaches consider one \ac{CoP} knotpoint per footstep and integrate the \ac{ICP} dynamics backwards in time from the last footstep, considering the knotpoints to remain constant. Current improvements include double support, heel-toe multiple knotpoints, angular momentum prediction, continous \ac{CMP} trajectories instead of knotpoints.
 \subsection{ICP Control}
-CMPd - linear momentum rate of change. 
+From an \ac{CMP} and \ac{ICP} reference trajectory, the following control law is used to generate a desired \ac{CMP}:
+\begin{equation}
+    \mathbf{r}_{cmp,d}=\mathbf{r}_{cmp,r} + \mathbf{k}_{\xi}(\mathbf{\xi}-\mathbf{\xi}_r).
+\end{equation}
+From the desired \ac{CMP}, a desired horizontal linear momentum rate of change, a desired horizontal force, can be determined:
+\begin{equation}
+    \dot{\mathbf{l}}_{d,xy} = \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}}{z_0}mg.
+\end{equation}
+The desired horizontal linear momentum rate of change $ \dot{\mathbf{l}}_{d,xy}$ is an input for the momentum-based controller.
 \subsection{Momentum-based Control \& Inverse Dynamics}
-QP inputs. Robot Joints. Trade off between different tasks. Jacobian. Accounting for robustness compared to linear plan (height variations / impact). Task-priority (null space projection/singularity avoidance).
+\subsubsection{Dynamics humanoid}
+\begin{itemize}
+
+    \item End-effector motion:
+$\bs{T}=\begin{bmatrix}\bs{\omega} \\ \bs{\upsilon} \end{bmatrix} = \bs{J}(\bs{q})\bs{\dot{q}}$, \quad Jacobian maps joint velocities to endeffector twist, or sometimes to other joint velocities.
+
+    \item Centroidal momentum:
+$\bs{h}=\begin{bmatrix}\bs{k} \\ \bs{l} \end{bmatrix} =\bs{A}(\bs{q})\bs{\dot{q}}$, \quad $\bs{A}=\bs{I}\bs{J}$ (Inertia * Jacobian)
+
+    \item Dynamics:
+$\bs{\dot{h}}=\begin{bmatrix}\bs{\dot{k}} \\ \bs{\dot{l}} \end{bmatrix} =\bs{A}\bs{\ddot{q}} +\bs{\dot{A}}\bs{\dot{q}} = \bs{W}_g + \sum_i\bs{W}_{gr,i} + \sum_i \bs{W}_{ext,i} $, \quad rate of change of centroidal momentum depends on external wrenches.
+
+    \item Ground reaction wrench:
+$\sum_i\bs{W}_{gr,i}=\bs{Q}\bs{\rho}$, \quad (contact matrix * basis vector multipliers). Wrench cone.
+\end{itemize}
+
+\subsubsection{Whole-body QP}
+The desired vertical linear momentum rate is computed with the control loop
+\begin{equation}
+\bs{\dot{l}}_z =m(k_p(z-z_r) + k_d\dot{z}) 
+\end{equation}
+with bounds on resulting $\dot{z}$ and $\ddot{z}$.\\
+QP: Find desired joint accelerations and ground reaction forces based on objectives. The objectives consist of a momentum objective, motion objectives, regularization terms and a null-space projection objective. The desired momentum is only determined by the desired linear momentum rate of change, the angular part is left unconstrained. An estimate of the amount of angular momentum rate of change that is needed to fulfill the desired linear momentum rate of change objective is given by the distance of the desired \ac{CMP} outside the foot polygon. If the \ac{CMP} is inside the foot polygon no angular momentum is needed, `ankle' strategies are enough to fulfill the desired linear momentum rate. Motion tasks include: desired foot trajectories, desired body orientation, desired spine joint position. Desired motion comes from PD-control. The null-space projection term can be used to input privileged joint accelerations, when the null-space of an robotic chain opens up, to avoid singularity.\\
+The motion tasks and momentum tasks can conflict and the solution is always a trade-off, depending on the weights.
+\begin{equation*}
+\begin{array}{rlcl}
+\displaystyle \min_{\bs{\ddot{q}}_d,\bs{\rho}} & \multicolumn{3}{l}{J_{\bs{\dot{h}}_d} + J_{\bs{J}} + J_{\bs{\rho}} + J_{\bs{\ddot{q}}_d}  + J_p} \\
+\textrm{s.t.} & \bs{A}\bs{\ddot{q}}_d + \bs{\dot{A}}\bs{\dot{q}} = \bs{W}_g + \bs{Q}\bs{\rho}+\sum_i\bs{W}_{ext,i}\\
+&\displaystyle \bs{\rho}_{min} \leq \bs{\rho}\\
+&\bs{\ddot{q}}_{min} \leq \bs{\ddot{q}}_d \leq \bs{\ddot{q}}_{max}
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{rlcl}
+$Momentum objective:$ & J_{\bs{\dot{h}}_d}= \bs{R}_{\bs{\dot{h}}_d}||(\bs{A}\bs{\ddot{q}}_d -\bs{b}||^2\\
+$Motion objective:$ & J_{\bs{J}} = \bs{R}_{\bs{J}}||(\bs{J}\bs{\ddot{q}}_d-\bs{p})||^2\\
+$Contact force cost:$ & J_{\bs{\rho}}=\bs{R}_{\bs{\rho}}||\bs{\rho}||^2 \\
+$Joint acceleration cost:$ & J_{\bs{\ddot{q}}_d} = \bs{R}_{\bs{\ddot{q}}_d}||\bs{\ddot{q}}_d ||^2 \\
+$Privileged configuration:$ & J_p = \bs{R}_p||(\bs{I} - \bs{J}_t^{\dagger}\bs{J}_t)\bs{\ddot{q}}_p - \bs{\ddot{q}}_d||^2
+\end{array}
+\end{equation*}
+
+\begin{itemize}
+\item $\bs{b} = \bs{\dot{h}}_d - \bs{\dot{A}}\bs{\dot{q}}$, \quad only linear momentum rate of change selected as objective: $\bs{S}\bs{\dot{h}}_d=\bs{\dot{l}}_d$
+\item $\bs{p} = \bs{\dot{T}} - \bs{\dot{J}}\bs{\dot{q}}$, \quad (in case of end effector motion)
+\item $\bs{J}= [\bs{J}_1^T\quad...\quad\bs{J}_N^T]^T$, \quad concatenated Jacobians of motion tasks
+\item $\bs{J}_t = [(\bs{S}\bs{A})^T\quad \bs{J}^T]^T$, \quad big Jacobian for all tasks
+\item $(\bs{I} - \bs{J}_t^{\dagger}\bs{J}_t)$,\quad null-space projector in case of a \textit{redundant} system (\textit{overdetermined}: joints have more degrees of freedom than end-effector motion)
+\item $\bs{J}^{\dagger} = \bs{J}^T(\bs{J}\bs{J}^T +\mu^2)^{-1}$, \quad Moore-Penrose left (damped) pseudoinverse. $\mu>0$: damping factor. 
+
+\end{itemize}
+
+\subsubsection{Inverse Dynamics}
+Desired joint torques $\bs{\tau}_d$ are calculated via inverse dynamics using solution of QP: $\bs{\ddot{q}}_d$ and $\bs{\rho}$.\\
+\begin{itemize}
+    \item  $\bs{\tau}_d = \bs{M}(\bs{q})\bs{\ddot{q}}_d + \bs{C}(\bs{q},\bs{\dot{q}}) + \bs{G}(\bs{q}) + \bs{J}^T \bs{f}$, \quad where $\bs{f}$ is the linear part of the ground reaction wrench.
+\end{itemize}
