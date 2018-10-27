@@ -2,16 +2,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2-1}{\ignorespaces \ac {3D} motion of \ac {LIP} model.\relax }}{4}{figure.caption.25}
-\contentsline {figure}{\numberline {2-2}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot. The yellow cross points out the \ac {CoP} location.\relax }}{5}{figure.caption.28}
-\contentsline {figure}{\numberline {2-3}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot and body inertia. The blue cross points out the \ac {CMP} location.\relax }}{6}{figure.caption.31}
-\contentsline {figure}{\numberline {2-4}{\ignorespaces Visualization of path and states by the capture of the point mass according \ac {ICP} theory.\relax }}{7}{figure.caption.35}
+\contentsline {figure}{\numberline {2-1}{\ignorespaces \ac {3D} motion of \ac {LIP} model.\relax }}{4}{figure.caption.26}
+\contentsline {figure}{\numberline {2-2}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot. The yellow cross points out the \ac {CoP} location.\relax }}{5}{figure.caption.29}
+\contentsline {figure}{\numberline {2-3}{\ignorespaces \ac {3D} motion of \ac {LIP} model with foot and body inertia. The blue cross points out the \ac {CMP} location.\relax }}{6}{figure.caption.32}
+\contentsline {figure}{\numberline {2-4}{\ignorespaces Visualization of path and states by the capture of the point mass according \ac {ICP} theory.\relax }}{7}{figure.caption.36}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3-1}{\ignorespaces Unconstrained capture region and balistic limit, grey plots visualize intermediate trajectories and are made with the method of \cite {koolen2016balance}\relax }}{14}{figure.caption.46}
-\contentsline {figure}{\numberline {3-2}{\ignorespaces Height constrained capture limit. Grey plot is made with the method of \cite {koolen2016balance} and shows that the final point lies between the limit and the \ac {CP}\relax }}{15}{figure.caption.47}
+\contentsline {figure}{\numberline {3-1}{\ignorespaces Unconstrained capture region and balistic limit, grey plots visualize intermediate trajectories and are made with the method of \cite {koolen2016balance}\relax }}{14}{figure.caption.47}
+\contentsline {figure}{\numberline {3-2}{\ignorespaces Height constrained capture limit. Grey plot is made with the method of \cite {koolen2016balance} and shows that the final point lies between the limit and the \ac {CP}\relax }}{15}{figure.caption.48}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5-1}{\ignorespaces Effects of change in ground reaction force on angular momentum around the \ac {CoM}. (a) $F_x$ can be scaled up with $F_z$, which results in an increase in $\tau _y$. (b) Situation where additional $F_z$ does not contribute to additional $F_x$. (c) With a shifted \ac {CMP}, a larger $F_x$ can be achieved than with the strategy in (a). \relax }}{22}{figure.caption.54}
+\contentsline {figure}{\numberline {5-1}{\ignorespaces Effects of change in ground reaction force on angular momentum around the \ac {CoM}. (a) $F_x$ can be scaled up with $F_z$, which results in an increase in $\tau _y$. (b) Situation where additional $F_z$ does not contribute to additional $F_x$. (c) With a shifted \ac {CMP}, a larger $F_x$ can be achieved than with the strategy in (a). \relax }}{22}{figure.caption.55}
 \contentsline {figure}{\numberline {5-2}{\ignorespaces Resulting control profile after a push at start of \ac {SS}\relax }}{24}{figure.caption.61}
 \contentsline {figure}{\numberline {5-3}{\ignorespaces Initial (0,SS) and final (f,SS) configurations of \ac {CoM} position (black circle with cross) and \ac {ICP} reference (yellow circle with rotated cross) for \ac {SS} in the $xy$-plane with the parameters from Table Table\nobreakspace {}\ref {tab:stepping}. The green area is the current supporting foothold and the blue line is the \ac {ICP} reference trajectory.\relax }}{24}{figure.caption.62}
 \contentsline {figure}{\numberline {5-4}{\ignorespaces Vizualizations of the error alignment angle for the configuration at start of \ac {SS}, with \ac {ICP} errors: (a) negative in sagital plane, (b) positive in sagital plane, (c) where the error alignment angle is $0$ and (d) where the error alignment angle is orthogonal to the \ac {ICP} error. \relax }}{25}{figure.caption.63}
