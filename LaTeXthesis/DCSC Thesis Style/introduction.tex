@@ -2,7 +2,15 @@
 % Introduction
 \chapter{Introduction} \label{chap::intro}
 \section{Motivation}
-A common approach in humanoid robotics is to define the system as a \ac{LIP} with finite-sized foot and a mass with inertia. The ankle and the angular momentum about the \ac{CoM} can be used as control inputs to generate horizontal forces on the \ac{CoM}, often called "ankle" and "hip" strategies. Allowing for the vertical component of the \ac{GRF} in the model to vary, and thus the height to vary, the horizontal components of the \ac{GRF} change as well, compared to the \ac{LIP} model.\\
+A common approach in humanoid robotics is to define the system as a \ac{LIP} with finite-sized foot and a mass with inertia. The ankle and the angular momentum about the \ac{CoM} can be used as control inputs to generate horizontal forces on the \ac{CoM}, often called "ankle" and "hip" strategies.  Next to this, the step timing and footstep location can be adjusted
+\begin{itemize}
+	\item \ac{CoP}
+	\item Angular momentum
+	\item Change step time
+	\item Change step location
+\end{itemize}
+
+Allowing for the vertical component of the \ac{GRF} in the model to vary, and thus the height to vary, the horizontal components of the \ac{GRF} change as well, compared to the \ac{LIP} model.\\
 Different reasons to research varying \ac{CoM} height: 
 \begin{itemize}
 	\item Improve behavior over rough-terrain
@@ -10,6 +18,10 @@ Different reasons to research varying \ac{CoM} height:
 	\item Analyse the effects of height variation
 	\item Extend control authority in horizontal direction by using height variations
 \end{itemize}
+
+
+
+
 
 \section{Research Objective}
 In this thesis is focussed on the last two goals. Analyse the effects of height variation. Extend the control authority by using height variations. 

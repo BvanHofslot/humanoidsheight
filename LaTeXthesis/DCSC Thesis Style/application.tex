@@ -51,14 +51,15 @@ The effects of changing the ground reaction compared to the \ac{CMP} and not wit
   \label{fig:cmpFz}
 \end{figure}
 \subsection{From 2D to 3D}
-Direction of desired force can be out of plane with virtual leg between \ac{CoM} and \ac{CoP}. Only one input, $F_z$, can be used to control errors in two directions: $x$ and $y$. If the direction of the desired force is orthogonal to the virtual leg, $F_z$ has no effect. If $F_z$ is increased in one direction, the unstable eigenvalue of the system in the other direction grows. 
+Direction of desired force can be out of plane with virtual leg between \ac{CoM} and \ac{CoP}. Only one input, $F_z$, can be used to control errors in two directions: $x$ and $y$. If the direction of the desired force is orthogonal to the virtual leg, $F_z$ has no effect. If $F_z$ is increased in one direction, the unstable eigenvalue of the system in the other direction grows. Explain complications 3D orbital energy. 
 \subsection{Leg Reachability}
-Stance leg and swing leg singularity need to be avoided. Also, to let the swing leg touch down at the desired time, the ground must be reachable at that time instance. 
+Stance leg and swing leg singularity need to be avoided. Also, to let the swing leg touch down at the desired time, the ground must be reachable at that time instance. Explain complication nonlinear constraint.
 \subsection{Predictability of Dynamics}
-Considering the current error, is the motion recoverable considering the constraints?
+Considering the current error, is the motion recoverable considering the constraints? Explain complications of \ac{MPC}
+
 % Experimental Setup
 \section{Experimental Setup}
-Atlas or Valkyrie walking over a terrain with limited foot placement options, so step adjustment is not possible (tiled environment). Push recovery to test disturbance rejection. See \tabref{tab:stepping} for the used parameters.
+Atlas or Valkyrie walking over a terrain with limited foot placement options, so step adjustment is not possible (tiled environment). Push recovery to test disturbance rejection. See \tabref{tab:stepping} for the used parameters. The dynamic plan, footstep plan and \ac{ICP} plan, are left untouched.
 \begin{table}[ht]
 \caption{Stepping Parameters} % title of Table
 \centering % used for centering table
@@ -80,28 +81,33 @@ Step Width & 0.25 & [m]\\
 % Methods
 \section{Methods}
 Other publications that consider \ac{CoM} height variations for balance use \ac{MPC}. Considering worst-case scenario's, where additional horizontal force is needed, `the best you can do' is needed to not fall over. This motivates to use a proportional controller in worst case scenario's, next to the benefit of simplicity and robustness.
-\subsection{Quadratic Program Setup}
-One method: use lower weight on vertical momentum rate. To avoid singularity, a feedback based on a virtual spring, priviliged joint accelerations can be projected in the null-space. 
-\subsection{Quadratic Program Inputs}
-\subsubsection{Control Architecture}
+
+
+\subsection{Control Architecture}
 To actively change the desired momentum rate, the effects of additional height acceleration is included in the control framework as follows. 
 Horizontal linear momentum rate formula in terms of \ac{CMP}:
 \begin{equation}
-\dot{\mathbf{l}}_d=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}}{z}F_z
+\dot{\mathbf{l}}_{xy}=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp}}{z}F_z
 \end{equation}
 Horizontal linear momentum rate formula in terms of \ac{CoP}:
 \begin{equation}
-\dot{\mathbf{l}}_d=\frac{\mathbf{c}_{xy}-(\mathbf{r}_{cop,d}+\frac{\tau_y}{F_z})}{z}F_z
+\dot{\mathbf{l}}_{xy}=\frac{\mathbf{c}_{xy}-(\mathbf{r}_{cop}+\frac{\tau_y}{F_z})}{z}F_z
 \end{equation}
 \begin{equation}
-\dot{\mathbf{l}}_d=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m(g+\ddot{z}_d) - \frac{\tau_y}{z}
+\dot{\mathbf{l}}_{xy}=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z}m(g+\ddot{z}) - \frac{\tau_y}{z}
 \end{equation}
- This can be written as:
+\begin{equation}
+\dot{\mathbf{l}}_{xy}=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z}mg - \frac{\tau_y}{z} + \frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z}m\ddot{z}
+\end{equation}
+ Since the desired \ac{CMP} coming from the linear momentum rate of change control module is based on the \ac{LIP} model:
  \begin{equation}
-\dot{\mathbf{l}}_d=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z}mg}_{\dot{\mathbf{l}}_{d,lip}}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dot{\mathbf{l}}_{d,heightcontrol}},
+\dot{\mathbf{l}}_{xy,d}=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z_0}mg}_{\dot{\mathbf{l}}_{xy,d,lip}}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dot{\mathbf{l}}_{d,heightcontrol}},
 \end{equation}
-where $\dot{\mathbf{l}}_{d,lip}$ is the standard desired horizontal momentum rate term and $\dot{\mathbf{l}}_{d,heightcontrol}$ is the additional momentum rate from height control.
-\subsubsection{Control Strategy}
+where $\dot{\mathbf{l}}_{xy,d,lip}$ is the standard desired horizontal momentum rate term and $\dot{\mathbf{l}}_{xy,d,heightcontrol}$ is the additional momentum rate from height control.
+
+\subsection{Control Strategy}
+
+
 If the following criteria are met:
 \begin{enumerate}
 	\item the desired \ac{CMP} is a certain distance outside the foot polygon
@@ -112,6 +118,18 @@ ramp up the desired height acceleration with a constant maximum jerk, until the 
 As the strategy is only used when the \ac{CMP} is outside the foot polygon, an estimate of the resulting \ac{CoP} is made by projecting the desired \ac{CMP} on the foot polygon.\\
 \figref{fig:3foot} shows initial and final \ac{CoM} and \ac{ICP} configurations for \ac{SS}. \figref{fig:phiViz} shows different alignment angles for the initial configuration, when entering \ac{SS}.\\
 \figref{fig:profile} shows an example of a resulting control profile.
+Considerations:
+\begin{itemize}
+	\item smoothness of the input profile -> no switching back and forth between conditions
+	\item minimal height/singularity -> not unexpected but incorporate in estimation
+	\item height velocity and singularity swingleg at touch down
+	\item anticipate on future angle -> observed that ICP error stay approximately the same direction
+\end{itemize}
+
+
+
+
+
 
 \begin{figure}[h]
 \centering
@@ -153,9 +171,41 @@ As the strategy is only used when the \ac{CMP} is outside the foot polygon, an e
     \caption{}
      \label{fig:phiVizd}
   \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+    \centering
+  \includegraphics[width=.8\linewidth]{STYLESTUFF/ICPplanStartSSPhiVizLeftError.png}
+    \caption{}
+     \label{fig:phiVize}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+    \centering
+  \includegraphics[width=.8\linewidth]{STYLESTUFF/ICPplanStartSSPhiVizRightError.png}
+    \caption{}
+     \label{fig:phiVizf}
+  \end{subfigure}
   \caption{Vizualizations of the error alignment angle for the configuration at start of \ac{SS}, with \ac{ICP} errors: (a) negative in sagital plane, (b) positive in sagital plane, (c) where the error alignment angle is $0$ and (d) where the error alignment angle is orthogonal to the \ac{ICP} error. }
   \label{fig:phiViz}
 \end{figure}
+
+\subsection{Quadratic Program Based}
+One method: use lower weight on vertical momentum rate. To avoid singularity, a feedback based on a virtual spring, priviliged joint accelerations can be projected in the null-space. 
+
+\begin{table}[ht]
+\caption{Major affected tasks by $\mathbf{\dot{l}}_{xy,d}$ in whole-body QP, if \ac{CoP} is saturated.} % title of Table
+\centering % used for centering table
+\begin{tabular}{c c c } % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+Affected Desired & Constraint/Consideration & Centroidal Momentum Rate \\
+%heading
+\hline % inserts single horizontal line
+ $z_d$ & Leg singularity & Linear\\
+ $\boldsymbol{\phi}_{body,d}$ & Upper body pose & Angular\\
+ $\mathbf{r}_{foot,d}$ &  Touchdown time & Angular\\
+%[1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{tab:eatqp} % is used to refer this table in the text
+\end{table}
 
 
 % Results
