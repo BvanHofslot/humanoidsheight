@@ -3,12 +3,12 @@ g=9.81;
 
 fstConst= [1 0 0 0];
 fstObj =  1.0;
-maxHeight=1.05;
-maxLengthSquared=1.1;
+maxHeight=1.1;
+maxLengthSquared=1.15^2;
 stepUp=0.2;
 
 %% First step
-x=-0.2;
+x=-0.25;
 z=1;
 dx=1.0;
 dz=0.0;
@@ -36,36 +36,41 @@ c2 = c(3);
 c3 = c(4);
 c4=0;
 
-% xmax = (-2*c2-sqrt(4*c2^2-12*c3*c1))/(6*c3);
-% 
-% zmax = c0 + c1*xmax+c2*xmax^2+c3*xmax^3;
-% if (zmax<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30)
-%     break
-% end
+xmax = (-2*c2-sqrt(4*c2^2-12*c3*c1))/(6*c3);
 
-xl2max1 = (-4*c2^2+sqrt(16*c2^4-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
-xlmax1=-sqrt(abs(xl2max1));
-
-l2max = xlmax1^2 + (c0 + c1*xlmax1+c2*xlmax1^2+c3*xlmax1^3)^2;
-if (l2max<maxLengthSquared)
+zmax = c0 + c1*xmax+c2*xmax^2+c3*xmax^3;
+if (zmax<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30)
     break
 end
+
+% xl2max1 = (-4*c2^2+sqrt((4*c2^2)^2-24*(c3^2)*(2+2*c1^2)))/(12*c3^2);
+% xlmax1=-sqrt(abs(xl2max1));
+% 
+% l2max = xlmax1^2 + (c0 + c1*xlmax1+c2*xlmax1^2+c3*xlmax1^3)^2;
+% if (l2max<maxLengthSquared)
+%     break
+% end
 
 dxf=dxf+0.001;% + (l2max-maxLengthSquared)*0.01;
 iter = iter+1;
 end
 
 %% Second step
-x1=-sqrt(c0/g)*dxf*0.66; %-0.319275
-z1= c0-stepUp;
-dx1=dxf;
-dz1=c1*dxf;
 
+% x1=-sqrt(c0/g)*dxf*0.66; %-0.319275
+% z1= c0-stepUp;
+% dx1=dxf;
+% dz1=c1*dxf;
+
+x1= x %-0.319275
+z1=z
+dx1=dx 
+dz1=dz
 X1=[x1:0.001:0];
 zf1 = 1.0;
 dxf1= 0;
 
-A1 = [1 0 0 0;
+A1 = [0 1 0 0;
     1 x1 x1^2 x1^3 ; % x^4
     0 1 2*x1 3*x1^2 ; % 4*x^3
     (3/2)*g*x1^2 g*x1^3 (3/4)*g*x1^4 (3/5)*g*x1^5 ]; % (3/6)*g*x^6
@@ -75,7 +80,7 @@ iter1 = 0;
 for i=1:100000
 k1 = (1/2)*(dx1*z1 - dz1*x1)^2 + g*(x1^2)*z1-0.5*(zf1^2)*(dxf1^2);
 
-c_1 = Ainv1*[zf1 z1 dz1/dx1 k1]';
+c_1 = Ainv1*[0 z1 dz1/dx1 k1]';
 
 c01 = c_1(1);
 c11 = c_1(2);
@@ -161,25 +166,35 @@ time_est= ((c0 + c1*x +c2*x^2+c3*x^3)/(c1 + 2*c2*x + 3*c3*x^2))%+c0/c1
 
 X=-1:0.0001:1;
 Y=c0+c1.*X+c2.*X.^2+c3*X.^3;
+X1=-1:0.0001:1;
+Y1=c01+c11.*X+c21.*X.^2+c31*X.^3;
 figure;
-plot(X,Y);
+pz=plot(X,Y,'LineWidth',3);
+hold on;
+pdz = plot(X1,Y1,'LineWidth',3);
 
-% circle(0,0,sqrt(maxLengthSquared));
+
+%circle(0,0,sqrt(maxLengthSquared));
 Xline=[-1:0.01:1];
 Zmax= 0*Xline+maxHeight;
 hold on;
-plot(Xline,Zmax);
+plot(Xline,Zmax,'LineStyle', '-.','LineWidth',1);
 axis equal
-axis([-0.5 0.5 0.5 1.5])
-xlabel('x','FontSize', 35)
-ylabel('z','FontSize', 35)
+axis([-0.5 0 0.8 1.3])
+ylabel('Height [m]','FontSize', 18)
+xlabel('Horizontal Position [m]','FontSize', 18)
+xticks([-0.5:0.1:0.0])
+yticks([0.8:0.1:1.3])
+grid off;
+%exportfig(gcf,'cubicPolAndLine.eps', opts)
+legend([pz pdz],{'$z_f=1.0$','$\frac{\dot{z}_f}{\dot{x}_f}=0.0$'},'Interpreter','latex','FontSize',16)
+% legend([pz pdz],{'z_f=0','/frac{/dot{z}_f}{/dot{x}_f}','Interpreter','latex'})
 opts.Format = 'eps';
 opts.Color = 'CMYK';
 opts.Resolution = 10000000;
-set(gca,'LineWidth',1)
+%set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-%exportfig(gcf,'cubicPolAndLine.eps', opts)
-
+exportfig(gcf,'PolynomialvsHeight.eps', opts)
 
 fx=c0+c1*x+c2*x^2+c3*x^3;
 dfx=c1+2*c2*x+3*c3*x^2;
