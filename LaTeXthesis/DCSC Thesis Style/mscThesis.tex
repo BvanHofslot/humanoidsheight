@@ -12,8 +12,18 @@
 \newcommand{\rcmp}{\mathbf{r}_{cmp}}
 \newcommand{\rcop}{\mathbf{r}_{cop}}
 \newcommand{\rcopd}{\mathbf{r}_{cop,d}}
-\newcommand{\icpc}{\boldsymbol{\xi}_c}
+\newcommand{\icpx}{\xi_x}
+\newcommand{\icpy}{\xi_y}
+\newcommand{\icp}{\boldsymbol{\xi}}
 \newcommand{\icpr}{\boldsymbol{\xi}_r}
+\newcommand{\dotl}{\dot{\mathbf{l}}}
+\newcommand{\dotld}{\dot{\mathbf{l}}_d}
+\newcommand{\dotldxy}{\dot{\mathbf{l}}_{d,xy}}
+\newcommand{\dotldz}{\dot{\mathbf{l}}_{d,z}}
+\newcommand{\qjnt}{\mathbf{q}}
+\newcommand{\dqjnt}{\dot{\mathbf{q}}}
+\newcommand{\ddqjntd}{\ddot{\mathbf{q}}_d}
+\newcommand{\ddqjntp}{\ddot{\mathbf{q}}_p}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\matr}[1]{\mathbf{#1}} % undergraduate algebra version
 %\newcommand{\matr}[1]{#1}          % pure math version
@@ -21,7 +31,8 @@
 \newcommand{\vect}[1]{\mathbf{#1}} % undergraduate algebra version
 %\newcommand{\vect}[1]{#1}          % pure math version
 %\newcommand{\vect}[1]{\bm{#1}}  
-\newcommand{\wght}{\mathbf{Q}}
+\newcommand{\cost}{J}
+\newcommand{\wght}{\mathbf{R}}
 \newcommand{\slct}{\mathbf{S}}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -95,7 +106,7 @@
 %
 %
 \include{preface}
-\include{acknowledgements}
+\include{acknowledgements}          
 \include{dedication}
 %
 %========================== Main matter ======================================
