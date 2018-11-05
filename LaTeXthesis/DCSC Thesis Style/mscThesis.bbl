@@ -94,6 +94,28 @@ J.~Englsberger, C.~Ott, and A.~Albu-Sch{\"a}ffer, ``Three-dimensional bipedal
   Robots and Systems (IROS), 2013 IEEE/RSJ International Conference on},
   pp.~2600--2607, IEEE, 2013.
 
+\bibitem{brasseur2015robust}
+C.~Brasseur, A.~Sherikov, C.~Collette, D.~Dimitrov, and P.-B. Wieber, ``A
+  robust linear mpc approach to online generation of 3d biped walking motion,''
+  in {\em Humanoid Robots (Humanoids), 2015 IEEE-RAS 15th International
+  Conference on}, pp.~595--601, IEEE, 2015.
+
+\bibitem{kajita2017biped}
+S.~Kajita, M.~Benallegue, R.~Cisneros, T.~Sakaguchi, S.~Nakaoka, M.~Morisawa,
+  K.~Kaneko, and F.~Kanehiro, ``Biped walking pattern generation based on
+  spatially quantized dynamics,'' in {\em Humanoid Robotics (Humanoids), 2017
+  IEEE-RAS 17th International Conference on}, pp.~599--605, IEEE, 2017.
+
+\bibitem{terada2007online}
+K.~Terada and Y.~Kuniyoshi, ``Online gait planning with dynamical
+  3d-symmetrization method,'' in {\em Humanoid Robots, 2007 7th IEEE-RAS
+  International Conference on}, pp.~222--227, IEEE, 2007.
+
+\bibitem{you2016straight}
+Y.~You, S.~Xin, C.~Zhou, and N.~Tsagarakis, ``Straight leg walking strategy for
+  torque-controlled humanoid robots,'' in {\em Robotics and Biomimetics
+  (ROBIO), 2016 IEEE International Conference on}, pp.~2014--2019, IEEE, 2016.
+
 \bibitem{griffin2018straight}
 R.~J. Griffin, G.~Wiedebach, S.~Bertrand, A.~Leonessa, and J.~Pratt,
   ``Straight-leg walking through underconstrained whole-body control,'' in {\em
