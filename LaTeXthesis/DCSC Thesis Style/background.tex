@@ -49,7 +49,6 @@ The mentions of the above mentioned models of point-foot and point-mass type can
 
 % Ground Reference Points
 \section{Ground Reference Points in Walking}\label{sec:grp}
-Originating from human-motion studies, the dynamics of a walker can be expressed with observed forces acting on the system. A resultant force can be derived, and with this, reference points that give an indication of the dynamics.\\
 A common approach for quantifying the dynamics of a walker, either a human or a robot, is the use of a \ac{GRF}, coming a from a single point of application on the ground. The magnitude and direction of the \ac{GRF} vector, the gravitational force vector, other external forces and the robots state determine the dynamics of the system. With the \ac{GRF} and the robots state, ground reference points can be derived, which can be used as a measure for the systems behavior.
 
 % CoP
@@ -173,9 +172,11 @@ Probably the most common goal of investigating height variation is the improveme
 \end{enumerate} 
 The generation of a dynamical plan of a redundant robotic system is traditionally done based on the \ac{LIP} model with constant height. The control framework has to deal with any height variations in terrain, and therefore also in the \ac{CoM}. In other words: the dynamics of the robot or roughly know in advance, but not precisely.\\
 An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used for the a planning method. The drawback here is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
+%natural behavior
 \subsection{Mimic Natural Behavior}
-Straight leg walking.
-\cite{griffin2018straight} and more..
+Straight leg walking. MPC approach to optimize for \cite{brasseur2015robust}. Walking reference for straight legs and dynamics feasibility \cite{kajita2017biped}. Paper online gait generation with vertical \ac{CoM} motions in dynamic plan \cite{terada2007online}
+\cite{you2016straight} \cite{griffin2018straight} and more..
+%effect
 \subsection{Effects of Height Variation}
 Research that investigates the energetic influences of height variations and impacts, often human orientated.
 \cite{kuo2005energetic} \cite{lee1998determinants} \cite{gao2017increase} and more..
@@ -274,7 +275,8 @@ $Joint acceleration cost:$ & J_{\ddqjntd} = \wght_{\ddqjntd}||\ddqjntd ||^2 \\
 $Privileged configuration cost:$ & J_p = \wght_p||(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)\ddqjntd - \ddqjntp||^2,
 \end{array}
 \end{equation*}
-where the weighting terms $\wght$ can have a selecting function as well. For example the centroidal momentum rate of change objective $J_{\dot{\vect{h}}_d}$ only consists of the linear part and is only affected by $\dotld$. The motion task jacobian $\matr{J}_m = [\bs{J}_1^T\quad...\quad\bs{J}_N^T]^T$ and objective vector $\vect{p} = [\vect{p}_1^T\quad...\quad\vect{p}_N^T]^T$ consist of all concatenated jacobians and objective values that map either joint acceleration to end-effector motion, as in Equation \eqref{eq:jacobian} or joint acceleration to joint joint acceleration. The motion objective values $\vect{p}$ consist of PD-controlled desired accelerations, coming for example from trajectory tracking of the swing leg or maintaining the upper-body orientation. The last cost term $J_p$ is determined by the privileged joint accelerations $\ddqjntp$. Here is the all$\bs{J}_t$ the all-task jacobian consisting of both $\matr{A}$ and $\matr{J}_m$. The damped Moore-Penrose pseudo-inverse  $\matr{J}_t^{\dagger} = \matr{J}_t^T(\matr{J}_t\matr{J}_t^T +\mu^2)^{-1}$ with $\mu>0$ is used in the null-space projector $(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)$, which projects the priviliged acceleration objective in the null-space of the primary task jacobian $\matr{J}_t$. This can for example be used in singularity avoidance, where the priviliged accelerations can be used to determine the configurarion of the robotic chain.  \\
+where the weighting terms $\wght$ can have a selecting function as well. For example the centroidal momentum rate of change objective $J_{\dot{\vect{h}}_d}$ only consists of the linear part and is only affected by $\dotld$. The motion task jacobian $\matr{J}_m = [\bs{J}_1^T\quad...\quad\bs{J}_N^T]^T$ and objective vector $\vect{p} = [\vect{p}_1^T\quad...\quad\vect{p}_N^T]^T$ consist of all concatenated jacobians and objective values that map either joint acceleration to end-effector motion, as in Equation \eqref{eq:jacobian} or joint acceleration to joint joint acceleration. The motion objective values $\vect{p}$ consist of PD-controlled desired accelerations, coming for example from trajectory tracking of the swing leg or maintaining the upper-body orientation. The last cost term $J_p$ is determined by the privileged joint accelerations $\ddqjntp$. Here is the all$\bs{J}_t$ the all-task jacobian consisting of both $\matr{A}$ and $\matr{J}_m$. The damped Moore-Penrose pseudo-inverse  $\matr{J}_t^{\dagger} = \matr{J}_t^T(\matr{J}_t\matr{J}_t^T +\mu^2)^{-1}$ with $\mu>0$ is used in the null-space projector $(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)$, which projects the priviliged acceleration objective in the null-space of the primary task jacobian $\matr{J}_t$. This can for example be used in singularity avoidance, where the priviliged accelerations can be used to determine the configurarion of the robotic chain.  
+\paraskip
 An important note considering the research goal is the generation of vertical \ac{CoM} motion of the robot. The desired linear momentum rate of change $\dotld$ consists, next to its horizontal component of Equation \eqref{eq:dotldxy}, of a vertical part:
 \begin{equation}
 \dotldz =m(k_p(z-z_r) + k_d\dot{z}), 
