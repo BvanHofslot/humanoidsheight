@@ -59,6 +59,19 @@ Considering the current error, is the motion recoverable considering the constra
 
 % Experimental Setup
 \section{Experimental Setup}
+
+%standing setup
+\subsection{Standing Push Recovery}
+1 push direction.\\
+%preliminary observations
+\subsubsection{Preliminary Observations}
+\begin{itemize}
+	\item Changing weight in momentum optimization settings already trigger height variation.
+\end{itemize}
+
+%Walking setup
+\subsection{Walking Push Revovery}
+8 push directions.\\
 Atlas or Valkyrie walking over a terrain with limited foot placement options, so step adjustment is not possible (tiled environment). Push recovery to test disturbance rejection. See \tabref{tab:stepping} for the used parameters. The dynamic plan, footstep plan and \ac{ICP} plan, are left untouched.
 \begin{table}[ht]
 \caption{Stepping Parameters} % title of Table
@@ -77,12 +90,19 @@ Step Width & 0.25 & [m]\\
 \end{tabular}
 \label{tab:stepping} % is used to refer this table in the text
 \end{table}
-
+%Preliminary observations
+\subsubsection{Preliminary Observations}
+\begin{itemize}
+	\item Direction \ac{ICP} error stays often the same during swing
+	\item If the \ac{ICP} error is directed in the sagittal plane, CMP often remains somewhat in the same location
+	\item if the \ac{ICP} error is more directed  in the coronal plane, CMP slides from back to forth foot. 
+	\item The configuration and velocity at near touch down is important for: swing leg touch down and swing leg collapse in \ac{DS}
+\end{itemize}
 % Methods
 \section{Methods}
 Other publications that consider \ac{CoM} height variations for balance use \ac{MPC}. Considering worst-case scenario's, where additional horizontal force is needed, `the best you can do' is needed to not fall over. This motivates to use a proportional controller in worst case scenario's, next to the benefit of simplicity and robustness.
 
-
+%Architecture
 \subsection{Control Architecture}
 To actively change the desired momentum rate, the effects of additional height acceleration is included in the control framework as follows. 
 Horizontal linear momentum rate formula in terms of \ac{CMP}:
@@ -101,42 +121,39 @@ Horizontal linear momentum rate formula in terms of \ac{CoP}:
 \end{equation}
  Since the desired \ac{CMP} coming from the linear momentum rate of change control module is based on the \ac{LIP} model:
  \begin{equation}
-\dot{\mathbf{l}}_{xy,d}=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z_0}mg}_{\dot{\mathbf{l}}_{xy,d,lip}}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dot{\mathbf{l}}_{d,heightcontrol}},
+\dot{\mathbf{l}}_{xy,d}=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z_0}mg}_{\dotldxylip}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dotldxyheight},
 \end{equation}
-where $\dot{\mathbf{l}}_{xy,d,lip}$ is the standard desired horizontal momentum rate term and $\dot{\mathbf{l}}_{xy,d,heightcontrol}$ is the additional momentum rate from height control.
+where $\dotldxylip$ is the standard desired horizontal momentum rate term and $\dotldxyheight$ is the additional momentum rate from height control.
 
+%Strategy 
 \subsection{Control Strategy}
+With the control law to modify the existing $\dotldxylip$ with $\dotldxyheight$, the question remains how to generate the desired height acceleration $\ddzd$. A control strategy is considered for a worst case scenario, where height control can give that extra bit of balance. For situations where height variations are considered that are not worst-case, it is assumed that difference in height from the \ac{LIP} can be controlled using the allowed ``ankle'' and ``hip'' strategies. Therefore consider a `best doable' strategy . If an optimization outputs com(t), its is hard to include angular momentum, and still it's PD-controlled 
 
-
-If the following criteria are met:
-\begin{enumerate}
-	\item the desired \ac{CMP} is a certain distance outside the foot polygon
-	\item a height or singularity constraint is not met
-	\item the angle between the ICP error and the virtual leg between \ac{CoP} and \ac{CoM} in the $xy$ transverse plane is not larger than a specifice value.
-\end{enumerate}
-ramp up the desired height acceleration with a constant maximum jerk, until the maximum acceleration is reached. Then hold this maximum acceleration, until one of the criteria does not hold anymore. \\
-As the strategy is only used when the \ac{CMP} is outside the foot polygon, an estimate of the resulting \ac{CoP} is made by projecting the desired \ac{CMP} on the foot polygon.\\
-\figref{fig:3foot} shows initial and final \ac{CoM} and \ac{ICP} configurations for \ac{SS}. \figref{fig:phiViz} shows different alignment angles for the initial configuration, when entering \ac{SS}.\\
-\figref{fig:profile} shows an example of a resulting control profile.
-Considerations:
+\subsubsection{Constraints}
 \begin{itemize}
-	\item smoothness of the input profile -> no switching back and forth between conditions
-	\item minimal height/singularity -> not unexpected but incorporate in estimation
-	\item height velocity and singularity swingleg at touch down
-	\item anticipate on future angle -> observed that ICP error stay approximately the same direction
+	\item Maxheight: - [PIC OF PENDULUM MAX/MIN HEIGHT]
+	\item Minheight: to prevent leg from bending a lot, with the risk of the robot hitting the ground.
+	\item Max/min height velocity 
 \end{itemize}
 
+\subsubsection{Sagital ICP Error Case}
+\begin{itemize}
+	\item Explain phases and Picture of disc
+	\item Show only one way possible by direction of angle
+\end{itemize}
+
+\subsubsection{Coronal ICP Error Case}
 
 
+\subsubsection{Time Prediction To Constraints}
+\begin{itemize}
+	\item min/max velocity
+	\item min/max position
+\end{itemize}
 
+\subsubsection{Control Law}
+Constraints have to be avoided in computation of input.\\
 
-
-\begin{figure}[h]
-\centering
-  \includegraphics[width=.8\linewidth]{STYLESTUFF/controlProfileConditional.png}
-   \caption{Resulting control profile after a push at start of \ac{SS}}
-    \label{fig:profile}
-\end{figure}
 
 \begin{figure}[h]
 \centering
@@ -187,6 +204,7 @@ Considerations:
   \label{fig:phiViz}
 \end{figure}
 
+%QPbased - Only remarks, not in method?
 \subsection{Quadratic Program Based}
 One method: use lower weight on vertical momentum rate. To avoid singularity, a feedback based on a virtual spring, priviliged joint accelerations can be projected in the null-space. 
 
@@ -210,9 +228,35 @@ Affected Desired & Constraint/Consideration & Centroidal Momentum Rate \\
 
 % Results
 \section{Results}
-\subsection{Simulation}
-Comparison with `normal' control setup. (and comparison with `ankle' and `hip' strategies)
-\subsection{Hardware}
+\subsection{Standing}
+Which cases?
+\begin{itemize}
+	\item Normal limit v.s. height control on normal limit
+	\item Normal limit v.s. height control limit -> capture limits
+	\item Normal limit high momentum weights v.s. height control on normal limit high momentum weights
+\end{itemize}
+
+On what?
+\begin{itemize}
+	\item joint torques: ankle, knee, hip, back
+	\item pose: angular momentum rate, angular momentum, body pose error, CoM
+	\item reference points: CMP, CoP, ICP -> Integrated CoP effect and Angular effect > linear momentum
+\end{itemize}
+\subsubsection{Hardware Tests}
+\subsection{Walking}
+Focus on strategy.\\
+Which cases? 
+\begin{itemize}
+	\item Normal limit v.s. height control on normal limit
+	\item Normal limit v.s. height control limit -> capture limits?
+\end{itemize}
+
+On what?
+\begin{itemize}
+	\item ICP(t) v.s. ICPr(t) v.s. CoP(t) -> compare with assumptions
+	\item Swing time and body pose.
+\end{itemize}
+
 
 % Discussion
 \section{Discussion}

@@ -1,5 +1,5 @@
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface}{ix}{chapter*.15}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Acknowledgements}{xi}{chapter*.16}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface}{xi}{chapter*.15}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Acknowledgements}{xiii}{chapter*.16}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1-1}Motivation}{1}{section.1.1}
 \contentsline {section}{\numberline {1-2}Research Objective}{2}{section.1.2}
@@ -57,17 +57,27 @@
 \contentsline {subsection}{\numberline {5-1-3}Leg Reachability}{30}{subsection.5.1.3}
 \contentsline {subsection}{\numberline {5-1-4}Predictability of Dynamics}{30}{subsection.5.1.4}
 \contentsline {section}{\numberline {5-2}Experimental Setup}{30}{section.5.2}
+\contentsline {subsection}{\numberline {5-2-1}Standing Push Recovery}{30}{subsection.5.2.1}
+\contentsline {subsubsection}{Preliminary Observations}{30}{section*.74}
+\contentsline {subsection}{\numberline {5-2-2}Walking Push Revovery}{31}{subsection.5.2.2}
+\contentsline {subsubsection}{Preliminary Observations}{31}{section*.77}
 \contentsline {section}{\numberline {5-3}Methods}{31}{section.5.3}
 \contentsline {subsection}{\numberline {5-3-1}Control Architecture}{31}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5-3-2}Control Strategy}{31}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5-3-3}Quadratic Program Based}{32}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5-3-2}Control Strategy}{32}{subsection.5.3.2}
+\contentsline {subsubsection}{Constraints}{32}{section*.80}
+\contentsline {subsubsection}{Sagital ICP Error Case}{32}{section*.81}
+\contentsline {subsubsection}{Coronal ICP Error Case}{32}{section*.82}
+\contentsline {subsubsection}{Time Prediction To Constraints}{32}{section*.83}
+\contentsline {subsubsection}{Control Law}{33}{section*.84}
+\contentsline {subsection}{\numberline {5-3-3}Quadratic Program Based}{33}{subsection.5.3.3}
 \contentsline {section}{\numberline {5-4}Results}{33}{section.5.4}
-\contentsline {subsection}{\numberline {5-4-1}Simulation}{33}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5-4-2}Hardware}{33}{subsection.5.4.2}
-\contentsline {section}{\numberline {5-5}Discussion}{33}{section.5.5}
-\contentsline {chapter}{\numberline {6}Conclusion}{35}{chapter.6}
-\contentsline {section}{\numberline {6-1}Recommendations}{35}{section.6.1}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{37}{section*.82}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{41}{appendix*.84}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{41}{section*.85}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{41}{section*.87}
+\contentsline {subsection}{\numberline {5-4-1}Standing}{33}{subsection.5.4.1}
+\contentsline {subsubsection}{Hardware Tests}{34}{section*.89}
+\contentsline {subsection}{\numberline {5-4-2}Walking}{34}{subsection.5.4.2}
+\contentsline {section}{\numberline {5-5}Discussion}{35}{section.5.5}
+\contentsline {chapter}{\numberline {6}Conclusion}{37}{chapter.6}
+\contentsline {section}{\numberline {6-1}Recommendations}{37}{section.6.1}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{39}{section*.90}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{43}{appendix*.92}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{43}{section*.93}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{43}{section*.95}
