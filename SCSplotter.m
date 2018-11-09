@@ -56,3 +56,31 @@ set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
 set(gca,'fontsize',20);
 exportfig(gcf,'AtlasNormalFrontalPushFail.eps', opts)
+
+%%
+clc; clear all; close all;
+load('AngMomentumNormal055.mat');
+tau_yn = root.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControlCoreToolbox.achievedMomentumRateAngularY;
+zn = root.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CommonHumanoidReferenceFramesVisualizer.centerOfMassZ;
+start = 2.0/DT;
+final = 3.012/DT;
+LxtoTurnNormal = 0;
+for i= start:final
+    Fx_Angn = tau_yn(i)/zn(i);
+    LxtoTurnNormal = LxtoTurnNormal - Fx_Angn;
+end
+velocityNormal = LxtoTurnNormal/127.2996
+load('AngMomentumHeight055.mat');
+tau_y = root.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControlCoreToolbox.achievedMomentumRateAngularY;
+z = root.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CommonHumanoidReferenceFramesVisualizer.centerOfMassZ;
+start = 2.0/DT;
+final = 2.596/DT;
+LxtoTurnHeight = 0;
+for i= start:final
+    Fx_Ang = tau_y(i)/z(i);
+    LxtoTurnHeight = LxtoTurnHeight - Fx_Ang;
+end
+velocityHeight = LxtoTurnHeight/127.2996
+figure;
+hold on;
+plot(tau_y);plot(tau_yn);

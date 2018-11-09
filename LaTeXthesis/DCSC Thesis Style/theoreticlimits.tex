@@ -1,7 +1,7 @@
 %
 % Another appendix chapter
 \chapter{Theoretic Limits on Capture}
-It is hard, or even impossible, to find a closed-form solution of the state of a time-varying or nonlinear inverted pendulum model forward in time, as discussed in Section \ref{sec:ewalking}. A common approach is to formulate an optimization problem, as for example in \cite{caron2018capturability}, to come to capture trajectory. However, few methods mention the limits achievable of the underlying model of the optimization problem. As convergence is often a problem in constrained nonlinear optimization, it could be useful to have a good guess of which states are achievable and which are not. In this chapter, limits on capture are given, considering constraints on height. As with the \ac{CP}, a point-foot, point-mass model is considered. Important constraints for this model are:
+It is hard, or even impossible, to find a closed-form solution of the state of a time-varying or nonlinear inverted pendulum model forward in time without introducing additional constraints, as discussed in Section \ref{sec:ewalking}. A common approach is to formulate an optimization problem, as for example in \cite{caron2018capturability}, to come to capture trajectory. However, few methods mention the limits achievable of the underlying model of the optimization problem. As convergence is often a problem in constrained nonlinear optimization, it could be useful to have a good guess of which states are achievable and which are not. In this chapter, limits on capture are given, considering constraints on height. As with the \ac{CP}, a point-foot, point-mass model is considered. Important constraints for this model are:
 \begin{itemize}
 	\item Unilateral \ac{GRF}.
 	\item Limit on leg length or height.
@@ -81,6 +81,7 @@ where  $x_{bal,zmin}$ is the horizontal position at the end of the balistic part
 \begin{equation}
  x_{cp,minheight}=(\sqrt{\frac{2\delta_{zmin}}{g}} +\frac{z_0-\delta_{zmin}}{\sqrt{(z_0-\delta_{zmin})g}+\sqrt{2g\delta_{zmin}}})\dot{x}_0.
 \end{equation}
+In \figref{fig:cpzmin} the trajectory to this point is visualized.
 %maxheight
 \subsection{Maximum Height}
 To calculate the initial impact as a function of the maximum height, there is looked at a simple kinetic and potential energy formula:
@@ -111,7 +112,7 @@ Finally, to write the point in terms of the initial state gives:
 \begin{equation}
  x_{cp,height}  = \frac{\frac{\sqrt{2g\delta z_{max}}}{g}+\sqrt{\frac{z_o+\delta z_{max}}{g}}}{ 1+(\frac{\sqrt{2g\delta z_{max}}}{g}+\sqrt{\frac{z_o+\delta z_{max}}{g}})\frac{\sqrt{2g\delta z_{max}}}{z_0}}\dot{x}_0.
 \end{equation}
-In \figref{fig:cpheight} the trajectory to this point is illustrated for  $\dot{x}_0=1.0$, $z_0=1.0$ and $z_{max}=1.1$, together with the capture point and a plot with the method of \cite{koolen2016balance}. Considering this 10\% height change, the capture limit is about $1-x_{cp}/x_{cp,height}\approx 10.37 \%$ closer than the \ac{CP} from the \ac{CoM}.
+In \figref{fig:cpzmax} the trajectory to this point is illustrated for  $\dot{x}_0=1.0$, $z_0=1.0$ and $z_{max}=1.1$, together with the capture point and a plot with the method of \cite{koolen2016balance}. Considering this 10\% height change, the capture limit is about $1-x_{cp}/x_{cp,height}\approx 10.37 \%$ closer than the \ac{CP} from the \ac{CoM}.
 \begin{figure}[h]
 \centering
   \begin{subfigure}{0.45\textwidth}
@@ -127,7 +128,7 @@ In \figref{fig:cpheight} the trajectory to this point is illustrated for  $\dot{
     \label{fig:cpzmax}
   \end{subfigure}
   \caption{The height constrained capture limits for $\dot{x}_0=1.0$, $z_0=1.0$, (a) $z_{min}=0.7$ and (b) $z_{max}=1.1$. The grey plots are made with the method of \cite{koolen2016balance} and show that its final horizontal positions lie between the limit and the \ac{CP}. }
-  \label{fig:cpheight}
+  \label{fig:cpz}
 \end{figure}
 
 %% Discussion

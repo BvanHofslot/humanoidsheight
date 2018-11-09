@@ -22,6 +22,3 @@ c = z0-zmin - (1/2)*(dz0^2)/ddzmax;
 tminhi = (-b + sqrt(b^2-4*a*c))/(2*a)
 tminlo = (-b - sqrt(b^2-4*a*c))/(2*a)
 
-%%
-
-x0 =
