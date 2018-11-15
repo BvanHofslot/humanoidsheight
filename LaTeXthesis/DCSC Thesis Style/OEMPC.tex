@@ -71,6 +71,17 @@ Note that the matrix is still full rank, as long as $x_f$ and $\dot{x}_f$ are no
 % Height Constraint
 \subsection{Height Constraint}
 Using the previous problem with an undetermined final velocity $\dot{x}_f$, a height constraint can be used in optimization. Algorithm \ref{alg:h} shows how the polynomial values can be found under this constraint. The maximum height of trajectory being optimized over is at location $x_{zmax}$, which has two solutions. In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \ref{alg:h}, one with the final height constraint and one for the constraint on the final gradient. Notice that the peak for the maximum value in both plots lies on the maximum $x$-value from the solutions of the locations where the gradient as zero. Therefore, in Algorithm \ref{alg:h} the solution that corresponds to this peak is sufficient, if a constraint on the maximum value is considered. In the plot of the figure, the entire polynomial is shown for explanatory reasons, but in control or planning only the part would be used from the starting point $x=-0.25$.
+\begin{equation}
+	\dot{x}_{f,cp} = \sqrt{\dot{x}_0^2-\frac{g}{z}x^2}
+\end{equation}
+\begin{equation}
+	\dot{x}_{f,cp,maxheight} = \sqrt{\dot{x}_{0,I}^2-\frac{g}{z}(x+\frac{\dot{z}_I}{g}\dot{x}_{0,I})^2}
+\end{equation}
+\begin{equation}
+	\alpha =\frac{\dot{x}_{f,cp} -\dot{x}_{f,cp,maxheight}}{N}
+\end{equation}
+$N=30$.
+
 \begin{algorithm}
 \caption{Find cubic polynomial constants under height constraint}
 \label{alg:h}
@@ -145,4 +156,5 @@ One of the algorithms can be used in \ac{MPC}, however, it lacks a lot of proper
 	\item The resulting trajectory is limited by the shape of a cubic polynomial.
 	\item The model is point-mass, point-foot and does not take the control options of feet or a body into account.
 	\item The method is analytic and does not calculate for the next controller tick.
+	\item Only a maximum height constraint is considered.
 \end{itemize}

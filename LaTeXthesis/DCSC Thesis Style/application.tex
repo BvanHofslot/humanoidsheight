@@ -2,61 +2,6 @@
 % Another appendix chapter
 \chapter{Towards Application}
 
-% Challenges
-\section{Challenges}
-\subsection{Angular Momentum and Height Variation}
-Normal control framework IHMC:
-\begin{equation}
-    F_{x} = \frac{x-x_{cmp,d}}{z_0}mg.
-\end{equation}
-So scaling up $F_x$ with $F_z$ could be an option.
-Formulas \ac{CoP} and \ac{CMP}:
-\begin{equation}
-    x_{cop}=x-\frac{F_x}{F_z}-\frac{\tau_y}{F_z}
-\end{equation}
-\begin{equation}
-    x_{cmp}=x-\frac{F_x}{F_z}
-\end{equation}
-
-Special case where \ac{CoM} is above \ac{CoP}:
-\begin{align}
-     x-x_{cop}=0\\
-     \frac{F_x}{F_z}+\frac{\tau_y}{F_z}=0.
-\end{align}
-Im this situation, scaling up $F_x$ with $F_z$, $\tau_y$ only contributes to $F_x$. So for contribution of added $F_z$, look at \ac{CoP}:
-\begin{equation}
-    F_{x} = \frac{x-x_{cop}}{z}F_z - \frac{\tau_y}{z}
-\end{equation}
-The effects of changing the ground reaction compared to the \ac{CMP} and not with the \ac{CoP} are visualized in \figref{fig:cmpFz}
-\begin{figure}[h]
-  \begin{subfigure}{0.3\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{STYLESTUFF/2DCMPVIZ.png}
-   \caption{}
-    \label{fig:cmpFza}
-  \end{subfigure}
-  \begin{subfigure}{0.3\textwidth}
-    \centering
-  \includegraphics[width=.8\linewidth]{STYLESTUFF/2DCMPVIZCoPzero.png}
-  \caption{}
-   \label{fig:cmpFzb}
-  \end{subfigure}
-  \begin{subfigure}{0.36\textwidth}
-    \centering
-  \includegraphics[width=.8\linewidth]{STYLESTUFF/2DCMPVIZFgradjusted.png}
-    \caption{}
-     \label{fig:cmpFzc}
-  \end{subfigure}
-  \caption{Effects of change in ground reaction force on angular momentum around the \ac{CoM}. (a) $F_x$ can be scaled up with $F_z$, which results in an increase in $\tau_y$. (b) Situation where additional $F_z$ does not contribute to additional $F_x$. (c) With a shifted \ac{CMP}, a larger $F_x$ can be achieved than with the strategy in (a). }
-  \label{fig:cmpFz}
-\end{figure}
-\subsection{From 2D to 3D}
-Direction of desired force can be out of plane with virtual leg between \ac{CoM} and \ac{CoP}. Only one input, $F_z$, can be used to control errors in two directions: $x$ and $y$. If the direction of the desired force is orthogonal to the virtual leg, $F_z$ has no effect. If $F_z$ is increased in one direction, the unstable eigenvalue of the system in the other direction grows. Explain complications 3D orbital energy. 
-\subsection{Leg Reachability}
-Stance leg and swing leg singularity need to be avoided. Also, to let the swing leg touch down at the desired time, the ground must be reachable at that time instance. Explain complication nonlinear constraint.
-\subsection{Predictability of Dynamics}
-Considering the current error, is the motion recoverable considering the constraints? Explain complications of \ac{MPC}
-
 % Experimental Setup
 \section{Experimental Setup}
 
@@ -98,12 +43,21 @@ Step Width & 0.25 & [m]\\
 	\item if the \ac{ICP} error is more directed  in the coronal plane, CMP slides from back to forth foot. 
 	\item The configuration and velocity at near touch down is important for: swing leg touch down and swing leg collapse in \ac{DS}
 \end{itemize}
+
+\newpage
 % Methods
 \section{Methods}
 Other publications that consider \ac{CoM} height variations for balance use \ac{MPC}. Considering worst-case scenario's, where additional horizontal force is needed, `the best you can do' is needed to not fall over. This motivates to use a proportional controller in worst case scenario's, next to the benefit of simplicity and robustness.
 
+%Challenges
+\subsection{Challenges}
+\subsubsection{Angular Momentum} has a lot
+\subsubsection{2D to 3D}
+\subsubsection{Leg Reachability}
+\subsubsection{Predictability of Dynamics}
+
 %Architecture
-\subsection{Control Architecture}
+\subsection{Control Framework}
 To actively change the desired momentum rate, the effects of additional height acceleration is included in the control framework as follows. 
 Horizontal linear momentum rate formula in terms of \ac{CMP}:
 \begin{equation}
@@ -124,32 +78,75 @@ Horizontal linear momentum rate formula in terms of \ac{CoP}:
 \dot{\mathbf{l}}_{xy,d}=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z_0}mg}_{\dotldxylip}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dotldxyheight},
 \end{equation}
 where $\dotldxylip$ is the standard desired horizontal momentum rate term and $\dotldxyheight$ is the additional momentum rate from height control.
+\subsubsection{Condition to Activate Controller}
+In the control framework, $\rcmpd$ is restricted to be within a certain distance from the support polygon. During normal walking, the mentioned control framework is not activated, as $\rcmpd$ stays within the polygon, as with human walking [REF]. When the desired \ac{CMP} is farther away than a fraction of the maximum distance $\delta_{\rcmpd-polygon}>\fraccmp\delta_{\rcmpd-polygon,max}$, the height controller is activated for the remaining time in the swing phase. The default height trajectory is neglected and $\dotldxy$ is affected by the vertical acceleration.
 
 %Strategy 
 \subsection{Control Strategy}
-With the control law to modify the existing $\dotldxylip$ with $\dotldxyheight$, the question remains how to generate the desired height acceleration $\ddzd$. A control strategy is considered for a worst case scenario, where height control can give that extra bit of balance. For situations where height variations are considered that are not worst-case, it is assumed that difference in height from the \ac{LIP} can be controlled using the allowed ``ankle'' and ``hip'' strategies. Therefore consider a `best doable' strategy . If an optimization outputs com(t), its is hard to include angular momentum, and still it's PD-controlled 
+With the control law to modify the existing $\dotldxylip$ with $\dotldxyheight$, the question remains how to generate the desired height acceleration $\ddzd$. A control strategy is considered for a worst case scenario, where height control can give that extra bit of balance. For situations where height variations are considered that are not worst-case, it is assumed that difference in height from the \ac{LIP} can be controlled using the allowed ``ankle'' and ``hip'' strategies. Therefore consider a `best doable' strategy . If an optimization outputs com(t), its is hard to include angular momentum, and still it's PD-controlled. 
+$\rcmpd$ is restricted to remain a certain distance from the foot polygon. If $\rcmpd$ is over a fraction $\fraccmp$ from the maximum allowed distance outside the foot polygon, the height controller kicks in. As the robot in this case almost falls over, it is important to do the best it can to recover. Therefore, a maximum or minimum acceleration is considered, depending on the current condition. The controller is only allowed to opperate in \ac{SS}. In \ac{DS} is observed that it can cause problems with lift-off of the upcoming swing leg. The default height controller tries to bring the \ac{CoM} back to the height defined by the trajectory.  
+
+%
+\subsubsection{Alignment}
+
 
 \subsubsection{Constraints}
-\begin{itemize}
-	\item Maxheight: - [PIC OF PENDULUM MAX/MIN HEIGHT]
-	\item Minheight: to prevent leg from bending a lot, with the risk of the robot hitting the ground.
-	\item Max/min height velocity 
-\end{itemize}
-
-\subsubsection{Sagital ICP Error Case}
-\begin{itemize}
-	\item Explain phases and Picture of disc
-	\item Show only one way possible by direction of angle
-\end{itemize}
-
-\subsubsection{Coronal ICP Error Case}
+The maximum length of the leg describes a part of a circle throught the swing phase. In the controller, this constraint is captured in two constraints: $\zmaxfirst$, in the first halve of the swing phase and $\zmaxscnd$, in the second part of the swing phase. In \figref{fig:heightconstraints} the two constraints are vizualized. 
+\begin{figure}[h]
+\centering
+  \includegraphics[width=.4\linewidth]{STYLESTUFF/heightconstraints.png}
+   \caption{Height constraints through \ac{SS}}
+    \label{fig:heightconstraints}
+\end{figure} 
+The predicted height the current state is about to reach is computed as:
+\begin{equation}
+	\zmaxpred = z + \sgn(\dot{z})\frac{\dot{z}^2}{-2\ddzminpred},
+\end{equation}
+where $\zmaxpred$ is the predicted maximum height from the current state and $\ddzminpred$ is the predicted maximum deceleration that will occur. This would be the gravity acceleration, but the minimal acceleration is limited. 
+\paraskip
+The minimum height constraint is not dependent on singularity of the swing leg and is kept at a constant value. Next to hitting the ground, a low height can cause problems at transfer to \ac{DS}, when the robot gets raised to default height again. The minimum height constraint $\zmin$ is displayed in \figref{fig:heightconstraints}. In a similar way as $\zmaxpred$, the minimum height constraint is computed as:
+\begin{equation}
+	\zminpred = z - \sgn(\dot{z})\frac{\dot{z}^2}{2\ddzmaxpred},
+\end{equation}
+where $\zminpred$ is the predicted minimum height from the current state and $\ddzmaxpred$ is the predicted maximum acceleration that will occur.
+\paraskip
+Contraints on the maximum height velocity $\dzmax$ and minimum height velocity $\dzmin$ are also taken into account. Reasons for this include collapsing of the swing leg at touch down and limited velocities at the robot. 
 
 
 \subsubsection{Time Prediction To Constraints}
-\begin{itemize}
-	\item min/max velocity
-	\item min/max position
-\end{itemize}
+Time to maximum constraint, considered the minimum and maximum acceleration:
+\begin{equation}
+    z + \dot{z}\tzmax + \frac{1}{2}\ddzdmax\tzmax^2 + \frac{1}{2}\frac{(\dot{z} +\ddzdmax\tzmax)^2}{-\ddzminpred}= \zmax,
+\end{equation}
+where $\tzmax$ can be computed in the following way:
+\begin{equation}
+    \underbrace{\frac{1}{2}(\ddzdmax + \frac{\ddzdmax^2}{-\ddzminpred})}_a\tzmax^2 + \underbrace{(\dot{z} + \dot{z}\frac{\ddzdmax}{-\ddzminpred})}_b\tzmax + \underbrace{z - \zmax + \frac{1}{2}\frac{\dot{z}^2}{-\ddzminpred}}_c.
+\end{equation}
+Noting that $a$ is positive and that the time needs to be the positive solution, the predicted time to the maximum constraint reads as:
+\begin{equation}
+    \tzmax=\frac{-b + \sqrt{b^2 -4ac}}{2a}
+\end{equation}
+\paraskip
+The predicted time to the minimum constraint is computed in a similar way:
+\begin{equation}
+    z + \dot{z}\tzmin + \frac{1}{2}\ddzdmin\tzmin^2 - \frac{1}{2}\frac{(\dot{z} +\ddzdmin\tzmin)^2}{\ddzmaxpred}= \zmin,
+\end{equation}
+where $\tzmin$ is computed as:
+\begin{equation}
+    \underbrace{\frac{1}{2}(\ddzdmin - \frac{\ddzdmin^2}{\ddzmaxpred})}_a\tzmin^2 + \underbrace{(\dot{z} - \dot{z}\frac{\ddzdmin}{\ddzmaxpred})}_b\tzmin + \underbrace{z - \zmax + \frac{1}{2}\frac{\dot{z}^2}{\ddzmaxpred}}_c.
+\end{equation}
+Noting that $a$ is strictly negative and that the time needs to be the positive solution, the predicted time to the minimum height constraint reads as:
+\begin{equation}
+    \tzmin=\frac{-b - \sqrt{b^2 -4ac}}{2a}
+\end{equation}
+\paraskip
+The time to the maximum and mimimum velocity can be computed using a linear equation:
+\begin{equation}
+	\tdzmax = \frac{\dzmax - \dot{z}}{\ddzdmax}
+\end{equation}
+\begin{equation}
+	\tdzmin = \frac{\dzmin - \dot{z}}{\ddzdmin}
+\end{equation}
 
 \subsubsection{Control Law}
 Constraints have to be avoided in computation of input.\\
@@ -225,7 +222,7 @@ Affected Desired & Constraint/Consideration & Centroidal Momentum Rate \\
 \label{tab:eatqp} % is used to refer this table in the text
 \end{table}
 
-
+\newpage
 % Results
 \section{Results}
 \subsection{Standing}
@@ -248,7 +245,7 @@ Focus on strategy.\\
 Which cases? 
 \begin{itemize}
 	\item Normal limit v.s. height control on normal limit
-	\item Normal limit v.s. height control limit -> capture limits?
+	\item Normal limit v.s. height control limit -> capture limits? -> iterative push search.
 \end{itemize}
 
 On what?

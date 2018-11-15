@@ -17,6 +17,22 @@ X0=[x:0.001:0];
 zf = 1.0;
 dxf= 0;
 
+energyICP = dx*dx-g*x*x/z;
+if(energyICP<0)
+    energyICP=0.0;
+end
+dxfICP = sqrt(energyICP);
+dx0I = dx + x*sqrt(2*g*(maxHeight-z))/z;
+xHeight = x + dx0I*(sqrt(2*g*(maxHeight-z))/g);
+energyLimit = dx0I*dx0I-g*xHeight*xHeight/z;
+if(energyLimit<0)
+    energyLimit=0;
+end
+dxfLimit = sqrt(energyLimit);
+
+dxf=dxfLimit;
+alpha=(dxfICP-dxf)/30;
+
 A = [fstConst;
     1 x x^2 x^3 ; % x^4
     0 1 2*x 3*x^2 ; % 4*x^3
@@ -51,7 +67,7 @@ end
 %     break
 % end
 
-dxf=dxf+0.001;% + (l2max-maxLengthSquared)*0.01;
+dxf=dxf+alpha;% + (l2max-maxLengthSquared)*0.01;
 iter = iter+1;
 end
 
@@ -68,7 +84,7 @@ dx1=dx
 dz1=dz
 X1=[x1:0.001:0];
 zf1 = 1.0;
-dxf1= 0;
+dxf1= dxfLimit;
 
 A1 = [0 1 0 0;
     1 x1 x1^2 x1^3 ; % x^4
@@ -88,9 +104,8 @@ c21 = c_1(3);
 c31 = c_1(4);
 c41=0;
 
-xmax11 = (-2*c21+sqrt(4*c21^2-12*c31*c11))/(6*c31);
-xmax21 = (-2*c21-sqrt(4*c21^2-12*c31*c11))/(6*c31);
-xmax_1=max(xmax11,xmax21); % the peak within the interval is always the highest x
+
+xmax_1 = (-2*c21-sqrt(4*c21^2-12*c31*c11))/(6*c31);
 zmax1 = c01 + c11*xmax_1+c21*xmax_1^2+c31*xmax_1^3;
 if (zmax1<maxHeight) %&& (sqrt(x^2+z^2)*(g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3)<30) 
     break
@@ -105,7 +120,7 @@ end
 %     break
 % end
 
-dxf1=dxf1+0.001;% + (l2max-maxLengthSquared)*0.01;
+dxf1=dxf1+alpha;% + (l2max-maxLengthSquared)*0.01;
 iter1 = iter1+1;
 end
 
@@ -154,7 +169,7 @@ opts.Color = 'CMYK';
 opts.Resolution = 10000000;
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'cubicPolMultiStepUp.eps', opts)
+%exportfig(gcf,'cubicPolMultiStepUp.eps', opts)
 
 u = (g+(2*c2+6*c3*x).*dx^2)/(c0-c2*x^2-2*c3*x^3);
 % figure;
@@ -194,7 +209,7 @@ opts.Color = 'CMYK';
 opts.Resolution = 10000000;
 %set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'PolynomialvsHeight.eps', opts)
+%exportfig(gcf,'PolynomialvsHeight.eps', opts)
 
 fx=c0+c1*x+c2*x^2+c3*x^3;
 dfx=c1+2*c2*x+3*c3*x^2;

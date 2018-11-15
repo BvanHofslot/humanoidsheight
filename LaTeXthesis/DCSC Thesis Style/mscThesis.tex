@@ -5,9 +5,36 @@
 \newcommand{\fgrx}{F_{gr,x}}
 \newcommand{\fgry}{F_{gr,y}}
 \newcommand{\fgrz}{F_{gr,z}}
+%com
 \newcommand{\cxyz}{\mathbf{c}}
 \newcommand{\cxy}{\mathbf{c}_{xy}}
 \newcommand{\ddzd}{\ddot{z}_d}
+%controller
+\newcommand{\zmin}{z_{min}}
+\newcommand{\zmax}{z_{max}}
+\newcommand{\zmaxfirst}{z_{max,1}}
+\newcommand{\zmaxscnd}{z_{max,2}}
+\newcommand{\dzmin}{\dot{z}_{min}}
+\newcommand{\dzmax}{\dot{z}_{max}}
+\newcommand{\ddzdmin}{\ddot{z}_{d,min}}
+\newcommand{\ddzdmax}{\ddot{z}_{d,max}}
+\newcommand{\ddzminpred}{\hat{\ddot{z}}_{min}}
+\newcommand{\ddzmaxpred}{\hat{\ddot{z}}_{max}}
+\newcommand{\zminpred}{\hat{z}_{min}}
+\newcommand{\zmaxpred}{\hat{z}_{max}}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\tzmin}{\hat{t}_{zmin}}
+\newcommand{\tzmax}{\hat{t}_{zmax}}
+\newcommand{\tdzmin}{\hat{t}_{\dot{z}min}}
+\newcommand{\tdzmax}{\hat{t}_{\dot{z}max}}
+\newcommand{\dddzmax}{\dddot{z}_{max}}
+\newcommand{\alignangle}{\phi_{align}}
+\newcommand{\anglepos}{\phi_{align}^+}
+\newcommand{\angleneg}{\phi_{align}^-}
+\newcommand{\fracpred}{\alpha_{prediction}}
+\newcommand{\fraccmp}{\alpha_{danger}}
+\newcommand{\fracswing}{\alpha_{t,swing}}
+%reference points
 \newcommand{\rcmpd}{\mathbf{r}_{cmp,d}}
 \newcommand{\rcmpr}{\mathbf{r}_{cmp,r}}
 \newcommand{\rcmp}{\mathbf{r}_{cmp}}
@@ -17,17 +44,20 @@
 \newcommand{\icpy}{\xi_y}
 \newcommand{\icp}{\boldsymbol{\xi}}
 \newcommand{\icpr}{\boldsymbol{\xi}_r}
+%momenta
 \newcommand{\dotl}{\dot{\mathbf{l}}}
 \newcommand{\dotld}{\dot{\mathbf{l}}_d}
 \newcommand{\dotldxy}{\dot{\mathbf{l}}_{d,xy}}
 \newcommand{\dotldxylip}{\dot{\mathbf{l}}_{d,xy,lip}}
 \newcommand{\dotldxyheight}{\dot{\mathbf{l}}_{d,xy,heightcontrol}}
 \newcommand{\dotldz}{\dot{\mathbf{l}}_{d,z}}
+%joints
 \newcommand{\qjnt}{\mathbf{q}}
 \newcommand{\dqjnt}{\dot{\mathbf{q}}}
 \newcommand{\ddqjntd}{\ddot{\mathbf{q}}_d}
 \newcommand{\ddqjntp}{\ddot{\mathbf{q}}_p}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
+%vectors and matrices
 \newcommand{\matr}[1]{\mathbf{#1}} % undergraduate algebra version
 %\newcommand{\matr}[1]{#1}          % pure math version
 %\newcommand{\matr}[1]{\bm{#1}}  
@@ -62,8 +92,8 @@
 %-name, date, title
 \mscName{B.J. van Hofslot}%
 \mscDate{\today}%
-\mscTitle{Humanoid Robot Balance Control Using CoM Height Variations}%
-\mscSubTitle{}%
+\mscTitle{Balance Control of a Humanoid Robot}%
+\mscSubTitle{Using Center of Mass Height Variation}%
 \mscKeyWords{thesis, msc, subject}% only used in PDF properties
 %
 %-cover picture
@@ -127,7 +157,7 @@
 %========================== Appendices =======================================
 \appendix
 %
-%\include{app_another}
+\include{app_}
 
 %========================== Back matter ======================================
 \backmatter

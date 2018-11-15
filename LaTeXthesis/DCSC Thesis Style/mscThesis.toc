@@ -1,5 +1,5 @@
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface}{xi}{chapter*.15}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Acknowledgements}{xiii}{chapter*.16}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface}{ix}{chapter*.15}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Acknowledgements}{xi}{chapter*.16}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1-1}Motivation}{1}{section.1.1}
 \contentsline {section}{\numberline {1-2}Research Objective}{2}{section.1.2}
@@ -44,40 +44,40 @@
 \contentsline {section}{\numberline {3-3}Height Constrained Capture}{18}{section.3.3}
 \contentsline {subsection}{\numberline {3-3-1}Minimum Height}{18}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3-3-2}Maximum Height}{19}{subsection.3.3.2}
-\contentsline {section}{\numberline {3-4}Discussion}{20}{section.3.4}
+\contentsline {section}{\numberline {3-4}Discussion}{21}{section.3.4}
 \contentsline {chapter}{\numberline {4}Constrained Orbital Energy Trajectories}{23}{chapter.4}
 \contentsline {section}{\numberline {4-1}Constraint Matrix}{23}{section.4.1}
 \contentsline {subsection}{\numberline {4-1-1}Height Constraint}{24}{subsection.4.1.1}
 \contentsline {subsection}{\numberline {4-1-2}Leg Length Constraint}{25}{subsection.4.1.2}
 \contentsline {section}{\numberline {4-2}Discussion}{26}{section.4.2}
 \contentsline {chapter}{\numberline {5}Towards Application}{29}{chapter.5}
-\contentsline {section}{\numberline {5-1}Challenges}{29}{section.5.1}
-\contentsline {subsection}{\numberline {5-1-1}Angular Momentum and Height Variation}{29}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5-1-2}From 2D to 3D}{30}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5-1-3}Leg Reachability}{30}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5-1-4}Predictability of Dynamics}{30}{subsection.5.1.4}
-\contentsline {section}{\numberline {5-2}Experimental Setup}{30}{section.5.2}
-\contentsline {subsection}{\numberline {5-2-1}Standing Push Recovery}{30}{subsection.5.2.1}
-\contentsline {subsubsection}{Preliminary Observations}{30}{section*.74}
-\contentsline {subsection}{\numberline {5-2-2}Walking Push Revovery}{31}{subsection.5.2.2}
-\contentsline {subsubsection}{Preliminary Observations}{31}{section*.77}
-\contentsline {section}{\numberline {5-3}Methods}{31}{section.5.3}
-\contentsline {subsection}{\numberline {5-3-1}Control Architecture}{31}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5-3-2}Control Strategy}{32}{subsection.5.3.2}
-\contentsline {subsubsection}{Constraints}{32}{section*.80}
-\contentsline {subsubsection}{Sagital ICP Error Case}{32}{section*.81}
-\contentsline {subsubsection}{Coronal ICP Error Case}{32}{section*.82}
-\contentsline {subsubsection}{Time Prediction To Constraints}{32}{section*.83}
-\contentsline {subsubsection}{Control Law}{33}{section*.84}
-\contentsline {subsection}{\numberline {5-3-3}Quadratic Program Based}{33}{subsection.5.3.3}
-\contentsline {section}{\numberline {5-4}Results}{33}{section.5.4}
-\contentsline {subsection}{\numberline {5-4-1}Standing}{33}{subsection.5.4.1}
-\contentsline {subsubsection}{Hardware Tests}{34}{section*.89}
-\contentsline {subsection}{\numberline {5-4-2}Walking}{34}{subsection.5.4.2}
-\contentsline {section}{\numberline {5-5}Discussion}{35}{section.5.5}
+\contentsline {section}{\numberline {5-1}Experimental Setup}{29}{section.5.1}
+\contentsline {subsection}{\numberline {5-1-1}Standing Push Recovery}{29}{subsection.5.1.1}
+\contentsline {subsubsection}{Preliminary Observations}{29}{section*.69}
+\contentsline {subsection}{\numberline {5-1-2}Walking Push Revovery}{29}{subsection.5.1.2}
+\contentsline {subsubsection}{Preliminary Observations}{30}{section*.72}
+\contentsline {section}{\numberline {5-2}Methods}{31}{section.5.2}
+\contentsline {subsection}{\numberline {5-2-1}Challenges}{31}{subsection.5.2.1}
+\contentsline {subsubsection}{Angular Momentum}{31}{section*.76}
+\contentsline {subsubsection}{2D to 3D}{31}{section*.77}
+\contentsline {subsubsection}{Leg Reachability}{31}{section*.78}
+\contentsline {subsubsection}{Predictability of Dynamics}{31}{section*.79}
+\contentsline {subsection}{\numberline {5-2-2}Control Framework}{31}{subsection.5.2.2}
+\contentsline {subsubsection}{Condition to Activate Controller}{32}{section*.83}
+\contentsline {subsection}{\numberline {5-2-3}Control Strategy}{32}{subsection.5.2.3}
+\contentsline {subsubsection}{Alignment}{32}{section*.85}
+\contentsline {subsubsection}{Constraints}{32}{section*.86}
+\contentsline {subsubsection}{Time Prediction To Constraints}{33}{section*.88}
+\contentsline {subsubsection}{Control Law}{34}{section*.89}
+\contentsline {subsection}{\numberline {5-2-4}Quadratic Program Based}{34}{subsection.5.2.4}
+\contentsline {section}{\numberline {5-3}Results}{35}{section.5.3}
+\contentsline {subsection}{\numberline {5-3-1}Standing}{35}{subsection.5.3.1}
+\contentsline {subsubsection}{Hardware Tests}{36}{section*.93}
+\contentsline {subsection}{\numberline {5-3-2}Walking}{36}{subsection.5.3.2}
+\contentsline {section}{\numberline {5-4}Discussion}{36}{section.5.4}
 \contentsline {chapter}{\numberline {6}Conclusion}{37}{chapter.6}
 \contentsline {section}{\numberline {6-1}Recommendations}{37}{section.6.1}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{39}{section*.90}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{43}{appendix*.92}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{43}{section*.93}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{43}{section*.95}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{39}{section*.94}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{43}{appendix*.96}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{43}{section*.97}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{43}{section*.99}
