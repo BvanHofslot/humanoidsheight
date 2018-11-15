@@ -39,5 +39,8 @@ plot(ICPx(4.696/DT),ICPy(4.696/DT),'r*','Color','c');
 
 comTrajx = CoMx(4.096/DT:4.696/DT);
 comTrajy = CoMy(4.096/DT:4.696/DT);
+cmpTrajx = CMPx(4.096/DT:4.696/DT);
+cmpTrajy = CMPy(4.096/DT:4.696/DT);
 plot(comTrajx,comTrajy);
+plot(cmpTrajx,cmpTrajy);
 exportfig(gcf,'ICPplan.eps', opts)
