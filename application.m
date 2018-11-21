@@ -90,10 +90,10 @@ angle = angles(72,:);
     plot([weight*cos(angle) nextweight*cos(nextangle)],[weight*sin(angle) nextweight*sin(nextangle)],'Color','k');
 
     %%
-    %%
-    figure;
-angles = table2array(angleAndPercentWeight72(:,1));
-weights = table2array(angleAndPercentWeight72(:,2));
+    
+ figure;
+angles = table2array(angleAndPercentWeight72TilesV2NormalHalfWayNormal(:,1));
+weights = table2array(angleAndPercentWeight72TilesV2NormalHalfWayNormal(:,2));
 
 incr = length(angles)-1;
 
@@ -115,8 +115,8 @@ angle = angles(72,:);
     plot([weight*cos(angle) nextweight*cos(nextangle)],[weight*sin(angle) nextweight*sin(nextangle)],'Color','k');
 
 
-angles = table2array(angleAndPercentWeight72Height(:,1));
-weights = table2array(angleAndPercentWeight72Height(:,2));
+angles = table2array(angleAndPercentWeight72TilesV2NormalHalfWay(:,1));
+weights = table2array(angleAndPercentWeight72TilesV2NormalHalfWay(:,2));
 
 incr = length(angles)-1;
 
@@ -134,3 +134,76 @@ angle = angles(72,:);
     nextangle = angles(1,:);
     nextweight = weights(1,:);
     plot([weight*cos(angle) nextweight*cos(nextangle)],[weight*sin(angle) nextweight*sin(nextangle)],'Color','k');
+    
+    
+    %%
+        %%
+    
+ figure;
+angles = table2array(angleAndPercentWeight72TilesV2NormalHalfWayNormal(:,1));
+weights = table2array(angleAndPercentWeight72TilesV2NormalHalfWayNormal(:,2));
+
+wHNav = mean(weights)
+
+polarplot(angles,weights);
+ax = gca;
+ax.ThetaTick = [0:20:340];
+ax.ThetaTickMode = 'manual';
+ax.ThetaMinorGrid = 'on';
+ax.RMinorGrid = 'on';
+ax.RLim = [0 2.5];
+hold on;
+angle = [angles(72) angles(1)];
+weight = [weights(72) weights(1)];
+polarplot(angle,weight);
+
+angles = table2array(angleAndPercentWeight72TilesV2NormalHalfWay(:,1));
+weights = table2array(angleAndPercentWeight72TilesV2NormalHalfWay(:,2));
+
+wHav = mean(weights)
+
+polarplot(angles,weights);
+angle = [angles(72) angles(1)];
+weight = [weights(72) weights(1)];
+polarplot(angle,weight);
+
+%%
+        %%
+    
+ figure;
+angles = table2array(angleAndPercentWeight72TilesV4CoP(:,1));
+weights = table2array(angleAndPercentWeight72TilesV4CoP(:,2));
+
+wNav = mean(weights)
+
+polarplot(angles,weights);
+ax = gca;
+ax.ThetaTick = [0:20:340];
+ax.ThetaTickMode = 'manual';
+ax.ThetaMinorGrid = 'on';
+ax.RMinorGrid = 'on';
+% ax.RLim = [0 2.5];
+hold on;
+angle = [angles(36) angles(1)];
+weight = [weights(36) weights(1)];
+polarplot(angle,weight);
+
+angles = table2array(angleAndPercentWeight72TilesV4CoPNormal(:,1));
+weights = table2array(angleAndPercentWeight72TilesV4CoPNormal(:,2));
+
+wav = mean(weights)
+
+polarplot(angles,weights);
+angle = [angles(36) angles(1)];
+weight = [weights(36) weights(1)];
+polarplot(angle,weight);
+
+%%
+a=5;
+g=9.81;
+ta = sqrt(2*0.1/(a+(a^2)/g));
+intomegat=sqrt(2/a)*sqrt(a*ta^2 + 2*1)*sqrt((a+g)/(1+0.5*a*ta^2))*log(sqrt(a)*sqrt(a*ta^2+2*1)+a*ta)
+%%
+syms y(x)
+
+

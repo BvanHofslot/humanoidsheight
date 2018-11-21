@@ -1,13 +1,29 @@
 \documentclass[nosignatures]{mscThesis}
-\newcommand{\Elip}{\lsymb{$E_{LIP}$}{Linear inverted pendulum orbital energy}}
-\newcommand{\Eorbit}{\lsymb{$E_{orbit}$}{Nonlinear orbital energy}}
+\newcommand{\Elip}{E_{LIP}}
+\newcommand{\Eorbit}{E_{orbit}}
 \newcommand{\fgr}{\mathbf{F}_{gr}}
+\newcommand{\fleg}{\mathbf{f}_{leg}}
+\newcommand{\tauankle}{\boldsymbol{\tau}_{ankle}}
+\newcommand{\taucom}{\boldsymbol{\tau}_{\mathbf{c}}}
+\newcommand{\inert}{\mathbf{I}}
 \newcommand{\fgrx}{F_{gr,x}}
 \newcommand{\fgry}{F_{gr,y}}
 \newcommand{\fgrz}{F_{gr,z}}
+\newcommand{\fgrxy}{\mathbf{F}_{gr,xy}}
 %com
 \newcommand{\cxyz}{\mathbf{c}}
+\newcommand{\dcxyz}{\dot{\mathbf{c}}}
+\newcommand{\ddcxyz}{\ddot{\mathbf{c}}}
 \newcommand{\cxy}{\mathbf{c}_{xy}}
+\newcommand{\cx}{x}
+\newcommand{\dcx}{\dot{x}}
+\newcommand{\ddcx}{\ddot{x}}
+\newcommand{\cy}{y}
+\newcommand{\dcy}{\dot{y}}
+\newcommand{\ddcy}{\ddot{y}}
+\newcommand{\cz}{z}
+\newcommand{\dcz}{\dot{z}}
+\newcommand{\ddcz}{\ddot{z}}
 \newcommand{\ddzd}{\ddot{z}_d}
 %controller
 \newcommand{\zmin}{z_{min}}
@@ -33,23 +49,29 @@
 \newcommand{\angleneg}{\phi_{align}^-}
 \newcommand{\fracpred}{\alpha_{prediction}}
 \newcommand{\fraccmp}{\alpha_{danger}}
+\newcommand{\fracicp}{\alpha_{heightcontrol}}
 \newcommand{\fracswing}{\alpha_{t,swing}}
 %reference points
 \newcommand{\rcmpd}{\mathbf{r}_{cmp,d}}
+\newcommand{\rcmpdmax}{\mathbf{r}_{cmp,d,max}}
 \newcommand{\rcmpr}{\mathbf{r}_{cmp,r}}
 \newcommand{\rcmp}{\mathbf{r}_{cmp}}
+\newcommand{\xcmp}{x_{cmp}}
+\newcommand{\xcmpmax}{x_{cmp,max}}
+\newcommand{\tbang}{t_{bang}}
 \newcommand{\rcop}{\mathbf{r}_{cop}}
 \newcommand{\rcopd}{\mathbf{r}_{cop,d}}
 \newcommand{\icpx}{\xi_x}
 \newcommand{\icpy}{\xi_y}
 \newcommand{\icp}{\boldsymbol{\xi}}
 \newcommand{\icpr}{\boldsymbol{\xi}_r}
+\newcommand{\icpe}{\boldsymbol{\xi}_e}
 %momenta
 \newcommand{\dotl}{\dot{\mathbf{l}}}
 \newcommand{\dotld}{\dot{\mathbf{l}}_d}
 \newcommand{\dotldxy}{\dot{\mathbf{l}}_{d,xy}}
 \newcommand{\dotldxylip}{\dot{\mathbf{l}}_{d,xy,lip}}
-\newcommand{\dotldxyheight}{\dot{\mathbf{l}}_{d,xy,heightcontrol}}
+\newcommand{\dotldxyheight}{\dot{\mathbf{l}}_{d,xy,\ddot{z}_d}}
 \newcommand{\dotldz}{\dot{\mathbf{l}}_{d,z}}
 %joints
 \newcommand{\qjnt}{\mathbf{q}}
@@ -68,9 +90,12 @@
 \newcommand{\wght}{\mathbf{R}}
 \newcommand{\slct}{\mathbf{S}}
 \newcommand{\paraskip}{\bigskip \\}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{subcaption}
+
 
 
 % replace the previous line with the next to include a signature page
@@ -92,8 +117,8 @@
 %-name, date, title
 \mscName{B.J. van Hofslot}%
 \mscDate{\today}%
-\mscTitle{Humanoid Robot Balance Control Using Center of Mass Height Variation}%
-\mscSubTitle{}%
+\mscTitle{Balance Control of a Humanoid Robot}%
+\mscSubTitle{Using Center of Mass Height Variation}%
 \mscKeyWords{thesis, msc, subject}% only used in PDF properties
 %
 %-cover picture
@@ -157,7 +182,7 @@
 %========================== Appendices =======================================
 \appendix
 %
-\include{app_}
+\include{app_parameters}
 
 %========================== Back matter ======================================
 \backmatter

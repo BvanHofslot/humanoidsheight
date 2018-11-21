@@ -6,45 +6,45 @@
 \contentsline {section}{\numberline {1-3}Contributions}{2}{section.1.3}
 \contentsline {section}{\numberline {1-4}Thesis Outline}{2}{section.1.4}
 \contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
-\contentsline {section}{\numberline {2-1}Modeling of Walking}{3}{section.2.1}
-\contentsline {subsection}{\numberline {2-1-1}Linear Inverted Pendulum Model}{3}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2-1-2}Height Varying Models}{4}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2-1-3}Simple Walking Model}{4}{subsection.2.1.3}
-\contentsline {section}{\numberline {2-2}Ground Reference Points in Walking}{5}{section.2.2}
-\contentsline {subsection}{\numberline {2-2-1}The Center of Pressure}{5}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2-2-2}The Zero Moment Point}{5}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2-2-3}The Centroidal Moment Pivot}{6}{subsection.2.2.3}
-\contentsline {section}{\numberline {2-3}Energy of Walking \& Capture}{6}{section.2.3}
-\contentsline {subsection}{\numberline {2-3-1}LIP Orbital Energy}{7}{subsection.2.3.1}
-\contentsline {subsubsection}{The Instantaneous Capture Point}{7}{section*.35}
-\contentsline {subsubsection}{\ac {ICP} Dynamics}{8}{section*.40}
-\contentsline {subsubsection}{Boundedness Condition}{8}{section*.41}
-\contentsline {subsection}{\numberline {2-3-2}Orbital Energy with Height Variation}{9}{subsection.2.3.2}
-\contentsline {subsubsection}{Virtual Constraint}{9}{section*.42}
-\contentsline {subsubsection}{Boundedness Condition with Varying Height}{9}{section*.43}
-\contentsline {section}{\numberline {2-4}Related Works CoM Height Variation}{9}{section.2.4}
-\contentsline {subsection}{\numberline {2-4-1}Varying Height Terrain}{10}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2-4-2}Mimic Natural Behavior}{10}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2-4-3}Effects of Height Variation}{10}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2-4-4}Control for Balance}{10}{subsection.2.4.4}
-\contentsline {section}{\numberline {2-5}Humanoid Robotics at IHMC}{11}{section.2.5}
-\contentsline {subsection}{\numberline {2-5-1}Robots}{11}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2-5-2}Walking States}{11}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2-5-3}Planning}{11}{subsection.2.5.3}
-\contentsline {subsubsection}{Footstep Planning}{11}{section*.49}
-\contentsline {subsubsection}{ICP Planning}{12}{section*.52}
-\contentsline {subsection}{\numberline {2-5-4}ICP Control}{12}{subsection.2.5.4}
-\contentsline {subsection}{\numberline {2-5-5}Whole-body Control \& Inverse Dynamics}{13}{subsection.2.5.5}
-\contentsline {subsubsection}{Centroidal Dynamics}{13}{section*.54}
-\contentsline {subsubsection}{Whole-body Quadratic Program}{13}{section*.55}
-\contentsline {subsubsection}{Inverse Dynamics}{14}{section*.56}
+\contentsline {section}{\numberline {2-1}Walking Preliminaries}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2-1-1}Flywheel Model}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2-1-2}Ground Reference Points}{4}{subsection.2.1.2}
+\contentsline {paragraph}{The zero moment point}{4}{section*.27}
+\contentsline {paragraph}{The center of pressure}{4}{section*.29}
+\contentsline {paragraph}{The centroidal moment pivot}{4}{section*.31}
+\contentsline {subsection}{\numberline {2-1-3}Modeling of the Leg}{5}{subsection.2.1.3}
+\contentsline {paragraph}{The linear inverted pendulum model}{5}{section*.35}
+\contentsline {paragraph}{Height varying models}{6}{section*.39}
+\contentsline {subsection}{\numberline {2-1-4}Orbital Energy \& Capture}{6}{subsection.2.1.4}
+\contentsline {paragraph}{The linear inverted pendulum orbital energy}{7}{section*.42}
+\contentsline {paragraph}{The instantaneous capture point}{7}{section*.43}
+\contentsline {paragraph}{The boundedness condition}{8}{section*.48}
+\contentsline {paragraph}{Orbital energy with height variation}{8}{section*.49}
+\contentsline {section}{\numberline {2-2}Related Works}{9}{section.2.2}
+\contentsline {subsection}{\numberline {2-2-1}Varying Height Terrain}{9}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2-2-2}Mimic Natural Behavior}{9}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2-2-3}Control for Balance}{9}{subsection.2.2.3}
+\contentsline {subsubsection}{Virtual Constraint}{10}{section*.51}
+\contentsline {subsubsection}{Boundedness Condition with Varying Height}{10}{section*.52}
+\contentsline {section}{\numberline {2-3}Humanoid Robotics at IHMC}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2-3-1}Robots}{10}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2-3-2}Walking States}{11}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2-3-3}Planning}{11}{subsection.2.3.3}
+\contentsline {paragraph}{Footstep planning}{11}{section*.57}
+\contentsline {paragraph}{Instantaneous capture point planning}{12}{section*.60}
+\contentsline {subsection}{\numberline {2-3-4}Instantaneous Capture Point Control}{12}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2-3-5}Whole-body Control}{12}{subsection.2.3.5}
+\contentsline {paragraph}{Centroidal dynamics}{13}{section*.62}
+\contentsline {paragraph}{The whole-body quadratic program}{13}{section*.63}
+\contentsline {paragraph}{Inverse dynamics}{14}{section*.64}
 \contentsline {chapter}{\numberline {3}Theoretic Limits on Capture}{15}{chapter.3}
 \contentsline {section}{\numberline {3-1}Unconstrained Capture Region}{15}{section.3.1}
 \contentsline {section}{\numberline {3-2}Impact Influenced Capture}{17}{section.3.2}
 \contentsline {section}{\numberline {3-3}Height Constrained Capture}{18}{section.3.3}
 \contentsline {subsection}{\numberline {3-3-1}Minimum Height}{18}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3-3-2}Maximum Height}{19}{subsection.3.3.2}
-\contentsline {section}{\numberline {3-4}Discussion}{21}{section.3.4}
+\contentsline {section}{\numberline {3-4}Capturability Comparison}{21}{section.3.4}
+\contentsline {section}{\numberline {3-5}Discussion}{21}{section.3.5}
 \contentsline {chapter}{\numberline {4}Constrained Orbital Energy Trajectories}{23}{chapter.4}
 \contentsline {section}{\numberline {4-1}Constraint Matrix}{23}{section.4.1}
 \contentsline {subsection}{\numberline {4-1-1}Height Constraint}{24}{subsection.4.1.1}
@@ -52,32 +52,29 @@
 \contentsline {section}{\numberline {4-2}Discussion}{26}{section.4.2}
 \contentsline {chapter}{\numberline {5}Towards Application}{29}{chapter.5}
 \contentsline {section}{\numberline {5-1}Experimental Setup}{29}{section.5.1}
-\contentsline {subsection}{\numberline {5-1-1}Standing Push Recovery}{29}{subsection.5.1.1}
-\contentsline {subsubsection}{Preliminary Observations}{29}{section*.69}
-\contentsline {subsection}{\numberline {5-1-2}Walking Push Revovery}{29}{subsection.5.1.2}
-\contentsline {subsubsection}{Preliminary Observations}{30}{section*.72}
+\contentsline {subsection}{\numberline {5-1-1}Preliminary Observations}{30}{subsection.5.1.1}
 \contentsline {section}{\numberline {5-2}Methods}{31}{section.5.2}
-\contentsline {subsection}{\numberline {5-2-1}Challenges}{31}{subsection.5.2.1}
-\contentsline {subsubsection}{Angular Momentum}{31}{section*.76}
-\contentsline {subsubsection}{2D to 3D}{31}{section*.77}
-\contentsline {subsubsection}{Leg Reachability}{31}{section*.78}
-\contentsline {subsubsection}{Predictability of Dynamics}{31}{section*.79}
+\contentsline {subsection}{\numberline {5-2-1}Motivation}{31}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5-2-2}Control Framework}{31}{subsection.5.2.2}
-\contentsline {subsubsection}{Condition to Activate Controller}{32}{section*.83}
+\contentsline {paragraph}{Generation of $\mathaccentV {dot}05F{\mathbf {l}}_{d,xy}$}{32}{section*.95}
+\contentsline {paragraph}{The condition to activate the controller}{32}{section*.96}
 \contentsline {subsection}{\numberline {5-2-3}Control Strategy}{32}{subsection.5.2.3}
-\contentsline {subsubsection}{Alignment}{32}{section*.85}
-\contentsline {subsubsection}{Constraints}{32}{section*.86}
-\contentsline {subsubsection}{Time Prediction To Constraints}{33}{section*.88}
-\contentsline {subsubsection}{Control Law}{34}{section*.89}
-\contentsline {subsection}{\numberline {5-2-4}Quadratic Program Based}{34}{subsection.5.2.4}
-\contentsline {section}{\numberline {5-3}Results}{35}{section.5.3}
-\contentsline {subsection}{\numberline {5-3-1}Standing}{35}{subsection.5.3.1}
-\contentsline {subsubsection}{Hardware Tests}{36}{section*.93}
+\contentsline {paragraph}{Alignment}{32}{section*.97}
+\contentsline {paragraph}{Distance}{33}{section*.98}
+\contentsline {paragraph}{Constraints}{33}{section*.99}
+\contentsline {subsubsection}{Time Prediction To Constraints}{34}{section*.101}
+\contentsline {subsubsection}{Control Law}{34}{section*.102}
+\contentsline {section}{\numberline {5-3}Results}{36}{section.5.3}
+\contentsline {subsection}{\numberline {5-3-1}Standing}{36}{subsection.5.3.1}
+\contentsline {subsubsection}{Simulation}{36}{section*.104}
+\contentsline {subsubsection}{Hardware}{36}{section*.105}
+\contentsline {subsubsection}{Hardware Tests}{36}{section*.106}
 \contentsline {subsection}{\numberline {5-3-2}Walking}{36}{subsection.5.3.2}
-\contentsline {section}{\numberline {5-4}Discussion}{36}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusion}{37}{chapter.6}
-\contentsline {section}{\numberline {6-1}Recommendations}{37}{section.6.1}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{39}{section*.94}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{43}{appendix*.96}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{43}{section*.97}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{43}{section*.99}
+\contentsline {section}{\numberline {5-4}Discussion}{37}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion}{39}{chapter.6}
+\contentsline {section}{\numberline {6-1}Recommendations}{39}{section.6.1}
+\contentsline {chapter}{\numberline {A}Test Parameters and Settings}{41}{appendix.A}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{43}{section*.107}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{47}{appendix*.109}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{47}{section*.110}
+\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{47}{section*.112}
