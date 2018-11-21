@@ -6,6 +6,27 @@ T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
   Humanoid Robots (Humanoids), 2016 IEEE-RAS 16th International Conference on},
   pp.~8--15, IEEE, 2016.
 
+\bibitem{sardain2004forces}
+P.~Sardain and G.~Bessonnet, ``Forces acting on a biped robot. center of
+  pressure-zero moment point,'' {\em IEEE Transactions on Systems, Man, and
+  Cybernetics-Part A: Systems and Humans}, vol.~34, no.~5, pp.~630--637, 2004.
+
+\bibitem{vukobratovic1969contribution}
+M.~Vukobratovic and D.~Juricic, ``Contribution to the synthesis of biped
+  gait,'' {\em IEEE Transactions on Biomedical Engineering}, no.~1, pp.~1--6,
+  1969.
+
+\bibitem{vukobratovic2004zero}
+M.~Vukobratovi{\'c} and B.~Borovac, ``Zero-moment point—thirty five years of
+  its life,'' {\em International journal of humanoid robotics}, vol.~1, no.~01,
+  pp.~157--173, 2004.
+
+\bibitem{popovic2005ground}
+M.~B. Popovic, A.~Goswami, and H.~Herr, ``Ground reference points in legged
+  locomotion: Definitions, biological trajectories and control implications,''
+  {\em The International Journal of Robotics Research}, vol.~24, no.~12,
+  pp.~1013--1032, 2005.
+
 \bibitem{kajita20013d}
 S.~Kajita, F.~Kanehiro, K.~Kaneko, K.~Yokoi, and H.~Hirukawa, ``The 3d linear
   inverted pendulum mode: A simple modeling for a biped walking pattern
@@ -17,26 +38,21 @@ A.~D. Kuo, J.~M. Donelan, and A.~Ruina, ``Energetic consequences of walking
   like an inverted pendulum: step-to-step transitions,'' {\em Exercise and
   sport sciences reviews}, vol.~33, no.~2, pp.~88--97, 2005.
 
-\bibitem{vukobratovic2004zero}
-M.~Vukobratovi{\'c} and B.~Borovac, ``Zero-moment point—thirty five years of
-  its life,'' {\em International journal of humanoid robotics}, vol.~1, no.~01,
-  pp.~157--173, 2004.
+\bibitem{liu2015trajectory}
+Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for
+  dynamic walking in a humanoid over uneven terrain using a 3d-actuated
+  dual-slip model,'' in {\em Intelligent Robots and Systems (IROS), 2015
+  IEEE/RSJ International Conference on}, pp.~374--380, IEEE, 2015.
 
-\bibitem{sardain2004forces}
-P.~Sardain and G.~Bessonnet, ``Forces acting on a biped robot. center of
-  pressure-zero moment point,'' {\em IEEE Transactions on Systems, Man, and
-  Cybernetics-Part A: Systems and Humans}, vol.~34, no.~5, pp.~630--637, 2004.
+\bibitem{pratt2007derivation}
+J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
+  orbital energy for the inverted pendulum bipedal walking model,'' in {\em
+  Robotics and Automation, 2007 IEEE International Conference on},
+  pp.~4653--4660, IEEE, 2007.
 
-\bibitem{vukobratovic1969contribution}
-M.~Vukobratovic and D.~Juricic, ``Contribution to the synthesis of biped
-  gait,'' {\em IEEE Transactions on Biomedical Engineering}, no.~1, pp.~1--6,
-  1969.
-
-\bibitem{popovic2005ground}
-M.~B. Popovic, A.~Goswami, and H.~Herr, ``Ground reference points in legged
-  locomotion: Definitions, biological trajectories and control implications,''
-  {\em The International Journal of Robotics Research}, vol.~24, no.~12,
-  pp.~1013--1032, 2005.
+\bibitem{schwind1998spring}
+W.~J. Schwind, {\em Spring loaded inverted pendulum running: A plant model.}
+\newblock PhD thesis, 1998.
 
 \bibitem{koolen2012capturability}
 T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
@@ -71,22 +87,16 @@ L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
   (Humanoids), 2014 14th IEEE-RAS International Conference on}, pp.~951--958,
   IEEE, 2014.
 
-\bibitem{pratt2007derivation}
-J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
-  orbital energy for the inverted pendulum bipedal walking model,'' in {\em
-  Robotics and Automation, 2007 IEEE International Conference on},
-  pp.~4653--4660, IEEE, 2007.
-
-\bibitem{caron2018balance}
-S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
-  variations: A convex boundedness approach,'' in {\em 2018 IEEE International
-  Conference on Robotics and Automation (ICRA)}, pp.~1779--1784, IEEE, 2018.
-
 \bibitem{hopkins2014humanoid}
 M.~A. Hopkins, D.~W. Hong, and A.~Leonessa, ``Humanoid locomotion on uneven
   terrain using the time-varying divergent component of motion,'' in {\em
   Humanoid Robots (Humanoids), 2014 14th IEEE-RAS International Conference on},
   pp.~266--272, IEEE, 2014.
+
+\bibitem{caron2018balance}
+S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
+  variations: A convex boundedness approach,'' in {\em 2018 IEEE International
+  Conference on Robotics and Automation (ICRA)}, pp.~1779--1784, IEEE, 2018.
 
 \bibitem{englsberger2013three}
 J.~Englsberger, C.~Ott, and A.~Albu-Sch{\"a}ffer, ``Three-dimensional bipedal
@@ -127,15 +137,15 @@ C.~R. Lee and C.~T. Farley, ``Determinants of the center of mass trajectory in
   human walking and running.,'' {\em Journal of experimental biology},
   vol.~201, no.~21, pp.~2935--2944, 1998.
 
-\bibitem{gao2017increase}
-W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
-  through active vertical flexion and extension motions,'' {\em Robotica},
-  vol.~35, no.~7, pp.~1541--1561, 2017.
-
 \bibitem{caron2018capturability}
 S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
   analysis, optimization and control of 3d bipedal walking,'' {\em arXiv
   preprint arXiv:1801.07022}, 2018.
+
+\bibitem{gao2017increase}
+W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
+  through active vertical flexion and extension motions,'' {\em Robotica},
+  vol.~35, no.~7, pp.~1541--1561, 2017.
 
 \bibitem{englsberger2012integration}
 J.~Englsberger and C.~Ott, ``Integration of vertical com motion and angular
