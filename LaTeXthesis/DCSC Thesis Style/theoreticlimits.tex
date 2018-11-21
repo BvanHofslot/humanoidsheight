@@ -147,15 +147,21 @@ where $\delta \xcmpmax'$ is the maximum dimensionless offset of the \ac{CMP} wit
 \begin{equation}
 \delta \tbang' = \sqrt{\frac{J'\theta_{max}}{\delta \xcmpmax'}},
 \end{equation}
-where $J'$ is the dimensionless inertia of the body and $\theta_{max}$ the maximum allowed body lunge compared to the vertical. Note that $J'=0$ for a point-mass and $J'=1$ for a disc with all its mass on the edge, with its radius equal to the \ac{CoM} height above the ground. In this comparison, the parameter values $\theta_{max} = \frac{1}{2}\pi$ and $\delta \xcmpmax' = 0.05$ are used. The dimensionless inertia is used as variable and the interval $J' \in [0,\frac{1}{3}]$ is used. \todo{Evt: J' fixed (com estimate), en theta of cmp varieren} 
-\paraskip
-In \figref{fig:capcompare} the two are compared. Note that the height variations are the limits and the angular momentum limits are rough assumptions.
+where $J'$ is the dimensionless inertia of the body and $\theta_{max}$ the maximum allowed body lunge compared to the vertical. Note that $J'=0$ for a point-mass and $J'=1$ for a disc with all its mass on the edge, with its radius equal to the \ac{CoM} height above the ground. 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{STYLESTUFF/capcompare.png}
 \caption{Comparison of capture region with angular momentum versus height variation}.
 \label{fig:capcompare}
 \end{figure}
+\paraskip
+A rough estimate can be made of the dimensionless inertia of a human used in recovery. The assumption is made that the hip is the \ac{CoM} position and also the point of rotation for $J'$ and that the total body length is two times the \ac{CoM} height. Furthermore, only the body above the hip is assumed to be used in recovery, which is modelled as a beam with halve the total body mass rotating around an end: $J_{beam} = \frac{1}{3}(\frac{1}{2}m)L^2$. Note that the length $L$ is equal to the \ac{CoM} height $z$. Those assumptions result in the following dimensionless inertia:
+\begin{equation}
+	\iner' = \frac{\frac{1}{3}(\frac{1}{2}m)z^2}{mz^2} = \frac{1}{6}.
+\end{equation}
+For the maximum lunge angle, the value $\theta_{max} = \frac{1}{2}\pi$ is taken. 
+\paraskip
+Combination of height variation and angular momentum for balance recovery has two aspects worth mentioning. First, the \ac{GRF} in the phases with low or zero leg force will almost be orthogonal to the gravity vector if a hip torque is applied, which can cause slipping if ground friction is limited. Second, with lunging of the upper body, the \ac{CoM} will lower. In cases where height is increased for balance, this strategy is thus conflicting with use of angular momentum.
 
 %% Discussion
 \section{Discussion}
