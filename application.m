@@ -230,3 +230,10 @@ if((xf>-e) & (xf<e))
 end
 end
 
+%%
+x0=[-0.31 1.0 1.0 0.0];
+xl=[-0.31 0.0 1.0 -1.0];
+xu =[0.0 1.0 1.1 10.0];
+x = simulannealbnd(@qfuna,x0,xl,xu)
+
+
