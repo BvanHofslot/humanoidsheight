@@ -170,26 +170,20 @@ polarplot(angle,weight);
 %%
         %%
     
- figure;
-angles = table2array(angleAndPercentWeight72TilesV4CoP(:,1));
-weights = table2array(angleAndPercentWeight72TilesV4CoP(:,2));
+figure;
+angles = table2array(angleAndPercentWeight18TilesCoPStandingHigh01(:,1));
+weights = table2array(angleAndPercentWeight18TilesCoPStandingHigh01(:,2));
 
 wNav = mean(weights)
 
 polarplot(angles,weights);
-ax = gca;
-ax.ThetaTick = [0:20:340];
-ax.ThetaTickMode = 'manual';
-ax.ThetaMinorGrid = 'on';
-ax.RMinorGrid = 'on';
-% ax.RLim = [0 2.5];
 hold on;
 angle = [angles(36) angles(1)];
 weight = [weights(36) weights(1)];
 polarplot(angle,weight);
 
-angles = table2array(angleAndPercentWeight72TilesV4CoPNormal(:,1));
-weights = table2array(angleAndPercentWeight72TilesV4CoPNormal(:,2));
+angles = table2array(angleAndPercentWeight18TilesCoPStandingHigh01Normal(:,1));
+weights = table2array(angleAndPercentWeight18TilesCoPStandingHigh01Normal(:,2));
 
 wav = mean(weights)
 
@@ -198,12 +192,41 @@ angle = [angles(36) angles(1)];
 weight = [weights(36) weights(1)];
 polarplot(angle,weight);
 
+ax = gca;
+ax.ThetaTickMode = 'manual';
+ax.ThetaTick = [0:20:340];
+ax.ThetaMinorGrid = 'on';
+ax.RMinorGrid = 'on';
+title('High01');
 %%
 a=5;
 g=9.81;
 ta = sqrt(2*0.1/(a+(a^2)/g));
 intomegat=sqrt(2/a)*sqrt(a*ta^2 + 2*1)*sqrt((a+g)/(1+0.5*a*ta^2))*log(sqrt(a)*sqrt(a*ta^2+2*1)+a*ta)
 %%
-syms y(x)
+x0=-0.31;
+dx0=1.0;
+z0=1.0;
+dz0=0.0;
 
+e=0.001;
+
+for i=1:100
+x0=x0+e;
+tspan = [0:0.001:150];
+[t,y] =ode45(@qfuna, tspan, [x0;dx0;z0;dz0]);
+
+x = y(:,1);
+dx = y(:,2);
+z = y(:,3);
+dz = y(:,4);
+
+xf=x(end);
+dxf=dx(end);
+if((xf>-e) & (xf<e))
+    if(dxf>-e & dxf<e)
+    break;
+    end
+end
+end
 

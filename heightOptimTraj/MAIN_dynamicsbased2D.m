@@ -5,18 +5,18 @@
 clc; clear all; close all;
 addpath ../../
 
-p.m = 10;
+p.m = 1;
 p.g = 9.81;  % (m/s^2) gravity
 w1 = 100000;
 nSteps=2;
-nSegments=100;
+nSegments=100000000000000;
 
 maxForce =inf;  %Maximum actuator forces
-x0 = -0.25;   %-0.319275
+x0 = -0.31;   %-0.319275
 z0 = 1.0;
 dx0 = 1.0;
 dz0 = 0.0;
-duration = 2;
+duration = 1;
 
 xinit=x0;
 zinit=z0;
@@ -28,7 +28,7 @@ dzinit=dz0;
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
 
 problem.func.dynamics = @(t,x,u)( dynamics(x,u,p) );
-problem.func.pathObj = @(t,x,u) (  (x(4,:).*u).^2 );  %Force-squared cost function (1-(x(2,:)).^2)
+problem.func.pathObj = @(t,x,u) ( u.^2 );  %Force-squared cost function (1-(x(2,:)).^2)
 problem.func.bndObj = @(t0,x0,tF,xF) (w1*xF(3)^2);
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
@@ -37,19 +37,19 @@ problem.func.bndObj = @(t0,x0,tF,xF) (w1*xF(3)^2);
 
 problem.bounds.initialTime.low = 0;
 problem.bounds.initialTime.upp = 0;
-problem.bounds.finalTime.low = duration-1.9;
-problem.bounds.finalTime.upp = duration+1.8;
+problem.bounds.finalTime.low = duration-0.9;
+problem.bounds.finalTime.upp = duration+0.9;
 
 problem.bounds.initialState.low = [x0;z0;dx0;dz0];
 problem.bounds.initialState.upp = [x0;z0;dx0;dz0];
 problem.bounds.finalState.low = [0;z0;0;0];
-problem.bounds.finalState.upp = [0;z0;dx0;0];
+problem.bounds.finalState.upp = [0;z0;0.001;0];
 
-problem.bounds.state.low = [x0;0;-inf;-inf];
+problem.bounds.state.low = [x0;1.0;-inf;-inf];
 problem.bounds.state.upp = [0;1.1*z0;inf;inf];
 
-problem.bounds.control.low = 0;
-problem.bounds.control.upp = maxForce;
+problem.bounds.control.low = -5;
+problem.bounds.control.upp = 5;
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
 %                    Initial guess at trajectory                          %
