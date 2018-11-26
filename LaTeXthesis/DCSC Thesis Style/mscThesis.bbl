@@ -176,6 +176,10 @@ T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
   to the humanoid robot atlas,'' {\em International Journal of Humanoid
   Robotics}, vol.~13, no.~01, p.~1650007, 2016.
 
+\bibitem{stephens2007humanoid}
+B.~Stephens, ``Humanoid push recovery,'' in {\em Humanoid Robots, 2007 7th
+  IEEE-RAS International Conference on}, pp.~589--595, IEEE, 2007.
+
 \bibitem{kelly2017introduction}
 M.~Kelly, ``An introduction to trajectory optimization: how to do your own
   direct collocation,'' {\em SIAM Review}, vol.~59, no.~4, pp.~849--904, 2017.
