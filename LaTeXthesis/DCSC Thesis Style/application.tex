@@ -103,75 +103,13 @@ where $\dotldxylip$ is the already existing desired horizontal linear momentum r
 \paragraph{The condition to activate the controller} is when the \ac{ICP} error $\icpe$ is of such length, that \ac{CoP} strategies are no longer sufficient for balance control and an additional input has to be generated. The condition is $\icpe>\fracicp$, where the parameter $\fracicp=0.04$ is found to be a good estimate of the moment when the \ac{CoP} hits the edge of the polygon, considering the control settings at the time of writing \todo{ref to settings}. Also, the controller is only allowed to work in a static case or during the swing phase.
 
 %Strategy 
-\subsection{Control Strategy}\label{sec:strategy}
-
+\subsection{Control Variables}\label{sec:strategy}
+\paragraph{Bang-bang control}  is initially assumed to be used in the controller. As the robotic system has limits on kinematics, joint-velocities and joint torques, the possible upward acceleration is limited. Downwards, the system might suffer from contact friction problems if the system drops with high acceleration. These limitations on upward and downward acceleration are approximated with a constant maximum value, which will be used in a worst-case scenario, where the robot is about to tip and the system needs to do the best it can to avoid falling.
 
 %
 \paragraph{Alignment} of the line between $\rcopd$ and $\cxy$ with the vector $\icpe$ is used as a decision variable. If the vectors are perfectly aligned, $\ddzd$ will request $\dotldxyheight$ in the same direction as $\icpe$. This is, considering alignment, the perfect case to use height control. If the vectors are orthogonal, the requested $\dotldxyheight$ will be orthogonal to $\icpe$ and will not help driving back the error. Furthermore, the error in will grow in its orthogonal direction. Height control for any alignment in between the two cases mentioned will have a combined effect in resolving $\icpe$ in its direction, and generating additional error orthogonal to it.
 
-\paragraph{Distance}
-
-
-\paragraph{Constraints} that are considered are a minimum and maximum height and height velocity. The maximum length of the leg describes a part of a circle throught the swing phase. In the controller, this constraint is captured in two constraints: $\zmaxfirst$, in the first halve of the swing phase and $\zmaxscnd$, in the second part of the swing phase. In \figref{fig:heightconstraints} the two constraints are vizualized. 
-\begin{figure}[h]
-\centering
-  \includegraphics[width=.4\linewidth]{STYLESTUFF/heightconstraints.png}
-   \caption{Height constraints through \ac{SS}}
-    \label{fig:heightconstraints}
-\end{figure} 
-The predicted height the current state is about to reach is computed as:
-\begin{equation}
-	\zmaxpred = z + \sgn(\dot{z})\frac{\dot{z}^2}{-2\ddzminpred},
-\end{equation}
-where $\zmaxpred$ is the predicted maximum height from the current state and $\ddzminpred$ is the predicted maximum deceleration that will occur. This would be the gravity acceleration, but the minimal acceleration is limited. 
-\paraskip
-The minimum height constraint is not dependent on singularity of the swing leg and is kept at a constant value. Next to hitting the ground, a low height can cause problems at transfer to \ac{DS}, when the robot gets raised to default height again. The minimum height constraint $\zmin$ is displayed in \figref{fig:heightconstraints}. In a similar way as $\zmaxpred$, the minimum height constraint is computed as:
-\begin{equation}
-	\zminpred = z - \sgn(\dot{z})\frac{\dot{z}^2}{2\ddzmaxpred},
-\end{equation}
-where $\zminpred$ is the predicted minimum height from the current state and $\ddzmaxpred$ is the predicted maximum acceleration that will occur.
-\paraskip
-Contraints on the maximum height velocity $\dzmax$ and minimum height velocity $\dzmin$ are also taken into account. Reasons for this include collapsing of the swing leg at touch down and limited velocities at the robot. 
-
-
-\subsubsection{Time Prediction To Constraints}
-Time to maximum constraint, considered the minimum and maximum acceleration:
-\begin{equation}
-    z + \dot{z}\tzmax + \frac{1}{2}\ddzdmax\tzmax^2 + \frac{1}{2}\frac{(\dot{z} +\ddzdmax\tzmax)^2}{-\ddzminpred}= \zmax,
-\end{equation}
-where $\tzmax$ can be computed in the following way:
-\begin{equation}
-    \underbrace{\frac{1}{2}(\ddzdmax + \frac{\ddzdmax^2}{-\ddzminpred})}_a\tzmax^2 + \underbrace{(\dot{z} + \dot{z}\frac{\ddzdmax}{-\ddzminpred})}_b\tzmax + \underbrace{z - \zmax + \frac{1}{2}\frac{\dot{z}^2}{-\ddzminpred}}_c.
-\end{equation}
-Noting that $a$ is positive and that the time needs to be the positive solution, the predicted time to the maximum constraint reads as:
-\begin{equation}
-    \tzmax=\frac{-b + \sqrt{b^2 -4ac}}{2a}
-\end{equation}
-\paraskip
-The predicted time to the minimum constraint is computed in a similar way:
-\begin{equation}
-    z + \dot{z}\tzmin + \frac{1}{2}\ddzdmin\tzmin^2 - \frac{1}{2}\frac{(\dot{z} +\ddzdmin\tzmin)^2}{\ddzmaxpred}= \zmin,
-\end{equation}
-where $\tzmin$ is computed as:
-\begin{equation}
-    \underbrace{\frac{1}{2}(\ddzdmin - \frac{\ddzdmin^2}{\ddzmaxpred})}_a\tzmin^2 + \underbrace{(\dot{z} - \dot{z}\frac{\ddzdmin}{\ddzmaxpred})}_b\tzmin + \underbrace{z - \zmax + \frac{1}{2}\frac{\dot{z}^2}{\ddzmaxpred}}_c.
-\end{equation}
-Noting that $a$ is strictly negative and that the time needs to be the positive solution, the predicted time to the minimum height constraint reads as:
-\begin{equation}
-    \tzmin=\frac{-b - \sqrt{b^2 -4ac}}{2a}
-\end{equation}
-\paraskip
-The time to the maximum and mimimum velocity can be computed using a linear equation:
-\begin{equation}
-	\tdzmax = \frac{\dzmax - \dot{z}}{\ddzdmax}
-\end{equation}
-\begin{equation}
-	\tdzmin = \frac{\dzmin - \dot{z}}{\ddzdmin}
-\end{equation}
-
-\subsubsection{Control Law}
-Constraints have to be avoided in computation of input.\\
-
+\paragraph{Distance} in the horizontal plane between $\rcopd$ and $\cxy$ plays an important role in the effectiveness of height variation, \todo{secref}. As $\icpe$ and the virtual leg might not be perfectly aligned, the distance accounted for in the controller is the distance between the $\rcop$, and $\cxy$ projected on the line that is parallel to $\icpe$ and intersecting with $\rcopd$. In \figref{fig:phiViz} the alignment angle and the distance are visualized for different cases at entry of \ac{SS} for the test stepping parameters considered.
 
 \begin{figure}[h]
   \begin{subfigure}{0.5\textwidth}
@@ -210,9 +148,72 @@ Constraints have to be avoided in computation of input.\\
     \caption{}
      \label{fig:phiVizf}
   \end{subfigure}
-  \caption{Vizualizations of the error alignment angle for the configuration at start of \ac{SS}, with \ac{ICP} errors: (a) negative in sagital plane, (b) positive in sagital plane, (c) where the error alignment angle is $0$ and (d) where the error alignment angle is orthogonal to the \ac{ICP} error. }
+  \caption{Vizualizations of the error alignment angle for the configuration at start of \ac{SS}, with \ac{ICP} errors: (a) negative in sagital plane, (b) positive in sagital plane, (c) where the error alignment angle is $0$ and (d) where the error alignment angle is orthogonal to the \ac{ICP} error.\todo{distance} }
   \label{fig:phiViz}
 \end{figure}
+
+\paragraph{The $\rcopd$ dynamics}
+
+\paragraph{Constraints} that are considered are a minimum and maximum height and height velocity. The maximum length of the leg describes a part of a circle throught the swing phase. In the controller, this constraint is captured in two constraints: $\zmaxfirst$, in the first halve of the swing phase and $\zmaxscnd$, in the second part of the swing phase. In \figref{fig:heightconstraints} the two constraints are vizualized. 
+\begin{figure}[h]
+\centering
+  \includegraphics[width=.3\linewidth]{STYLESTUFF/heightconstraints.png}
+   \caption{Height constraints through \ac{SS}}
+    \label{fig:heightconstraints}
+\end{figure} 
+The predicted height the current state is about to reach is computed as:
+\begin{equation}
+	\zmaxpred = z + \sgn(\dot{z})\frac{\dot{z}^2}{-2\ddzminpred},
+\end{equation}
+where $\zmaxpred$ is the predicted maximum height from the current state and $\ddzminpred$ is the predicted maximum deceleration that will occur. This would be the gravity acceleration, but the minimal acceleration is limited. 
+\paraskip
+The minimum height constraint is not dependent on singularity of the swing leg and is kept at a constant value. Next to hitting the ground, a low height can cause problems at transfer to \ac{DS}, when the robot gets raised to default height again. The minimum height constraint $\zmin$ is displayed in \figref{fig:heightconstraints}. In a similar way as $\zmaxpred$, the minimum height constraint is computed as:
+\begin{equation}
+	\zminpred = z - \sgn(\dot{z})\frac{\dot{z}^2}{2\ddzmaxpred},
+\end{equation}
+where $\zminpred$ is the predicted minimum height from the current state and $\ddzmaxpred$ is the predicted maximum acceleration that will occur.
+\paraskip
+Contraints on the maximum height velocity $\dzmax$ and minimum height velocity $\dzmin$ are also taken into account. Reasons for this include collapsing of the swing leg at touch down and limited velocities at the robot. 
+
+
+
+\paragraph{The time to the constraints} can also be computed, as a constant acceleration is considered. Time to maximum constraint, considered the minimum and maximum acceleration:
+\begin{equation}
+    z + \dot{z}\tzmax + \frac{1}{2}\ddzdmax\tzmax^2 + \frac{1}{2}\frac{(\dot{z} +\ddzdmax\tzmax)^2}{-\ddzminpred}= \zmax,
+\end{equation}
+where $\tzmax$ can be computed in the following way:
+\begin{equation}
+    \underbrace{\frac{1}{2}(\ddzdmax + \frac{\ddzdmax^2}{-\ddzminpred})}_a\tzmax^2 + \underbrace{(\dot{z} + \dot{z}\frac{\ddzdmax}{-\ddzminpred})}_b\tzmax + \underbrace{z - \zmax + \frac{1}{2}\frac{\dot{z}^2}{-\ddzminpred}}_c.
+\end{equation}
+Noting that $a$ is positive and that the time needs to be the positive solution, the predicted time to the maximum constraint reads as:
+\begin{equation}
+    \tzmax=\frac{-b + \sqrt{b^2 -4ac}}{2a}
+\end{equation}
+\paraskip
+The predicted time to the minimum constraint is computed in a similar way:
+\begin{equation}
+    z + \dot{z}\tzmin + \frac{1}{2}\ddzdmin\tzmin^2 - \frac{1}{2}\frac{(\dot{z} +\ddzdmin\tzmin)^2}{\ddzmaxpred}= \zmin,
+\end{equation}
+where $\tzmin$ is computed as:
+\begin{equation}
+    \underbrace{\frac{1}{2}(\ddzdmin - \frac{\ddzdmin^2}{\ddzmaxpred})}_a\tzmin^2 + \underbrace{(\dot{z} - \dot{z}\frac{\ddzdmin}{\ddzmaxpred})}_b\tzmin + \underbrace{z - \zmax + \frac{1}{2}\frac{\dot{z}^2}{\ddzmaxpred}}_c.
+\end{equation}
+Noting that $a$ is strictly negative and that the time needs to be the positive solution, the predicted time to the minimum height constraint reads as:
+\begin{equation}
+    \tzmin=\frac{-b - \sqrt{b^2 -4ac}}{2a}
+\end{equation}
+\paraskip
+The time to the maximum and mimimum velocity can be computed using a linear equation:
+\begin{equation}
+	\tdzmax = \frac{\dzmax - \dot{z}}{\ddzdmax}
+\end{equation}
+\begin{equation}
+	\tdzmin = \frac{\dzmin - \dot{z}}{\ddzdmin}
+\end{equation}
+
+\subsection{Control Law}
+\paragraph{Parameters}
+\paragraph{Phases}
 
 
 % Results
@@ -223,10 +224,13 @@ Which cases?
 \begin{itemize}
 	\item Normal limit v.s. height control on normal limit
 	\item Normal limit v.s. height control limit -> capture limits
-	\item Normal limit high momentum weights v.s. height control on normal limit high momentum weights
+	\item Angular momentum v.s. height control -> \todo{How?}
 \end{itemize}
 \subsubsection{Simulation}
-360 push.
+\begin{itemize}
+	\item 360 push limits
+	\item Front and side push deep evaluation.
+\end{itemize}
 \subsubsection{Hardware}
 \begin{itemize}
 	\item Increase $\ddzdmax$ until best found
@@ -242,13 +246,17 @@ On what?
 	\item reference points: CMP, CoP, ICP -> Integrated CoP effect and Angular effect > linear momentum
 \end{itemize}
 
-\subsubsection{Hardware Tests}
 \subsection{Walking}
-Focus on strategy.\\
 Which cases? 
 \begin{itemize}
 	\item Normal limit v.s. height control on normal limit
 	\item Normal limit v.s. height control limit -> capture limits? -> iterative push search.
+	\item Angular momentum v.s. height control -> \todo{How?}
+\end{itemize}
+\subsubsection{Simulation}
+\begin{itemize}
+	\item 360 push: begin swing, half way swing, end swing.
+	\item Front, back and diagonal pushes deeper evaluation.
 \end{itemize}
 
 On what?
