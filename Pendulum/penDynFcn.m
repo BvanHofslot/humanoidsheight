@@ -14,7 +14,7 @@ end
 
 if(((z+0.5*(dz^2)/a)>zmax && (dz>0))||((z+0.5*(dz^2)/a)<zmin && (dz<0)))
     ddz = -a;
-elseif((abs(zmax-z)<0.01 || abs(zmin-z)<0.01))
+elseif((abs(zmax-z)<0.001 || abs(zmin-z)<0.001))
     ddz=0;
 end
 

@@ -164,7 +164,7 @@ The initial condition, which is equal to the \ac{ICP}, has to be related to $r(t
 \section{Related Works}\label{sec:relatedworksheight}
 The works that specifically focus on height variation on a humanoid robot are dividable in different goals of improvement. 
 %var height terrain
-\subsection{Varying Height Terrain}
+\subsection{Un-even Terrain}
 Probably the most common goal of investigating height variation is the improvement of the behavior of the robot over rough or un-flat terrain. Improving the behavior over un-even terrain can devided in two categories:
 \begin{enumerate}
 	\item Improving the control framework for unexpected changes in terrain.
@@ -173,11 +173,11 @@ Probably the most common goal of investigating height variation is the improveme
 The generation of a dynamical plan of a redundant robotic system is traditionally done based on the \ac{LIP} model with constant height. The control framework has to deal with any height variations in terrain, and therefore also in the \ac{CoM}. In other words: the dynamics of the robot or roughly know in advance, but not precisely.\\
 An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used for the a planning method. The drawback here is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
 %natural behavior
-\subsection{Mimic Natural Behavior}
+\subsection{Human-like Walking}
 Straight leg walking. MPC approach to optimize for \cite{brasseur2015robust}. Walking reference for straight legs and dynamics feasibility \cite{kajita2017biped}. Paper online gait generation with vertical \ac{CoM} motions in dynamic plan.\cite{kuo2005energetic} \cite{terada2007online}
 \cite{you2016straight} \cite{griffin2018straight} and more.. \cite{lee1998determinants}
 %balance
-\subsection{Control for Balance}\label{subsec:heightbalance}
+\subsection{Balance Control}\label{subsec:heightbalance}
 Two publications that consider height variations as control input for balance:
 \cite{koolen2016balance} \cite{caron2018capturability}\cite{gao2017increase}
 This is the focus in this thesis.\\

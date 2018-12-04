@@ -5,12 +5,16 @@
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 
 %\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
-
+\usepackage{graphicx}
+\usepackage{amsmath}
+\newcommand{\zmin}{z_{min}}
+\newcommand{\zmax}{z_{max}}
+\newtheorem{lem}{Lemma}
+\graphicspath{{figures/}}
 \IEEEoverridecommandlockouts                              % This command is only needed if 
                                                           % you want to use the \thanks command
 
 \overrideIEEEmargins                                      % Needed to meet printer requirements.
-
 
 %In case you encounter the following error:
 %Error 1010 The PDF file may be corrupt (unable to open PDF file) OR
@@ -32,16 +36,14 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 
 \title{\LARGE \bf
-Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
+Balance Control Using Vertical Center of Mass Motion: Capture Regions and Push Recovery on NASA's Valkyrie
 }
-
-
 \author{Boris J. van Hofslot$^{1,2}$% <-this % stops a space
 \thanks{*This work was not supported by any organization}% <-this % stops a space
-\thanks{$^{1}$The author is with the Department of Cognitive Robotics, Delft University of Technology, Mekelweg 2, 2628 CD Delft, Netherlands
+\thanks{$^{1}$The author is with the Florida Institute for Human and Machine Cognition, 40 S Alcaniz St, 32502 Pensacola FL, United States
+        {\tt\small bvanhofslot@ihmc.us}}%
+\thanks{$^{2}$The author is with the Department of Cognitive Robotics, Delft University of Technology, Mekelweg 2, 2628 CD Delft, Netherlands
         {\tt\small b.j.vanhofslot@student.tudelft.nl}}%
-\thanks{$^{2}$The author is with the Florida Institute for Human and Machine Cognition, 40 S Alcaniz St, 32502 Pensacola FL, United States
-        {\tt\small b.d.researcher@ieee.org}}%
 }
 
 
@@ -57,74 +59,149 @@ Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-This electronic document is a template. The various components of your paper [title, text, heads, etc.] are already defined on the style sheet, as illustrated by the portions given in this document.
+Balancing strategies for humanoid robots often include center of pressure control (`ankle' strategies), change of body angular momentum (e.g., `hip' strategies) and taking a step. Those strategies often rely on a linear inverted pendulum model and a zero vertical center of mass acceleration is considered. We use vertical center of mass motion as an additional input for balance control. First, we specify analytic, theoretic capture basins under unilateral contact and height constraints only. Second, we add a vertical acceleration constraint and come to a control law for implementation. We implement the control law on NASA's Valkyrie and compare with a constant height controller. Finally, vertical motion and other balancing strategies are discussed.
 
 \end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
-This template provides authors with most of the formatting specifications needed for preparing electronic versions of their papers. All standard paper components have been specified for three reasons: (1) ease of use when formatting individual papers, (2) automatic compliance to electronic requirements that facilitate the concurrent or later production of electronic products, and (3) conformity of style throughout a conference proceedings. Margins, column widths, line spacing, and type styles are built-in; examples of the type styles are provided throughout this document and are identified in italic type, within parentheses, following the example. Some components, such as multi-leveled equations, graphics, and tables are not prescribed, although the various table text styles are provided. The formatter will need to create these components, incorporating the applicable criteria that follow. \cite{IEEEexample:shellCTANpage} \cite{koolen2016balance}
+Motivation
 
-\section{PROCEDURE FOR PAPER SUBMISSION}
+Specific problem
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=3.2in]{modelvarzvsang2.png}
+      \caption{Additional horizontal force on the CoM compared to the LIP model can be generated using angular momentum (left) and vertical motion (right). }
+      \label{fig:angvsvarz}
+\end{figure}
 
-\subsection{Selecting a Template (Heading 2)}
+Related works  \cite{koolen2016balance}
 
-First, confirm that you have the correct template for your paper size. This template has been tailored for output on the US-letter paper size. 
-It may be used for A4 paper size if the paper size setting is suitably modified.
+This paper
 
-\subsection{Maintaining the Integrity of the Specifications}
+The remainder of the paper is structured as follows.
 
-The template is used to format your paper and style the text. All margins, column widths, line spaces, and text fonts are prescribed; please do not alter them. You may note peculiarities. For example, the head margin in this template measures proportionately more than is customary. This measurement and others are deliberate, using specifications that anticipate your paper as one part of the entire proceedings, and not as an independent document. Please do not revise any of the current designations
+\section{MODELS, BALANCE STRATEGIES \& CAPTURE}
+One of the existing balance strategies if the CoP is saturated is the use of body angular momentum (see Fig. \ref{fig:angvsvarz}). The model to generate horizontal force is:
+\begin{equation}
+	\ddot{x} = g\frac{x}{z} + \frac{1}{m}\frac{\tau_y}{z}
+\end{equation}
 
-\section{MATH}
+For the height varying point-mass, point-foot model, the following dynamics are considered:
+\begin{equation}
+	\ddot{x} = (g+\ddot{z})\frac{x}{z} 
+	\label{eq:height}
+\end{equation}
 
-Before you begin to format your paper, first write and save the content as a separate text file. Keep your text and graphic files separate until after the text has been formatted and styled. Do not use hard tabs, and limit use of hard returns to only one return at the end of a paragraph. Do not add any kind of pagination anywhere in the paper. Do not number text heads-the template will do that for you.
+In this paper, we use the term capture region \cite{pratt2006capture} to describe the set of footholds, where balance can be achieved. Also, the capture point as introduced by Pratt et al is considered, only this is denoted as
+\begin{equation}
+	x_{cp,lip} = \sqrt{\frac{z_0}{g}}\dot{x}_0
+\end{equation}
+for comparison.
+\section{THEORETIC CAPTURE REGIONS}
+This section proposes bounds on the placement of the point-foot, where balance can be achieved. The dynamics of (\ref{eq:height}) are considered. For simplicity and comparison with the CP, $\dot{z}_0=0$ is considered.
+\subsection{Unilateral Contact Constrained}
+ Considering the constraint of unilaterality only, the capture region is bounded by the current position and the ballistic touch down point:
+\begin{equation}
+	x_{cp,unilateral} \in (0, x_{bal}], \quad \forall u>0, 
+	\label{eq:xcpuni}
+\end{equation}
+where the ballistic touchdown point $x_{bal}=\sqrt{\frac{2z_0}{g}}\dot{x}=\sqrt{2}x_{cp}$ and $x_{cp,unilateral}$ is the capture point under unilateral contact constraint only. The proof for this region is given in \cite{koolen2016balance}.
 
-Finally, complete content and organizational editing before formatting. Please take note of the following items when proofreading spelling and grammar:
+\subsection{Addition of Height Constraints}
+If to the unilateral constraint CoM height constraints are added, but limitations one forces are neglected, analytic capture regions can be derived. 
 
-\subsection{Abbreviations and Acronyms} Define abbreviations and acronyms the first time they are used in the text, even after they have been defined in the abstract. Abbreviations such as IEEE, SI, MKS, CGS, sc, dc, and rms do not have to be defined. Do not use abbreviations in the title or heads unless they are unavoidable.
+Preliminary, we temporally set $\dot{z}_0 \neq 0$ to calculate the influence of an impact on the CP. Considering an initial negative vertical velocity $\dot{z}_0<0$ that is driven to zero by a vertical impact, the influence on the CP is:
+\begin{align}
+	x_{cp,impact} &= \sqrt{\frac{z_0}{g}}(\dot{x}_0 + \frac{x_{cp,impact}}{z_0}\dot{z}_0)\\
+	&=\frac{z_0}{\sqrt{z_0}-\dot{z}_0}\dot{x}_0,
+\end{align}
+where $x_{cp,impact}$ is the impact influenced capture point from an initial impact that results in $\dot{z}=0$.
 
-\subsection{Units}
+Under a minimum height constraint, we can find a capture point from which the trajectory hits the constraint. We first let the mass follow the ballistic trajectory, after which it is stopped by the impact influenced capture point:
+\begin{equation}
+	x_{cp,\zmin} = x_{bal,\zmin} + x_{cp,impact}(\zmin, \dot{z}_{\zmin}),
+	\label{eq:xcpzmincomp}
+\end{equation}
+where $x_{cp,\zmin}$ is the capture point over the minimum height constraint, $x_{bal,\zmin}$ the position from the ballistic trajectory at $\zmin$ and $x_{cp,impact}(\zmin,\dot{z}_{\zmin}$) is $x_{cp,impact}$ for that point.
+The velocity at the moment the ballistic trajectory hits the constraint is:
+\begin{equation}
+	\dot{z}_{\zmin} = -\sqrt{2g(z_0-\zmin)},
+\end{equation}
+where $z_{min}$ is the minimum height constraint and $\dot{z}_{\zmin}$ is the vertical velocity at $z_{min}$. Using (\ref{eq:xcpzmincomp}), the capture point over the minimum height constraint reads as:
+\begin{equation}
+	x_{cp,\zmin} = (\sqrt{\frac{2\delta_{z_{min}}}{g}} + \frac{\zmin}{\sqrt{\zmin g}+\sqrt{2g\delta_{\zmin}}})\dot{x}_0,
+\end{equation}
+where $\delta_{\zmin}= z0-\zmin$.
 
-\begin{itemize}
+Also under a maximum height constraint, an analytic capture point can be found. We consider a vertical impact by the leg at $x=x_0$, which is of such magnitude that the mass is exactly at maximum height if it is slowed down by gravity. After it is slowed down, we apply $x_{cp,lip}$. This point reads as:
+\begin{equation}
+	x_{cp,\zmax} =(t_{\dot{z}>0} + \sqrt{\frac{\zmax}{g}})\dot{x}_{0,I}
+\end{equation} 
+where $x_{cp,\zmax}$ is the capture point following the maximum height constraint, $t_{\dot{z}>0}$ is the time $\dot{z}>0$ and $\dot{x}_{0,I}$ is the initial velocity influenced by the impact. Note that the vertical impact that lets the mass just touch $\zmax$ is:
+\begin{equation}
+	\dot{z}_{I} = \sqrt{2g\delta_{\zmax}},
+\end{equation}
+where $\delta_{\zmax}=\zmax-z_0$. The capture point reads as:
+\begin{align}
+	x_{cp,\zmax} &= (\frac{\dot{z}_I}{g}+\sqrt{\frac{\zmax}{g}})(\dot{x}_0-\frac{x_{cp,\zmax}}{z_0}\dot{z}_I)\\
+	&=\frac{z_0(\sqrt{2\delta_{\zmax}}+\sqrt{\zmax})}{\sqrt{g}(z_0 + 2\delta_{\zmax} + \sqrt{2\zmax \delta_{\zmax}})}\dot{x}_0.
+\end{align}
 
-\item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary
-\end{itemize}
+We will show that the capture points $x_{cp,\zmin}$ and $x_{cp,\zmax}$ are also the outer bounds on the capture region.
+
+\begin{lem}\label{lem:regionz}
+Considering the dynamics of (\ref{eq:height}), $\dot{z}_0=0$, minimum height constraint $\zmin$ and maximum height constraint $\zmax$, $x_{cp,\zmin}$ and $x_{cp,\zmax}$ are the outer bounds on the capture region.
+\end{lem}
+\begin{proof}
+For any $x_{cp}$, $x\dot{x}<0$ \cite{koolen2016balance} and $0>x_0>-x_{bal}$ (\ref{eq:xcpuni}). 
+Note that $x \leq 0, \forall t$ and $x\rightarrow 0$ along any trajectory. From (\ref{eq:height}), and $z>0$ follows that any input $u$ will slow $\dot{x}$ down. Showing that $\frac{x}{z}\rightarrow 0, \forall t$ will proof that $u=0$ for the longest possible time $t$ will lead to the farthest $x_{cp}$, and a maximum $u$ on the earliest possible $t$ will lead to the closest $x_{cp}$. 
+
+For $u=g$, $z$ remains constant and $\frac{x}{z}\rightarrow 0$. For $u>g$, $z$ will grow and $\frac{x}{z}\rightarrow 0$. If $u<g$, we can show with the derivative of $\frac{x}{z}$ that this is always increasing:
+\begin{equation}
+\frac{d\frac{x}{z}}{dt}= \frac{z\dot{x}-x\dot{z}}{z^2},
+\end{equation}
+where $x \leq 0$ and $z \dot{x} \geq 0$. Taking the extreme case $u=0$ leads to:
+\begin{align}
+	z\dot{x}-x\dot{z} &= (z_0 - \frac{1}{2}gt^2)\dot{x}_0 + (x_0 + \dot{x}_0 t)gt\\
+	&= (z_0 +\frac{1}{2}gt^2)\dot{x_0} + x_0gt.
+\end{align}
+Noting that all terms are positive except for $x_0$, which has the largest negative value for $x_0=-x_{bal}$:
+\begin{align}
+	(z_0 +\frac{1}{2}gt^2)\dot{x_0} - \sqrt{\frac{2z_0}{g}}\dot{x}_0gt = (\sqrt{\frac{1}{2}g}t - \sqrt{z_0})^2,
+\end{align}
+which is always greater than zero for all $t$.
+\end{proof}
+
+In Fig. \ref{fig:capregion}, the discussed capture regions are visualized.
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=2in]{CPLimits.png}
+      \caption{Vizualisation of the capture regions. The light gray area shows the unilateral contact constrained region (\ref{eq:xcpuni}). The dark gray area shows the height constrained capture region (Lemma \ref{lem:regionz})  for $0.7<z<1.1$. The gray plots are made with the \textit{orbital energy controller} of \cite{koolen2016balance} and show that the final points are inside the region.}
+      \label{fig:capregion}
+\end{figure}
+\subsection{Addition of Acceleration Constraints}\label{forcecapture}
+If we add acceleration constraints on the dynamics (\ref{eq:height}), to take joint torque limits into account, an analytic solution for a capture point is not available anymore and needs to be solved numerically. 
+
+In \cite{pratt2006capture,stephens2007humanoid,koolen2012capturability}, a bang-bang control law is used to regulate the angular momentum in the body of the model. Instead, we use a bang-bang control law for the input $u$.
 
 
-\subsection{Equations}
 
-The equations are an exception to the prescribed specifications of this template. You will need to determine whether or not your equation should be typed using either the Times New Roman or the Symbol font (please no other font). To create multileveled equations, it may be necessary to treat the equation as a graphic and insert it into the text after your paper is styled. Number equations consecutively. Equation numbers, within parentheses, are to position flush right, as in (1), using a right tab stop. To make your equations more compact, you may use the solidus ( / ), the exp function, or appropriate exponents. Italicize Roman symbols for quantities and variables, but not Greek symbols. Use a long dash rather than a hyphen for a minus sign. Punctuate equations with commas or periods when they are part of a sentence, as in
+\section{CAPTURABILITY COMPARISON}
 
-$$
-\alpha + \beta = \chi \eqno{(1)}
-$$
+\subsection{Effects of Angular Momentum}
+Recap of \cite{pratt2006capture} bang-bang angular momentum controller
+\subsection{Comparison with Vertical Motion}
+\ref{forcecapture}
+\section{PUSH RECOVERY ON NASA'S VALKYRIE}
 
-Note that the equation is centered using a center tab stop. Be sure that the symbols in your equation have been defined before or immediately following the equat
+\subsection{Control Law}
 
-\subsection{Some Common Mistakes}
-\begin{itemize}
+\subsection{Simulation Results}
 
-
-\item The wor
-
-\end{itemize}
-
-
-\section{USING THE TEMPLATE}
-
-Use this sample document as your LaTeX source file to create your document. Save this file as {\bf root.tex}. You have to make sure to use the cls file that came with this distribution. If you use a different style file, you cannot expect to get required margins. Note also that when you are creating your out PDF file, the source file is only part of the equation. {\it Your \TeX\ $\rightarrow$ PDF filter determines the output file size. Even if you make all the specifications to output a letter file in the source - if your filter is set to produce A4, you will only get A4 output. }
-
-It is impossible to account for all possible situation, one would encounter using \TeX. If you are using multiple \TeX\ files you must make sure that the ``MAIN`` source file is called root.tex - this is particularly important if your conference is using PaperPlaza's built in \TeX\ to PDF conversion tool.
-
-\subsection{Headings, etc}
-
-Text heads organize the topics on a relational, hierarchical basis. For example, the paper title is the primary text head because all subsequent material relates and elaborates on this one topic. If there are two or more sub-topics, the next level head (uppercase Roman numerals) should be used and, conversely, if there are not at least two sub-topics, then no subheads should
-
-\subsection{Figures and Tables}
-
-Positioning Figures and Tables: Place figures and tables at the top and bottom of columns. Avoid placing them in the middle of columns. Large figures and tables may span across both columns. Figure captions should be below the figures; table heads should appear above the tables. Insert figures and tables after they are cited in the text. Use th
+\subsection{Hardware Results}
+Box plot 3 cases: Default best recover, default fail, height controller best recover.
 
 \begin{table}[h]
 \caption{An Example of a Table}
@@ -151,10 +228,11 @@ Three & Four\\
       \label{figurelabel}
    \end{figure}
    
+\section{DISCUSSION AND FUTURE WORK}
+\subsection{From Flywheel Model to Real Robot}
+\subsection{3D Control}
 
-Figure Labels: Use 8 point Times New Roman for Figure labels. Use words rather than symbols or abbreviations when writing Figure axis labels to avoid confusing the reader. As an example, write the
-
-\section{CONCLUSIONS}
+\section{CONCLUSION}
 
 A conclusion section is not required. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions. 
 
@@ -174,9 +252,6 @@ A conclusion section is not required. Although a conclusion may review the main 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{APPENDIX}
-
-Appendixes should appear before the acknowledgment.
 
 \section*{ACKNOWLEDGMENT}
 
