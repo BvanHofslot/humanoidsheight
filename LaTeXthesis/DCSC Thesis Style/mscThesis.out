@@ -19,9 +19,9 @@
 \BOOKMARK [2][-]{subsection.2.1.3}{Modeling of the Leg}{section.2.1}% 19
 \BOOKMARK [2][-]{subsection.2.1.4}{Orbital Energy \046 Capture}{section.2.1}% 20
 \BOOKMARK [1][-]{section.2.2}{Related Works}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.2.1}{Varying Height Terrain}{section.2.2}% 22
-\BOOKMARK [2][-]{subsection.2.2.2}{Mimic Natural Behavior}{section.2.2}% 23
-\BOOKMARK [2][-]{subsection.2.2.3}{Control for Balance}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.1}{Un-even Terrain}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.2}{Human-like Walking}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.3}{Balance Control}{section.2.2}% 24
 \BOOKMARK [1][-]{section.2.3}{Humanoid Robotics at IHMC}{chapter.2}% 25
 \BOOKMARK [2][-]{subsection.2.3.1}{Robots}{section.2.3}% 26
 \BOOKMARK [2][-]{subsection.2.3.2}{Walking States}{section.2.3}% 27

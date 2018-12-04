@@ -21,9 +21,9 @@
 \contentsline {paragraph}{The boundedness condition}{8}{section*.48}
 \contentsline {paragraph}{Orbital energy with height variation}{8}{section*.49}
 \contentsline {section}{\numberline {2-2}Related Works}{9}{section.2.2}
-\contentsline {subsection}{\numberline {2-2-1}Varying Height Terrain}{9}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2-2-2}Mimic Natural Behavior}{9}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2-2-3}Control for Balance}{9}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2-2-1}Un-even Terrain}{9}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2-2-2}Human-like Walking}{9}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2-2-3}Balance Control}{9}{subsection.2.2.3}
 \contentsline {subsubsection}{Virtual Constraint}{10}{section*.51}
 \contentsline {subsubsection}{Boundedness Condition with Varying Height}{10}{section*.52}
 \contentsline {section}{\numberline {2-3}Humanoid Robotics at IHMC}{10}{section.2.3}
