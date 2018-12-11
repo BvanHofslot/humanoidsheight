@@ -1,3 +1,5 @@
+%% test for t prediction
+
 z0 = 1.08;
 dz0 = 0.05;
 zmax = 1.15;
@@ -22,7 +24,7 @@ c = z0-zmin - (1/2)*(dz0^2)/ddzmax;
 tminhi = (-b + sqrt(b^2-4*a*c))/(2*a)
 tminlo = (-b - sqrt(b^2-4*a*c))/(2*a)
 
-%%
+%% 360 push 
 angles = table2array(angleAndPercentWeight72(:,1));
 weights = table2array(angleAndPercentWeight72(:,2));
 
@@ -171,25 +173,25 @@ polarplot(angle,weight);
         %%
     
 figure;
-angles = table2array(angleAndPercentWeight18TilesCoPStandingHigh01(:,1));
-weights = table2array(angleAndPercentWeight18TilesCoPStandingHigh01(:,2));
+angles = table2array(angleAndPercentWeight72TilesVeryHighStanding(:,1));
+weights = table2array(angleAndPercentWeight72TilesVeryHighStanding(:,2));
 
 wNav = mean(weights)
 
 polarplot(angles,weights);
 hold on;
-angle = [angles(36) angles(1)];
-weight = [weights(36) weights(1)];
+angle = [angles(72) angles(1)];
+weight = [weights(72) weights(1)];
 polarplot(angle,weight);
 
-angles = table2array(angleAndPercentWeight18TilesCoPStandingHigh01Normal(:,1));
-weights = table2array(angleAndPercentWeight18TilesCoPStandingHigh01Normal(:,2));
+angles = table2array(angleAndPercentWeight72TilesVeryHighStandingNormal(:,1));
+weights = table2array(angleAndPercentWeight72TilesVeryHighStandingNormal(:,2));
 
 wav = mean(weights)
 
 polarplot(angles,weights);
-angle = [angles(36) angles(1)];
-weight = [weights(36) weights(1)];
+angle = [angles(72) angles(1)];
+weight = [weights(72) weights(1)];
 polarplot(angle,weight);
 
 ax = gca;

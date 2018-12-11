@@ -1,9 +1,19 @@
 
-x0=-0.286178;
-dx0= 1-0.400854;
+
+dx0=1;
 z0=1;
-dz0 = 1.40071;
-t = 0.1427839;
+dzmax=0.1;
+zmax=1;
+g=9.81
+x0=-z0*(sqrt(2*dzmax)+sqrt(zmax))*dx0...
+    /(sqrt(g)*(z0+2*dzmax+sqrt(2*zmax*dzmax)));;
+dz0 = sqrt(2*g*0.1);
+dx0= 1+x0*dz0/z0;
+
+
+t = dz0/g;
+
+
 x_orbit=dx0*t;
 tspan = [0:0.001:t];
 x = x0+dx0*tspan;
@@ -32,8 +42,10 @@ widthMainPlot=2;
 tspan=[0:0.01:100];
 figure('rend','painters','pos', [0 0 400 800]);
 area([0 1]*-sqrt(2)*xicp,[1.3 1.3],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
+
 hold on;
-area([-x0 (tzmin+zminfreqafterfall)], [1.3 1.3],'FaceColor',[0.85,0.85,0.85],'LineStyle','none')
+area([-x0 (tzmin+zminfreqafterfall)], [1.1 1.1],'FaceColor',[0.8,0.8,0.8],'LineStyle','none')
+area([-x0 (tzmin+zminfreqafterfall)], [0.7 0.7],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
 
 if(withHorizontalLimits)
 plot([0, 0.5],[1 1]*zf,'LineStyle', '-.','Color','k');
@@ -60,6 +72,9 @@ end
 if(withBalistic)
     [tbal,ybal]= ode45(@qfunbal, tspan, [0;1;1;0]);
     pBal = plot(ybal(:,1),ybal(:,3),'LineWidth',widthMainPlot,'Color',[0, 0.4470, 0.7410]);
+    x2 = [ybal(:,1), ybal(:,1)];
+    inBetween = [15*ones(length(ybal(:,3)),1), ybal(:,3)];
+    fill(x2, inBetween, 'w')
     plot([1 1]*-sqrt(2)*xicp,[0 1.3],'Color','k','LineStyle', '-.')
     if(withVerticalLimits)
     plot([1 1]*-sqrt(2)*xicp,[0 2],'LineStyle', '-.','Color','k');
@@ -100,7 +115,7 @@ end
 
 axis equal
 axis([0 0.5 0 1.3])
-ylabel('z [m]','FontSize', 12)
+ylabel('$z$ [m]','FontSize', 12)
 xlabel('Capture Position [m]','FontSize', 12)
 xticks([0:0.1:0.5])
 yticks([0:0.1:1.5])
