@@ -260,13 +260,13 @@ In this section we make a high-level comparison with LIP and LIP with angular mo
 \subsection{Comparison with Angular Momentum Strategy}
 Also, we use an angular momentum momentum control as in \cite{pratt2006capture,stephens2007humanoid,koolen2012capturability}. The duration of each `bang` is determined using:
 \begin{equation}	
-	t_{1} = \sqrt{\frac{J'\theta_{max}}{\delta x'_{cmp,max}}},
+	t'_{ang} = \sqrt{\frac{J'\theta_{max}}{\delta x'_{cmp,max}}},
 \end{equation}
 where $J'$ is the dimensionless inertia used in recovery, $\theta_{max}$ the maximum lunge angle of the body and $\delta x'_{cmp,max}$ the dimensionless maximum CMP offset from the CoP. Note this offset accounts for the hip torque. The average CMP offset affecting the capture position is calculated by:
 \begin{equation}
- \delta x'_{cmp} = (1 -2e^{-t_1}+e^{-t_2})\delta x'_{cmp,max},
+ \delta x'_{cmp} = (1 -2e^{-t'_{ang}}+e^{-2t_{ang}})\delta x'_{cmp,max},
 \end{equation}
-where $\delta x'_{cmp}$ is the average CMP offset and $t_2=2t_1$.
+where $\delta x'_{cmp}$ is the average CMP offset.
 
 We make a rough estimate of the dimensionless inertia used in recovery. We assume the CoM is located at the hip, which is also the point of rotation, and that only the body above the hip plays a role in generation of angular momentum. We model the body above the hip as a beam with mass $\frac{1}{2}m$. The length of this beam is considered equal to the CoM height. The dimensionless inertia of this beam reads as:
 \begin{equation}
@@ -302,8 +302,8 @@ Normally during the stance phase, like we consider, the height is controlled to 
 \begin{itemize}
 	%\item $\alpha_{\icpe}^+$: Threshold to turn the controller on $|\icpe|>\alpha_{\icpe}^+$, which for example can be tuned to activate the controller when $\rcmpd$ is near the edge of the polygon. 
 	%\item $\alpha_{\icpe}^-$: Threshold to turn the controller off $|\icpe|<\alpha_{\icpe}^-$, when the robot is back to stability.
-	\item $\dddot{z}_{max}$: Maximum allowed vertical CoM jerk.
-	\item $\alpha_{\hat{\ddot{z}}_{c}}$: Parameter to scale down expected $\ddot{z}_c$ for the second `bang', due to jerk limits.
+	\item $\dddot{z}_{max}$: maximum allowed vertical CoM jerk.
+	\item $\alpha_{\hat{\ddot{z}}_{c}}$: parameter to scale down expected $\ddot{z}_c$ for the second `bang', due to jerk limits.
 \end{itemize}
 
 The control sequence we use for the bang-bang controller reads as follows. For the first `bang': $\ddot{z}_d=\ddot{z}_c$. The transition from the first `bang` to the second is if:
