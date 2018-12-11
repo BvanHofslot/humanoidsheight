@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{#1}
 \csname url@rmstyle\endcsname
 \providecommand{\newblock}{\relax}
@@ -18,27 +18,79 @@
 \fi
 #2}}
 
-\bibitem{koolen2016balance}
-T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
-  height variation: limitations imposed by unilateral contact,'' in
-  \emph{Humanoid Robots (Humanoids), 2016 IEEE-RAS 16th International
-  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016, pp. 8--15.
-
 \bibitem{pratt2006capture}
 J.~Pratt, J.~Carff, S.~Drakunov, and A.~Goswami, ``Capture point: A step toward
   humanoid push recovery,'' in \emph{Humanoid Robots, 2006 6th IEEE-RAS
   International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
   2006, pp. 200--207.
 
-\bibitem{stephens2007humanoid}
-B.~Stephens, ``Humanoid push recovery,'' in \emph{Humanoid Robots, 2007 7th
-  IEEE-RAS International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2007, pp. 589--595.
-
 \bibitem{koolen2012capturability}
 T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
   ``Capturability-based analysis and control of legged locomotion, part 1:
   Theory and application to three simple gait models,'' \emph{The International
   Journal of Robotics Research}, vol.~31, no.~9, pp. 1094--1113, 2012.
+
+\bibitem{stephens2007humanoid}
+B.~Stephens, ``Humanoid push recovery,'' in \emph{Humanoid Robots, 2007 7th
+  IEEE-RAS International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2007, pp. 589--595.
+
+\bibitem{takenaka2009real}
+T.~Takenaka, T.~Matsumoto, and T.~Yoshiike, ``Real time motion generation and
+  control for biped robot-1 st report: Walking gait pattern generation,'' in
+  \emph{Intelligent Robots and Systems, 2009. IROS 2009. IEEE/RSJ International
+  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2009, pp.
+  1084--1091.
+
+\bibitem{lanari2014boundedness}
+L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
+  of locomotion trajectories for biped robots,'' in \emph{Humanoid Robots
+  (Humanoids), 2014 14th IEEE-RAS International Conference on}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2014, pp. 951--958.
+
+\bibitem{koolen2016balance}
+T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
+  height variation: limitations imposed by unilateral contact,'' in
+  \emph{Humanoid Robots (Humanoids), 2016 IEEE-RAS 16th International
+  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016, pp. 8--15.
+
+\bibitem{pratt2007derivation}
+J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
+  orbital energy for the inverted pendulum bipedal walking model,'' in
+  \emph{Robotics and Automation, 2007 IEEE International Conference on}.\hskip
+  1em plus 0.5em minus 0.4em\relax IEEE, 2007, pp. 4653--4660.
+
+\bibitem{caron2018capturability}
+S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
+  analysis, optimization and control of 3d bipedal walking,'' \emph{arXiv
+  preprint arXiv:1801.07022}, 2018.
+
+\bibitem{koolen2016design}
+T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
+  and J.~Pratt, ``Design of a momentum-based control framework and application
+  to the humanoid robot atlas,'' \emph{International Journal of Humanoid
+  Robotics}, vol.~13, no.~01, p. 1650007, 2016.
+
+\bibitem{radford2015valkyrie}
+N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
+  Donnan, J.~Holley, J.~Sanchez, V.~Nguyen, L.~Bridgwater, \emph{et~al.},
+  ``Valkyrie: Nasa's first bipedal humanoid robot,'' \emph{Journal of Field
+  Robotics}, vol.~32, no.~3, pp. 397--419, 2015.
+
+\bibitem{kajita2003resolved}
+S.~Kajita, F.~Kanehiro, K.~Kaneko, K.~Fujiwara, K.~Harada, K.~Yokoi, and
+  H.~Hirukawa, ``Resolved momentum control: Humanoid motion planning based on
+  the linear and angular momentum,'' in \emph{Intelligent Robots and Systems,
+  2003.(IROS 2003). Proceedings. 2003 IEEE/RSJ International Conference on},
+  vol.~2.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2003, pp. 1644--1650.
+
+\bibitem{lee2012momentum}
+S.-H. Lee and A.~Goswami, ``A momentum-based balance controller for humanoid
+  robots on non-level and non-stationary ground,'' \emph{Autonomous Robots},
+  vol.~33, no.~4, pp. 399--414, 2012.
+
+\bibitem{orin2013centroidal}
+D.~E. Orin, A.~Goswami, and S.-H. Lee, ``Centroidal dynamics of a humanoid
+  robot,'' \emph{Autonomous Robots}, vol.~35, no. 2-3, pp. 161--176, 2013.
 
 \end{thebibliography}
