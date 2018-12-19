@@ -1,39 +1,33 @@
 %
 % Introduction
 \chapter{Introduction} \label{chap::intro}
-\section{Motivation}
-A common approach in humanoid robotics is to define the system as a \ac{LIP} with finite-sized foot and a mass with inertia. The ankle and the angular momentum about the \ac{CoM} can be used as control inputs to generate horizontal forces on the \ac{CoM}, often called "ankle" and "hip" strategies.  Next to this, the step timing and footstep location can be adjusted.
-\begin{itemize}
-	\item \ac{CoP}
-	\item Angular momentum
-\end{itemize}
-\begin{itemize}
-	\item Change step time
-	\item Change step location
-\end{itemize}
+Humans are often exposed to tasks that could harm them. Those tasks include disaster response, as for example entering a radioactive environment to help people after a nuclear disaster or entering a building on fire. Next to the danger of harm, factors like time and financials can also play a role. Take for example an exploration space mission to Mars, where a human committing to such a task is in risk of harm, but also spends a lot of time. In all these situations, the versatility of the human, such as grasping with hands and walking over uneven terrain, is needed. Substitution of a human-like machine in such scenarios, which has the same benefits as a human, could be very beneficial. 
 
-Allowing for the vertical component of the \ac{GRF} in the model to vary, and thus the height to vary, the horizontal components of the \ac{GRF} change as well, compared to the \ac{LIP} model.\\
-Different reasons to research varying \ac{CoM} height: 
-\begin{itemize}
-	\item Improve behavior over rough-terrain
-	\item Minimize energy consumption or mimic natural behavior
-	\item Analyse the effects of height variation
-	\item Extend control authority in horizontal direction by using height variations
-\end{itemize}
+Humanoid robotics is not a new topic. There already exist texts dating before Christ, that describe a human-like machine \cite{behnke2008humanoid}. As technology grew, the topic became more popular in the last decades. However, a humanoid robot that has the same physical capabilities as an average human being, still not yet exists. One of those physical capabilities is keeping balance. Humans are capable of not falling over in various terrains, configurations and disturbances, while robots are not. 
 
-[SOMEWHERE: DYNAMIC AND KINEMATIC FEASIBILITY + torque limits?]\\
-HYPOTHESE?
+Traditional balancing strategies for humanoid robots include control of the \ac{CoP}, `ankle' strategies, and to a lesser extent, change of body angular momentum, for example: `hip' strategies. If additional steps are included in the problem, also modification of the step time and footstep location can be considered. An important assumption behind these strategies is often that the \ac{CoM} height of the robot is predefined and not to be used in balancing tasks. Reasons for this include that dynamic planning is often conducted with a \ac{LIP} model and that height trajectories are generated for kinematic feasibility, not for the aim of keeping balance. Recently, the use of vertical \ac{CoM} motion in balance control appeared as a relatively new research area to explore.
+
+\section{Related Work}
+Though, the use of a variable height model in dynamic planning is a relatively longer existing research field. In \cite{pratt2007derivation}, Pratt et al derived a \ac{2D} solution for the \textit{orbital energy} for a variable height inverted pendulum. By constraining the height trajectory to be a function of the horizontal position, an analytic solution for energy became available. Traditionally, the orbital energy of a LIP was used \cite{kajita1992dynamic}. In \cite{englsberger2013three}, Englsberger et al proposed a method using the \ac{3D} \ac{DCM} to generate a dynamic plan. This \ac{DCM} can be seen as a \ac{3D} version of the \ac{ICP} \cite{koolen2012capturability}, which allowed to linearly interpolate differences in height between \ac{DCM} knot-points in the generation of a dynamic plan.  This \ac{DCM} is extended to a time varying version by Hopkins et al in \cite{hopkins2014humanoid}. The description of the \ac{DCM} was made time varying, such that any trajectory shape between knot-points could be used. However, an analytic solution was not available anymore and dynamic planning had to conducted numerically. 
+
+Recently, the use of vertical \ac{CoM} motion came in sight to use for balance control. Koolen et al developed an analytic \ac{MPC} law in \cite{koolen2016balance}, using the variable height orbital energy derived in \cite{pratt2007derivation}. A study was conducted on the \textit{regions of attraction} of the controller: the domain of initial conditions of the pendulum-based model after which stability was still possible, given the model. These regions are comparable with the \textit{capture regions} proposed by Pratt et al \cite{pratt2006capture}, only the capture regions relied on a \ac{LIP} model. The controller was able to compute \ac{2D} closed-form solutions to the trajectory to come to a stop, but without taking kinematic or force constraints into account. In \cite{caron2018balance}, the same problem was approached in \ac{3D} by Caron \& Mallein. The \ac{MPC} law was able to compute \textit{capture trajectories} for different foot orientations and initial conditions in three dimensions online, using also a variable height inverted pendulum model.
+
 \section{Research Objective}
-In this thesis is focussed on the last two goals. Analyse the effects of height variation. Extend the control authority by using height variations. 
+The objective of this work is to improve balance of a humanoid robot using vertical \ac{CoM} motion. To measure \textit{improving balance}, a high-level differentiation can be made in:
+\begin{itemize}
+	\item Analyzes of an inverted pendulum-based model and comparison with the \ac{LIP}: \textit{theory}.
+	\item Analyzes of improvements observed in simulation and on hardware of a robot, using a common control framework to transcribe pendulum-based control commands to the joints of the robot: \textit{application}.
+\end{itemize}
 
 \section{Contributions}
+The contributions of this thesis are:
 \begin{itemize}
-	\item Theoretic limits on capture: different limits on capture are derived, considering height variation.
-	\item Orbital energy \ac{MPC}: with the \ac{2D} method of \cite{koolen2016balance} a constrained \ac{MPC} is introduced.
-	\item Approach for application on real robot: approaches are derived to implement in the control framework at IHMC.
+	\item Theoretic capture regions: different limits on capture are derived considering height variation.
+      \item A constrained orbital energy \ac{MPC}: with the \ac{2D} method of \cite{koolen2016balance} a constrained \ac{MPC} is introduced.
+	\item A method to use vertical \ac{CoM} motion in an applied setting in \ac{3D}, and application of the method on NASA's Valkyrie humanoid robot.
 \end{itemize}
 \section{Thesis Outline}
-
+The thesis is structured as follows. In Chapter \ref{chap:background}, background is given on walking in humanoid robotics, related works to vertical \ac{CoM} motion and humanoid robotics at \ac{IHMC}. In Chapter \ref{chap:regions}, theoretic capture regions are proposed. In Chapter \ref{chap:mpc}, an \ac{2D} \ac{MPC} law is derived. In Chapter \ref{chap:standing}, a controller for \ac{2D} is presented and push recovery is tested on NASA's Valkyrie during stance. In Chapter \ref{chap:walking}, the \ac{2D} controller is extended to \ac{3D} and push recovery is tested on Valkyrie during walking in simulation. The final chapter, Chapter \ref{chap:conclusion}, presents the conclusion and recommendations for future work.
 
 \subs{d}{Desired}
 \subs{r}{Reference}

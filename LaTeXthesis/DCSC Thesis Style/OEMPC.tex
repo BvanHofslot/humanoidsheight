@@ -150,6 +150,12 @@ Again, the value of the maximum peak lies on the highest $x$ value of the two lo
 % discussion
 \section{Discussion}
 The proposed algorithms can find a trajectory that gives knowledge of the estimated system state of a \ac{2D} point-foot, point-mass model until the $x$-coordinate of the point-foot. To the method of \cite{koolen2016balance}, a constraint is added on the maximum height, a maximum leg length constraint and the possibility is proposed to exchange the final height constraint with a final gradient constraint. Remarkable is that the final gradient constraint gives a higher final velocity $\dot{x}_f$ compared to the default height constraint in \figref{fig:polheight}. This is caused by the polynomial shapes, as the blue plot, under constraint $z_f$, has a steeper gradient in the first part of the trajectory after $x_0$. This is the crucial part in the trajectory for a acceleration or deceleration action in $x$-direction, as can be seen in for example Equation \eqref{eq:dynamicsprattstyle}. \\
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{STYLESTUFF/polynomialforce.png}
+\caption{ }
+\label{fig:polforce}
+\end{figure}
 One of the algorithms can be used in \ac{MPC}, however, it lacks a lot of properties important for application on humanoid robot as Atlas for example:
 \begin{itemize}
 	\item The method is only suited for a \ac{2D} control strategy.

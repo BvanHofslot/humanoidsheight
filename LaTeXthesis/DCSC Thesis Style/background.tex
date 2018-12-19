@@ -1,12 +1,12 @@
 %
 % A Real Chapter
-\chapter{Background}
+\chapter{Background}\label{chap:background}
 In this chapter, a brief background on walking preliminaries, related works to \ac{CoM} height variation and humanoid robotics at \ac{IHMC} is given.
 % Modeling of Walking
 \section{Walking Preliminaries}
 Different models have different limitations and advantages. Identifying the differences is important to develop an insight on how height variation can influence the system dynamics of a walking robot.
 % lip
-\subsection{Flywheel Model}
+\subsection{Simple Walking Models}
 In simple walking models, a devision can be made in the following three categories:
 \begin{itemize}
 	\item Point-mass with point-foot
@@ -62,12 +62,10 @@ In \figref{fig:3dlipfootinertia} the difference between the \ac{ZMP} and \ac{CMP
 \label{fig:zmpvscmp}
 \end{figure}
 
-%TODO
-\todo{Incorporate somewhere the virtual point foot and virtual leg}
 
 %leg modeling
-\subsection{Modeling of the Leg}
-The modeling of the leg can subdevided in two categories: the \ac{LIP} model and models that consider \ac{CoM} height variation
+\subsection{Pendulum-based Models}
+The modeling of the leg can subdevided in two categories: the \ac{LIP} model and models that consider \ac{CoM} height variation. \todo{explain that this is virtual leg and not necessarily the prismatic joint as with flywheel model}
 \paragraph{The linear inverted pendulum model} is widely used in walking research and especially in robotics \cite{kajita20013d}. In the \ac{2D} \ac{LIP} equations of motion, the motion of the tip along the $x$-axis does not affect the pendulum length $l$:
 \begin{equation}
 \ddot{x}=\frac{g}{l}x,
@@ -86,7 +84,7 @@ where $x$ the horizontal location of the pendulum tip and $\ddot{x}$ its acceler
 \begin{itemize}
 	\item The inverted pendulum model \cite{kuo2005energetic}
 	\item The \ac{SLIP} model \cite{liu2015trajectory}
-	\item A nonlinear model with prismatic joint \cite{pratt2007derivation}
+	\item A model with prismatic joint: varyable height inverted pendulum \cite{pratt2007derivation}
 \end{itemize}
 The inverted pendulum model is often used in human motion studies. The \ac{SLIP} model originates from hopping and running robots \cite{schwind1998spring} and models the inverted pendulum as a spring. In \figref{fig:2Dnonlinmodel} the full nonlinear model with pristmatic leg joint is shown in \ac{2D}. The dynamics of the point mass can be written in two ways. One is as a function of the virtual leg force $\vect{f}$:
 \begin{equation}
@@ -158,42 +156,8 @@ x_u(t_0) = \omega_0 \int_{t_0}^{\infty} e^{-\omega_0(\tau-t_0)}r(\tau)d \tau.
 The initial condition, which is equal to the \ac{ICP}, has to be related to $r(t)$ by this expression.
 
 %nonlinear orbital
-\paragraph{Orbital energy with height variation}\label{subsec:nonorbit} is a more difficult to derive than its linear counterpart.  Examples of attempts to include \ac{CoM} height variations in the solution to the dynamics are the time-varying \ac{DCM} \cite{hopkins2014humanoid}, the orbital energy under a virtual constraint \cite{pratt2007derivation} and the height varying boundedness condition \cite{caron2018balance}. These works are discussed in the next section, since they are highly related to the research of focus.
-
-% CoM Height Variation
-\section{Related Works}\label{sec:relatedworksheight}
-The works that specifically focus on height variation on a humanoid robot are dividable in different goals of improvement. 
-%var height terrain
-\subsection{Un-even Terrain}
-Probably the most common goal of investigating height variation is the improvement of the behavior of the robot over rough or un-flat terrain. Improving the behavior over un-even terrain can devided in two categories:
-\begin{enumerate}
-	\item Improving the control framework for unexpected changes in terrain.
-	\item Improving the dynamical plan, based on the give terrain information.
-\end{enumerate} 
-The generation of a dynamical plan of a redundant robotic system is traditionally done based on the \ac{LIP} model with constant height. The control framework has to deal with any height variations in terrain, and therefore also in the \ac{CoM}. In other words: the dynamics of the robot or roughly know in advance, but not precisely.\\
-An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used for the a planning method. The drawback here is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
-%natural behavior
-\subsection{Human-like Walking}
-Straight leg walking. MPC approach to optimize for \cite{brasseur2015robust}. Walking reference for straight legs and dynamics feasibility \cite{kajita2017biped}. Paper online gait generation with vertical \ac{CoM} motions in dynamic plan.\cite{kuo2005energetic} \cite{terada2007online}
-\cite{you2016straight} \cite{griffin2018straight} and more.. \cite{lee1998determinants}
-%balance
-\subsection{Balance Control}\label{subsec:heightbalance}
-Two publications that consider height variations as control input for balance:
-\cite{koolen2016balance} \cite{caron2018capturability}\cite{gao2017increase}
-This is the focus in this thesis.\\
-With the  orbital energy from \cite{pratt2007derivation} and (\eqref{eq:eorbit}), a \ac{MPC} method is made by Koolen et al. in \cite{koolen2016balance}. Describing the function $f(x)$ from \eqref{eq:eorbit} as a cubic polynomial, the four polynomial are calculated in this method by introducing four constraints on the trajectory. There is one constraint in the initial height, one constraint on the initial direction, on e constraint on the final height and one contraint on the conservation of the orbital energy as in \eqref{eq:eorbit}. The final horizontal position and velocity are respectively above the virtual point-foot or `ankle' and zero. Which makes this trajectory a capture-trajectory for a point-foot, point-mass model, since no angular momentum is considered and only a single foot location. Furthermore, as mentioned earlier, this orbital energy is in \ac{2D}.\\
-
-% 2D polynomial
-\subsubsection{Virtual Constraint}
-With the dynamical description of Equation \eqref{eq:dynamicsprattstyle}, an energy expression is formulated by introducing the virtual constraint $z=f(x)$ \cite{pratt2007derivation}. The virtual constraint allows for the integration over time to be only expressed in the variable $x$, instead of also being the dependent on time $t$. The final expression for this energy proposed in the work reads as:
-\begin{equation}\label{eq:eorbit}
-    E_{orbit}  = \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0),
-\end{equation}
-where $E_{orbit}$ is the orbital energy under the constraint of $z=f(x)$.
-
-% boundedness
-\subsubsection{Boundedness Condition with Varying Height}
-A height varying version of the boundedness condition from \cite{lanari2014boundedness} is introduced in \cite{caron2018balance} . By having a time varying natural frequency of the pendulum $\omega(t)$, the model combines the boundedness condition with the approach from \cite{hopkins2014humanoid}, which will be discussed . By its nonlinearity, this form of the boundedness condition becomes hard to solve and its applications will be further discussed in Section \ref{subsec:heightbalance}.
+\paragraph{Orbital energy with height variation}\label{subsec:nonorbit} is a more difficult to derive than its linear counterpart.  Examples of attempts to include \ac{CoM} height variations in the solution to the dynamics are the time-varying \ac{DCM} \cite{hopkins2014humanoid}, the orbital energy under a virtual constraint \cite{pratt2007derivation} and the height varying boundedness condition \cite{caron2018balance}. These works are discussed in the Section 
+\ref{sec:relatedworksheight}, since they are highly related to the research of focus.
 
 % Control Framework IHMC
 \section{Humanoid Robotics at IHMC}
@@ -215,7 +179,7 @@ At the moment of writing, there are two humanoid robots present at the institute
   \caption{}
    \label{fig:valkyrie}
   \end{subfigure}
-  \caption{(a) Atlas and (b) Valkyrie walking over an un-even cinder block field at IHMC }
+  \caption{(a) Atlas \cite{oldatlas} and (b) Valkyrie \cite{valkyrie} walking over an un-even cinder block field at IHMC }
   \label{fig:robots}
 \end{figure}
 %walking states
@@ -250,7 +214,7 @@ where $\rcmpd$ is the desired \ac{CMP}, $\rcmpr$ and $\icpr$ are the reference \
 where $\dotldxy$ is the desired horizontal linear momentum rate of change, which is basically the desired horizontal force. This value is send to the momentum-based control framework. 
 
 % momentum control
-\subsection{Whole-body Control}
+\subsection{Momentum-based Whole-body Control}
 The desired horizontal linear momentum rate of change $\dotldxy$ from \ac{ICP} control is one of the inputs for the the whole-body \ac{QP}. The the solution of the whole-body \ac{QP} goes into a inverse dynamics solver, which calculates desired joint torques. 
 %centroidal
 \paragraph{Centroidal dynamics} \cite{orin2013centroidal} translate joint states to state on and around the \ac{CoM}. The  mapping between joint velocities and end-effector motion plays a crucial role in any robotic system:
@@ -276,7 +240,14 @@ where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the w
 &\ddot{\qjnt}_{min} \leq \ddqjntd \leq \ddot{\qjnt}_{max},
 \end{array}
 \end{equation}
-where $\ddqjntd$ are the desired joint accelerations, $\matr{Q}\bs{\rho} = \sum_i\matr{W}_{gr,i}$ is the basis vector matrix $\matr{Q}$ times the basis vector multiplers $\bs{\rho}$. The minimum $\bs{\rho}_{min}$ has to be at least zero, because of the unilateral contact constraint of the robot. The total cost $J$ is composed of the following cost terms:
+where $\ddqjntd$ are the desired joint accelerations, $\matr{Q}\bs{\rho} = \sum_i\matr{W}_{gr,i}$ is the basis vector matrix $\matr{Q}$ times the basis vector multipliers $\bs{\rho}$. In \figref{fig:wrenchcone}, the basis vectors are visually explained.  
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{STYLESTUFF/wrenchcone.png}
+\caption{Wrench cone with basis vectors \cite{koolen2016design}. }
+\label{fig:wrenchcone}
+\end{figure}
+The minimum $\bs{\rho}_{min}$ has to be at least zero, because of the unilateral contact constraint of the robot. The total cost $J$ is composed of the following cost terms:
 \begin{equation*}
 \begin{array}{rlcl}
 $Momentum objective cost:$ & J_{\dot{\vect{h}}_d}= \wght_{\dot{\vect{h}}_d}||\matr{A}\ddqjntd + \dot{\matr{A}}\dqjnt - \dot{\vect{h}}_d||^2\\
@@ -297,7 +268,54 @@ where $k_p, k_d$ are the PD-control gains and $z_r$ is the reference height comi
 
 \paragraph{Inverse dynamics} translate joint and end-effector states to joint torques. Desired joint torques $\bs{\tau}_d$ are calculated via a revursive Newton-Euler algorithm using solution of whole-body \ac{QP}: $\ddqjntd$ and $\bs{\rho}$.
 \begin{equation}
-    \bs{\tau}_d = \matr{M}(\qjnt)\ddqjntd + \matr{C}(\qjnt,\dqjnt) + \matr{G}(\qjnt) + \matr{J}^T \vect{W},
+    \bs{\tau}_d = \matr{M}(\qjnt)\ddqjntd + \matr{C}(\qjnt,\dqjnt) + \matr{G}(\qjnt) + \matr{J}^T \vect{W}_{gr},
 \end{equation}
-where the external wrench $\vect{W}$ is determined by, amongst other things, $\bs{\rho}$.
+where the ground reaction wrench $\vect{W}_{gr}$ is computed with $\bs{\rho}$. A high-level overview of the control framework is shown in \figref{fig:framework}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{STYLESTUFF/controlframework.png}
+\caption{High-level overview of control framework \cite{koolen2016design}. }
+\label{fig:framework}
+\end{figure}
 
+% CoM Height Variation
+\section{Related Works}\label{sec:relatedworksheight}
+To group related works to the study of additional \ac{CoM} height variation compared to the \ac{LIP} model a high level division can be made based on different goals or objectives why vertical \ac{CoM} motion should be considered. As a baseline, objectives are grouped in the following strategies. 
+
+Traditionally, vertical motion is generated through non-predictive control: a dynamic reference plan exists, often based on the LIP model, and height variation are often disturbances on the model considered in the dynamic plan. Reasons to use height variations here include the guarantee of \textit{kinematic feasibility}: height variation allows the robot to step up platforms, and allows the robot to take larger steps. A noteworthy, more unique, example of height variation in non-predictive control is walking with straighter legs as in \cite{griffin2018straight}. The motivation here is to let the robot walk more \textit{human-like}, which could have more underlying benefits, such as kinematic reachability and metabolic energy consumption \cite{wang2012optimizing}.
+
+Because the constant height assumption from the \ac{LIP} is constraining its dynamics, efforts have been made to incorporate CoM height variation in the generation of a dynamic plan. Instead of using an LIP model, a more complicated model is used. \textit{Expected} height variations of the CoM can be incorporated in the dynamic planning problem, which improves the \textit{dynamic feasibility} of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. Expected height variations from a walking pattern can be received from for example a reference trajectory over an height-varying terrain, or from a human-like walking pattern. 
+
+A very recent objective is the specific use of height variation in \textit{balance control}. Normally, traditional balance control strategies are taking a step, movement of the \ac{CoP}: `ankle' strategies and, to a lesser extent, changing the angular momentum about the \ac{CoM}, for example: `hip' strategies. Recently, efforts have been made to incorporate vertical \ac{CoM} motions as an additional strategy for balance control. This is the research of focus in this report.
+
+%var height terrain
+\subsection{Un-even Terrain}
+Probably the most common goal of investigating height variation is the improvement of the behavior of the robot over rough or un-flat terrain. Improving the behavior over un-even terrain can devided in two categories:
+\begin{enumerate}
+	\item Improving the control framework for unexpected changes in terrain.
+	\item Improving the dynamical plan, based on the give terrain information.
+\end{enumerate} 
+The generation of a dynamical plan of a redundant robotic system is traditionally done based on the \ac{LIP} model with constant height. The control framework has to deal with any height variations in terrain, and therefore also in the \ac{CoM}. In other words: the dynamics of the robot or roughly know in advance, but not precisely.\\
+An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used for the a planning method. The drawback here is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
+%natural behavior
+\subsection{Human-like Walking}
+Straight leg walking. MPC approach to optimize for \cite{brasseur2015robust}. Walking reference for straight legs and dynamics feasibility \cite{kajita2017biped}. Paper online gait generation with vertical \ac{CoM} motions in dynamic plan.\cite{kuo2005energetic} \cite{terada2007online}
+\cite{you2016straight} \cite{griffin2018straight} and more.. \cite{lee1998determinants}
+%balance
+\subsection{Balance Control}\label{subsec:heightbalance}
+Two publications that consider height variations as control input for balance:
+\cite{koolen2016balance} \cite{caron2018capturability}\cite{gao2017increase}
+This is the focus in this thesis.\\
+With the  orbital energy from \cite{pratt2007derivation} and (\eqref{eq:eorbit}), a \ac{MPC} method is made by Koolen et al. in \cite{koolen2016balance}. Describing the function $f(x)$ from \eqref{eq:eorbit} as a cubic polynomial, the four polynomial are calculated in this method by introducing four constraints on the trajectory. There is one constraint in the initial height, one constraint on the initial direction, on e constraint on the final height and one contraint on the conservation of the orbital energy as in \eqref{eq:eorbit}. The final horizontal position and velocity are respectively above the virtual point-foot or `ankle' and zero. Which makes this trajectory a capture-trajectory for a point-foot, point-mass model, since no angular momentum is considered and only a single foot location. Furthermore, as mentioned earlier, this orbital energy is in \ac{2D}.\\
+
+% 2D polynomial
+\subsubsection{Virtual Constraint}
+With the dynamical description of Equation \eqref{eq:dynamicsprattstyle}, an energy expression is formulated by introducing the virtual constraint $z=f(x)$ \cite{pratt2007derivation}. The virtual constraint allows for the integration over time to be only expressed in the variable $x$, instead of also being the dependent on time $t$. The final expression for this energy proposed in the work reads as:
+\begin{equation}\label{eq:eorbit}
+    E_{orbit}  = \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0),
+\end{equation}
+where $E_{orbit}$ is the orbital energy under the constraint of $z=f(x)$.
+
+% boundedness
+\subsubsection{Boundedness Condition with Varying Height}
+A height varying version of the boundedness condition from \cite{lanari2014boundedness} is introduced in \cite{caron2018balance} . By having a time varying natural frequency of the pendulum $\omega(t)$, the model combines the boundedness condition with the approach from \cite{hopkins2014humanoid}, which will be discussed . By its nonlinearity, this form of the boundedness condition becomes hard to solve and its applications will be further discussed in Section \ref{subsec:heightbalance}.

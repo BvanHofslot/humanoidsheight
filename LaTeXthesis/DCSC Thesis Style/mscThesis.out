@@ -8,32 +8,32 @@
 \BOOKMARK [0][-]{chapter*.16}{Acknowledgements}{frontmatter_anchor.-1}% 8
 \BOOKMARK [-1][]{mainmatter_anchor.-1}{Main Matter}{}% 9
 \BOOKMARK [0][-]{chapter.1}{Introduction}{mainmatter_anchor.-1}% 10
-\BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 11
+\BOOKMARK [1][-]{section.1.1}{Related Work}{chapter.1}% 11
 \BOOKMARK [1][-]{section.1.2}{Research Objective}{chapter.1}% 12
 \BOOKMARK [1][-]{section.1.3}{Contributions}{chapter.1}% 13
 \BOOKMARK [1][-]{section.1.4}{Thesis Outline}{chapter.1}% 14
 \BOOKMARK [0][-]{chapter.2}{Background}{mainmatter_anchor.-1}% 15
 \BOOKMARK [1][-]{section.2.1}{Walking Preliminaries}{chapter.2}% 16
-\BOOKMARK [2][-]{subsection.2.1.1}{Flywheel Model}{section.2.1}% 17
+\BOOKMARK [2][-]{subsection.2.1.1}{Simple Walking Models}{section.2.1}% 17
 \BOOKMARK [2][-]{subsection.2.1.2}{Ground Reference Points}{section.2.1}% 18
-\BOOKMARK [2][-]{subsection.2.1.3}{Modeling of the Leg}{section.2.1}% 19
+\BOOKMARK [2][-]{subsection.2.1.3}{Pendulum-based Models}{section.2.1}% 19
 \BOOKMARK [2][-]{subsection.2.1.4}{Orbital Energy \046 Capture}{section.2.1}% 20
-\BOOKMARK [1][-]{section.2.2}{Related Works}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.2.1}{Un-even Terrain}{section.2.2}% 22
-\BOOKMARK [2][-]{subsection.2.2.2}{Human-like Walking}{section.2.2}% 23
-\BOOKMARK [2][-]{subsection.2.2.3}{Balance Control}{section.2.2}% 24
-\BOOKMARK [1][-]{section.2.3}{Humanoid Robotics at IHMC}{chapter.2}% 25
-\BOOKMARK [2][-]{subsection.2.3.1}{Robots}{section.2.3}% 26
-\BOOKMARK [2][-]{subsection.2.3.2}{Walking States}{section.2.3}% 27
-\BOOKMARK [2][-]{subsection.2.3.3}{Planning}{section.2.3}% 28
-\BOOKMARK [2][-]{subsection.2.3.4}{Instantaneous Capture Point Control}{section.2.3}% 29
-\BOOKMARK [2][-]{subsection.2.3.5}{Whole-body Control}{section.2.3}% 30
-\BOOKMARK [0][-]{chapter.3}{Theoretic Limits on Capture}{mainmatter_anchor.-1}% 31
-\BOOKMARK [1][-]{section.3.1}{Unconstrained Capture Region}{chapter.3}% 32
-\BOOKMARK [1][-]{section.3.2}{Impact Influenced Capture}{chapter.3}% 33
-\BOOKMARK [1][-]{section.3.3}{Height Constrained Capture}{chapter.3}% 34
-\BOOKMARK [2][-]{subsection.3.3.1}{Minimum Height}{section.3.3}% 35
-\BOOKMARK [2][-]{subsection.3.3.2}{Maximum Height}{section.3.3}% 36
+\BOOKMARK [1][-]{section.2.2}{Humanoid Robotics at IHMC}{chapter.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.1}{Robots}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.2}{Walking States}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.3}{Planning}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.4}{Instantaneous Capture Point Control}{section.2.2}% 25
+\BOOKMARK [2][-]{subsection.2.2.5}{Momentum-based Whole-body Control}{section.2.2}% 26
+\BOOKMARK [1][-]{section.2.3}{Related Works}{chapter.2}% 27
+\BOOKMARK [2][-]{subsection.2.3.1}{Un-even Terrain}{section.2.3}% 28
+\BOOKMARK [2][-]{subsection.2.3.2}{Human-like Walking}{section.2.3}% 29
+\BOOKMARK [2][-]{subsection.2.3.3}{Balance Control}{section.2.3}% 30
+\BOOKMARK [0][-]{chapter.3}{Theoretic Capture Regions}{mainmatter_anchor.-1}% 31
+\BOOKMARK [1][-]{section.3.1}{Unilateral Contact Constrained}{chapter.3}% 32
+\BOOKMARK [1][-]{section.3.2}{Height Constrained}{chapter.3}% 33
+\BOOKMARK [2][-]{subsection.3.2.1}{Minimum Height}{section.3.2}% 34
+\BOOKMARK [2][-]{subsection.3.2.2}{Maximum Height}{section.3.2}% 35
+\BOOKMARK [1][-]{section.3.3}{Vertical Force Constrained}{chapter.3}% 36
 \BOOKMARK [1][-]{section.3.4}{Capturability Comparison}{chapter.3}% 37
 \BOOKMARK [1][-]{section.3.5}{Discussion}{chapter.3}% 38
 \BOOKMARK [0][-]{chapter.4}{Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 39
@@ -41,24 +41,27 @@
 \BOOKMARK [2][-]{subsection.4.1.1}{Height Constraint}{section.4.1}% 41
 \BOOKMARK [2][-]{subsection.4.1.2}{Leg Length Constraint}{section.4.1}% 42
 \BOOKMARK [1][-]{section.4.2}{Discussion}{chapter.4}% 43
-\BOOKMARK [0][-]{chapter.5}{Towards Application}{mainmatter_anchor.-1}% 44
+\BOOKMARK [0][-]{chapter.5}{Toward Application: Standing}{mainmatter_anchor.-1}% 44
 \BOOKMARK [1][-]{section.5.1}{Experimental Setup}{chapter.5}% 45
-\BOOKMARK [2][-]{subsection.5.1.1}{Preliminary Observations}{section.5.1}% 46
-\BOOKMARK [1][-]{section.5.2}{Methods}{chapter.5}% 47
-\BOOKMARK [2][-]{subsection.5.2.1}{Motivation}{section.5.2}% 48
-\BOOKMARK [2][-]{subsection.5.2.2}{Control Framework}{section.5.2}% 49
-\BOOKMARK [2][-]{subsection.5.2.3}{Control Variables}{section.5.2}% 50
-\BOOKMARK [2][-]{subsection.5.2.4}{Control Law}{section.5.2}% 51
-\BOOKMARK [1][-]{section.5.3}{Results}{chapter.5}% 52
-\BOOKMARK [2][-]{subsection.5.3.1}{Standing}{section.5.3}% 53
-\BOOKMARK [2][-]{subsection.5.3.2}{Walking}{section.5.3}% 54
-\BOOKMARK [1][-]{section.5.4}{Discussion}{chapter.5}% 55
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{mainmatter_anchor.-1}% 56
-\BOOKMARK [1][-]{section.6.1}{Recommendations}{chapter.6}% 57
-\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 58
-\BOOKMARK [0][-]{appendix.A}{Test Parameters and Settings}{apdx_anchor.-1}% 59
-\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 60
-\BOOKMARK [0][-]{section*.110}{Bibliography}{backmatter_anchor.-1}% 61
-\BOOKMARK [0][-]{appendix*.112}{Glossary}{backmatter_anchor.-1}% 62
-\BOOKMARK [1][-]{section*.113}{List of Acronyms}{appendix*.112}% 63
-\BOOKMARK [1][-]{section*.115}{List of Symbols}{appendix*.112}% 64
+\BOOKMARK [1][-]{section.5.2}{Method}{chapter.5}% 46
+\BOOKMARK [2][-]{subsection.5.2.1}{Motivation}{section.5.2}% 47
+\BOOKMARK [2][-]{subsection.5.2.2}{Control Framework}{section.5.2}% 48
+\BOOKMARK [1][-]{section.5.3}{Results}{chapter.5}% 49
+\BOOKMARK [1][-]{section.5.4}{Discussion}{chapter.5}% 50
+\BOOKMARK [0][-]{chapter.6}{Toward Application: Walking}{mainmatter_anchor.-1}% 51
+\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 52
+\BOOKMARK [2][-]{subsection.6.1.1}{Preliminary Observations}{section.6.1}% 53
+\BOOKMARK [1][-]{section.6.2}{Methods}{chapter.6}% 54
+\BOOKMARK [2][-]{subsection.6.2.1}{Control Variables}{section.6.2}% 55
+\BOOKMARK [2][-]{subsection.6.2.2}{Control Law}{section.6.2}% 56
+\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 57
+\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 58
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 59
+\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 60
+\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 61
+\BOOKMARK [0][-]{appendix.A}{Test Parameters and Settings}{apdx_anchor.-1}% 62
+\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 63
+\BOOKMARK [0][-]{section*.122}{Bibliography}{backmatter_anchor.-1}% 64
+\BOOKMARK [0][-]{appendix*.124}{Glossary}{backmatter_anchor.-1}% 65
+\BOOKMARK [1][-]{section*.125}{List of Acronyms}{appendix*.124}% 66
+\BOOKMARK [1][-]{section*.127}{List of Symbols}{appendix*.124}% 67

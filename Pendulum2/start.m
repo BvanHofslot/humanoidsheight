@@ -1,17 +1,17 @@
 %%
-CPreg2=[];
+CPreg3(j)=x0;
 g=9.81;
 a_vect=[1 5 10 50]
 for j=1:50
-    zmin = 0.87;
-zmax =1.13;
-x0=-0.33;
-incr =0.01;
+    zmin = 1-j*0.02;
+zmax =1+j*0.02;
+x0=-0.6;
+incr =0.02;
 cost=[];
 X0=[];
 S=[];
 tspan3=[0 5];
-a = j*0.1;
+a = 2.4;
 for i=1:10000;
 x0=x0+incr;
   
@@ -35,7 +35,7 @@ tspan2=[0 t2];
 
 [t,xf] = ode45(@(t,x) penDynFcn(t,x,0),tspan3,x2(end,:));
 
-s = find(xf(:,2) <0.00001,1);
+s = find(xf(:,2) <0.00001,1)
 
 
 if(length(s)==0)
@@ -46,8 +46,9 @@ end
 
 X0(i)=x0;
 
-if(cost(i)<10^-11)
+if(cost(i)<10^-10)
     x0=x0-incr;
+    S(i)=s;
     break;
 end
 
@@ -61,7 +62,7 @@ if(length(cost)>1)
     end
 end
 end
-CPreg2(j)=x0;
+CPreg3(j)=x0;
 end
 %%
 figure('rend','painters','pos', [0 0 600 400]);
@@ -70,13 +71,15 @@ set(groot,'defaulttextinterpreter','latex');
 font = 12;
 hold on;
 for i=1:50
+    zmin = 1-i*0.02;
+zmax =1+i*0.02;
 x0=-0.33;
 incr =0.01;
 cost=[];
 X0=[];
 S=[];
 tspan2=[0 5];
-a = i*0.1;
+a = 9.81;
 t1=sqrt((zmax-1)/(a));
 tspan1=[0 t1];
 
@@ -137,18 +140,19 @@ set(gca,'LineWidth',1)
 set(gca,'FontSize',font)
 set(gca,'TickLabelInterpreter','latex')
 %%
-CP1reg2=[];
+CP1reg4=[];
 g=9.81;
 a_vect=[1 5 10 50]
-
 for j=1:50
-x0=-0.38;
-incr =0.01;
+    zmin = 1-j*0.02;
+zmax =1+j*0.02;
+x0=-0.6;
+incr =0.02;
 cost=[];
 X0=[];
 S=[];
 tspan3=[0 5];
-a =j*0.1;
+a = g;
 for i=1:10000;
 x0=x0+incr;
   
@@ -172,7 +176,7 @@ tspan2=[0 t2];
 
 [t,xf] = ode45(@(t,x) penDynFcn(t,x,0),tspan3,x2(end,:));
 
-s = find(xf(:,2) <0.00001,1);
+s = find(xf(:,2) <0.00001,1)
 
 
 if(length(s)==0)
@@ -183,8 +187,9 @@ end
 
 X0(i)=x0;
 
-if(cost(i)<10^-11)
+if(cost(i)<10^-10)
     x0=x0-incr;
+    S(i)=s;
     break;
 end
 
@@ -198,15 +203,17 @@ if(length(cost)>1)
     end
 end
 end
-CP1reg2(j)=x0;
+CP1reg4(j)=x0;
 end
 %%
 subplot(2,1,2)
 set(groot,'defaulttextinterpreter','latex');  
 hold on;
 for i=1:50
+    zmin = 1-i*0.02;
+zmax =1+i*0.02;
 incr =0.01;
-a = i*0.1;
+a = 9.81;
 
 t=[];
 x1=[];

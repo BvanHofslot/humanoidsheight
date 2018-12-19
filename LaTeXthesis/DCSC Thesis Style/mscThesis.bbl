@@ -1,10 +1,53 @@
 \begin{thebibliography}{10}
 
+\bibitem{behnke2008humanoid}
+S.~Behnke, ``Humanoid robots-from fiction to reality?,'' {\em KI}, vol.~22,
+  no.~4, pp.~5--9, 2008.
+
+\bibitem{pratt2007derivation}
+J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
+  orbital energy for the inverted pendulum bipedal walking model,'' in {\em
+  Robotics and Automation, 2007 IEEE International Conference on},
+  pp.~4653--4660, IEEE, 2007.
+
+\bibitem{kajita1992dynamic}
+S.~Kajita, T.~Yamaura, and A.~Kobayashi, ``Dynamic walking control of a biped
+  robot along a potential energy conserving orbit,'' {\em IEEE Transactions on
+  robotics and automation}, vol.~8, no.~4, pp.~431--438, 1992.
+
+\bibitem{englsberger2013three}
+J.~Englsberger, C.~Ott, and A.~Albu-Sch{\"a}ffer, ``Three-dimensional bipedal
+  walking control using divergent component of motion,'' in {\em Intelligent
+  Robots and Systems (IROS), 2013 IEEE/RSJ International Conference on},
+  pp.~2600--2607, IEEE, 2013.
+
+\bibitem{koolen2012capturability}
+T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
+  ``Capturability-based analysis and control of legged locomotion, part 1:
+  Theory and application to three simple gait models,'' {\em The International
+  Journal of Robotics Research}, vol.~31, no.~9, pp.~1094--1113, 2012.
+
+\bibitem{hopkins2014humanoid}
+M.~A. Hopkins, D.~W. Hong, and A.~Leonessa, ``Humanoid locomotion on uneven
+  terrain using the time-varying divergent component of motion,'' in {\em
+  Humanoid Robots (Humanoids), 2014 14th IEEE-RAS International Conference on},
+  pp.~266--272, IEEE, 2014.
+
 \bibitem{koolen2016balance}
 T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
   height variation: limitations imposed by unilateral contact,'' in {\em
   Humanoid Robots (Humanoids), 2016 IEEE-RAS 16th International Conference on},
   pp.~8--15, IEEE, 2016.
+
+\bibitem{pratt2006capture}
+J.~Pratt, J.~Carff, S.~Drakunov, and A.~Goswami, ``Capture point: A step toward
+  humanoid push recovery,'' in {\em Humanoid Robots, 2006 6th IEEE-RAS
+  International Conference on}, pp.~200--207, IEEE, 2006.
+
+\bibitem{caron2018balance}
+S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
+  variations: A convex boundedness approach,'' in {\em 2018 IEEE International
+  Conference on Robotics and Automation (ICRA)}, pp.~1779--1784, IEEE, 2018.
 
 \bibitem{sardain2004forces}
 P.~Sardain and G.~Bessonnet, ``Forces acting on a biped robot. center of
@@ -44,31 +87,9 @@ Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for
   dual-slip model,'' in {\em Intelligent Robots and Systems (IROS), 2015
   IEEE/RSJ International Conference on}, pp.~374--380, IEEE, 2015.
 
-\bibitem{pratt2007derivation}
-J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
-  orbital energy for the inverted pendulum bipedal walking model,'' in {\em
-  Robotics and Automation, 2007 IEEE International Conference on},
-  pp.~4653--4660, IEEE, 2007.
-
 \bibitem{schwind1998spring}
 W.~J. Schwind, {\em Spring loaded inverted pendulum running: A plant model.}
-\newblock PhD thesis, 1998.
-
-\bibitem{koolen2012capturability}
-T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
-  ``Capturability-based analysis and control of legged locomotion, part 1:
-  Theory and application to three simple gait models,'' {\em The International
-  Journal of Robotics Research}, vol.~31, no.~9, pp.~1094--1113, 2012.
-
-\bibitem{kajita1992dynamic}
-S.~Kajita, T.~Yamaura, and A.~Kobayashi, ``Dynamic walking control of a biped
-  robot along a potential energy conserving orbit,'' {\em IEEE Transactions on
-  robotics and automation}, vol.~8, no.~4, pp.~431--438, 1992.
-
-\bibitem{pratt2006capture}
-J.~Pratt, J.~Carff, S.~Drakunov, and A.~Goswami, ``Capture point: A step toward
-  humanoid push recovery,'' in {\em Humanoid Robots, 2006 6th IEEE-RAS
-  International Conference on}, pp.~200--207, IEEE, 2006.
+\newblock PhD thesis, University of Michigan, 1998.
 
 \bibitem{hof2008extrapolated}
 A.~L. Hof, ``The ‘extrapolated center of mass’ concept suggests a simple
@@ -87,65 +108,14 @@ L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
   (Humanoids), 2014 14th IEEE-RAS International Conference on}, pp.~951--958,
   IEEE, 2014.
 
-\bibitem{hopkins2014humanoid}
-M.~A. Hopkins, D.~W. Hong, and A.~Leonessa, ``Humanoid locomotion on uneven
-  terrain using the time-varying divergent component of motion,'' in {\em
-  Humanoid Robots (Humanoids), 2014 14th IEEE-RAS International Conference on},
-  pp.~266--272, IEEE, 2014.
+\bibitem{oldatlas}
+``{Image of the Atlas humanoid robot}.'' \url{http://robots.ihmc.us/}.
+\newblock Accessed: 28/07/2018.
 
-\bibitem{caron2018balance}
-S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
-  variations: A convex boundedness approach,'' in {\em 2018 IEEE International
-  Conference on Robotics and Automation (ICRA)}, pp.~1779--1784, IEEE, 2018.
-
-\bibitem{englsberger2013three}
-J.~Englsberger, C.~Ott, and A.~Albu-Sch{\"a}ffer, ``Three-dimensional bipedal
-  walking control using divergent component of motion,'' in {\em Intelligent
-  Robots and Systems (IROS), 2013 IEEE/RSJ International Conference on},
-  pp.~2600--2607, IEEE, 2013.
-
-\bibitem{brasseur2015robust}
-C.~Brasseur, A.~Sherikov, C.~Collette, D.~Dimitrov, and P.-B. Wieber, ``A
-  robust linear mpc approach to online generation of 3d biped walking motion,''
-  in {\em Humanoid Robots (Humanoids), 2015 IEEE-RAS 15th International
-  Conference on}, pp.~595--601, IEEE, 2015.
-
-\bibitem{kajita2017biped}
-S.~Kajita, M.~Benallegue, R.~Cisneros, T.~Sakaguchi, S.~Nakaoka, M.~Morisawa,
-  K.~Kaneko, and F.~Kanehiro, ``Biped walking pattern generation based on
-  spatially quantized dynamics,'' in {\em Humanoid Robotics (Humanoids), 2017
-  IEEE-RAS 17th International Conference on}, pp.~599--605, IEEE, 2017.
-
-\bibitem{terada2007online}
-K.~Terada and Y.~Kuniyoshi, ``Online gait planning with dynamical
-  3d-symmetrization method,'' in {\em Humanoid Robots, 2007 7th IEEE-RAS
-  International Conference on}, pp.~222--227, IEEE, 2007.
-
-\bibitem{you2016straight}
-Y.~You, S.~Xin, C.~Zhou, and N.~Tsagarakis, ``Straight leg walking strategy for
-  torque-controlled humanoid robots,'' in {\em Robotics and Biomimetics
-  (ROBIO), 2016 IEEE International Conference on}, pp.~2014--2019, IEEE, 2016.
-
-\bibitem{griffin2018straight}
-R.~J. Griffin, G.~Wiedebach, S.~Bertrand, A.~Leonessa, and J.~Pratt,
-  ``Straight-leg walking through underconstrained whole-body control,'' in {\em
-  2018 IEEE International Conference on Robotics and Automation (ICRA)},
-  pp.~1--5, IEEE, 2018.
-
-\bibitem{lee1998determinants}
-C.~R. Lee and C.~T. Farley, ``Determinants of the center of mass trajectory in
-  human walking and running.,'' {\em Journal of experimental biology},
-  vol.~201, no.~21, pp.~2935--2944, 1998.
-
-\bibitem{caron2018capturability}
-S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
-  analysis, optimization and control of 3d bipedal walking,'' {\em arXiv
-  preprint arXiv:1801.07022}, 2018.
-
-\bibitem{gao2017increase}
-W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
-  through active vertical flexion and extension motions,'' {\em Robotica},
-  vol.~35, no.~7, pp.~1541--1561, 2017.
+\bibitem{valkyrie}
+``{Image of the Valkyrie humanoid robot}.''
+  \url{https://spectrum.ieee.org/automaton/robotics/humanoids/video-friday-ihmc-valkyrie-harvard-arthropods-flying-wheeled-robot}.
+\newblock Accessed: 28/07/2018.
 
 \bibitem{englsberger2012integration}
 J.~Englsberger and C.~Ott, ``Integration of vertical com motion and angular
@@ -175,6 +145,54 @@ T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
   and J.~Pratt, ``Design of a momentum-based control framework and application
   to the humanoid robot atlas,'' {\em International Journal of Humanoid
   Robotics}, vol.~13, no.~01, p.~1650007, 2016.
+
+\bibitem{griffin2018straight}
+R.~J. Griffin, G.~Wiedebach, S.~Bertrand, A.~Leonessa, and J.~Pratt,
+  ``Straight-leg walking through underconstrained whole-body control,'' in {\em
+  2018 IEEE International Conference on Robotics and Automation (ICRA)},
+  pp.~1--5, IEEE, 2018.
+
+\bibitem{wang2012optimizing}
+J.~M. Wang, S.~R. Hamner, S.~L. Delp, and V.~Koltun, ``Optimizing locomotion
+  controllers using biologically-based actuators and objectives,'' {\em ACM
+  transactions on graphics}, vol.~31, no.~4, 2012.
+
+\bibitem{brasseur2015robust}
+C.~Brasseur, A.~Sherikov, C.~Collette, D.~Dimitrov, and P.-B. Wieber, ``A
+  robust linear mpc approach to online generation of 3d biped walking motion,''
+  in {\em Humanoid Robots (Humanoids), 2015 IEEE-RAS 15th International
+  Conference on}, pp.~595--601, IEEE, 2015.
+
+\bibitem{kajita2017biped}
+S.~Kajita, M.~Benallegue, R.~Cisneros, T.~Sakaguchi, S.~Nakaoka, M.~Morisawa,
+  K.~Kaneko, and F.~Kanehiro, ``Biped walking pattern generation based on
+  spatially quantized dynamics,'' in {\em Humanoid Robotics (Humanoids), 2017
+  IEEE-RAS 17th International Conference on}, pp.~599--605, IEEE, 2017.
+
+\bibitem{terada2007online}
+K.~Terada and Y.~Kuniyoshi, ``Online gait planning with dynamical
+  3d-symmetrization method,'' in {\em Humanoid Robots, 2007 7th IEEE-RAS
+  International Conference on}, pp.~222--227, IEEE, 2007.
+
+\bibitem{you2016straight}
+Y.~You, S.~Xin, C.~Zhou, and N.~Tsagarakis, ``Straight leg walking strategy for
+  torque-controlled humanoid robots,'' in {\em Robotics and Biomimetics
+  (ROBIO), 2016 IEEE International Conference on}, pp.~2014--2019, IEEE, 2016.
+
+\bibitem{lee1998determinants}
+C.~R. Lee and C.~T. Farley, ``Determinants of the center of mass trajectory in
+  human walking and running.,'' {\em Journal of experimental biology},
+  vol.~201, no.~21, pp.~2935--2944, 1998.
+
+\bibitem{caron2018capturability}
+S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
+  analysis, optimization and control of 3d bipedal walking,'' {\em arXiv
+  preprint arXiv:1801.07022}, 2018.
+
+\bibitem{gao2017increase}
+W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
+  through active vertical flexion and extension motions,'' {\em Robotica},
+  vol.~35, no.~7, pp.~1541--1561, 2017.
 
 \bibitem{stephens2007humanoid}
 B.~Stephens, ``Humanoid push recovery,'' in {\em Humanoid Robots, 2007 7th

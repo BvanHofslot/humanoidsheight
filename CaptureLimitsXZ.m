@@ -40,6 +40,7 @@ withHorizontalLimits = true;
 widthMainPlot=2;
 %% Plot
 tspan=[0:0.01:100];
+xicp = -sqrt(1/9.81);
 figure('rend','painters','pos', [0 0 400 800]);
 area([0 1]*-sqrt(2)*xicp,[1.3 1.3],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
 
@@ -51,7 +52,7 @@ if(withHorizontalLimits)
 plot([0, 0.5],[1 1]*zf,'LineStyle', '-.','Color','k');
 end
 hold on;
-xicp = -sqrt(1/9.81);
+
 if(withPolynomials)
     for i=1:39
     xi = sqrt(2)*xicp/40 + i*xicp*sqrt(2)/40;
@@ -121,7 +122,7 @@ xticks([0:0.1:0.5])
 yticks([0:0.1:1.5])
 grid off;
 % Specify legend
-legend([pICP pBal pMinHeight],{'Capture Point','Unilateral Constrained Capture','Height Constrained Capture'})
+legend([pICP pBal pMinHeight],{'LIP Capture Point','Unilateral Constrained Capture','Height Constrained Capture'})
 opts.Format = 'eps';
 opts.Color = 'CMYK';
 opts.Resolution = 10000000;
