@@ -1,10 +1,10 @@
-clc;
-clear all;
-close all;
+set(groot,'defaulttextinterpreter','latex');  
+set(groot, 'defaultAxesTickLabelInterpreter','latex');  
+set(groot, 'defaultLegendInterpreter','latex');
 
 vec(1,:) = [-0.18672 0.6398 1.0815 -0.06219];
-vec(2,:) = [-0.44 1 1 0];
-vec(3,:) = [-0.44 1 1 0];
+vec(2,:) = [-0.2997 1 1 0];
+vec(3,:) = [-0.3003 1 1 0];
 vec(4,:) = [-0.3 1 1 0];
 
 
@@ -31,7 +31,7 @@ ksi02 = dx02*sqrt(z02/9.81);
 x02 = vec(k,1);
 x0ksi2 = -ksi02;
 
-tspan = [0:0.01:150];
+tspan = [0 3];
 [t,y] =ode45(@qfun, tspan, [x0;dx0;z0;dz0]);
 [t2,y2] =ode45(@qfun2, tspan, [x02;dx02;z02;dz02]);
 [t3,y3] =ode45(@qfun3, tspan, [x0;dx0;z0;dz0]);
@@ -106,82 +106,90 @@ uksi = (-7*aksi.^2 + (3*zf*aksi.^3-g.*aksi)./bksi -(10*(aksi.^3).*bksi)/g);% + (
 uksi = max(0,uksi);
 
 m=10;
+fs= 16;
 
 figure('rend','painters','pos', [0 0 1600 600]);
-
-subplot(1,4,1);
+subplot(1,2,1);
 %plot(y(:,1)-x0ksi,y(:,3),'linewidth',1.8)
 plot(y(:,1),y(:,3),'linewidth',5)
 hold on;
-plot(y2(:,1),y2(:,3),'-.','linewidth',5)
+plot(y2(:,1),y2(:,3),'linewidth',5)
 %plot(yksi(:,1),yksi(:,3),'-.','linewidth',5)
 % hold on;
 % plot(y3(:,1),y3(:,3),'-.')
 % plot(yksi(:,1),yksi(:,3),'--')
 set(gca,'fontsize',13);
-legend({'zf=z0','dzf=0'},'FontSize', 16)
-xlabel('x', 'FontSize', 35)
-ylabel('z', 'FontSize', 35)
-axis([-0.4 0.05 0.9 1.15]);
-grid on;
+xlabel('$x$ [m]', 'FontSize', fs)
+ylabel('$z$ [m]', 'FontSize', fs)
+axis equal
+axis([-0.32 0.02 0.99 1.11]);
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
+set(gca,'FontSize',fs)
 % exportfig(gcf,'dzf1.4.eps', opts)
+hsp1=get(gca,'Position')
 
-
-subplot(1,4,2);
-plot(y(:,1),y(:,2),'linewidth',5)
-hold on;
-%plot(yksi(:,1),yksi(:,2),'--','linewidth',5)
+% subplot(1,4,2);
+% plot(y(:,1),y(:,2),'linewidth',5)
 % hold on;
-plot(y2(:,1),y2(:,2),'-.','linewidth',5)
-%plot(yksi(:,2),'--')
-set(gca,'fontsize',13);
-xlabel('x', 'FontSize', 35)
-ylabel('dx', 'FontSize', 35)
-axis([-0.47 0.05 -1.5 1.5]);
-grid on;
-set(gca,'LineWidth',1)
-set(gca,'GridAlpha',0.4)
+% %plot(yksi(:,1),yksi(:,2),'--','linewidth',5)
+% % hold on;
+% plot(y2(:,1),y2(:,2),'-.','linewidth',5)
+% %plot(yksi(:,2),'--')
+% set(gca,'fontsize',13);
+% xlabel('x', 'FontSize', 35)
+% ylabel('dx', 'FontSize', 35)
+% axis([-0.47 0.05 -1.5 1.5]);
+% grid on;
+% set(gca,'LineWidth',1)
+% set(gca,'GridAlpha',0.4)
+% 
+% 
+% 
+% subplot(1,4,3);
+% plot(y(:,1),y(:,4),'linewidth',5)
+% hold on;
+%  %plot(yksi(:,1),yksi(:,4),'--','linewidth',5)
+% hold on;
+% plot(y2(:,1),y2(:,4),'-.','linewidth',5)
+% %plot(yksi(:,4),'--')
+% axis([-0.47 0.05 -5 5]);
+% set(gca,'fontsize',13);
+% xlabel('x', 'FontSize', 35)
+% ylabel('dz', 'FontSize', 35)
+% grid on;
+% set(gca,'LineWidth',1)
+% set(gca,'GridAlpha',0.4)
 
 
-
-subplot(1,4,3);
-plot(y(:,1),y(:,4),'linewidth',5)
-hold on;
- %plot(yksi(:,1),yksi(:,4),'--','linewidth',5)
-hold on;
-plot(y2(:,1),y2(:,4),'-.','linewidth',5)
-%plot(yksi(:,4),'--')
-axis([-0.47 0.05 -5 5]);
-set(gca,'fontsize',13);
-xlabel('x', 'FontSize', 35)
-ylabel('dz', 'FontSize', 35)
-grid on;
-set(gca,'LineWidth',1)
-set(gca,'GridAlpha',0.4)
-
-
-subplot(1,4,4);
+subplot(1,2,2);
 plot(y(:,1),ddz,'linewidth',5)
 hold on;
 %plot(yksi(:,1),ddzksi,'--','linewidth',5)
 % hold on;
- plot(y2(:,1),ddz2,'-.','linewidth',5)
+ plot(y2(:,1),ddz2,'linewidth',5)
 %plot(ddzksi,'--')
-axis([-0.47 0.05 -20 110]);
-legend({'zf=z0','dzf=0'},'FontSize', 16)
+axis([-0.32 0.02 -4 32]);
+legend({'$z_f=1.0$','$\dot{z}_f=0.0$'},'FontSize', fs)
 set(gca,'fontsize',13);
-xlabel('x', 'FontSize', 35)
-ylabel('ddz', 'FontSize', 35)
-grid on;
+xlabel('$x$ [m]', 'FontSize', fs)
+ylabel('$\ddot{z}$ [m/s2]', 'FontSize', fs)
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
 opts.Format = 'eps';
 opts.color = 'CMYK';
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
+set(gca,'FontSize',fs)
+hsp2=get(gca,'Position')
+% set(gca,'Position',[hsp1(1:4)]);
 % exportfig(gcf,'dzf1.4.eps', opts)
+opts.Format = 'eps';
+opts.Color = 'CMYK';
+opts.Resolution = 10000000;
+% %set(gca,'LineWidth',1)
+% set(gca,'GridAlpha',0.4)
+exportfig(gcf,'polynomialddotz.eps', opts)
 
 tau = 10*sqrt(x.^2 + z.^2).*u;
 %tau2 = 10*sqrt(x2.^2 + z2.^2).*u2;
@@ -190,7 +198,7 @@ tauksi = 10*sqrt(xksi.^2 + zksi.^2).*uksi;
 % subplot(1,5,5);
 % 
 figure;
-plot(tau,'linewidth',5)
+plot(x,tau,'linewidth',5)
 hold on;
 %plot(y2(:,1),tau2,'-.','linewidth',5)
 %plot(yksi(:,1),tauksi,'--','linewidth',5)
@@ -198,7 +206,7 @@ hold on;
 % plot(tau2,'-.')
 % plot(tauksi,'--')
 legend({'x0=-0.3','x0=-0.319'},'FontSize', 16)
-axis([0 150 0 500]);
+axis([-0.32 0.02 0 500]);
 set(gca,'fontsize',13);
 xlabel('x', 'FontSize', 35)
 ylabel('tau', 'FontSize', 35)
