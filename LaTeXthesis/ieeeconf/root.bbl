@@ -104,4 +104,10 @@ N.~P. Linthorne, ``Analysis of standing vertical jumps using a force
 D.~E. Orin, A.~Goswami, and S.-H. Lee, ``Centroidal dynamics of a humanoid
   robot,'' \emph{Autonomous Robots}, vol.~35, no. 2-3, pp. 161--176, 2013.
 
+\bibitem{kuindersma2014efficiently}
+S.~Kuindersma, F.~Permenter, and R.~Tedrake, ``An efficiently solvable
+  quadratic program for stabilizing dynamic locomotion,'' in \emph{Robotics and
+  Automation (ICRA), 2014 IEEE International Conference on}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2014, pp. 2589--2594.
+
 \end{thebibliography}
