@@ -20,8 +20,7 @@
 
 \bibitem{pratt2006capture}
 J.~Pratt, J.~Carff, S.~Drakunov, and A.~Goswami, ``Capture point: A step toward
-  humanoid push recovery,'' in \emph{Humanoid Robots, 2006 6th IEEE-RAS
-  International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
+  humanoid push recovery,'' in \emph{IEEE-RAS Int. Conf. Humanoid Robots},
   2006, pp. 200--207.
 
 \bibitem{koolen2012capturability}
@@ -31,29 +30,24 @@ T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
   Journal of Robotics Research}, vol.~31, no.~9, pp. 1094--1113, 2012.
 
 \bibitem{stephens2007humanoid}
-B.~Stephens, ``Humanoid push recovery,'' in \emph{Humanoid Robots, 2007 7th
-  IEEE-RAS International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2007, pp. 589--595.
+B.~Stephens, ``Humanoid push recovery,'' in \emph{IEEE-RAS Int. Conf. Humanoid
+  Robots}, 2007, pp. 589--595.
 
 \bibitem{takenaka2009real}
 T.~Takenaka, T.~Matsumoto, and T.~Yoshiike, ``Real time motion generation and
   control for biped robot-1 st report: Walking gait pattern generation,'' in
-  \emph{Intelligent Robots and Systems, 2009. IROS 2009. IEEE/RSJ International
-  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2009, pp.
-  1084--1091.
+  \emph{IEEE/RSJ Int. Conf. Intell. Robots Syst.}, 2009, pp. 1084--1091.
 
 \bibitem{lanari2014boundedness}
 L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
-  of locomotion trajectories for biped robots,'' in \emph{Humanoid Robots
-  (Humanoids), 2014 14th IEEE-RAS International Conference on}.\hskip 1em plus
-  0.5em minus 0.4em\relax IEEE, 2014, pp. 951--958.
+  of locomotion trajectories for biped robots,'' in \emph{IEEE-RAS Int. Conf.
+  Humanoid Robots}, 2014, pp. 951--958.
 
 \bibitem{kajita2003resolved}
 S.~Kajita, F.~Kanehiro, K.~Kaneko, K.~Fujiwara, K.~Harada, K.~Yokoi, and
   H.~Hirukawa, ``Resolved momentum control: Humanoid motion planning based on
-  the linear and angular momentum,'' in \emph{Intelligent Robots and Systems,
-  2003.(IROS 2003). Proceedings. 2003 IEEE/RSJ International Conference on},
-  vol.~2.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2003, pp. 1644--1650.
+  the linear and angular momentum,'' in \emph{IEEE/RSJ Int. Conf. Intell.
+  Robots Syst.}, vol.~2, 2003, pp. 1644--1650.
 
 \bibitem{lee2012momentum}
 S.-H. Lee and A.~Goswami, ``A momentum-based balance controller for humanoid
@@ -69,14 +63,12 @@ T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
 \bibitem{koolen2016balance}
 T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
   height variation: limitations imposed by unilateral contact,'' in
-  \emph{Humanoid Robots (Humanoids), 2016 IEEE-RAS 16th International
-  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016, pp. 8--15.
+  \emph{IEEE-RAS Int. Conf. Humanoid Robots}, 2016, pp. 8--15.
 
 \bibitem{pratt2007derivation}
 J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
   orbital energy for the inverted pendulum bipedal walking model,'' in
-  \emph{Robotics and Automation, 2007 IEEE International Conference on}.\hskip
-  1em plus 0.5em minus 0.4em\relax IEEE, 2007, pp. 4653--4660.
+  \emph{IEEE Int. Conf. on Robot. Autom.}, 2007, pp. 4653--4660.
 
 \bibitem{gao2017increase}
 W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
@@ -85,9 +77,8 @@ W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
 
 \bibitem{caron2018balance}
 S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
-  variations: A convex boundedness approach,'' in \emph{2018 IEEE International
-  Conference on Robotics and Automation (ICRA)}.\hskip 1em plus 0.5em minus
-  0.4em\relax IEEE, 2018, pp. 1779--1784.
+  variations: A convex boundedness approach,'' in \emph{IEEE Int. Conf. Robot.
+  Autom.}, 2018, pp. 1779--1784.
 
 \bibitem{radford2015valkyrie}
 N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
@@ -106,8 +97,13 @@ D.~E. Orin, A.~Goswami, and S.-H. Lee, ``Centroidal dynamics of a humanoid
 
 \bibitem{kuindersma2014efficiently}
 S.~Kuindersma, F.~Permenter, and R.~Tedrake, ``An efficiently solvable
-  quadratic program for stabilizing dynamic locomotion,'' in \emph{Robotics and
-  Automation (ICRA), 2014 IEEE International Conference on}.\hskip 1em plus
-  0.5em minus 0.4em\relax IEEE, 2014, pp. 2589--2594.
+  quadratic program for stabilizing dynamic locomotion,'' in \emph{IEEE Int.
+  Conf. Robot. Autom.}, 2014, pp. 2589--2594.
+
+\bibitem{griffin2017walking}
+R.~J. Griffin, G.~Wiedebach, S.~Bertrand, A.~Leonessa, and J.~Pratt, ``Walking
+  stabilization using step timing and location adjustment on the humanoid
+  robot, atlas,'' in \emph{IEEE/RSJ Int. Conf. Intell. Robots Syst.}, 2017, pp.
+  667--673.
 
 \end{thebibliography}
