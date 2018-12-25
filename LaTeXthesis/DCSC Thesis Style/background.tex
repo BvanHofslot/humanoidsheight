@@ -84,7 +84,7 @@ where $x$ the horizontal location of the pendulum tip and $\ddot{x}$ its acceler
 \begin{itemize}
 	\item The inverted pendulum model \cite{kuo2005energetic}
 	\item The \ac{SLIP} model \cite{liu2015trajectory}
-	\item A model with prismatic joint: varyable height inverted pendulum \cite{pratt2007derivation}
+	\item A pendulum with prismatic joint, not constrained to maintain a constant height: the \ac{VHIP} \cite{pratt2007derivation}
 \end{itemize}
 The inverted pendulum model is often used in human motion studies. The \ac{SLIP} model originates from hopping and running robots \cite{schwind1998spring} and models the inverted pendulum as a spring. In \figref{fig:2Dnonlinmodel} the full nonlinear model with pristmatic leg joint is shown in \ac{2D}. The dynamics of the point mass can be written in two ways. One is as a function of the virtual leg force $\vect{f}$:
 \begin{equation}
@@ -100,7 +100,7 @@ Note that those models are identical, but can be used for different purposes.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.2\textwidth]{STYLESTUFF/2Dnonlin.png}
-\caption{Basic \ac{2D} inverted pendulum model with varying length.}
+\caption{Basic \ac{2D} inverted pendulum model with variable length.}
 \label{fig:2Dnonlinmodel}
 \end{figure}
 
@@ -290,12 +290,6 @@ A very recent objective is the specific use of height variation in \textit{balan
 
 %var height terrain
 \subsection{Un-even Terrain}
-Probably the most common goal of investigating height variation is the improvement of the behavior of the robot over rough or un-flat terrain. Improving the behavior over un-even terrain can devided in two categories:
-\begin{enumerate}
-	\item Improving the control framework for unexpected changes in terrain.
-	\item Improving the dynamical plan, based on the give terrain information.
-\end{enumerate} 
-The generation of a dynamical plan of a redundant robotic system is traditionally done based on the \ac{LIP} model with constant height. The control framework has to deal with any height variations in terrain, and therefore also in the \ac{CoM}. In other words: the dynamics of the robot or roughly know in advance, but not precisely.\\
 An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used for the a planning method. The drawback here is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
 %natural behavior
 \subsection{Human-like Walking}
@@ -303,19 +297,22 @@ Straight leg walking. MPC approach to optimize for \cite{brasseur2015robust}. Wa
 \cite{you2016straight} \cite{griffin2018straight} and more.. \cite{lee1998determinants}
 %balance
 \subsection{Balance Control}\label{subsec:heightbalance}
-Two publications that consider height variations as control input for balance:
-\cite{koolen2016balance} \cite{caron2018capturability}\cite{gao2017increase}
-This is the focus in this thesis.\\
-With the  orbital energy from \cite{pratt2007derivation} and (\eqref{eq:eorbit}), a \ac{MPC} method is made by Koolen et al. in \cite{koolen2016balance}. Describing the function $f(x)$ from \eqref{eq:eorbit} as a cubic polynomial, the four polynomial are calculated in this method by introducing four constraints on the trajectory. There is one constraint in the initial height, one constraint on the initial direction, on e constraint on the final height and one contraint on the conservation of the orbital energy as in \eqref{eq:eorbit}. The final horizontal position and velocity are respectively above the virtual point-foot or `ankle' and zero. Which makes this trajectory a capture-trajectory for a point-foot, point-mass model, since no angular momentum is considered and only a single foot location. Furthermore, as mentioned earlier, this orbital energy is in \ac{2D}.\\
+In this section, the following three publications that consider height variations as control input for balance are discussed. The work proposed by: Koolen, Posa \& Tedrake in \cite{koolen2016balance},  Gao, Jia \& Fu in \cite{gao2017increase} and  Caron \& Mallein in \cite{caron2018balance}:
 
 % 2D polynomial
-\subsubsection{Virtual Constraint}
-With the dynamical description of Equation \eqref{eq:dynamicsprattstyle}, an energy expression is formulated by introducing the virtual constraint $z=f(x)$ \cite{pratt2007derivation}. The virtual constraint allows for the integration over time to be only expressed in the variable $x$, instead of also being the dependent on time $t$. The final expression for this energy proposed in the work reads as:
-\begin{equation}\label{eq:eorbit}
-    E_{orbit}  = \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0),
+\paragraph{Koolen et al.} propose a \ac{2D} \ac{MPC} law, based on the \ac{VHIP} orbital energy proposed in \cite{pratt2007derivation}. This energy reads as follows:
+\begin{equation}\label{eq:evhip}
+    E_{VHIP}  = \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{x_0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(x_0)+gx_0^2f(x_0),
 \end{equation}
-where $E_{orbit}$ is the orbital energy under the constraint of $z=f(x)$.
+where $E_{VHIP}$ is the \ac{VHIP} orbital energy. The virtual constraint $z=f(x)$ is used to make a closed-form solution possible for the energy. Furthermore, $\bar{f}(x)=f(x)-f'(x)x$. Unlike its \ac{LIP} cousin, this \ac{2D} orbital energy allows for \ac{CoM} height variation. Note that filling in a constant value for the function, $f(x)=z_0$, rewrites to the \ac{LIP} orbital energy.
+
+The function $f(x)$ is constrained to be a cubic polynomial in \cite{koolen2016balance}. Using this description, four constraints are presented, which are used in a matrix to solve for the polynomial constants. There is one constraint on the final height, one constraint on the initial height, one on the initial direction and one constraint on conservation of $E_{VHIP}$. The final position is above the \ac{CoP} and the final velocity is zero, such that the resulting polynomial trajectory is a \textit{capture trajectory}. Next to this, \textit{regions of attraction} for this controller are investigated: initial states in which this controller is still able to let the \ac{VHIP} converge to the unstable equilibrium. However, there are no kinematic constraints taken into account, such that the polynomial trajectories can become unrealistically high above the \ac{CoP}. Though, the analytic solution for the capture trajectory guarantees fast computations, which allow for the use in \ac{MPC}.
+
+\paragraph{Gao et al.} present different \ac{2D} strategies to use vertical motion in balance control. An example is the lowering of the \ac{CoM} height in the current step, to exert more force and raise the \ac{CoM} in the next step. In this way, the pendulum can stop closer to the current position than with an \ac{LIP} trajectory. Furthermore, the natural frequency of the \ac{LIP} is adjusted for the added vertical acceleration. To make the dynamical model solvable over time, a constant height is considered, as the deviations from the initial height are considered as relatively small.
 
 % boundedness
-\subsubsection{Boundedness Condition with Varying Height}
-A height varying version of the boundedness condition from \cite{lanari2014boundedness} is introduced in \cite{caron2018balance} . By having a time varying natural frequency of the pendulum $\omega(t)$, the model combines the boundedness condition with the approach from \cite{hopkins2014humanoid}, which will be discussed . By its nonlinearity, this form of the boundedness condition becomes hard to solve and its applications will be further discussed in Section \ref{subsec:heightbalance}.
+\paragraph{Caron \& Mallein} propose a \ac{3D} \ac{MPC} law based on a height varying version of the boundedness condition from \cite{lanari2014boundedness}. By using a time varying natural frequency of the pendulum $\omega(t)$, the authors combine the boundedness condition with the approach in \cite{hopkins2014humanoid}. By the nonlinearity of the problem, it is initially hard to solve. The problem function is reformulated and written as a function of an inverse of time, rather than as a function of time. The resulting problem is then solved using a nonlinear solver.
+
+This work is expanded in \cite{caron2018capturability}. The problem is extended from `0-step' problems to multi step problems. It is again heavily rewritten and sequential quadratic programming is used to allow for fast computation times, which makes the problem solvable online.
+
+\subsection{Discussion}

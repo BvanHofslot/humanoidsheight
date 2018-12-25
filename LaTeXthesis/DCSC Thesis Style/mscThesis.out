@@ -28,40 +28,41 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{Un-even Terrain}{section.2.3}% 28
 \BOOKMARK [2][-]{subsection.2.3.2}{Human-like Walking}{section.2.3}% 29
 \BOOKMARK [2][-]{subsection.2.3.3}{Balance Control}{section.2.3}% 30
-\BOOKMARK [0][-]{chapter.3}{Theoretic Capture Regions}{mainmatter_anchor.-1}% 31
-\BOOKMARK [1][-]{section.3.1}{Unilateral Contact Constrained}{chapter.3}% 32
-\BOOKMARK [1][-]{section.3.2}{Height Constrained}{chapter.3}% 33
-\BOOKMARK [2][-]{subsection.3.2.1}{Minimum Height}{section.3.2}% 34
-\BOOKMARK [2][-]{subsection.3.2.2}{Maximum Height}{section.3.2}% 35
-\BOOKMARK [1][-]{section.3.3}{Vertical Force Constrained}{chapter.3}% 36
-\BOOKMARK [1][-]{section.3.4}{Capturability Comparison}{chapter.3}% 37
-\BOOKMARK [1][-]{section.3.5}{Discussion}{chapter.3}% 38
-\BOOKMARK [0][-]{chapter.4}{Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 39
-\BOOKMARK [1][-]{section.4.1}{Constraint Matrix}{chapter.4}% 40
-\BOOKMARK [2][-]{subsection.4.1.1}{Height Constraint}{section.4.1}% 41
-\BOOKMARK [2][-]{subsection.4.1.2}{Leg Length Constraint}{section.4.1}% 42
-\BOOKMARK [1][-]{section.4.2}{Discussion}{chapter.4}% 43
-\BOOKMARK [0][-]{chapter.5}{Toward Application: Standing}{mainmatter_anchor.-1}% 44
-\BOOKMARK [1][-]{section.5.1}{Experimental Setup}{chapter.5}% 45
-\BOOKMARK [1][-]{section.5.2}{Method}{chapter.5}% 46
-\BOOKMARK [2][-]{subsection.5.2.1}{Motivation}{section.5.2}% 47
-\BOOKMARK [2][-]{subsection.5.2.2}{Control Framework}{section.5.2}% 48
-\BOOKMARK [1][-]{section.5.3}{Results}{chapter.5}% 49
-\BOOKMARK [1][-]{section.5.4}{Discussion}{chapter.5}% 50
-\BOOKMARK [0][-]{chapter.6}{Toward Application: Walking}{mainmatter_anchor.-1}% 51
-\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 52
-\BOOKMARK [2][-]{subsection.6.1.1}{Preliminary Observations}{section.6.1}% 53
-\BOOKMARK [1][-]{section.6.2}{Methods}{chapter.6}% 54
-\BOOKMARK [2][-]{subsection.6.2.1}{Control Variables}{section.6.2}% 55
-\BOOKMARK [2][-]{subsection.6.2.2}{Control Law}{section.6.2}% 56
-\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 57
-\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 58
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 59
-\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 60
-\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 61
-\BOOKMARK [0][-]{appendix.A}{Test Parameters and Settings}{apdx_anchor.-1}% 62
-\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 63
-\BOOKMARK [0][-]{section*.122}{Bibliography}{backmatter_anchor.-1}% 64
-\BOOKMARK [0][-]{appendix*.124}{Glossary}{backmatter_anchor.-1}% 65
-\BOOKMARK [1][-]{section*.125}{List of Acronyms}{appendix*.124}% 66
-\BOOKMARK [1][-]{section*.127}{List of Symbols}{appendix*.124}% 67
+\BOOKMARK [2][-]{subsection.2.3.4}{Discussion}{section.2.3}% 31
+\BOOKMARK [0][-]{chapter.3}{Theoretic Capture Regions}{mainmatter_anchor.-1}% 32
+\BOOKMARK [1][-]{section.3.1}{Unilateral Contact Constrained}{chapter.3}% 33
+\BOOKMARK [1][-]{section.3.2}{Height Constrained}{chapter.3}% 34
+\BOOKMARK [2][-]{subsection.3.2.1}{Minimum Height}{section.3.2}% 35
+\BOOKMARK [2][-]{subsection.3.2.2}{Maximum Height}{section.3.2}% 36
+\BOOKMARK [1][-]{section.3.3}{Vertical Force Constrained}{chapter.3}% 37
+\BOOKMARK [1][-]{section.3.4}{Capturability Comparison}{chapter.3}% 38
+\BOOKMARK [1][-]{section.3.5}{Discussion}{chapter.3}% 39
+\BOOKMARK [0][-]{chapter.4}{Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 40
+\BOOKMARK [1][-]{section.4.1}{Constraint Matrix with Final Velocity}{chapter.4}% 41
+\BOOKMARK [2][-]{subsection.4.1.1}{Height Constraint}{section.4.1}% 42
+\BOOKMARK [2][-]{subsection.4.1.2}{Leg Length Constraint}{section.4.1}% 43
+\BOOKMARK [1][-]{section.4.2}{Discussion}{chapter.4}% 44
+\BOOKMARK [0][-]{chapter.5}{Toward Application: Standing}{mainmatter_anchor.-1}% 45
+\BOOKMARK [1][-]{section.5.1}{Experimental Setup}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.2}{Method}{chapter.5}% 47
+\BOOKMARK [2][-]{subsection.5.2.1}{Motivation}{section.5.2}% 48
+\BOOKMARK [2][-]{subsection.5.2.2}{Control Framework}{section.5.2}% 49
+\BOOKMARK [1][-]{section.5.3}{Results}{chapter.5}% 50
+\BOOKMARK [1][-]{section.5.4}{Discussion}{chapter.5}% 51
+\BOOKMARK [0][-]{chapter.6}{Toward Application: Walking}{mainmatter_anchor.-1}% 52
+\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 53
+\BOOKMARK [2][-]{subsection.6.1.1}{Preliminary Observations}{section.6.1}% 54
+\BOOKMARK [1][-]{section.6.2}{Methods}{chapter.6}% 55
+\BOOKMARK [2][-]{subsection.6.2.1}{Control Variables}{section.6.2}% 56
+\BOOKMARK [2][-]{subsection.6.2.2}{Control Law}{section.6.2}% 57
+\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 58
+\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 59
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 60
+\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 61
+\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 62
+\BOOKMARK [0][-]{appendix.A}{Test Parameters and Settings}{apdx_anchor.-1}% 63
+\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 64
+\BOOKMARK [0][-]{section*.125}{Bibliography}{backmatter_anchor.-1}% 65
+\BOOKMARK [0][-]{appendix*.127}{Glossary}{backmatter_anchor.-1}% 66
+\BOOKMARK [1][-]{section*.128}{List of Acronyms}{appendix*.127}% 67
+\BOOKMARK [1][-]{section*.130}{List of Symbols}{appendix*.127}% 68

@@ -5,26 +5,26 @@
 \contentsline {figure}{\numberline {2-1}{\ignorespaces The flywheel model with finit-sized support polygon.\relax }}{6}{figure.caption.29}
 \contentsline {figure}{\numberline {2-2}{\ignorespaces Ground reference points for different modeling choices. (a) The yellow cross points out the \ac {ZMP} location. As no angular momentum is considered in the model, it intersects with the \ac {CMP}. (b) Angular momentum is added to the model, the blue cross points out the \ac {CMP} location and the yellow cross the \ac {ZMP} location.\relax }}{7}{figure.caption.36}
 \contentsline {figure}{\numberline {2-3}{\ignorespaces \ac {3D} motion of \ac {LIP} model.\relax }}{8}{figure.caption.41}
-\contentsline {figure}{\numberline {2-4}{\ignorespaces Basic \ac {2D} inverted pendulum model with varying length.\relax }}{9}{figure.caption.44}
-\contentsline {figure}{\numberline {2-5}{\ignorespaces Visualization of the path to the \ac {CP}. \relax }}{10}{figure.caption.48}
-\contentsline {figure}{\numberline {2-6}{\ignorespaces (a) Atlas \cite {oldatlas} and (b) Valkyrie \cite {valkyrie} walking over an un-even cinder block field at IHMC \relax }}{11}{figure.caption.54}
-\contentsline {figure}{\numberline {2-7}{\ignorespaces Wrench cone with basis vectors \cite {koolen2016design}. \relax }}{14}{figure.caption.64}
-\contentsline {figure}{\numberline {2-8}{\ignorespaces High-level overview of control framework \cite {koolen2016design}. \relax }}{15}{figure.caption.66}
+\contentsline {figure}{\numberline {2-4}{\ignorespaces Basic \ac {2D} inverted pendulum model with variable length.\relax }}{9}{figure.caption.45}
+\contentsline {figure}{\numberline {2-5}{\ignorespaces Visualization of the path to the \ac {CP}. \relax }}{10}{figure.caption.49}
+\contentsline {figure}{\numberline {2-6}{\ignorespaces (a) Atlas \cite {oldatlas} and (b) Valkyrie \cite {valkyrie} walking over an un-even cinder block field at IHMC \relax }}{11}{figure.caption.55}
+\contentsline {figure}{\numberline {2-7}{\ignorespaces Wrench cone with basis vectors \cite {koolen2016design}. \relax }}{14}{figure.caption.65}
+\contentsline {figure}{\numberline {2-8}{\ignorespaces High-level overview of control framework \cite {koolen2016design}. \relax }}{15}{figure.caption.67}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3-1}{\ignorespaces Unconstrained capture region and balistic limit. The grey plots visualize possible intermediate trajectories and are made with the method of \cite {koolen2016balance}\relax }}{21}{figure.caption.73}
-\contentsline {figure}{\numberline {3-2}{\ignorespaces The height constrained capture limits for $\mathaccentV {dot}05F{x}_0=1.0$, $z_0=1.0$, (a) $z_{min}=0.7$ and (b) $z_{max}=1.1$. The grey plots are made with the method of \cite {koolen2016balance} and show that its final horizontal positions lie between the limit and the \ac {CP}. \relax }}{24}{figure.caption.75}
-\contentsline {figure}{\numberline {3-3}{\ignorespaces Comparison of capture region with angular momentum versus height variation\relax }}{26}{figure.caption.79}
+\contentsline {figure}{\numberline {3-1}{\ignorespaces Unconstrained capture region and balistic limit. The grey plots visualize possible intermediate trajectories and are made with the method of \cite {koolen2016balance}\relax }}{21}{figure.caption.75}
+\contentsline {figure}{\numberline {3-2}{\ignorespaces The height constrained capture limits for $\mathaccentV {dot}05F{x}_0=1.0$, $z_0=1.0$, (a) $z_{min}=0.7$ and (b) $z_{max}=1.1$. The grey plots are made with the method of \cite {koolen2016balance} and show that its final horizontal positions lie between the limit and the \ac {CP}. \relax }}{24}{figure.caption.77}
+\contentsline {figure}{\numberline {3-3}{\ignorespaces Comparison of capture region with angular momentum versus height variation\relax }}{26}{figure.caption.81}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4-1}{\ignorespaces Resulting polynomials as output from Algorithm \ref {alg:h} with two different constraints on the final value. Initial conditions are $x_0=-0.25$, $\mathaccentV {dot}05F{x}_0=1.0$, $z_0=1.0$ and $\mathaccentV {dot}05F{z}_0=0$. Blue plot: $\mathaccentV {dot}05F{x}_f=0.552$, red plot: $\mathaccentV {dot}05F{x}_f=0.576$, $z_{max}=1.1$. \relax }}{29}{figure.caption.84}
-\contentsline {figure}{\numberline {4-2}{\ignorespaces Resulting polynomials as output from Algorithm \ref {alg:ll} with two different initial values under the final height constraint $z_f=1.0$. Other initial conditions are $\mathaccentV {dot}05F{x}_0=1.4$, $z_0=1.0$ and $\mathaccentV {dot}05F{z}_0=0$. Blue plot: $\mathaccentV {dot}05F{x}_f=1.107$, red plot: $\mathaccentV {dot}05F{x}_f=0.724$, $l_{max}=1.15$. \relax }}{31}{figure.caption.85}
-\contentsline {figure}{\numberline {4-3}{\ignorespaces \relax }}{31}{figure.caption.87}
+\contentsline {figure}{\numberline {4-1}{\ignorespaces Resulting polynomials as output from Algorithm \ref {alg:h} with two different constraints on the final value. Initial conditions are $x_0=-0.25$ [m], $\mathaccentV {dot}05F{x}_0=1.0$ [m/s], $z_0=1.0$ [m] and $\mathaccentV {dot}05F{z}_0=0$ [m/s]. Blue plot: $\mathaccentV {dot}05F{x}_f=0.552$ [m/s], red plot: $\mathaccentV {dot}05F{x}_f=0.576$ [m/s], $z_{max}=1.1$ [m]. \relax }}{29}{figure.caption.85}
+\contentsline {figure}{\numberline {4-2}{\ignorespaces Resulting polynomials as output from Algorithm \ref {alg:ll} with two different initial values under the final height constraint $z_f=1.0$. Other initial conditions are $\mathaccentV {dot}05F{x}_0=1.4$ [m/s], $z_0=1.0$ [m] and $\mathaccentV {dot}05F{z}_0=0$ [m/s]. Blue plot: $\mathaccentV {dot}05F{x}_f=1.107$ [m/s], red plot: $\mathaccentV {dot}05F{x}_f=0.724$ [m/s], $l_{max}=1.15$ [m]. \relax }}{31}{figure.caption.87}
+\contentsline {figure}{\numberline {4-3}{\ignorespaces \relax }}{32}{figure.caption.89}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6-1}{\ignorespaces Initial (0,SS) and final (f,SS) configurations of \ac {CoM} position (black circle with cross) and \ac {ICP} reference (yellow circle with rotated cross) for \ac {SS} in the $xy$-plane with the parameters from Table Table\nobreakspace {}\ref {tab:stepping}. The green area is the current supporting foothold and the blue line is the \ac {ICP} reference trajectory.\relax }}{38}{figure.caption.108}
-\contentsline {figure}{\numberline {6-2}{\ignorespaces Vizualizations of the error alignment angle for the configuration at start of \ac {SS}, with \ac {ICP} errors: (a) negative in sagital plane, (b) positive in sagital plane, (c) where the error alignment angle is $0$ and (d) where the error alignment angle is orthogonal to the \ac {ICP} error.\leavevmode {\color {red}distance} \relax }}{40}{figure.caption.112}
-\contentsline {figure}{\numberline {6-3}{\ignorespaces Height constraints through \ac {SS}\relax }}{41}{figure.caption.115}
-\contentsline {figure}{\numberline {6-4}{\ignorespaces Height constraints through \ac {SS}\relax }}{42}{figure.caption.120}
-\contentsline {figure}{\numberline {6-5}{\ignorespaces Height constraints through \ac {SS}\relax }}{42}{figure.caption.121}
+\contentsline {figure}{\numberline {6-1}{\ignorespaces Initial (0,SS) and final (f,SS) configurations of \ac {CoM} position (black circle with cross) and \ac {ICP} reference (yellow circle with rotated cross) for \ac {SS} in the $xy$-plane with the parameters from Table Table\nobreakspace {}\ref {tab:stepping}. The green area is the current supporting foothold and the blue line is the \ac {ICP} reference trajectory.\relax }}{38}{figure.caption.111}
+\contentsline {figure}{\numberline {6-2}{\ignorespaces Vizualizations of the error alignment angle for the configuration at start of \ac {SS}, with \ac {ICP} errors: (a) negative in sagital plane, (b) positive in sagital plane, (c) where the error alignment angle is $0$ and (d) where the error alignment angle is orthogonal to the \ac {ICP} error.\leavevmode {\color {red}distance} \relax }}{40}{figure.caption.115}
+\contentsline {figure}{\numberline {6-3}{\ignorespaces Height constraints through \ac {SS}\relax }}{41}{figure.caption.118}
+\contentsline {figure}{\numberline {6-4}{\ignorespaces Height constraints through \ac {SS}\relax }}{42}{figure.caption.123}
+\contentsline {figure}{\numberline {6-5}{\ignorespaces Height constraints through \ac {SS}\relax }}{42}{figure.caption.124}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
