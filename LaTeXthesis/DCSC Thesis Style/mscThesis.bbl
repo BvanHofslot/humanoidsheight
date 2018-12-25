@@ -184,15 +184,15 @@ C.~R. Lee and C.~T. Farley, ``Determinants of the center of mass trajectory in
   human walking and running.,'' {\em Journal of experimental biology},
   vol.~201, no.~21, pp.~2935--2944, 1998.
 
-\bibitem{caron2018capturability}
-S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
-  analysis, optimization and control of 3d bipedal walking,'' {\em arXiv
-  preprint arXiv:1801.07022}, 2018.
-
 \bibitem{gao2017increase}
 W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
   through active vertical flexion and extension motions,'' {\em Robotica},
   vol.~35, no.~7, pp.~1541--1561, 2017.
+
+\bibitem{caron2018capturability}
+S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
+  analysis, optimization and control of 3d bipedal walking,'' {\em arXiv
+  preprint arXiv:1801.07022}, 2018.
 
 \bibitem{stephens2007humanoid}
 B.~Stephens, ``Humanoid push recovery,'' in {\em Humanoid Robots, 2007 7th
