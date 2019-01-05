@@ -11,11 +11,18 @@
 \newcommand{\fgry}{F_{gr,y}}
 \newcommand{\fgrz}{F_{gr,z}}
 \newcommand{\fgrxy}{\mathbf{F}_{gr,xy}}
+\newcommand{\fgrtwo}{\mathbf{F}_{gr,2D}}
+
+\newcommand{\intwo}{\in \mathbb{R}^2}
+\newcommand{\inthree}{\in \mathbb{R}^3}
+\newcommand{\insix}{\in \mathbb{R}^6}
 %com
 \newcommand{\cxyz}{\mathbf{c}}
 \newcommand{\dcxyz}{\dot{\mathbf{c}}}
 \newcommand{\ddcxyz}{\ddot{\mathbf{c}}}
 \newcommand{\cxy}{\mathbf{c}_{xy}}
+\newcommand{\dcxy}{\dot{\mathbf{c}}_{xy}}
+\newcommand{\ddcxy}{\ddot{\mathbf{c}}_{xy}}
 \newcommand{\cx}{x}
 \newcommand{\dcx}{\dot{x}}
 \newcommand{\ddcx}{\ddot{x}}
@@ -26,6 +33,7 @@
 \newcommand{\dcz}{\dot{z}}
 \newcommand{\ddcz}{\ddot{z}}
 \newcommand{\ddzd}{\ddot{z}_d}
+\newcommand{\ddzalpha}{\alpha_{\hat{\ddot{z}}_{c}}}
 %controller
 \newcommand{\zmin}{z_{min}}
 \newcommand{\zmax}{z_{max}}
@@ -60,7 +68,9 @@
 \newcommand{\xcmp}{x_{cmp}}
 \newcommand{\xcmpmax}{x_{cmp,max}}
 \newcommand{\tbang}{t_{bang}}
+\newcommand{\rzmp}{\mathbf{r}_{zmp}}
 \newcommand{\rcop}{\mathbf{r}_{cop}}
+\newcommand{\xcop}{x_{cop}}
 \newcommand{\rcopd}{\mathbf{r}_{cop,d}}
 \newcommand{\icpx}{\xi_x}
 \newcommand{\icpy}{\xi_y}
@@ -92,12 +102,19 @@
 \newcommand{\slct}{\mathbf{S}}
 \newcommand{\paraskip}{\bigskip \\}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\ddzc}{\ddot{z}_{c}}
+\newcommand{\ddzcf}{\ddot{z}_{c,1}}
+\newcommand{\ddzcs}{\ddot{z}_{c,2}}
 
+\newtheorem{lem}{Lemma}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{subcaption}
-
-
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{morefloats}
+\usepackage{dblfloatfix}
+\usepackage{amssymb}
 
 % replace the previous line with the next to include a signature page
 %\documentclass{mscThesis}
@@ -118,8 +135,8 @@
 %-name, date, title
 \mscName{B.J. van Hofslot}%
 \mscDate{\today}%
-\mscTitle{Balance Control of a Humanoid Robot}%
-\mscSubTitle{Using Center of Mass Height Variation}%
+\mscTitle{Humanoid Robot Balance Control using Vertical Center of Mass Motion}%
+\mscSubTitle{}%
 \mscKeyWords{thesis, msc, subject}% only used in PDF properties
 %
 %-cover picture
@@ -165,7 +182,7 @@
 \tocloflot
 %
 %
-\include{preface}
+% \include{preface}
 \include{acknowledgements}          
 \include{dedication}
 %
@@ -185,7 +202,7 @@
 \appendix
 %
 \include{app_parameters}
-
+\include{app_paper}
 %========================== Back matter ======================================
 \backmatter
 %

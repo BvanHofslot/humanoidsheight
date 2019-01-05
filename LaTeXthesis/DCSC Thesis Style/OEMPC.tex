@@ -1,17 +1,17 @@
 %
 % Another appendix chapter
-\chapter{Constrained Orbital Energy Trajectories}\label{chap:mpc}
+\chapter{Theory: Constrained Orbital Energy Trajectories}\label{chap:mpc}
 The height constrained capture bounds cannot be used directly in control, as they consider impacts with no constraints on force. The force constrained bang-bang control law has to be integrated numerically to have knowledge of future states. Therefore, it is interesting to explore an additional method that has knowledge over future states, without the drawback of numerical integration. This chapter proposes an extension to the work of Koolen, Posa and Tedrake in \cite{koolen2016balance}, which relies for an important part on the work by Pratt and Drakunov in \cite{pratt2007derivation}: the \textit{orbital energy} of the \ac{VHIP}.
 
 %% Constraint matrix/polynomial
 \section{Constraint Matrix with Final Velocity}
 In \cite{koolen2016balance}, the final horizontal velocity $\dot{x}_f$ is set to zero, as this leads to a \textit{capture trajectory}: a trajectory that leads to convergence to the unstable equilibrium of the \ac{VHIP}. However, the trajectories are unconstrained and can become unrealistically high above the ground, as shown in \figref{fig:cpbal}. To take kinematic limits of the system into account, constraints on the configuration of the \ac{VHIP} have to be added. In this section, the final horizontal velocity of the \ac{VHIP} orbital energy is left undetermined, and used to find trajectories that do not violate kinematic constraints.
 
-Leaving the final horizontal velocity open can be used in constrained optimization. Using the orbital energy of Equation \ref{eq:eorbit}, but setting the final horizontal position zero gives:
+Leaving the final horizontal velocity open can be used in constrained optimization. Using the \ac{VHIP} orbital energy of Equation \ref{eq:evhip}, but setting the final horizontal position zero gives:
 \begin{equation}
     \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_0^2\bar{f}^2(0).
 \end{equation}
-Note that $\bar{f}^2(0)=(f(0)-f'(0)*0)^2=f(0)^2$. The additional nonzero term on the right-hand side can be added in the constraint matrix of \cite{koolen2016balance}. The constraint matrix reads as:
+Note that $\bar{f}^2(0)=(f(0)-f'(0) \cdot 0)^2=f(0)^2$. The additional nonzero term on the right-hand side can be added in the constraint matrix of \cite{koolen2016balance}. The constraint matrix reads as:
 \begin{equation}
     \underbrace{\begin{bmatrix}1 & 0 & 0 & 0 \\ 
      1 & x_0 & x_0^2 & x_0^3\\
@@ -77,7 +77,7 @@ Note that the matrix is still full rank, as long as $x_f$ and $\dot{x}_f$ are no
 %\end{equation}
 
 % Height Constraint
-\subsection{Height Constraint}
+\subsection{Maximum Height Constraint}
 Using the previous two descriptions, Equation \ref{eq:amatrix} and \ref{eq:a1matrix}, with an undetermined final velocity $\dot{x}_f$, a height constraint can be added to the problem. Algorithm \ref{alg:h} shows how the polynomial values can be found under this constraint. The maximum height of the trajectory being optimized over is at location $x_{zmax}$, which has two solutions. In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \ref{alg:h}, one with the final height constraint and one for the constraint on the final gradient. Notice that the maximum of $f(x)$ in both plots lies on the highest $x$-value of the two solutions of $x_{\zmax}$. Therefore, in Algorithm \ref{alg:h} the solution that corresponds to this peak is sufficient to consider a constraint on maximum height. In the figure, the entire polynomial is shown for explanatory reasons. In control however, only the solid graph would be used, as this is the part of the function after the initial condition.
 \begin{algorithm}
 \caption{Find cubic polynomial constants under height constraint}
@@ -116,7 +116,7 @@ where $\dot{x}_{0,I}=\dot{x}_0 - \frac{x}{z}\dot{z}_I$ is the initial horizontal
 where the value $N=30$ resulted in reasonable precision, as shown in for example \figref{fig:polheight} and a computation time of an average of $0.51$ [ms] in Java.
 
 % leg length constraint
-\subsection{Leg Length Constraint}
+\subsection{Maximum Leg Length Constraint}
 Instead of a constraint on the height of the pendulum, also a constraint on the length can be added as kinematic constraint, which can simulate the maximum leg length. The leg length as a function of $x$ can be expressed using the Pythagorean theorem:
 \begin{equation}
 	l^2(x) = f(x)^2 + x^2,
@@ -168,7 +168,7 @@ Another drawback to the constraint of the polynomial shape is that derivatives o
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{STYLESTUFF/polynomialforce.png}
-\caption{ }
+\caption{Position plot (left) versus the resulting vertical acceleration (right).}
 \label{fig:polforce}
 \end{figure}
 

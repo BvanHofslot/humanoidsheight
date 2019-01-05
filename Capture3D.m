@@ -17,7 +17,6 @@ dzmax = a;
 xcpmaxz = 1.*(sqrt(2*dzmax)+sqrt(1+a)).*dx...
     ./(sqrt(g)*(1+2.*dzmax+sqrt(2.*(1+a).*dzmax)));
 
-
 figure;
 hold on;
 % area(xcpminz/xcp,1-a,'FaceColor',0.85*[1 1 1],'LineStyle','none')
@@ -56,3 +55,4 @@ exportfig(gcf,'caplimits.eps', opts)
 % zlabel('$x_{cp}$');
 % view(-45,150)
 % camup([0 1 0])
+

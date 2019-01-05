@@ -11,6 +11,12 @@ A level-1 auxiliary file: applicationstanding.aux
 A level-1 auxiliary file: application.aux
 A level-1 auxiliary file: conclusion.aux
 A level-1 auxiliary file: app_parameters.aux
+A level-1 auxiliary file: app_paper.aux
 The style file: ieeetr.bst
 A level-1 auxiliary file: glossary.aux
 Database file #1: MyBib.bib
+Repeated entry---line 503 of file MyBib.bib
+ : @article{radford2015valkyrie
+ :                             ,
+I'm skipping whatever remains of this entry
+(There was 1 error message)
