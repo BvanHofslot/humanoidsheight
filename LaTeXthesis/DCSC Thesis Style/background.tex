@@ -27,22 +27,21 @@ A common approach for quantifying the dynamics of a walker, either a human or a 
 
 % ZMP
 \paragraph{The zero moment point} is the point on the ground where the resulting \ac{GRF} does not produce any moment in the horizontal plane \cite{sardain2004forces}. By definition, this is also the point where the part of the \ac{GRF} does not cause angular momentum around the \ac{CoM} intersects with the ground surface. The \ac{ZMP} initially was introduced in \cite{vukobratovic1969contribution}. The \ac{ZMP} formulation reads as:
-\begin{align}
-    x_{zmp}&=x-\frac{\fgrx}{\fgrz}z-\frac{\tau_y}{\fgrz}\\
-    y_{zmp}&=y-\frac{\fgrz}{\fgrz}z+\frac{\tau_x}{\fgrz},
-\end{align}
-where $[\fgrx,\fgry,\fgrz]$ are the components of $\fgr$, $[x,y,z]$ are the components of the \ac{CoM} vector $\cxyz$ and $[\tau_x,-\tau_y]$ are the components of $\taucom$. In \figref{fig:3dlipfoot} the definition of the \ac{ZMP} is visualized in the case of $\inert=0$. 
+\begin{equation}
+    \rzmp=\cxy-\frac{\fgrxy}{\fgrz}z+\frac{\taucom}{\fgrz},
+\end{equation}
+where $\rzmp \in \mathbb{R}^2$ is the \ac{ZMP} location, $\fgrxy=[\fgrx,\fgry]^T$ and $\fgrz$ are the horizontal and vertical components of $\fgr$ respectively, $\cxy = [x,y]^T$ and $z$ are the horizontal and vertical components of the \ac{CoM} Cartesian position and $\taucom = [-\tau_y,\tau_x]^T$ is the torque about the \ac{CoM} in the horizontal plane. In \figref{fig:3dlipfoot} the definition of the \ac{ZMP} is visualized in the case of $\inert=0$. 
 
 % CoP
-\paragraph{The center of pressure} coincides during walking over flat ground with the \ac{ZMP} \cite{vukobratovic2004zero}.The two points however are not equal in more complex environments. The \ac{CoP} is restricted to be located in the support polygon, while the \ac{ZMP} is restricted to lie on the ground plane  \cite{sardain2004forces}. Traditionally, the \ac{CoP} is a measured quantity from a force pressure plate under the foot.
+\paragraph{The center of pressure} coincides during walking over flat ground with the \ac{ZMP} \cite{vukobratovic2004zero}.The two points however are not equal in more complex environments. The \ac{CoP} is restricted to be located in the support polygon, while the \ac{ZMP} is restricted to lie on the ground plane  \cite{sardain2004forces}. Traditionally, the \ac{CoP} is a measured quantity from a force pressure plate under the foot. The \ac{CoP} is linked to the \ac{GRF}-moment, while the \ac{ZMP} is related to the effects of external forces on the \ac{CoM} state \cite{sardain2004forces}. In this thesis, the \ac{CoP} location is denoted as $\rcop \intwo$ and considered equal to $\rzmp$.
 
 % CMP
-\paragraph{The centroidal moment pivot} includes, unlike the \ac{ZMP} and \ac{CoP}, angular momentum around the \ac{CoM}  \cite{popovic2005ground}. This is defined as the point where a line passing through the \ac{CoM}, parallel to the ground reaction force intersects with the ground surface. The \ac{CMP} is defined as
-\begin{align}
-    x_{cmp}&=x-\frac{\fgrx}{\fgrz}z\\
-    y_{cmp}&=y-\frac{\fgrx}{\fgrz}z.
-\end{align}
-In \figref{fig:3dlipfootinertia} the difference between the \ac{ZMP} and \ac{CMP} is graphically explained. 
+\paragraph{The centroidal moment pivot} includes, unlike the \ac{ZMP} and \ac{CoP}, angular momentum around the \ac{CoM}  \cite{popovic2005ground}. This is defined as the point where a line passing through the \ac{CoM}, parallel to the \ac{GRF} intersects with the ground surface. The \ac{CMP} is defined as:
+\begin{equation}
+    \rcmp=\cxy-\frac{\fgrxy}{\fgrz}z,
+    \label{eq:cmp}
+\end{equation}
+where $\rcmp \intwo$ is the \ac{CMP} location. In \figref{fig:3dlipfootinertia} the difference between the \ac{ZMP} and \ac{CMP} is graphically explained. Note that without body inertia in the model, the points coincide. Equivalently, if $\taucom=0$, the points coincide as well.
 
 \begin{figure}[h]
 \centering
@@ -58,20 +57,21 @@ In \figref{fig:3dlipfootinertia} the difference between the \ac{ZMP} and \ac{CMP
 \caption{}
 \label{fig:3dlipfootinertia}
 \end{subfigure}
-\caption{Ground reference points for different modeling choices. (a) The yellow cross points out the \ac{ZMP} location. As no angular momentum is considered in the model, it intersects with the \ac{CMP}. (b) Angular momentum is added to the model, the blue cross points out the \ac{CMP} location and the yellow cross the \ac{ZMP} location.}
+\caption{Ground reference points for different modeling choices. (a) The yellow cross points out the \ac{ZMP}/\ac{CoP} location. As no angular momentum is considered in the model,  the yellow cross is also the \ac{CMP}. (b) A flywheel with inertia is added to the model, the blue cross points out the \ac{CMP} location and the yellow cross the \ac{ZMP}/\ac{CoP} location.}
 \label{fig:zmpvscmp}
 \end{figure}
 
 
 %leg modeling
-\subsection{Pendulum-based Models}
-The modeling of the leg can subdevided in two categories: the \ac{LIP} model and models that consider \ac{CoM} height variation. \todo{explain that this is virtual leg and not necessarily the prismatic joint as with flywheel model}
-\paragraph{The linear inverted pendulum model} is widely used in walking research and especially in robotics \cite{kajita20013d}. In the \ac{2D} \ac{LIP} equations of motion, the motion of the tip along the $x$-axis does not affect the pendulum length $l$:
+\subsection{Inverted Pendulum-based Models}
+The line between a ground reference point and the \ac{CoM} can be modeled as an inverted pendulum-based model. In this thesis, this line is also called the \textit{virtual leg} and a ground reference point is also called the \textit{virtual point-foot}.
+
+\paragraph{The linear inverted pendulum model} is widely used in walking research and especially in legged robotics \cite{kajita20013d}. In the \ac{LIP} equations of motion, the horizontal motion of the pendulum tip does not affect the pendulum length $l$:
 \begin{equation}
-\ddot{x}=\frac{g}{l}x,
+\ddcxy=\frac{g}{l}\cxy,
 \label{eq:LIPeom}
 \end{equation}
-where $x$ the horizontal location of the pendulum tip and $\ddot{x}$ its acceleration. At any position $x$, a local virtual straight pendulum can be considered, so this motion is at a constant height and $l=z_0$  holds. In \ac{3D}, the system dynamics can be decoupled and the dynamics in $y$-direction read the same: $\ddot{y}=\frac{g}{l} y$. In \figref{fig:3dlip} the \ac{3D} motion is visualized if the \ac{CoM} is relatively far from from the base. The pendulum base lies in the origin and $\cxy = [x,y]^T$ is the \ac{2D} \ac{CoM} projection on the horizontal plane. Because the \ac{LIP} assumption holds, the vertical component of the leg force $\boldsymbol{f}$ has to cancel out gravity acceleration: $f_z=mg$.\\
+where $\ddcxy$ is the horizontal \ac{CoM} acceleration. At any horizontal position, a local virtual straight pendulum can be considered, so this motion is at a constant height and $l=z_0$  holds. In \figref{fig:3dlip} the \ac{3D} motion is visualized if the \ac{CoM} is relatively far from from the base. The virtual point-foot lies in the origin. Because the \ac{LIP} assumption holds, the vertical component of $\fgr$ has to cancel out gravity acceleration: $\fgrz=mg$.\\
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\textwidth]{STYLESTUFF/3DCoMwithoutfoot.png}
@@ -82,21 +82,25 @@ where $x$ the horizontal location of the pendulum tip and $\ddot{x}$ its acceler
 % height var model
 \paragraph{Height varying models} consider, unlike the \ac{LIP}, height variation of the \ac{CoM}. Three examples of such models are:
 \begin{itemize}
-	\item The inverted pendulum model \cite{kuo2005energetic}
+	\item The, not linearized, inverted pendulum model \cite{kuo2005energetic}
 	\item The \ac{SLIP} model \cite{liu2015trajectory}
 	\item A pendulum with prismatic joint, not constrained to maintain a constant height: the \ac{VHIP} \cite{pratt2007derivation}
 \end{itemize}
-The inverted pendulum model is often used in human motion studies. The \ac{SLIP} model originates from hopping and running robots \cite{schwind1998spring} and models the inverted pendulum as a spring. In \figref{fig:2Dnonlinmodel} the full nonlinear model with pristmatic leg joint is shown in \ac{2D}. The dynamics of the point mass can be written in two ways. One is as a function of the virtual leg force $\vect{f}$:
-\begin{equation}
-	m\ddot{x} = \vect{f}\frac{x}{\sqrt{x^2 + z^2}}.
+The inverted pendulum model is often used in human motion studies. The advantages of a \ac{LIP}, like fast, closed-form solutions to the dynamics, are often not needed. The \ac{SLIP} model originates from hopping and running robots \cite{schwind1998spring}. Deviations from the nominal height or pendulum length are modeled as mass-spring dynamics. 
+
+Throughout this report, special focus is given to the \ac{VHIP}. In \figref{fig:2Dnonlinmodel} the \ac{VHIP} is shown in \ac{2D}. The dynamics of the point mass can be written in two ways. One is as a function of the \ac{GRF} in \ac{2D}:
+\begin{align}
+	m\ddot{x} &= \fgrtwo\frac{x}{\sqrt{x^2 + z^2}},\\
+	m\ddot{z} &= \fgrtwo\frac{z}{\sqrt{x^2 + z^2}} - mg,
 	\label{eq:dynamicsprattstyle}
-\end{equation}
-The other one is as a function of the vertical acceleration $\ddot{z}$:
+\end{align}
+where $\fgrtwo$ is the \ac{GRF} of the \ac{2D}  model. Using this dynamical representation. Works that use this style of writing are, for example, \cite{pratt2007derivation} and \cite{koolen2016balance}.
+Another way of writing the dynamics of the \ac{VHIP} is as a function of the vertical acceleration $\ddot{z}$:
 \begin{equation}
-	\ddot{x} = \frac{g+\ddot{z}}{z}x.
+	\ddcxyz = \frac{g+\ddot{z}}{z}\cxyz + \vect{g},
 	\label{eq:dynamicscaronstyle}
 \end{equation}
-Note that those models are identical, but can be used for different purposes.
+where $\vect{g}=[0,0,-g]$ is the gravity force vector. The dynamical equation can be seen as a linear time-varying system. Examples of works that use the latter dynamical description are \cite{hopkins2014humanoid} and \cite{caron2018balance}. Note that the two models are identical, but can be used for different purposes.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.2\textwidth]{STYLESTUFF/2Dnonlin.png}
@@ -105,51 +109,51 @@ Note that those models are identical, but can be used for different purposes.
 \end{figure}
 
 % Energy of Walking
-\subsection{Orbital Energy \& Capture}\label{sec:ewalking}
-To have an indication of the state on a future moment in time, a form of energy of the system can be derived. With this energy can for example be determined whether or not the current state is stabilizable within the current footstep or coming footsteps: capturability \cite{koolen2012capturability}. 
+\subsection{Orbital Energy \& Capture Theory}\label{sec:ewalking}
+To have an indication of the \ac{CoM} state on a future moment in time, a form of energy of the system can be derived. This energy can be used to determine the ability of the pendulum to converge to its unstable mode: capture \cite{pratt2006capture}, \cite{koolen2012capturability}.
 
 % LIP orbital energy
-\paragraph{The linear inverted pendulum orbital energy}\label{subsec:liporbit} is originally derived in \cite{kajita1992dynamic} and shows another advantage of the use of \ac{LIP} models. For the same reason that force is mass times acceleration: $F=ma$, impuse momentum is force times velocity: $I=Fv$ and the energy or work done by a force is the force times the distance, and thus the impulse integrated over the time interval: $E = Fs = \int Fv dt$, there can be reasoned that if one takes the time integral of the product of the second and the first derivative of a position, an expression for a normalized energy can be achieved: $\frac{E}{m}=\int av dt$. In the mentioned publication that same action is applied on Eq. \eqref{eq:LIPeom}:
+\paragraph{The linear inverted pendulum orbital energy}\label{subsec:liporbit} is originally derived in \cite{kajita1992dynamic} and shows one of the main advantages of the use of a \ac{LIP} model.  This energy reads as follows
 \begin{equation}
-\Elip = \int (\ddot{x}-\frac{g}{l}x)\dot{x} dt = \frac{1}{2}\dot{x}^2-\frac{g}{2z_0}x^2 +C=0
+\Elip = \int (\ddot{x}-\frac{g}{l}x)\dot{x} dt = \frac{1}{2}\dot{x}^2-\frac{g}{2z_0}x^2.
 \label{eq:Elip}
 \end{equation}
-with $C$ the integration constant. The \ac{LIP} orbital energy is defined as $E_{LIP}=-C$. If $E_{LIP}>0$, the point mass will cross the $x$ position of the pendulum base with its current velocity. If $E_{LIP}<0$, the point mass will not cross the pendulum base and will have a turning point where the velocity becomes zero.
+with $E_{LIP}$ is the \ac{LIP} orbital energy. Note that the expression resembles kinetic and potential energy: one term depends on velocity, the other on position. If $E_{LIP}>0$, the point mass will cross the $x$ position of the pendulum base with its current velocity. If $E_{LIP}<0$, the point mass will not cross the pendulum base and will have a turning point where the velocity becomes zero.
 
 % ICP
-\paragraph{The instantaneous capture point} is an extention of the \ac{CP}, which is derived more than a decade later from $\Elip$ in \cite{pratt2006capture}. Taking $E_{LIP}=0$ and taking the square root of Eq.  \eqref{eq:Elip} gives
+\paragraph{The capture point} is derived more than a decade later from $\Elip$ in \cite{pratt2006capture}. Taking $E_{LIP}=0$ and taking the square root of Eq.  \eqref{eq:Elip} gives
 \begin{equation}
 x_{cp}=\sqrt{ \frac{z_0}{g}}\dot{x} 
 \label{eq:cp}
 \end{equation}
-where $x_{cp}$ is the \ac{CP}, based on the current tip velocity $\dot{x}$. This is the point where the velocity is exactly driven to zero and the pendulum is upright, where neither crossing of the pendulum base ocurred nor turning of body velocity. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point.
+where $x_{cp}$ is the \ac{CP}. This is the point where the velocity is exactly driven to zero and the pendulum is upright, where neither crossing of the pendulum base ocurred nor turning of body velocity. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.4\textwidth]{STYLESTUFF/2DICP.png}
 \caption{Visualization of the path to the \ac{CP}. }
 \label{fig:2dicp}
 \end{figure}
-\paraskip
-Later, the \ac{ICP} was introduced \cite{koolen2012capturability}, which gives a slightly different discription of the point:
+
+\paragraph{The instantaneous capture point} was introduced by \cite{koolen2012capturability}, which gives a slightly different description of the \ac{CP}:
 \begin{equation}
 \icpx=x+\sqrt{ \frac{z_0}{g}}\dot{x} 
 \label{eq:icp}
 \end{equation}
-where $\icpx$ is the \ac{ICP}. In this way, the point can be described in the environment coordinates and can be seen as a point where to step in the environment to come to a stop.
-The $x$- and $y$-coordinate can be decoupled as in the equations of motion of Eq. \eqref{eq:LIPeom}. However, in \ac{3D}, convergence to the capture point in one direction does not also include convergence to the capture point in the other, as the direction of motion can also be directed not towards the pendulum base. Other similar mentions to the \ac{ICP} are extrapolated center of mass \cite{hof2008extrapolated} and the \ac{DCM} \cite{takenaka2009real}. 
+where $\icpx$ is the \ac{ICP} along the $x$-axis. In this way, the point can be described in the environment coordinates and can be seen as a point where to step in the environment to come to a stop. Other similar mentions to the \ac{ICP} are extrapolated center of mass \cite{hof2008extrapolated} and the \ac{DCM} \cite{takenaka2009real}. 
 \paraskip
 For modeling and planning the time derivative is taken of the \ac{ICP}: the \ac{ICP} dynamics \cite{koolen2012capturability}. This time derivative can be written as a function of the current \ac{ICP} location and a ground reference point:
 \begin{equation}\label{eq:icpdyn}
-\dot{\icp}=\sqrt{ \frac{g}{z_0}}(\icp-\rcmp)
+\dot{\icp}=\sqrt{ \frac{g}{z_0}}(\icp-\vect{r})
 \end{equation}
-where $\icp$ is the \ac{2D} vector of the \ac{ICP} location and $\rcmp$ the \ac{2D} \ac{CMP} location. The choice of a ground reference point depends on modeling choices, like inclusion of angular momentum for example.
+where $\icp$ is the \ac{2D} vector of the \ac{ICP} location and $\vect{r}$ is a ground reference point, depending on modeling choices as discussed in Section \ref{sec:grp}.
 
 % Boundedness
-\paragraph{The boundedness condition} \cite{lanari2014boundedness} includes the effects of the motion of the ground reference point in the capture problem and approaches the capture problem from a perspective that the point-mass has to converge to zero velocity in finite time. The solution of $x_u$, a point that also coincides with the \ac{ICP}, reads as:
+\paragraph{The boundedness condition}\label{sec:boundedness} \cite{lanari2014boundedness} includes the effects of the motion of the ground reference point in the capture problem. The solution of $x_u$, a point that also coincides with the \ac{ICP}, reads as:
 \begin{equation}
 x_u(t,r) = e^{\omega_0(t-t_0)}x_u(t_0) -\omega_0 \int_{t_0}^t e^{\omega_0(t-\tau)}r(\tau)d \tau,
 \end{equation}
-where $r(t)$ is the trajectory described by the used ground reference point, the virtual base of the pendulum. The boundedness condition reads as follows: if the the future input $r(t)$ makes the system converge, the following equality holds:
+where $r(t)$ is the trajectory described by the used ground reference point, the virtual base of the pendulum. The boundedness condition reads as follows: if the the future input $r(t)$ results in convergence of the \ac
+{CoM} to the unstable mode, the following equality holds:
 \begin{equation}
 x_u(t_0) = \omega_0 \int_{t_0}^{\infty} e^{-\omega_0(\tau-t_0)}r(\tau)d \tau.
 \end{equation}
@@ -160,11 +164,11 @@ The initial condition, which is equal to the \ac{ICP}, has to be related to $r(t
 \ref{sec:relatedworksheight}, since they are highly related to the research of focus.
 
 % Control Framework IHMC
-\section{Humanoid Robotics at IHMC}
-To support the theory discussed in later experiments, in this chapter a brief background of humanoid robotics at \ac{IHMC} is given. Almost all algorithms are written in Java and similutations are run in \ac{SCS}.
+\section{Humanoid Robotics at IHMC}\label{sec:ihmc}
+To support the methods and results presented later in this thesis, in this section a brief background of humanoid robotics at \ac{IHMC} is given. Almost all algorithms are written in Java and similutations are run in \ac{SCS}.
 %robots
 \subsection{Robots}
-At the moment of writing, there are two humanoid robots present at the institute, Boston Dynamics' Atlas and NASA's Valkyrie. An important difference between the two robot is that Atlas is hydraulically actuated, while Valkyrie relies on electric series elastic actuators. An advantage of the use of hydraulic acuation is the capability of reaching high torques. Series elastic actuators on the other hand are generally better for torque sensing. In \figref{fig:robots} the two robots are shown.
+At the moment of writing, there are two humanoid robots present at the institute, Boston Dynamics' Atlas and NASA's Valkyrie. An important difference between the two robots is that Atlas is hydraulically actuated, while Valkyrie relies on electric series elastic actuators. An advantage of the use of hydraulic actuation is the capability of reaching high joint torques. Series elastic actuators on the other hand are generally better for torque sensing. In \figref{fig:robots} the two robots are shown.
 \begin{figure}[h]
 \centering
   \begin{subfigure}{0.45\textwidth}
@@ -184,10 +188,10 @@ At the moment of writing, there are two humanoid robots present at the institute
 \end{figure}
 %walking states
 \subsection{Walking States}
-In contrary to running, with walking there is a state in every cycle with two feet in contact with the ground. This is the \ac{DS} state and the state where only one leg is on the ground is the \ac{SS} state. In \ac{SS}, the leg in contact with ground is the support leg and the foot taking a step is the swing leg. The transition between those states and the duration in each state play an important role in the generation of a dynamic plan and in the control framework. For example, in the control framework state transitions initiate the start a new trajectory or motion objective for one of the feet.
+In contrary to running, with walking there is a state in every cycle with two feet in contact with the ground. This is the \ac{DS} state and the state where only one leg is on the ground is the \ac{SS} state. Additionally, other states within either the \ac{DS} or \ac{SS} state are added, like toe-off. In \ac{SS}, the leg in contact with ground is the support leg and the foot taking a step is the swing leg. The transition between those states and the duration in each state play an important role in the generation of a dynamic plan and in the control framework. For example, in the control framework state transitions initiate the start a new trajectory or motion objective for one of the feet.
 % planning
 \subsection{Planning}
-Planning of the robots motion in space is executed by seperating footstep planning from the generation of a dynamic plan. The dynamic plan is in this case an \ac{ICP} plan, but this is only one of the methods that exist in the field of research.
+Planning of the robots motion is conducted by separating footstep planning from the generation of a dynamic plan. The dynamic plan is in this case an \ac{ICP} plan.
 %footstepplan
 \paragraph{Footstep planning} is the generation of a sequence of footsteps for the robot to follow. A \ac{LiDAR} sensor on the head of the robot provides terrain information. One way to generate a footstep plan is to let the user define it via a \ac{GUI}. Via relatively simple algorithmic checks on for example kinematic reachability, the \ac{GUI} can show whether a to be placed footstep is feasible or not. To make this process more autonomous, recently developments have been made in the creation of a footstep planner based on a A* search algorithm. 
 %icpplanning
@@ -195,14 +199,14 @@ Planning of the robots motion in space is executed by seperating footstep planni
 \begin{equation}\label{eq:icpsol}
 	\icp(t)=e^{\omega_0t}(\icp_0- \vect{r}) + \vect{r},
 \end{equation}
-where $\vect{r}$ is the virtual point-foot location, $\omega_0=\sqrt{\frac{g}{z_0}}$ is the natural frequency of the \ac{LIP} and $\icp_0$ is the initial \ac{ICP} location. This equation is only valid if the location of the virtual point-foot is assumed to be constant. The virtual point-foot depends on the model considered, but is typically the \ac{ZMP} or \ac{CoP} when no angular momentum is considered and the \ac{CMP} when an attempt is made to estimate the amount of angular momentum generated by the walking motion. 
+where $\omega_0=\sqrt{\frac{g}{z_0}}$ is the natural frequency of the \ac{LIP} and $\icp_0$ is the initial \ac{ICP} location or the \ac{ICP} \textit{knot-point}. This equation assumes that the location of the virtual point-foot is constant. 
+
+Under the assumption of constant virtual point-foot locations, the ground reference \textit{knot-points}, multiple methods have been developed over the years and improvements are still going on. The most traditional generation of a \ac{ICP} reference trajectory is calculated with a single \ac{ZMP} knot-point \cite{englsberger2012integration} for each footstep. Using this method, for every footstep a single \ac{ZMP} knot-point is used, and \ac{ICP} knot-points $\icp_{0,n}$ for the $n$-th step are calculated by integrating the \ac{ICP} dynamics backwards in time for the footsteps considered. Using \eqref{eq:icpsol}, the local \ac{ICP} reference value can be computed at any time instance within the plan. 
 \paraskip
-Under the assumption of the constant virtual point-foot locations, multiple methods have been developed over the years and improvements are still going on. The most traditional generation of a \ac{ICP} reference trajectory is calulated with a single \ac{ZMP} knotpoint \cite{englsberger2012integration}. Using this method, for every footstep a single \ac{ZMP} knotpoint is used, and \ac{ICP} knotpoints $\icp_{0,n}$ for the $n$-th step are calculated by integrating the \ac{ICP} dynamics backwards in time for the footsteps considered. Using \eqref{eq:icpsol}, the local \ac{ICP} refence value can be computed at any time instance within the plan. 
-\paraskip
-The above mentioned method is improved in \cite{englsberger2014trajectory}, where multiple \ac{CMP} knotpoints per foot are considered and \ac{SS} and \ac{DS} transitions are interpolated using splines. In the most recent improvements, continous \ac{CMP} reference trajectories are used for the generation of the \ac{ICP} trajectory \cite{seyde2018inclusion}. An estimate of the angular momentum generated during the walking motion is incorporated in the generation of the \ac{CMP} reference. At the time of writing, the latter method is the one currently in use, and which is used for the experiments in this thesis.
+The above mentioned method is improved in \cite{englsberger2014trajectory}, where multiple \ac{CMP} knotpoints per foot are considered and \ac{SS} and \ac{DS} transitions are interpolated using splines. In the most recent improvements, continous \ac{CMP} reference trajectories are used for the generation of the \ac{ICP} trajectory \cite{seyde2018inclusion}. An estimate of the angular momentum generated during the walking motion is incorporated in the generation of the \ac{CMP} reference. At the time of writing, the latter method is the one currently in use, and which is used for the experiments in Chapter \ref{chap:standing} and Chapter \ref{chap:standing}.
 % icp control
-\subsection{Instantaneous Capture Point Control}
-From an \ac{CMP} and \ac{ICP} reference trajectory, the following control law is used to generate a desired \ac{CMP}:
+\subsection{Instantaneous Capture Point Control}\label{sec:icpcontrol}
+From an \ac{CMP} and \ac{ICP} reference trajectory, the following proportional control law is used to generate a desired \ac{CMP}:
 \begin{equation}
     \rcmpd=\rcmpr + \mathbf{k}_{\xi}(\icp-\icpr),
     \label{eq:rcmpd}
@@ -211,27 +215,27 @@ where $\rcmpd$ is the desired \ac{CMP}, $\rcmpr$ and $\icpr$ are the reference \
 \begin{equation}\label{eq:dotldxy}
     \dotldxy = \frac{\cxy-\rcmpd}{z_0}mg,
 \end{equation}
-where $\dotldxy$ is the desired horizontal linear momentum rate of change, which is basically the desired horizontal force. This value is send to the momentum-based control framework. 
+where $\dotldxy$ is the desired horizontal linear momentum rate of change, which is the desired horizontal force on the \ac{CoM} of the robot. This value is send to the momentum-based whole-body \ac{QP}. 
 
 % momentum control
 \subsection{Momentum-based Whole-body Control}
-The desired horizontal linear momentum rate of change $\dotldxy$ from \ac{ICP} control is one of the inputs for the the whole-body \ac{QP}. The the solution of the whole-body \ac{QP} goes into a inverse dynamics solver, which calculates desired joint torques. 
+The desired horizontal linear momentum rate of change $\dotldxy$ of \ac{ICP} control is one of the inputs for the the whole-body \ac{QP}. The whole-body \ac{QP} finds desired joint accelerations and \ac{GRF}, which are translated to joint torques by Newton-Euler inverse dynamics algorithm.
 %centroidal
-\paragraph{Centroidal dynamics} \cite{orin2013centroidal} translate joint states to state on and around the \ac{CoM}. The  mapping between joint velocities and end-effector motion plays a crucial role in any robotic system:
+\paragraph{Centroidal dynamics} \cite{orin2013centroidal} describe the dynamics on and about the \ac{CoM} on the robot that are a result of external forces, like gravity and \ac{GRF}. To find the \ac{CoM} dynamics for the robotic chain of the humanoid, a short introduction is given to joint to end-effector mapping.The mapping between joint velocities and end-effector motion plays a crucial role in any robotic system:
 \begin{equation}\label{eq:jacobian}
 \matr{T}=\begin{bmatrix}\bs{\omega} \\ \bs{\upsilon} \end{bmatrix} = \matr{J}(\qjnt)\dqjnt \in \mathbb{R}^6,
 \end{equation}
-where $\dqjnt$ are the joint velocities, $\matr{J}(\qjnt)$ is the Jacobian that maps joint velocities to the end-effector twist$\matr{T}$. The twist consist of the angular velocity $\bs{\omega} \in \mathbb{R}^3$ and the linear velocity $\bs{\upsilon} \in \mathbb{R}^3$. In humanoid robotics, a fairly common approach is the use of centroidal momentum:
+where $\dqjnt$ are the joint velocities, $\matr{J}(\qjnt)$ is the Jacobian that maps joint velocities to the end-effector twist $\matr{T}$. The twist consist of the angular velocity $\bs{\omega} \in \mathbb{R}^3$ and the linear velocity $\bs{\upsilon} \in \mathbb{R}^3$. A basis for momentum-based whole-body control is the use of centroidal momentum:
 \begin{equation}
 \vect{h}=\begin{bmatrix}\vect{k} \\ \vect{l} \end{bmatrix} =\matr{A}(\qjnt)\dqjnt,
 \end{equation}
- where $\matr{A}=\matr{I}\matr{J}$ is the inertia matrix $\matr{I}$ times the jacobian. The centroidal momentum $\vect{h}$ consists of the angular part $\vect{k}$ and the linear part $\vect{l}$. The time derivative of the centroidal momentum plays a crucial part in the control framework currently in use \cite{koolen2016design}:
+ where $\matr{A}=\matr{I}\matr{J}$ is the inertia matrix $\matr{I}$ times the jacobian. The centroidal momentum $\vect{h}$ consists of the angular part $\vect{k}$ and the linear part $\vect{l}$ momentum about the \ac{CoM}. The time derivative of the centroidal momentum, the centroidal momentum rate of change, is the constraint on the dynamics of the robot in the \ac{QP} currently in use \cite{koolen2016design}:
 \begin{equation}
 \dot{\vect{h}}=\begin{bmatrix}\dot{\vect{k}}\\ \dot{\vect{l}} \end{bmatrix} =\matr{A}\ddot{\vect{q}} +\dot{\matr{A}}\dot{\vect{q}} = \matr{W}_g + \sum_i\matr{W}_{gr,i} + \sum_i \matr{W}_{ext,i}, 
 \end{equation}
 where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the wrench exterted by \ac{GRF}. The other external wrenches, which can be caused for example by other contacts than ground, are considered zero in this thesis: $\sum_i \matr{W}_{ext,i}=\vect{0}$.
 %qp
-\paragraph{The whole-body quadratic program} \cite{koolen2016design} that translates momentum objectives, motion objectives and privileged configuration objectives to desired joint accelerations and desired \ac{GRF} is structured as follows:
+\paragraph{The whole-body quadratic program} \cite{koolen2016design} optimizes between momentum objectives, motion objectives and privileged configuration objectives to find desired joint accelerations and desired \ac{GRF}. The optimization is formulated as follows:
 \begin{equation}
 \begin{array}{rlcl}
 \displaystyle \min_{\bs{\ddot{q}}_d,\bs{\rho}} & \multicolumn{3}{l}{J_{\bs{\dot{h}}_d} + J_{\bs{J}} + J_{\bs{\rho}} + J_{\bs{\ddot{q}}_d}  + J_p} \\
@@ -240,37 +244,40 @@ where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the w
 &\ddot{\qjnt}_{min} \leq \ddqjntd \leq \ddot{\qjnt}_{max},
 \end{array}
 \end{equation}
-where $\ddqjntd$ are the desired joint accelerations, $\matr{Q}\bs{\rho} = \sum_i\matr{W}_{gr,i}$ is the basis vector matrix $\matr{Q}$ times the basis vector multipliers $\bs{\rho}$. In \figref{fig:wrenchcone}, the basis vectors are visually explained.  
+where $\ddqjntd$ are the desired joint accelerations, $\matr{Q}\bs{\rho} = \sum_i\matr{W}_{gr,i}$ is the basis vector matrix $\matr{Q}$ times the basis vector multipliers $\bs{\rho}$. The basis vector matrix $\matr{Q}$ consists of all basis vectors of the wrench cones from each ground contact point. In \figref{fig:wrenchcone}, the wrench cone for a single contact point is visually explained.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.4\textwidth]{STYLESTUFF/wrenchcone.png}
-\caption{Wrench cone with basis vectors \cite{koolen2016design}. }
+\caption{Approximation of the wrench cone with basis vectors $\boldsymbol{\beta}_{ij}$ for ground contact point $i$. The linear part of the ground reaction wrench, $\vect{f}_i$ in the drawing, is a positive multiplication of the basis vectors and lies inside the wrench cone \cite{koolen2016design}. }
 \label{fig:wrenchcone}
 \end{figure}
-The minimum $\bs{\rho}_{min}$ has to be at least zero, because of the unilateral contact constraint of the robot. The total cost $J$ is composed of the following cost terms:
+The minimum $\bs{\rho}_{min}$ has to be at least zero, because of the unilateral contact constraint of the feet of the robot. The total cost $J$ is composed of the following cost terms:
 \begin{equation*}
 \begin{array}{rlcl}
-$Momentum objective cost:$ & J_{\dot{\vect{h}}_d}= \wght_{\dot{\vect{h}}_d}||\matr{A}\ddqjntd + \dot{\matr{A}}\dqjnt - \dot{\vect{h}}_d||^2\\
+$Momentum rate objective cost:$ & J_{\dot{\vect{h}}_d}= \wght_{\dot{\vect{h}}_d}||\matr{A}\ddqjntd + \dot{\matr{A}}\dqjnt - \dot{\vect{h}}_d||^2\\
 $Motion objective cost:$ & J_{\matr{J}_m} = \wght_{\matr{J}_m}||\matr{J}_m\ddqjntd-\vect{p}||^2\\
 $Contact force cost:$ & J_{\bs{\rho}}=\wght_{\bs{\rho}}||\bs{\rho}||^2 \\
 $Joint acceleration cost:$ & J_{\ddqjntd} = \wght_{\ddqjntd}||\ddqjntd ||^2 \\
 $Privileged configuration cost:$ & J_p = \wght_p||(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)\ddqjntd - \ddqjntp||^2,
 \end{array}
 \end{equation*}
-where the weighting terms $\wght$ can have a selecting function as well. For example the centroidal momentum rate of change objective $J_{\dot{\vect{h}}_d}$ only consists of the linear part and is only affected by $\dotld$. The motion task jacobian $\matr{J}_m = [\matr{J}_1^T\quad...\quad\matr{J}_N^T]^T$ and objective vector $\vect{p} = [\vect{p}_1^T\quad...\quad\vect{p}_N^T]^T$ consist of all concatenated jacobians and objective values that map either joint acceleration to end-effector motion, as in Equation \eqref{eq:jacobian} or joint acceleration to joint joint acceleration. The motion objective values $\vect{p}$ consist of PD-controlled desired accelerations, coming for example from trajectory tracking of the swing leg or maintaining the upper-body orientation. The last cost term $J_p$ is determined by the privileged joint accelerations $\ddqjntp$. Here is $\matr{J}_t$ the all-task jacobian consisting of both $\matr{A}$ and $\matr{J}_m$. The damped Moore-Penrose pseudo-inverse  $\matr{J}_t^{\dagger} = \matr{J}_t^T(\matr{J}_t\matr{J}_t^T +\mu^2)^{-1}$ with $\mu>0$ is used in the null-space projector $(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)$, which projects the priviliged acceleration objective in the null-space of the primary task jacobian $\matr{J}_t$. This can for example be used in singularity avoidance, where the priviliged accelerations are used to determine the configurarion of the robotic chain.  
+where the weighting terms $\wght$ can have a selecting function as well. For example, the centroidal momentum rate of change objective $J_{\dot{\vect{h}}_d}$ only consists of the linear part and is only affected by $\dotld$. The motion task jacobian $\matr{J}_m = [\matr{J}_1^T\quad...\quad\matr{J}_N^T]^T$ consists of all concatenated jacobians that map either joint acceleration to end-effector motion, as in Equation \eqref{eq:jacobian} or joint acceleration to joint acceleration. The motion objective vector $\vect{p} = [\vect{p}_1^T\quad...\quad\vect{p}_N^T]^T$  consists of PD-controlled desired accelerations, coming for example from trajectory tracking of the swing leg or maintaining the upper-body orientation. The last cost term $J_p$ is determined by the privileged joint accelerations $\ddqjntp$. Here is $\matr{J}_t$ the all-task jacobian consisting of both the momentum rate objective, as well as the motion objectives. The damped Moore-Penrose pseudo-inverse  $\matr{J}_t^{\dagger} = \matr{J}_t^T(\matr{J}_t\matr{J}_t^T +\mu^2)^{-1}$ with $\mu>0$ is used in the null-space projector $(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)$, which projects the priviliged acceleration objective in the null-space of the primary task jacobian $\matr{J}_t$. This can for example be used in singularity avoidance, where the priviliged accelerations are used to determine the configurarion of the robotic chain.  
 \paraskip
 An important note considering the research goal is the generation of vertical \ac{CoM} motion of the robot. The desired linear momentum rate of change $\dotld$ consists, next to its horizontal component of Equation \eqref{eq:dotldxy}, of a vertical part:
 \begin{equation}
-\dotldz =m(k_p(z-z_r) + k_d\dot{z}), 
+\dotldz =m(k_p(z_r-z) - k_d\dot{z}), 
+\label{eq:defaultheightcontrol}
 \end{equation}
 where $k_p, k_d$ are the PD-control gains and $z_r$ is the reference height coming from a reference trajectory. Decision variables for this trajectory are for example kinematic reachability and height changes in terrain, but maintaining the robot's balance is \textit{not } a part of those decision variables.
 
 
-\paragraph{Inverse dynamics} translate joint and end-effector states to joint torques. Desired joint torques $\bs{\tau}_d$ are calculated via a revursive Newton-Euler algorithm using solution of whole-body \ac{QP}: $\ddqjntd$ and $\bs{\rho}$.
+\paragraph{Inverse dynamics} translate desired joint accelerations and end-effector wrenches to desired joint torques. Desired joint torques $\bs{\tau}_d$ are calculated via a revursive Newton-Euler algorithm using the solution of whole-body \ac{QP}: $\ddqjntd$ and $\bs{\rho}$.
 \begin{equation}
     \bs{\tau}_d = \matr{M}(\qjnt)\ddqjntd + \matr{C}(\qjnt,\dqjnt) + \matr{G}(\qjnt) + \matr{J}^T \vect{W}_{gr},
 \end{equation}
-where the ground reaction wrench $\vect{W}_{gr}$ is computed with $\bs{\rho}$. A high-level overview of the control framework is shown in \figref{fig:framework}.
+where the ground reaction wrench $\vect{W}_{gr}$ is computed with $\bs{\rho}$. 
+
+A high-level overview of the control framework is shown in \figref{fig:framework}. The `high level controller' block consists for example of the \ac{ICP} controller of Section \ref{sec:icpcontrol} and the height controller of Equation \ref{eq:defaultheightcontrol}.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{STYLESTUFF/controlframework.png}
@@ -280,21 +287,21 @@ where the ground reaction wrench $\vect{W}_{gr}$ is computed with $\bs{\rho}$. A
 
 % CoM Height Variation
 \section{Related Works}\label{sec:relatedworksheight}
-To group related works to the study of additional \ac{CoM} height variation compared to the \ac{LIP} model a high level division can be made based on different goals or objectives why vertical \ac{CoM} motion should be considered. As a baseline, objectives are grouped in the following strategies. 
+The scope in this short literature survey is not limited to only the use of vertical \ac{CoM} motion for the goal of improving balance control. Other goals of improvement, like improving dynamic planning for motions over rough-terrain or for more human-like motions, are discussed as well. The models and strategies used in these works can be insightful for the problem considered in this thesis.
 
-Traditionally, vertical motion is generated through non-predictive control: a dynamic reference plan exists, often based on the LIP model, and height variation are often disturbances on the model considered in the dynamic plan. Reasons to use height variations here include the guarantee of \textit{kinematic feasibility}: height variation allows the robot to step up platforms, and allows the robot to take larger steps. A noteworthy, more unique, example of height variation in non-predictive control is walking with straighter legs as in \cite{griffin2018straight}. The motivation here is to let the robot walk more \textit{human-like}, which could have more underlying benefits, such as kinematic reachability and metabolic energy consumption \cite{wang2012optimizing}.
+Traditionally, vertical motion is generated through PD-control \cite{kajita2003resolved, koolen2016design}: a dynamic reference plan exists, often based on the LIP model, and height variation are considered as disturbances on the model considered in the dynamic plan. Reasons to use height variations here include the guarantee of \textit{kinematic feasibility}: height variation allows the robot to step up platforms, and allows the robot to take larger steps. A noteworthy, more unique, example of height variation in non-predictive control is walking with straighter legs as in \cite{griffin2018straight}. The motivation in this work is to let the robot walk more \textit{human-like}, which could have more underlying benefits, such as kinematic reachability and metabolic energy consumption \cite{wang2012optimizing}.
 
-Because the constant height assumption from the \ac{LIP} is constraining its dynamics, efforts have been made to incorporate CoM height variation in the generation of a dynamic plan. Instead of using an LIP model, a more complicated model is used. \textit{Expected} height variations of the CoM can be incorporated in the dynamic planning problem, which improves the \textit{dynamic feasibility} of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. Expected height variations from a walking pattern can be received from for example a reference trajectory over an height-varying terrain, or from a human-like walking pattern. 
+Because the constant height assumption from the \ac{LIP} is constraining the dynamics of the robotic system, efforts have been made to incorporate CoM height variation in the generation of a dynamic plan. Instead of using a LIP model, a more complicated model is used. \textit{Expected} height variations of the CoM can be incorporated in the dynamic planning problem, which improves the \textit{dynamic feasibility} of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. \ac{CoM} height variations from a walking pattern can be received from for example a reference trajectory over a height-varying terrain, or from a human-like walking pattern. 
 
 A very recent objective is the specific use of height variation in \textit{balance control}. Normally, traditional balance control strategies are taking a step, movement of the \ac{CoP}: `ankle' strategies and, to a lesser extent, changing the angular momentum about the \ac{CoM}, for example: `hip' strategies. Recently, efforts have been made to incorporate vertical \ac{CoM} motions as an additional strategy for balance control. This is the research of focus in this report.
 
 %var height terrain
-\subsection{Un-even Terrain}
-An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used for the a planning method. The drawback here is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
-%natural behavior
-\subsection{Human-like Walking}
-Straight leg walking. MPC approach to optimize for \cite{brasseur2015robust}. Walking reference for straight legs and dynamics feasibility \cite{kajita2017biped}. Paper online gait generation with vertical \ac{CoM} motions in dynamic plan.\cite{kuo2005energetic} \cite{terada2007online}
-\cite{you2016straight} \cite{griffin2018straight} and more.. \cite{lee1998determinants}
+\subsection{Dynamic Planning \& Walking Pattern Generation}
+An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}, which is an extension of \ac{ICP} planning as in Section \ref{subsec:icpplan}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used in the planning method. The drawback from this method is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. 
+
+Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. The natural frequency of the \ac{LIP} was made time-varying, such that the dynamics of the \ac{DCM} became time-varying. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
+
+The methods presented in \cite{brasseur2015robust} \cite{kajita2017biped} also show the objectives of walking with straighter legs in the dynamic planning problem. The objective in the optimization in \cite{brasseur2015robust} is to let the robot walk with the straightest legs as possible at any time. In \cite{kajita2017biped}, a \ac{2D} walking pattern is generated for walking with straighter legs. The third dimension is added, under the assumption that the dynamics in the sagittal plane and the frontal plane can be decoupled. 
 %balance
 \subsection{Balance Control}\label{subsec:heightbalance}
 In this section, the following three publications that consider height variations as control input for balance are discussed. The work proposed by: Koolen, Posa \& Tedrake in \cite{koolen2016balance},  Gao, Jia \& Fu in \cite{gao2017increase} and  Caron \& Mallein in \cite{caron2018balance}:
@@ -306,13 +313,22 @@ In this section, the following three publications that consider height variation
 \end{equation}
 where $E_{VHIP}$ is the \ac{VHIP} orbital energy. The virtual constraint $z=f(x)$ is used to make a closed-form solution possible for the energy. Furthermore, $\bar{f}(x)=f(x)-f'(x)x$. Unlike its \ac{LIP} cousin, this \ac{2D} orbital energy allows for \ac{CoM} height variation. Note that filling in a constant value for the function, $f(x)=z_0$, rewrites to the \ac{LIP} orbital energy.
 
-The function $f(x)$ is constrained to be a cubic polynomial in \cite{koolen2016balance}. Using this description, four constraints are presented, which are used in a matrix to solve for the polynomial constants. There is one constraint on the final height, one constraint on the initial height, one on the initial direction and one constraint on conservation of $E_{VHIP}$. The final position is above the \ac{CoP} and the final velocity is zero, such that the resulting polynomial trajectory is a \textit{capture trajectory}. Next to this, \textit{regions of attraction} for this controller are investigated: initial states in which this controller is still able to let the \ac{VHIP} converge to the unstable equilibrium. However, there are no kinematic constraints taken into account, such that the polynomial trajectories can become unrealistically high above the \ac{CoP}. Though, the analytic solution for the capture trajectory guarantees fast computations, which allow for the use in \ac{MPC}.
+The function $f(x)$ is constrained to be a cubic polynomial by Koolen et al. in \cite{koolen2016balance}. Using this description, four constraints are presented, which are used in a matrix to solve for the polynomial constants. There is one constraint on the final height, one constraint on the initial height, one on the initial direction and one constraint on conservation of $E_{VHIP}$. The final position of the polynomial trajectory is above the \ac{CoP} and the final velocity is zero, such that the resulting polynomial trajectory is a \textit{capture trajectory}. Next to this, \textit{regions of attraction} for this controller are investigated: initial states in which this controller is still able to let the \ac{VHIP} converge to the unstable equilibrium. However, there are no kinematic constraints taken into account, such that the polynomial trajectories can become unrealistically high above the ground. Though, the analytic solution for the capture trajectory guarantees fast computations, which allow for the use in \ac{MPC}.
 
-\paragraph{Gao et al.} present different \ac{2D} strategies to use vertical motion in balance control. An example is the lowering of the \ac{CoM} height in the current step, to exert more force and raise the \ac{CoM} in the next step. In this way, the pendulum can stop closer to the current position than with an \ac{LIP} trajectory. Furthermore, the natural frequency of the \ac{LIP} is adjusted for the added vertical acceleration. To make the dynamical model solvable over time, a constant height is considered, as the deviations from the initial height are considered as relatively small.
+\paragraph{Gao et al.} present different \ac{2D} strategies to use vertical motion in balance control. An example is the lowering of the \ac{CoM} height in the current step, to exert more force and raise the \ac{CoM} in the next step. In this way, the pendulum can stop closer to the current position than with a \ac{LIP} trajectory. Furthermore, the natural frequency of the \ac{LIP} is adjusted for the added vertical acceleration. To make the dynamical model closed-form solvable over time, a constant height is considered, as the deviations from the initial height are considered as relatively small.
 
 % boundedness
-\paragraph{Caron \& Mallein} propose a \ac{3D} \ac{MPC} law based on a height varying version of the boundedness condition from \cite{lanari2014boundedness}. By using a time varying natural frequency of the pendulum $\omega(t)$, the authors combine the boundedness condition with the approach in \cite{hopkins2014humanoid}. By the nonlinearity of the problem, it is initially hard to solve. The problem function is reformulated and written as a function of an inverse of time, rather than as a function of time. The resulting problem is then solved using a nonlinear solver.
+\paragraph{Caron \& Mallein} propose a \ac{3D} \ac{MPC} law based on a height varying version of the boundedness condition from Section \ref{sec:boundedness} \cite{lanari2014boundedness}. By using a time varying natural frequency of the pendulum $\omega(t)$, the authors combine the boundedness condition with the approach in \cite{hopkins2014humanoid}. By the nonlinearity of the problem, it is initially hard to solve. The problem function is reformulated and written as a function of an inverse of time, rather than as a function of time. Also, the capture trajectory is divided in $10$ segments, which are considered piece-wise time-invariant. The resulting problem is then solved using a nonlinear solver.
 
 This work is expanded in \cite{caron2018capturability}. The problem is extended from `0-step' problems to multi step problems. It is again heavily rewritten and sequential quadratic programming is used to allow for fast computation times, which makes the problem solvable online.
 
 \subsection{Discussion}
+Either dynamic planning related or balance control related, all works mentioned in this section, have some challenges in common:
+\begin{itemize}
+	\item The works rely on a \ac{LIP} or \ac{VHIP} model: the dynamics of the robot are assumed to be depending on the line between a ground reference point and the \ac{CoM};
+	\item The works attempt to find a solution over time of the pendulum-based model. This `orbital energy' is used in both dynamic planning and \ac{MPC} in balance control. Depending on the constraints introduced, the trajectory can be found analytically or numerically.
+\end{itemize}
+
+More specifically in balance control related works,  Koolen et al. introduce a constraint on the shape of the trajectory, as well as constraining the model to by \ac{2D}. Gao et al. constrain the model used in prediction to have a constant height, despite the fact that vertical accelerations are use. Caron et al. constrain pieces of the trajectory to be time-invariant, after which the numerical solution to the problem is faster to solve.
+
+Regarding the goal in this thesis to \textit{improve} balance control, the constraints introduced by the methods can be judged based on improvement compared with a constant height control. Also, the search for the predictability of the horizontal dynamics will be a central discussion point.

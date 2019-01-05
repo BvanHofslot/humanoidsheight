@@ -83,6 +83,11 @@
 % plot(tau_y);plot(tau_yn);
 
 %%
+pW=1.3;
+fS=12;
+kGray=0.85;
+lastP= 1800;
+m=127.2996;
 set(groot,'defaulttextinterpreter','latex');  
 dx = rootNormal.valkyrie.ExactCoMCalcualtor.exactCenterOfMassVelocityX;
 x = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CommonHumanoidReferenceFramesVisualizer.centerOfMassX;
@@ -143,7 +148,7 @@ exportfig(gcf,'valcomparephase.eps', opts)
 
 %%
 pW=1.3;
-fS=12;
+fS=14;
 kGray=0.85;
 lastP= 1800;
 iF = length(x(i0:lastP));
@@ -152,8 +157,8 @@ t=[];
 for k=1:iF
    t(k)=k*DT; 
 end
-figure('rend','painters','pos', [0 0 600 850]);
-subplot(5,1,1)
+figure('rend','painters','pos', [0 0 1000 850]);
+subplot(6,2,1)
 area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 hold on;
 area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
@@ -173,7 +178,7 @@ axis([0 2.5 -500 500])
 ylabel('$\dot{\mathbf{l}}_z$ [N]','FontSize',fS)
 set(gca,'FontSize',fS)
 
-subplot(5,1,2)
+subplot(6,2,3)
 area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 hold on;
 area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
@@ -193,7 +198,7 @@ axis([0 2.5 -150 50])
 ylabel('$\dot{\mathbf{l}}_x$ [N]','FontSize',fS)
 set(gca,'FontSize',fS)
 
-subplot(5,1,3)
+subplot(6,2,5)
 area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 hold on;
 area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
@@ -208,7 +213,7 @@ axis([0 2.5 -80 20])
 ylabel('$\dot{\mathbf{k}}_y$ [Nm]','FontSize',fS)
 set(gca,'FontSize',fS)
 
-subplot(5,1,4);
+subplot(6,2,7);
 area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 hold on;
 area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
@@ -222,7 +227,34 @@ axis([0 2.5 0.98 1.08])
 ylabel('$z$ [m]','FontSize',fS)
 set(gca,'FontSize',fS)
 
-subplot(5,1,5)
+subplot(6,2,9);
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+z=rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControllerCore.WholeBodyFeedbackController.FeedbackControllerToolbox.pelvisErrorRotationVectorY;
+p3=plot(t,z(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+hold on;
+z=rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControllerCore.WholeBodyFeedbackController.FeedbackControllerToolbox.pelvisErrorRotationVectorY;
+plot(t,z(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 -0.06 0.01])
+ylabel('$\theta_{pel,y}$ [rad]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+subplot(6,2,11);
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+z=rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControllerCore.WholeBodyFeedbackController.FeedbackControllerToolbox.torsoErrorRotationVectorY;
+p3=plot(t,z(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+hold on;
+z=rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControllerCore.WholeBodyFeedbackController.FeedbackControllerToolbox.torsoErrorRotationVectorY;
+plot(t,z(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 -0.08 0.01])
+xlabel('Time [s]','FontSize',fS)
+ylabel('$\theta_{torso,y}$ [rad]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+subplot(6,2,2)
 area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 hold on;
 area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
@@ -235,8 +267,91 @@ lAnkleY =rootHFBonNormal.valkyrie.tau_leftAnklePitch;
 rAnkleY =rootHFBonNormal.valkyrie.tau_rightAnklePitch;
 plot(t,lAnkleY(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
 axis([0 2.5 0 150])
-xlabel('Time [s]','FontSize',fS)
 ylabel('$\mathbf{\tau}_{ak,y}$ [Nm]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+
+subplot(6,2,4)
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+lAnkleY =rootNormal.valkyrie.tau_leftKneePitch;
+rAnkleY =rootNormal.valkyrie.tau_rightKneePitch;
+plot(t,lAnkleY(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+hold on;
+
+lAnkleY =rootHFBonNormal.valkyrie.tau_leftKneePitch;
+rAnkleY =rootHFBonNormal.valkyrie.tau_rightKneePitch;
+plot(t,lAnkleY(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 -120 20])
+ylabel('$\mathbf{\tau}_{kn,y}$ [Nm]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+subplot(6,2,6)
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+lAnkleY =rootNormal.valkyrie.tau_leftHipPitch;
+rAnkleY =rootNormal.valkyrie.tau_rightHipPitch;
+plot(t,lAnkleY(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+hold on;
+
+lAnkleY =rootHFBonNormal.valkyrie.tau_leftHipPitch;
+rAnkleY =rootHFBonNormal.valkyrie.tau_rightHipPitch;
+plot(t,lAnkleY(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 -20 60])
+ylabel('$\mathbf{\tau}_{hp,y}$ [Nm]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+subplot(6,2,8)
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+lAnkleY =rootNormal.valkyrie.tau_torsoPitch;
+plot(t,lAnkleY(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+hold on;
+
+lAnkleY =rootHFBonNormal.valkyrie.tau_torsoPitch;
+plot(t,lAnkleY(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 -40 50])
+ylabel('$\mathbf{\tau}_{bk,y}$ [Nm]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+subplot(6,2,10)
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+
+ldx = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX;
+lax = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX;
+plot(t,ldx(i0:lastP),'Color','k','LineStyle','-','LineWidth',pW);
+hold on;
+plot(t,lax(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+
+ldx =rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX;
+lax= rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX;
+plot(t,ldx(i0:lastP),'Color','b','LineStyle','-','LineWidth',pW);
+hold on;
+plot(t,lax(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 0 0.18])
+ylabel('$x_{cop}$ [m]','FontSize',fS)
+set(gca,'FontSize',fS)
+
+subplot(6,2,12)
+area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+hold on;
+area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
+
+ldx=rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.capturePointX-rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredICPX;
+hold on;
+plot(t,ldx(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
+
+ldx=rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.capturePointX-rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredICPX;
+
+plot(t,ldx(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
+axis([0 2.5 -0.04 0.14])
+xlabel('Time [s]','FontSize',fS)
+ylabel('$\xi_{e,x}$ [m]','FontSize',fS)
 set(gca,'FontSize',fS)
 
 lgd = legend([p1 p2 p3],{'Desired','Achieved','Measured'},'FontSize',fS,'Interpreter','latex');
@@ -361,7 +476,7 @@ lgd.Location='north';
 opts.Format = 'eps';
 opts.Color = 'CMYK';
 opts.Resolution = 10000000;
-exportfig(gcf,'valcomparetime3.eps', opts)
+
 
 %%
 torsoY=rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.WalkingControllerState.WholeBodyControllerCore.WholeBodyFeedbackController.FeedbackControllerToolbox.pelvisErrorRotationVectorY;

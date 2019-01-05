@@ -28,10 +28,10 @@ tspanzmin = [0:0.001:tzmin];
 
 set(groot,'defaulttextinterpreter','latex');  
 %% Plot options
-withPolynomials = false;
-withPercentUpperLimit = true;
-withPercentLowerLimit = true;
-withPercentPolynomial = true;
+withPolynomials = true;
+withPercentUpperLimit = false;
+withPercentLowerLimit = false;
+withPercentPolynomial = false;
 withBalistic = true;
 withICP =true;
 withVerticalLimits = false;
@@ -41,12 +41,12 @@ widthMainPlot=2;
 %% Plot
 tspan=[0:0.01:100];
 xicp = -sqrt(1/9.81);
-figure('rend','painters','pos', [0 0 400 800]);
-area([0 1]*-sqrt(2)*xicp,[1.3 1.3],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
+figure('rend','painters','pos', [0 0 400 900]);
+area([0 1]*-sqrt(2)*xicp,[1.5 1.5],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
 
 hold on;
-area([-x0 (tzmin+zminfreqafterfall)], [1.1 1.1],'FaceColor',[0.8,0.8,0.8],'LineStyle','none')
-area([-x0 (tzmin+zminfreqafterfall)], [0.7 0.7],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
+% area([-x0 (tzmin+zminfreqafterfall)], [1.1 1.1],'FaceColor',[0.8,0.8,0.8],'LineStyle','none')
+% area([-x0 (tzmin+zminfreqafterfall)], [0.7 0.7],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
 
 if(withHorizontalLimits)
 plot([0, 0.5],[1 1]*zf,'LineStyle', '-.','Color','k');
@@ -57,7 +57,7 @@ if(withPolynomials)
     for i=1:39
     xi = sqrt(2)*xicp/40 + i*xicp*sqrt(2)/40;
     [t1,y1] =ode45(@qfun, tspan, [xi;1;1;0]);
-    pPol = plot(y1(:,1)-xi,y1(:,3),'Color',[0.8 0.8 0.8]);
+    pPol = plot(y1(:,1)-xi,y1(:,3),'Color','k');
     axis([0 0.5 0 2])
     end
 end
@@ -76,7 +76,7 @@ if(withBalistic)
     x2 = [ybal(:,1), ybal(:,1)];
     inBetween = [15*ones(length(ybal(:,3)),1), ybal(:,3)];
     fill(x2, inBetween, 'w')
-    plot([1 1]*-sqrt(2)*xicp,[0 1.3],'Color','k','LineStyle', '-.')
+    plot([1 1]*-sqrt(2)*xicp,[0 1.5],'Color','k','LineStyle', '-.')
     if(withVerticalLimits)
     plot([1 1]*-sqrt(2)*xicp,[0 2],'LineStyle', '-.','Color','k');
     end
@@ -115,7 +115,7 @@ end
 
 
 axis equal
-axis([0 0.5 0 1.3])
+axis([0 0.5 0 1.5])
 ylabel('$z$ [m]','FontSize', 12)
 xlabel('Capture Position [m]','FontSize', 12)
 xticks([0:0.1:0.5])

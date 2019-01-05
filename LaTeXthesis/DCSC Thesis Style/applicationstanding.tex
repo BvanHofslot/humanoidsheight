@@ -1,9 +1,213 @@
-\chapter{Toward Application: Standing}\label{chap:standing}
+\chapter{Application: Standing}\label{chap:standing}
+In this chapter, a controller that uses vertical motion for balance control is implemented in the momentum-based control framework and tested on NASA's Valkyrie \cite{radford2015valkyrie} humanoid robot. To test the improvement in balance control, push recovery is tested while the robot is standing and compared with a constant reference height controller. 
 
-\section{Experimental Setup}
-Applying a lower weight in the whole-body \ac{QP} on vertical linear momentum rate, causes the robot to use height variation in recovery.
+\section{Method}
+As the polynomial trajectories of the previous chapter are constraining the vertical acceleration, these are not used in application. Instead, a bang-bang control law for vertical acceleration is designed, similar to the bang-bang control law in Section \ref{sec:verticalforce}.
 
-\begin{table}[ht]
+\subsection{Generation of Desired Vertical Linear Momentum Rate}
+This bang-bang controller is activated when a worst-case scenario is met. If $\rcmpd$ of Equation \ref{eq:rcmpd} is inside the support polygon, it is assumed that this point coincides with a desired \ac{CoP}: $\rcopd$. The \ac{CoM} height is initially controlled using the default \ac{CoM} height PD-control law of Equation \ref{eq:defaultheightcontrol}.  While the robot is standing, the control law controls to the default, nominal height:
+\begin{equation}
+\ddzd =k_p(z-z_0) + k_d\dot{z},
+\end{equation}
+where $\ddzd$ is the desired vertical acceleration. The worst-case event is when the $\rcopd$ touches the edge of the polygon. This activates the balance controller that uses vertical motion: the \textit{vertical motion controller}. 
+
+The first and the second acceleration `bang' from the vertical motion controller are jerk limited. Also, unlike the controller for the vertical force constrained capture positions in Section \ref{sec:verticalforce}, the duration of each `bang' is not predefined, but determined online. Determining the duration online, allows for more control of the vertical dynamics, as the current state can be constantly evaluated on predicted vertical dynamics. A predefined duration as in Section \ref{sec:verticalforce} does not use any feedback and is strictly feedfoward. In relation to these differences in control design, the following parameters are used:
+\begin{itemize}
+	%\item $\alpha_{\icpe}^+$: Threshold to turn the controller on $|\icpe|>\alpha_{\icpe}^+$, which for example can be tuned to activate the controller when $\rcmpd$ is near the edge of the polygon. 
+	%\item $\alpha_{\icpe}^-$: Threshold to turn the controller off $|\icpe|<\alpha_{\icpe}^-$, when the robot is back to stability.
+	\item $\dddot{z}_{max}$: maximum allowed vertical CoM jerk;
+	\item $\alpha_{\hat{\ddot{z}}_{c}}$: parameter to scale down expected $\ddot{z}_c$ for the second `bang', due to jerk limits.
+\end{itemize}
+The control sequence for the vertical motion controller reads as follows. For the first `bang': the desired acceleration $\ddot{z}_d=\ddot{z}_c$. The transition from the first `bang' to the second is if the predicted \ac{CoM} height violates the height constraint. This prediction is computed as follows, in the case of approaching a maximum height constraint:
+\begin{align}
+	m\hat{g}z + \sgn(\dot{z})\frac{1}{2}\dot{z}^2>m\hat{g}\zmax,\\
+	z + \sgn(\dot{z})\frac{1}{2}\frac{\dot{z}^2}{\hat{g}}>\zmax,
+\end{align}
+where $\hat{g}$ is the predicted gravity, or the predicted \textit{downward acceleration}. Using the acceleration constant $\ddzc$ of the second bang, and the scale down parameter $\alpha_{\hat{\ddot{z}}_{c}}$, gives:
+\begin{equation}
+	z+\sgn(\dot{z})\frac{1}{2}\frac{\dot{z}^2}{\alpha_{\hat{\ddot{z}}_{c}}\ddot{z}_{c}} >\zmax,
+\end{equation}
+in the case of approaching a maximum height. When this condition is met, the second bang is activated and $\ddot{z}_d=-\ddot{z}_c$. After this, when $\dot{z}<0$, the height is controlled to $\zmax$ until the controller turns off:
+\begin{equation}
+	\ddot{z}_d = k_p(\zmax-z)-k_d\dot{z}.
+\end{equation}
+Controlling to $\zmax$ allows the robot to apply the maximum possible force on the ground, when it is at its maximum height. The controller turns off if the \ac{ICP} error $\icpe$ is at a small value, a measure for stability. If the controller is turned off, the height is controlled to the default height and $z_r=z_0$. Finally, the rate of $\ddot{z}_d$ is limited with the maximum allowed jerk and the desired vertical momentum rate is computed as $\dot{\mathbf{l}}_{d,z}=m\ddot{z}_d$.
+
+\subsection{Generation of Desired Horizontal Linear Momentum Rate}
+The work in Chapter \ref{chap:regions} and Chapter \ref{chap:mpc} relies on the \ac{VHIP}, without inertia around the \ac{CoM}. The control framework from Section \ref{sec:ihmc} is controlled based on a desired \ac{CMP} $\rcmpd$, which does not have to be constrained to lie inside the support polygon. For the vertical motion controller, if the $\rcmpd$ is outside the support polygon, an additional point $\rcopd$ is created by an orthogonal projection of $\rcmpd$ on the support polygon. If horizontal linear momentum rate based on the $\rcmpd$ would be requested in the control framework, additional angular momentum would be needed to achieve the desired linear momentum rate.  
+
+To avoid the generation of additional angular momentum on the robot compared to the default control setup, the desired horizontal linear momentum rate $\dotldxy$ is generated in the following way. Recall the default desired horizontal linear momentum rate of Equation \ref{eq:dotldxy}. This default desired horizontal linear momentum rated is denoted as:
+\begin{equation}
+    \dotldxylip = \frac{\cxy-\rcmpd}{z_0}mg,
+\end{equation}
+which is equal to:
+\begin{align}
+\dotldxylip&=\frac{\mathbf{c}_{xy}-(\rcopd+\frac{\taucom}{mg})}{z}mg, \\
+&=\frac{\mathbf{c}_{xy}-\rcopd}{z}mg - \frac{\taucom}{z},
+\end{align}
+if the assumption is made that the difference between $\rcopd$ and $\rcmpd$ is directly related to the torque around the \ac{CoM}. For the vertical motion controller, the total desired linear momentum rate of change is computed as:
+ \begin{align}
+\dot{\mathbf{l}}_{xy,d}&=\frac{\mathbf{c}_{xy}-\rcopd}{z}(mg+\dotldz) - \frac{\taucom}{z},\\
+&=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z_0}mg}_{\dotldxylip}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}\dotldz}_{\dotldxyheight},
+\end{align}
+where $\dotldxyheight$ is the additional desired horizontal linear momentum rate from the vertical motion controller. Note that if $\rcmpd$ is constrained to be inside the support polygon, $\rcopd=\rcmpd$. 
+
+In Figure \ref{fig:rcopdvsrcmpd}, it is visually explained in \ac{2D} how this computation of $\dotldxy$ does not require angular momentum from the robot.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{STYLESTUFF/2DControlStrategyViz.png}
+\caption{Requesting additional horizontal momentum rate based on $\rcopd$ will not need additional angular momentum to be achievable, as the scalar offset $a$ is equal. However, the resulting \ac{CMP} will be in a different location than $\rcmpd$.}
+\label{fig:rcopdvsrcmpd}
+\end{figure}
+
+\section{Results}
+Tests are conducted by applying a push at chest height on the robot. The parameters and settings used for test can be found in Appendix \ref{chap:params}.
+\subsection{Simulation}
+In simulation the push duration is set to $0.15$ [s] with a constant force profile, as on hardware tests is found that approximately the same push duration can be applied. Also, a vertical acceleration constant of $\ddzc=2.4$ [m/s$^2$] is used, as this was found to work well on hardware as well. The $\rcmpd$ is constrained to be inside the support polygon, so $\rcmpd=\rcopd$. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.4$ was used for the prediction of vertical motion.
+
+\paragraph{The maximum recoverable pushes} for the vertical motion controller versus the maximum recoverable pushes for the default controller setup are shown in \figref{fig:roundStanding}. The results are obtained with a search for the push that the robot could still recover from. If this push is found, the push angle increases $5$ degrees, after which the process repeats. So, the depicted plot counts a total of $72$ direction for each controller setup. The radius of the plot is the normalized impulse $i$ applied to the robot:
+\begin{equation}
+	i = \frac{\int F dt}{m}.
+\end{equation}
+
+Note how the recovery improved after using the vertical motion controller in push directions coming from the back or the side of the robot. Remarkably, push recovery is worse for push directions coming from the front of the robot. Compared to the default setup, the vertical motion controller recovered of an averaged $9$\% higher impulse for push directions coming from the back of the robot, $4$\% for push directions coming from the side and $-7$\% for push directions coming from the front. The improvement in recovery is the best for a push coming from the back. Also, it is relatively easy to apply a push in the back on the real robot, compared to other parts of the robot. Valkyrie has a hard, flat back surface, which can handle larger impacts than other body parts. For those reasons, there is chosen to make a deeper evaluation of the specific push direction of $0$ degrees.
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{STYLESTUFF/roundStanding.png}
+\caption{Polar plot of maximum recoverable pushes with an increment of $5$ degrees. $0$ degrees is a push from the back. The radius is the normalized impulse $i$. }
+\label{fig:roundStanding}
+\end{figure}
+
+\paragraph{Comparison of the response after equal push magnitudes} is shown in \figref{fig:valcomparephase}, as a phase plot for the horizontal \ac{CoM} state in the sagittal plane. Observe how the area of the phase plot is smaller with the vertical motion controller for a push of $i=0.271$ [m/s]. With the larger push of $i=0.295$ [m/s], the default control setup does not manage to stabilize and diverges, while the vertical motion controller recovers.
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{STYLESTUFF/valcomparephase.png}
+\caption{Phase plot of horitzontal \ac{CoM} motion in the sagittal plane for a push of $i=0.271$ [m/s] (solid) and a push of $i=0.295$ [m/s] (dotted).}
+\label{fig:valcomparephase}
+\end{figure}
+
+In \figref{fig:valcomparetime}, time response plots are shown for a push of $i=0.271$ [m/s]. For the vertical linear momentum rate $\dot{\mathbf{l}}_z$, the achieved has a little overshoot over the desired for both control setups. This may also be a reason why some overshoot can be observed in the plot for the height $z$ in the fourth row. There is a larger difference between the desired and achieved horizontal linear momentum rate $\dot{\mathbf{l}}_x$ for both control setups. If the achieved is compared between the two setups, the vertical motion controller achieves almost double the amount the default control setup achieves from $0.1$ [s] until $0.25$ [s]. There is a small difference in achieved angular momentum rate observable. However, if there is looked at the pelvis error $\theta_{pel,y}$ and the torso error $\theta_{torso,y}$ in the fifth and sixth row, the vertical motion controller has even less rotation error than the default setup. 
+
+In the right column of the figure, from the ankle torque $\tau_{ak,y}$, knee torque ankle torque $\tau_{kn,y}$, hip torque $\tau_{hp,y}$ and back torque $\tau_{bk,y}$, the difference in ankle and knee torque is the most noteworthy. The ankle torque has a higher peak for the vertical motion controller. Also, the ankle torque returns to the steady state value earlier than the default control setup. Equivalently, the desired and measured \ac{CoP} returns to the steady state value earlier as well. This is an indication of a slight increase in robustness for the push, as is observed in the phase plot as well. The knee torque is on average lower for the vertical motion controller. Note that for that $\rcmpd=\rcopd$ for this comparison. On average, the \ac{ICP} error $\xi_{e,x}$ is smaller, as expected.
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{STYLESTUFF/valcomparetime.png}
+\caption{Time plots for a push of $i=0.271$ [m/s]. `Achieved' is the value of the variable after the \ac{QP} found a solution. The gray area is where the push is applied.}
+\label{fig:valcomparetime}
+\end{figure}
+
+\subsection{Hardware} 
+Hardware tests are conducted by applying a push in the back at chest height on the physical robot. An iLoad Pro Digital load censor is used to measure the impulse of the push. The load sensor is mounted to a aluminum stick. On the other end of the load cell, a steel plate with a rubber surface is mounted. This prevents the robot from being damaged, and makes the push data less dependent on contact impacts. In \figref{fig:pushhead}, the end of the push stick with the load sensor is depicted. In \figref{fig:authorpush}, the test setup is shown. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.8$ is used for the prediction of vertical motion. 
+\begin{figure}
+\centering
+  \begin{subfigure}{0.495\textwidth}
+  \centering
+  \includegraphics[width=.94\linewidth]{STYLESTUFF/pushhead.png}
+   \caption{}
+    \label{fig:pushhead}
+  \end{subfigure}
+  \begin{subfigure}{0.495\textwidth}
+    \centering
+  \includegraphics[width=.94\linewidth]{STYLESTUFF/authorpush.png}
+  \caption{}
+   \label{fig:authorpush}
+  \end{subfigure}
+  \caption{(a) Push head of push stick with the rubber surface, steel plate, load sensor and aluminum stick. (b) Tests setup, where the author applies a push using the push stick on Valkyrie.}
+  \label{fig:pushsetup}
+\end{figure}
+
+\paragraph{The maximum recoverable push} is determined by averaging a dozen cases, where the \ac{CoM} of the robot came closer than $5$ [mm] from the polygon edge, but the robot still recovered. In \figref{fig:imp1}, the average force profile with the standard deviation of the $12$ pushes is depicted for the default setup. The average impulse is $35.3$ [Ns], which equals a normalized impulse of $i=\frac{35.3}{127.3}=0.277$ [m/s]. This is a slightly higher value than the impulse recoverable in simulation. In \figref{fig:imp2}, the average force profile with the standard deviation is depicted for the vertical motion controller. The average impulse is $37.6$ [Ns], which equals $i=0.295$ [m/s], which is an increase in recoverable push of $7$\%.
+\begin{figure}
+\centering
+  \begin{subfigure}{0.32\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{STYLESTUFF/impulsecompare1.png}
+   \caption{}
+    \label{fig:imp1}
+  \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{STYLESTUFF/impulsecompare2.png}
+   \caption{}
+    \label{fig:imp2}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \centering
+  \includegraphics[width=.9\linewidth]{STYLESTUFF/impulsecompare3.png}
+  \caption{}
+   \label{fig:imp3}
+  \end{subfigure}
+  \caption{Average impulse of $12$ pushes, where the \ac{CoM} came closer than $5$ [mm] from the polygon edge for the (a) default setup and (b) vertical motion controller. (c) Two picks of pushes, where the integrated force applied on the vertical motion controller was equal to the integrated force applied on the default setup. }
+  \label{fig:impulsecompare}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{STYLESTUFF/valcomparephaseHW.png}
+\caption{Phase plot of forward \ac{CoM} motion for a push of $i=0.261$ [m/s].}
+\label{fig:valcomparephaseHW}
+\end{figure}
+\begin{figure}[h]
+\centering
+  \begin{tabular}{ccccccc}
+    \includegraphics[width=0.7in]{STYLESTUFF/val1zr_C} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val2zr_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val3zr_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val4z_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val5z_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val6z_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val7z_30} ~\\[2ex]
+     \includegraphics[width=0.7in]{STYLESTUFF/val1dr_C} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val2dr_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val3dr_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val4d_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val5d_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val6d_30} &
+    \includegraphics[width=0.7in]{STYLESTUFF/val7d_30} \\
+    $a$&
+    $b$&
+    $c$&
+    $d$&
+    $e$&
+    $f$&
+    $g$\\
+  \end{tabular}
+  \caption{Time-lapse of Valkyrie recovering from a push using vertical motion (top row) and using the default controller setup (bottom row). The letters below the columns match with the letters next to the yellow lines in Figure \ref{fig:valcomparetimeHW}. The push rod tip is encircled in red.}
+  \label{fig:val}
+\end{figure}
+
+\paragraph{Comparison of the response after equal push magnitudes} is conducted by selecting a force profile from each setup, where the integrated force is equal. In \figref{fig:imp3}, the two compared force profiles are shown and have an impulse of $33.2$ [Ns], which is equal to $i=0.261$ [m/s]. In \figref{fig:valcomparephaseHW}, a phase plot for the sagittal horizontal motion is depicted. Again, the vertical motion covers a smaller area. 
+
+In \figref{fig:val}, a time-lapse is shown for both controller setups after these pushes. The letters under each column match with the letters next to the vertical lines in \figref{fig:valcomparetimeHW}. In \figref{fig:valcomparetimeHW}, time response plots are shown for the pushes of $i=0.261$ [m/s]. Note how the vertical lines leave the gray area, when in the \figref{fig:val} the red encircled push head loses contact with the robot. 
+
+Note how each `bang', visible in the vertical linear momentum rate $\dot{\mathbf{l}}_z$, has a relatively a different length compared to the results observed in simulation. This might be a reason why are larger value of $\alpha_{\hat{\ddot{z}}_{c}}$ could be used. The $\dot{\mathbf{l}}_x$ plots are comparable with the simulation results. The achieved $\dot{\mathbf{k}}_y$ of the vertical motion controller has a relatively larger overshoot than in simulation. However, the resulting pelvis and torso rotation errors are not larger for the vertical motion controller compared to the default setup, which does shows no additional use of `hip' strategies. 
+
+In the right column of the figure, the torques have a desired and a measured value, as the torques of the robot are PD-controlled with electrical current as input. Again, the difference in ankle torque between the default setup and the vertical motion controller is the most noteworthy. For the vertical motion controller, the ankle torque returns quicker to steady state, just like the \ac{CoP}, which shows a slight increase in robustness for the applied push. Equivalently, the average \ac{ICP} error is again smaller for the vertical motion controller.
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{STYLESTUFF/valcomparetimeHW.png}
+\caption{Time plots for a push of $i=0.261$ [m/s]. All joint torques, except for the back, are the average over left and right.}
+\label{fig:valcomparetimeHW}
+\end{figure}
+
+
+\subsection{Comparison with Capture Regions}
+On all tests, the time until the \ac{ICP} error turns, can be seen as the part that is crucial for recovery, as the \ac{ICP} error would diverge at the peak value, if the robot falls over. If in this crucial part the assumption is made that the \ac{CoP} is at a constant location and the impulse $i$ is an instant impulse, a comparison can be made with the capturability comparison in Section \ref{sec:capcomparenoinertia}. Also, the assumption is made that the difference in recovery between the default setup and the vertical motion controller is comparable with the difference between the \ac{CP} and the height constrained capture position for the same $\ddzc$.
+
+Considering the assumptions mentioned above, in \figref{fig:regioncomparison}, the differences in recovery for the experiments are plotted in the capture velocity graph of \figref{fig:capcompare} in Section \ref{sec:capcomparenoinertia}. Note that the point $[1,1]$ in the plot corresponds to either the \ac{CP}, or the recovery of the default setup for the corresponding push direction. The dimensionless acceleration $\ddzc'=\frac{1}{4}$ roughly corresponds with the value of $\ddzc=2.4$ [m/s] used on the experiments on Valkyrie. 
+
+Note how the simulation rear push recovery even lies outside the height constrained bound in this plot. The average improvement on hardware lies just inside the height constrained bound. The side push recovers about equal to the comparable force constrained capture position of $\ddzc'=\frac{1}{4}$. The frontal push recovers worse than the default control setup and is not comparable with the capture regions presented in Chapter \ref{chap:regions}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{STYLESTUFF/regioncomparison.png}
+\caption{Difference in recovery of Valkyrie in simulation (rectangle) and on hardware (triangle) between the vertical motion controller and the default setup versus the capture velocity plot of Section \ref{sec:capcomparenoinertia}.}
+\label{fig:regioncomparison}
+\end{figure}
+
+\section{Discussion}
+Height variation can improve balance. Difference in push directions and \ac{MPC} versus bang bang control. Valkyrie would stand on toes on hardware.
+\begin{table}[h]
 \caption{Major affected tasks by $\mathbf{\dot{l}}_{xy,d}$ in whole-body QP, if \ac{CoP} is saturated.} % title of Table
 \centering % used for centering table
 \begin{tabular}{c c c } % centered columns (4 columns)
@@ -19,68 +223,3 @@ Affected Desired & Constraint/Consideration & Centroidal Momentum Rate \\
 \end{tabular}
 \label{tab:eatqp} % is used to refer this table in the text
 \end{table}
-
-\section{Method}
-Other publications that consider \ac{CoM} height variations for balance use \ac{MPC}. Considering worst-case scenario's, where additional horizontal force is needed, `the best you can do' is needed to not fall over. This motivates to use a proportional controller in worst case scenario's, next to the benefit of simplicity and robustness.
-
-%Challenges
-\subsection{Motivation}
-The controller that uses \ac{CoM} height variations for balance is developped under the motivation that the robot should do the best it can to not fall over. Height variation has the most effect on the horizontal momentum if the robot is relatively far from the point foot \todo{ref section}. Therefore, situations where the controller is allowed to work considers only the scenario's where the \ac{CoP} is saturated.
-\paraskip
-To make a good comparison with other strategies possible, the controller is designed with the objective to not request additional angular momentum from the robot. Other considerations are kinematic reachability, control in \ac{3D} and the predictability of the dynamics of the system.
-
-%Architecture
-\subsection{Control Framework}
-To actively change $\dotldxy$, the objective is to generate as few resulting additional angular momentum as possible, compared to the normal control setup. Note that the normal control setup relies on a computed $\rcmpd$ based on the linear model with constant height, as in Equation \eqref{eq:rcmpd} and \eqref{eq:dotldxy}. In the case of the assumption of a \ac{LIP}, the expected angular momentum generated by the robot is a linear function depending on the difference between the \ac{CMP} and \ac{CoP}. If height changes are considered however, having the \ac{CMP} in the same location in one configuration, can request different angular momenta with changing $\fgrz$. The generic formula to write resulting horizontal ground reaction force as a function of the \ac{CMP}  location is:
-\begin{equation}
-\fgrxy=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp}}{z}\fgrz
-\label{eq:fgrxygeneric}
-\end{equation}
-If $\fgrz$ varies and $\rcmp$ remains constant, $\taucom$ has to scale linearly with $\fgrz$, because $\rcmp = \rcop + \frac{\taucom}{\fgrz}$. Therefore, additional horizontal linear momentum rate is requested based on the \ac{CoP}, rather than the \ac{CMP}.
-\paragraph{Generation of $\dotldxy$} is done by modifying the desired linear momentum rate from the \ac{LIP}-based PD-controlled setup. Equation \eqref{eq:fgrxygeneric} is rewritten in terms of $\rcop$ in the following way:
-\begin{align}
-\fgrxy&=\frac{\mathbf{c}_{xy}-(\mathbf{r}_{cop}+\frac{\taucom}{F_z})}{z}\fgrz \\
-&=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z}m(g+\ddot{z}) - \frac{\taucom}{z} \\
-&=\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z}mg - \frac{\taucom}{z} + \frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z}m\ddot{z}.
-\end{align}
-Note that for a \ac{LIP} model the following equality holds:
-\begin{equation}
-	\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop}}{z_0}mg - \frac{\taucom}{z_0} = \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp}}{z_0}mg.
-\end{equation}
-For this reason the desired linear momentum rate is modified in the following way:
- \begin{equation}
-\dot{\mathbf{l}}_{xy,d}=\underbrace{ \frac{\mathbf{c}_{xy}-\mathbf{r}_{cmp,d}} {z_0}mg}_{\dotldxylip}  + \underbrace{\frac{\mathbf{c}_{xy}-\mathbf{r}_{cop,d}}{z}m\ddot{z}_d}_{\dotldxyheight},
-\end{equation}
-where $\dotldxylip$ is the already existing desired horizontal linear momentum rate of change from the \ac{ICP} controller and $\dotldxyheight$ is the additional desired momentum rate from height control. The desired \ac{CoP} $\rcopd$ is equal to $\rcmpd$ if $\rcmpd$ is inside the convex support polygon. If $\rcmpd$ is outside the polygon, $\rcopd$ is the orthogonal projection of $\rcmpd$ onto the polygon, as the \ac{CoP} lives by definition inside the support polygon. The desired height acceleration $\ddzd$ is the output of the height controller, which will be discussed in Section \ref{sec:strategy}.
-\paragraph{The condition to activate the controller} is when the \ac{ICP} error $\icpe$ is of such length, that \ac{CoP} strategies are no longer sufficient for balance control and an additional input has to be generated. The condition is $\icpe>\fracicp$, where the parameter $\fracicp=0.04$ is found to be a good estimate of the moment when the \ac{CoP} hits the edge of the polygon, considering the control settings at the time of writing \todo{ref to settings}. Also, the controller is only allowed to work in a static case or during the swing phase.
-
-\paragraph{Bang-bang control}  is initially assumed to be used in the controller. As the robotic system has limits on kinematics, joint-velocities and joint torques, the possible upward acceleration is limited. Downwards, the system might suffer from contact friction problems if the system drops with high acceleration. These limitations on upward and downward acceleration are approximated with a constant maximum value, which will be used in a worst-case scenario, where the robot is about to tip and the system needs to do the best it can to avoid falling.
-
-\section{Results}
-Which cases?
-\begin{itemize}
-	\item Normal limit v.s. height control on normal limit
-	\item Normal limit v.s. height control limit -> capture limits
-	\item Angular momentum v.s. height control -> \todo{How?}
-\end{itemize}
-\subsubsection{Simulation}
-\begin{itemize}
-	\item 360 push limits
-	\item Front and side push deep evaluation.
-\end{itemize}
-\subsubsection{Hardware}
-\begin{itemize}
-	\item Increase $\ddzdmax$ until best found
-	\item Front and side push
-	\item Compare with normal config
-	\item Compare with QP-based
-	\item Compare with ang momentum
-\end{itemize}
-On what?
-\begin{itemize}
-	\item joint torques: ankle, knee, hip, back
-	\item pose: angular momentum rate, angular momentum, body pose error, CoM
-	\item reference points: CMP, CoP, ICP -> Integrated CoP effect and Angular effect > linear momentum
-\end{itemize}
-
-\section{Discussion}

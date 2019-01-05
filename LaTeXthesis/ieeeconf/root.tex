@@ -254,7 +254,7 @@ We make a high-level comparison with the LIP, the height constrained bounds and 
 \end{align}
 In this comparison, we take $\ddzc=|\ddzcf|=|\ddzcs|$ for the vertical force constraint.
 
-For comarison, we make a rough estimate of realistic values of vertical forces that are achievable on both human and robot.
+For comparison, we make a rough estimate of realistic values of vertical forces that are achievable on both human and robot.
 
 First, we would like to see what would be achievable for a human being. A human jumping vertically with maximum effort generates approximately $2mg$ ground reaction force \cite{linthorne2001analysis}. If we assume this value can also be used in recovery, we can take $\ddot{z}_c=g=9.8$ [m/s$^2$] for a human. Second, we want to see what is possible on the robot. We found on hardware experiments on NASA's Valkyrie in Section \ref{subsec:hardware} that $\ddot{z}_c=2.4$ [m/s$^2$] was a well working value. Larger accelerations would result in the robot to shake and did not improve recovery. In Fig. \ref{fig:caplimits}, the height constrained bounds are shown, together with our approximations of what is realistic for vertical acceleration constraints on a human and on the robot. Note how the capture positions relate differently under a minimum height constraint than under a maximum height constraint. Also note how the capture position linking to our approximation for a robot, seems to approach a minimum and maximum value quite soon after changing height.
 \begin{figure}
@@ -291,7 +291,7 @@ Normally while standing, the height is controlled to a default constant referenc
 
 The control sequence we use for the bang-bang controller reads as follows. The controller is activated when $\rcmpd$ touches the polygon edge, an event that determines the worst-case scenario. The controller turns off if $\icpe$ is at a small value, a measure for stability. For the first `bang': the desired acceleration $\ddot{z}_d=\ddot{z}_c$. The transition from the first `bang' to the second is if:
 \begin{equation}
-	z+\frac{1}{2}\frac{\dot{z}^2}{\alpha_{\hat{\ddot{z}}_{c}}\ddot{z}_{c}} >\zmax,
+	z+sign(\dot{z})\frac{1}{2}\frac{\dot{z}^2}{\alpha_{\hat{\ddot{z}}_{c}}\ddot{z}_{c}} >\zmax,
 \end{equation}
 in the case of approaching a maximum height. This results in $\ddot{z}_d=-\ddot{z}_c$ until $\dot{z}<0$, after which the height is controlled to $\zmax$ until the controller turns off:
 \begin{equation}
