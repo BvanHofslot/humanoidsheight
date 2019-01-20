@@ -1,6 +1,31 @@
 %
 % Another appendix chapter
-\chapter{Test Parameters and Settings}\label{chap:params}
-\ac{QP} weights, PD and \ac{ICP} control gains. 
+\chapter{Test Parameters}\label{chap:params}
+In Table \ref{tab:params}, control framework parameters are shown which are used on the Valkyrie tests.  If the weights are denoted as a vector, the entries are the $x,y,z$ components respectively.
 
-
+\begin{table}[h]
+\caption{Control Framework Parameters}
+\label{tab:params}
+\begin{center}
+\begin{tabular}{llcc}
+\hline~\\[-2ex]
+\textbf{Task group} & \textbf{Task} & \textbf{Gains} & \textbf{Weights}\\
+\hline ~\\[-2ex]
+ICP control & - & $k_{\xi}=2$ & - \\
+Height control & - & $k_p=50, k_d=14$ & - \\
+Centroidal momentum rate & Linear & - & $[0.05, 0.05, 0.01]$ \\
+Motion angular & Pelvis & $k_p=100, k_d=16$ & [5.0, 5.0, 5.0]\\
+Motion angular & Chest & $k_p=100, k_d=16$ & $[15.0, 10.0, 5.0]$\\
+Motion angular & Foot stance & $k_p=200, k_d=28$ &  [2.0 2.0 2.0]\\
+Motion linear & Foot stance & $k_p=0, k_d=0$ & [80.0 80.0 80.0]\\
+Motion angular & Foot swing & $k_p=200, k_d=20$ & [2.0 2.0 2.0]\\
+Motion linear & Foot swing & $k_p=150, k_d=17$ & [80.0 80.0 80.0]\\
+Motion joint& Spine & $k_p=50, k_d=11$ & $10.0$\\
+Regularization & Joint acceleration & - & $5 \cdot 10^{-3}$\\
+Regularization & Joint jerk & - & $1.6 \cdot 10^-{6}$\\
+Regularization & $\boldsymbol{\rho}$ & - & $1.0 \cdot 10^-{5}$\\
+Regularization & $\boldsymbol{\rho}$ rate & - & $5.0 \cdot 10^-{5}$\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
