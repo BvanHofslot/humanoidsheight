@@ -5,24 +5,8 @@ In this chapter, a brief background on walking preliminaries, related works to \
 % Modeling of Walking
 \section{Walking Preliminaries}
 Different models have different limitations and advantages. Identifying the differences is important to develop an insight on how height variation can influence the system dynamics of a walking robot.
-% lip
-\subsection{Simple Walking Models}
-In simple walking models, a devision can be made in the following three categories:
-\begin{itemize}
-	\item Point-mass with point-foot
-	\item Point-mass with finite-sized support polygon
-	\item Mass with intertia with finite-sized support polygon
-\end{itemize}
-In the point-mass with point-foot model, the only \ac{GRF} that can be generated intersects with both the point-mass and the point-foot. The addition of a finite-sized support polygon allows the \ac{GRF} to intersect with anywhere on the support polygon, so more \ac{GRF} directions are possible. The inclusion of angular momentum around the \ac{CoM} in the model takes away the constraint of the \ac{GRF} to go through the \ac{CoM}. An example of the model with inertia and a finite-sized support polygon is the flywheel model. In \figref{fig:flywheel}, the flywheel model with prismatic leg joint is shown. The combined effects of the leg force $\fleg$, the anke torque $\tauankle$ and the torque around the \ac{CoM} $\taucom$ on the mass $m$ with inertia $\mathbf{I}$ determine the direction and magnitude of the resulting \ac{GRF} $\fgr$. The \ac{GRF} determines together with the external forces, in this example only the gravity vector $\vect{g}$, the linear acceleration $\ddcxyz$ of the \ac{CoM}.
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{STYLESTUFF/FlywheelModel.png}
-\caption{The flywheel model with finit-sized support polygon.}
-\label{fig:flywheel}
-\end{figure}
-
 % Ground Reference Points
-\subsection{Ground Reference Points}\label{sec:grp}
+\subsection{Dynamics \& Ground Reference Points}\label{sec:grp}
 A common approach for quantifying the dynamics of a walker, either a human or a robot, is the use of ground reference points. Most ground reference points are a function of the state of the robot and the \ac{GRF}.
 
 % ZMP
@@ -193,7 +177,7 @@ In contrary to running, with walking there is a state in every cycle with two fe
 \subsection{Planning}
 Planning of the robots motion is conducted by separating footstep planning from the generation of a dynamic plan. The dynamic plan is in this case an \ac{ICP} plan.
 %footstepplan
-\paragraph{Footstep planning} is the generation of a sequence of footsteps for the robot to follow. A \ac{LiDAR} sensor on the head of the robot provides terrain information. One way to generate a footstep plan is to let the user define it via a \ac{GUI}. Via relatively simple algorithmic checks on for example kinematic reachability, the \ac{GUI} can show whether a to be placed footstep is feasible or not. To make this process more autonomous, recently developments have been made in the creation of a footstep planner based on a A* search algorithm. 
+\paragraph{Footstep planning} is the generation of a sequence of footsteps for the robot to follow. A Light Detection and Ranging sensor on the head of the robot provides terrain information. One way to generate a footstep plan is to let the user define it via a graphical user interface. Via relatively simple algorithmic checks on for example kinematic reachability, the user interface can show whether a to be placed footstep is feasible or not. To make this process more autonomous, recently developments have been made in the creation of a footstep planner based on a A* search algorithm. 
 %icpplanning
 \paragraph{Instantaneous capture point planning}\label{subsec:icpplan} is the generation of a dynamic plan for the robot. It relies on the solution of the linear differential equation the \ac{ICP} dynamics of \eqref{eq:icpdyn}:
 \begin{equation}\label{eq:icpsol}
@@ -238,7 +222,7 @@ where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the w
 \paragraph{The whole-body quadratic program} \cite{koolen2016design} optimizes between momentum objectives, motion objectives and privileged configuration objectives to find desired joint accelerations and desired \ac{GRF}. The optimization is formulated as follows:
 \begin{equation}
 \begin{array}{rlcl}
-\displaystyle \min_{\bs{\ddot{q}}_d,\bs{\rho}} & \multicolumn{3}{l}{J_{\bs{\dot{h}}_d} + J_{\bs{J}} + J_{\bs{\rho}} + J_{\bs{\ddot{q}}_d}  + J_p} \\
+\displaystyle \min_{\bs{\ddot{q}}_d,\bs{\rho}} & \multicolumn{3}{l}{J_{\bs{\dot{h}}_d} + J_{\bs{J}} + J_{\bs{\rho}} + J_{\bs{\ddot{q}}_d} } \\%+ J_p} \\
 \textrm{s.t.} & \matr{A}\ddqjntd + \dot{\matr{A}}\dqjnt = \matr{W}_g + \matr{Q}\bs{\rho}+\sum_i\matr{W}_{ext,i}\\
 &\displaystyle \bs{\rho}_{min} \leq \bs{\rho}\\
 &\ddot{\qjnt}_{min} \leq \ddqjntd \leq \ddot{\qjnt}_{max},
@@ -258,11 +242,11 @@ $Momentum rate objective cost:$ & J_{\dot{\vect{h}}_d}= \wght_{\dot{\vect{h}}_d}
 $Motion objective cost:$ & J_{\matr{J}_m} = \wght_{\matr{J}_m}||\matr{J}_m\ddqjntd-\vect{p}||^2\\
 $Contact force cost:$ & J_{\bs{\rho}}=\wght_{\bs{\rho}}||\bs{\rho}||^2 \\
 $Joint acceleration cost:$ & J_{\ddqjntd} = \wght_{\ddqjntd}||\ddqjntd ||^2 \\
-$Privileged configuration cost:$ & J_p = \wght_p||(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)\ddqjntd - \ddqjntp||^2,
+%$Privileged configuration cost:$ & J_p = \wght_p||(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)\ddqjntd - \ddqjntp||^2,
 \end{array}
 \end{equation*}
-where the weighting terms $\wght$ can have a selecting function as well. For example, the centroidal momentum rate of change objective $J_{\dot{\vect{h}}_d}$ only consists of the linear part and is only affected by $\dotld$. The motion task jacobian $\matr{J}_m = [\matr{J}_1^T\quad...\quad\matr{J}_N^T]^T$ consists of all concatenated jacobians that map either joint acceleration to end-effector motion, as in Equation \eqref{eq:jacobian} or joint acceleration to joint acceleration. The motion objective vector $\vect{p} = [\vect{p}_1^T\quad...\quad\vect{p}_N^T]^T$  consists of PD-controlled desired accelerations, coming for example from trajectory tracking of the swing leg or maintaining the upper-body orientation. The last cost term $J_p$ is determined by the privileged joint accelerations $\ddqjntp$. Here is $\matr{J}_t$ the all-task jacobian consisting of both the momentum rate objective, as well as the motion objectives. The damped Moore-Penrose pseudo-inverse  $\matr{J}_t^{\dagger} = \matr{J}_t^T(\matr{J}_t\matr{J}_t^T +\mu^2)^{-1}$ with $\mu>0$ is used in the null-space projector $(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)$, which projects the priviliged acceleration objective in the null-space of the primary task jacobian $\matr{J}_t$. This can for example be used in singularity avoidance, where the priviliged accelerations are used to determine the configurarion of the robotic chain.  
-\paraskip
+where the weighting terms $\wght$ can have a selecting function as well. For example, the centroidal momentum rate of change objective $J_{\dot{\vect{h}}_d}$ only consists of the linear part and is only affected by $\dotld$. The motion task jacobian $\matr{J}_m = [\matr{J}_1^T\quad...\quad\matr{J}_N^T]^T$ consists of all concatenated jacobians that map either joint acceleration to end-effector motion, as in Equation \eqref{eq:jacobian} or joint acceleration to joint acceleration. The motion objective vector $\vect{p} = [\vect{p}_1^T\quad...\quad\vect{p}_N^T]^T$  consists of PD-controlled desired accelerations, coming for example from trajectory tracking of the swing leg or maintaining the upper-body orientation. %The last cost term $J_p$ is determined by the privileged joint accelerations $\ddqjntp$. Here is $\matr{J}_t$ the all-task jacobian consisting of both the momentum rate objective, as well as the motion objectives. The damped Moore-Penrose pseudo-inverse  $\matr{J}_t^{\dagger} = \matr{J}_t^T(\matr{J}_t\matr{J}_t^T +\mu^2)^{-1}$ with $\mu>0$ is used in the null-space projector $(\matr{I} - \matr{J}_t^{\dagger}\matr{J}_t)$, which projects the priviliged acceleration objective in the null-space of the primary task jacobian $\matr{J}_t$. This can for example be used in singularity avoidance, where the priviliged accelerations are used to determine the configurarion of the robotic chain.  
+
 An important note considering the research goal is the generation of vertical \ac{CoM} motion of the robot. The desired linear momentum rate of change $\dotld$ consists, next to its horizontal component of Equation \eqref{eq:dotldxy}, of a vertical part:
 \begin{equation}
 \dotldz =m(k_p(z_r-z) - k_d\dot{z}), 
