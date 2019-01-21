@@ -106,10 +106,11 @@ Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for
 W.~J. Schwind, {\em Spring loaded inverted pendulum running: A plant model.}
 \newblock PhD thesis, University of Michigan, 1998.
 
-\bibitem{lanari2014boundedness}
-L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
-  of locomotion trajectories for biped robots,'' in {\em IEEE-RAS International
-  Conference on Humanoid Robots (Humanoids)}, pp.~951--958, 2014.
+\bibitem{radford2015valkyrie}
+N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
+  Donnan, J.~Holley, J.~Sanchez, V.~Nguyen, L.~Bridgwater, {\em et~al.},
+  ``Valkyrie: Nasa's first bipedal humanoid robot,'' {\em Journal of Field
+  Robotics}, vol.~32, no.~3, pp.~397--419, 2015.
 
 \bibitem{oldatlas}
 ``{Image of the Atlas humanoid robot}.'' \url{http://robots.ihmc.us/}.
@@ -119,6 +120,12 @@ L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
 ``{Image of the Valkyrie humanoid robot}.''
   \url{https://spectrum.ieee.org/automaton/robotics/humanoids/video-friday-ihmc-valkyrie-harvard-arthropods-flying-wheeled-robot}.
 \newblock Accessed: 28/07/2018.
+
+\bibitem{seyde2018inclusion}
+T.~Seyde, A.~Shrivastava, J.~Englsberger, S.~Bertrand, J.~Pratt, and R.~J.
+  Griffin, ``Inclusion of angular momentum during planning for capture point
+  based walking,'' in {\em IEEE International Conference on Robotics and
+  Automation (ICRA)}, pp.~1791--1798, 2018.
 
 \bibitem{englsberger2012integration}
 J.~Englsberger and C.~Ott, ``Integration of vertical com motion and angular
@@ -132,12 +139,6 @@ J.~Englsberger, T.~Koolen, S.~Bertrand, J.~Pratt, C.~Ott, and
   during double support and heel-to-toe shift based on divergent component of
   motion,'' in {\em IEEE/RSJ International Conference on Intelligent Robots and
   Systems (IROS)}, pp.~4022--4029, 2014.
-
-\bibitem{seyde2018inclusion}
-T.~Seyde, A.~Shrivastava, J.~Englsberger, S.~Bertrand, J.~Pratt, and R.~J.
-  Griffin, ``Inclusion of angular momentum during planning for capture point
-  based walking,'' in {\em IEEE International Conference on Robotics and
-  Automation (ICRA)}, pp.~1791--1798, 2018.
 
 \bibitem{orin2013centroidal}
 D.~E. Orin, A.~Goswami, and S.-H. Lee, ``Centroidal dynamics of a humanoid
@@ -178,6 +179,11 @@ S.~Kajita, M.~Benallegue, R.~Cisneros, T.~Sakaguchi, S.~Nakaoka, M.~Morisawa,
   spatially quantized dynamics,'' in {\em IEEE-RAS International Conference on
   Humanoid Robotics (Humanoids)}, pp.~599--605, 2017.
 
+\bibitem{lanari2014boundedness}
+L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
+  of locomotion trajectories for biped robots,'' in {\em IEEE-RAS International
+  Conference on Humanoid Robots (Humanoids)}, pp.~951--958, 2014.
+
 \bibitem{caron2018capturability}
 S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based
   analysis, optimization and control of 3d bipedal walking,'' {\em CoRR},
@@ -191,11 +197,5 @@ B.~Stephens, ``Humanoid push recovery,'' in {\em IEEE-RAS International
 N.~P. Linthorne, ``Analysis of standing vertical jumps using a force
   platform,'' {\em American Journal of Physics}, vol.~69, no.~11,
   pp.~1198--1204, 2001.
-
-\bibitem{radford2015valkyrie}
-N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
-  Donnan, J.~Holley, J.~Sanchez, V.~Nguyen, L.~Bridgwater, {\em et~al.},
-  ``Valkyrie: Nasa's first bipedal humanoid robot,'' {\em Journal of Field
-  Robotics}, vol.~32, no.~3, pp.~397--419, 2015.
 
 \end{thebibliography}

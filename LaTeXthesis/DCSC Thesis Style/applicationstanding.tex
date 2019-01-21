@@ -207,19 +207,3 @@ Note how the simulation rear push recovery even lies outside the height constrai
 
 \section{Discussion}
 Height variation can improve balance. Difference in push directions and \ac{MPC} versus bang bang control. Valkyrie would stand on toes on hardware.
-\begin{table}[h]
-\caption{Major affected tasks by $\mathbf{\dot{l}}_{xy,d}$ in whole-body QP, if \ac{CoP} is saturated.} % title of Table
-\centering % used for centering table
-\begin{tabular}{c c c } % centered columns (4 columns)
-\hline\hline %inserts double horizontal lines
-Affected Desired & Constraint/Consideration & Centroidal Momentum Rate \\
-%heading
-\hline % inserts single horizontal line
- $z_d$ & Leg singularity & Linear\\
- $\boldsymbol{\phi}_{body,d}$ & Upper body pose & Angular\\
- $\mathbf{r}_{foot,d}$ &  Touchdown time & Angular\\
-%[1ex] % [1ex] adds vertical space
-\hline %inserts single line
-\end{tabular}
-\label{tab:eatqp} % is used to refer this table in the text
-\end{table}
