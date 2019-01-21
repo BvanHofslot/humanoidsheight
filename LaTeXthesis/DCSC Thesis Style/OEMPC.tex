@@ -78,16 +78,16 @@ Note that the matrix is still full rank, as long as $x_f$ and $\dot{x}_f$ are no
 
 % Height Constraint
 \subsection{Maximum Height Constraint}
-Using the previous two descriptions, Equation \ref{eq:amatrix} and \ref{eq:a1matrix}, with an undetermined final velocity $\dot{x}_f$, a height constraint can be added to the problem. Algorithm \ref{alg:h} shows how the polynomial values can be found under this constraint. The maximum height of the trajectory being optimized over is at location $x_{zmax}$, which has two solutions. In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \ref{alg:h}, one with the final height constraint and one for the constraint on the final gradient. Notice that the maximum of $f(x)$ in both plots lies on the highest $x$-value of the two solutions of $x_{\zmax}$. Therefore, in Algorithm \ref{alg:h} the solution that corresponds to this peak is sufficient to consider a constraint on maximum height. In the figure, the entire polynomial is shown for explanatory reasons. In control however, only the solid graph would be used, as this is the part of the function after the initial condition.
+Using the previous two descriptions, Equation \ref{eq:amatrix} and \ref{eq:a1matrix}, with an undetermined final velocity $\dot{x}_f$, a height constraint can be added to the problem. Algorithm \ref{alg:h} shows how the polynomial values can be found under this constraint. The maximum height of the trajectory being optimized over is at location $x_{\zmax}$, which has two solutions. In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \ref{alg:h}, one with the final height constraint and one for the constraint on the final gradient. Notice that the maximum of $f(x)$ in both plots lies on the highest $x$-value of the two solutions of $x_{\zmax}$. Therefore, in Algorithm \ref{alg:h} the solution that corresponds to this peak is sufficient to consider a constraint on maximum height. In the figure, the entire polynomial is shown for explanatory reasons. In control however, only the solid graph would be used, as this is the part of the function after the initial condition.
 \begin{algorithm}
 \caption{Find cubic polynomial constants under height constraint}
 \label{alg:h}
 \begin{algorithmic}[1]
-    \State $\dot{x}_{f}\gets 0$\Comment{Initial guess}
+    \State $\dot{x}_{f}\gets \sqrt{\dot{x}_0^2-\frac{g}{z_0}x_0^2}$\Comment{Initial guess based on $\Elip$}
         \Repeat
             \State $\vect{c}\gets \matr{A}^{-1}\vect{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
-            \State $x_{zmax}\gets \frac{-2c_2 - \sqrt{4c_2^2-12c_3c_1}}{6c_3}$ \Comment{Traj. peak lies on highest x}
-            \State $z_{peak} \gets c_0 + c_1x_{zmax} + c_2x_{zmax}^2+ c_3x_{zmax}^3$ \Comment{Corresponding height}
+            \State $x_{\zmax}\gets \frac{-2c_2 - \sqrt{4c_2^2-12c_3c_1}}{6c_3}$ \Comment{Traj. peak lies on highest $x$}
+            \State $z_{peak} \gets c_0 + c_1x_{\zmax} + c_2x_{\zmax}^2+ c_3x_{\zmax}^3$ \Comment{Corresponding height}
             \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Velocity increment}
         \Until{$z_{peak}<z_{max}$}\\
     \Return $\vect{c}$
@@ -100,10 +100,10 @@ Using the previous two descriptions, Equation \ref{eq:amatrix} and \ref{eq:a1mat
 \label{fig:polheight}
 \end{figure}
 
-It is challenging, if not impossible, to find a gradient of the function $\dot{x}_f$. Therefore, the size of increment $\alpha$ cannot be determined based on a gradient. Using the final velocity of the \ac{LIP} orbital energy and a final velocity after the influence of an impact as in $x_{cp,\zmax}$, an increment can be derived. 
+It is challenging to find a gradient of the function $\dot{x}_f$. Therefore, the size of increment $\alpha$ cannot be determined based on a gradient. Using the final velocity of the \ac{LIP} orbital energy and a final velocity after the influence of an impact as in $x_{cp,\zmax}$, an increment can be derived. 
 The final velocity according to the \ac{LIP} orbital energy is:
 \begin{equation}
-	\dot{x}_{f,lip} = \sqrt{\dot{x}_0^2-\frac{g}{z}x_0^2},
+	\dot{x}_{f,lip} = \sqrt{\dot{x}_0^2-\frac{g}{z_0}x_0^2},
 \end{equation}
 where $\dot{x}_{f,lip}$ is the \ac{LIP} final velocity. The final velocity of a height constrained bound as in $x_{cp,\zmax}$ can be calculated as follows:
 \begin{equation}
@@ -141,12 +141,12 @@ Again, the value of the maximum peak lies on the highest $x$ value of the two lo
 \caption{Find cubic polynomial constants under leg length constraint}
 \label{alg:ll}
 \begin{algorithmic}[1]
-    \State $\dot{x}_{f}\gets 0$\Comment{Initial guess}
+    \State $\dot{x}_{f}\gets \sqrt{\dot{x}_0^2-\frac{g}{z_0}x_0^2}$\Comment{Initial guess based on $\Elip$}
         \Repeat
             \State $\vect{c}\gets \matr{A}^{-1}\vect{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
-            \State $x_{lmax}^2 \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}  
-            \State $x_{lmax}\gets-|\sqrt{x_{l^2max}}|$                \Comment{Complex solutions}
-            \State $l_{peak}^2 \gets x_{lmax}^2 + (c_0 + c_1x_{zmax} + c_2x_{zmax}^2+ c_3x_{zmax}^3)^2$ 
+            \State $x_{\lmax}^2 \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}  
+            \State $x_{\lmax}\gets-|\sqrt{x_{\lmax^2}}|$                \Comment{Complex solutions}
+            \State $l_{peak}^2 \gets x_{\lmax}^2 + (c_0 + c_1x_{\lmax} + c_2x_{\lmax}^2+ c_3x_{\lmax}^3)^2$ 
             \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Velocity increment}
         \Until{$l_{peak}^2<l_{max}^2$}\\
     \Return $\vect{c}$    

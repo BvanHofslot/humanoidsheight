@@ -10,14 +10,13 @@
 \contentsline {paragraph}{The zero moment point}{5}{section*.31}
 \contentsline {paragraph}{The center of pressure}{6}{section*.33}
 \contentsline {paragraph}{The centroidal moment pivot}{6}{section*.35}
-\contentsline {subsection}{\numberline {2-1-2}Inverted Pendulum-based Models}{6}{subsection.2.1.2}
-\contentsline {paragraph}{The linear inverted pendulum model}{6}{section*.38}
+\contentsline {subsection}{\numberline {2-1-2}Inverted Pendulum-based Models}{7}{subsection.2.1.2}
+\contentsline {paragraph}{The linear inverted pendulum model}{7}{section*.38}
 \contentsline {paragraph}{Height varying models}{7}{section*.42}
 \contentsline {subsection}{\numberline {2-1-3}Orbital Energy \& Capture Theory}{8}{subsection.2.1.3}
-\contentsline {paragraph}{The linear inverted pendulum orbital energy}{8}{section*.47}
-\contentsline {paragraph}{The capture point}{8}{section*.48}
-\contentsline {paragraph}{The instantaneous capture point}{9}{section*.51}
-\contentsline {paragraph}{The boundedness condition}{9}{section*.54}
+\contentsline {paragraph}{The linear inverted pendulum orbital energy}{9}{section*.47}
+\contentsline {paragraph}{The linear inverted pendulum capture point}{9}{section*.48}
+\contentsline {paragraph}{The instantaneous capture point}{9}{section*.52}
 \contentsline {paragraph}{Orbital energy with height variation}{10}{section*.55}
 \contentsline {section}{\numberline {2-2}Humanoid Robotics at IHMC}{10}{section.2.2}
 \contentsline {subsection}{\numberline {2-2-1}Robots}{10}{subsection.2.2.1}
@@ -78,7 +77,5 @@
 \contentsline {section}{\numberline {7-1}Recommendations}{57}{section.7.1}
 \contentsline {chapter}{\numberline {A}Test Parameters}{59}{appendix.A}
 \contentsline {chapter}{\numberline {B}2D Analysis from Model to Robot}{61}{appendix.B}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{71}{section*.135}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Glossary}{75}{appendix*.137}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Acronyms}{75}{section*.138}
-\contentsline {section}{\hbox to\@tempdima {\hfil }List of Symbols}{75}{section*.141}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{71}{section*.134}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{75}{appendix*.136}
