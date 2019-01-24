@@ -67,7 +67,9 @@ exportfig(gcf,'valcomparephase.eps', opts)
 pW=1.3;
 fS=14;
 kGray=0.85;
-lastP= 1800;
+i0=1;
+lastP= 626;
+x = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CommonHumanoidReferenceFramesVisualizer.centerOfMassX;
 iF = length(x(i0:lastP));
 m=127.2996;
 t=[];

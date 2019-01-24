@@ -44,24 +44,25 @@
 \BOOKMARK [1][-]{section.4.2}{Discussion}{chapter.4}% 44
 \BOOKMARK [0][-]{chapter.5}{Application: Standing}{mainmatter_anchor.-1}% 45
 \BOOKMARK [1][-]{section.5.1}{Method}{chapter.5}% 46
-\BOOKMARK [2][-]{subsection.5.1.1}{Generation of Desired Vertical Linear Momentum Rate}{section.5.1}% 47
-\BOOKMARK [2][-]{subsection.5.1.2}{Generation of Desired Horizontal Linear Momentum Rate}{section.5.1}% 48
-\BOOKMARK [1][-]{section.5.2}{Results}{chapter.5}% 49
-\BOOKMARK [2][-]{subsection.5.2.1}{Simulation}{section.5.2}% 50
-\BOOKMARK [2][-]{subsection.5.2.2}{Hardware}{section.5.2}% 51
-\BOOKMARK [2][-]{subsection.5.2.3}{Comparison with Capture Regions}{section.5.2}% 52
-\BOOKMARK [1][-]{section.5.3}{Discussion}{chapter.5}% 53
-\BOOKMARK [0][-]{chapter.6}{Toward Application: Walking}{mainmatter_anchor.-1}% 54
-\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.1.1}{Preliminary Observations}{section.6.1}% 56
-\BOOKMARK [1][-]{section.6.2}{Method}{chapter.6}% 57
-\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 58
-\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 59
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 60
-\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 61
-\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 62
-\BOOKMARK [0][-]{appendix.A}{Test Parameters}{apdx_anchor.-1}% 63
-\BOOKMARK [0][-]{appendix.B}{2D Analysis from Model to Robot}{apdx_anchor.-1}% 64
-\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 65
-\BOOKMARK [0][-]{section*.134}{Bibliography}{backmatter_anchor.-1}% 66
-\BOOKMARK [0][-]{appendix*.136}{List of Acronyms}{backmatter_anchor.-1}% 67
+\BOOKMARK [1][-]{section.5.2}{Results}{chapter.5}% 47
+\BOOKMARK [2][-]{subsection.5.2.1}{Simulation}{section.5.2}% 48
+\BOOKMARK [2][-]{subsection.5.2.2}{Hardware}{section.5.2}% 49
+\BOOKMARK [2][-]{subsection.5.2.3}{Comparison with Capture Regions}{section.5.2}% 50
+\BOOKMARK [2][-]{subsection.5.2.4}{Atlas Results}{section.5.2}% 51
+\BOOKMARK [1][-]{section.5.3}{Discussion}{chapter.5}% 52
+\BOOKMARK [0][-]{chapter.6}{Toward Application: Walking}{mainmatter_anchor.-1}% 53
+\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 54
+\BOOKMARK [1][-]{section.6.2}{Method}{chapter.6}% 55
+\BOOKMARK [2][-]{subsection.6.2.1}{Avoiding Generating Angular Momentum Rate}{section.6.2}% 56
+\BOOKMARK [2][-]{subsection.6.2.2}{Alignment Angle and Relative Distance}{section.6.2}% 57
+\BOOKMARK [2][-]{subsection.6.2.3}{Actions}{section.6.2}% 58
+\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 59
+\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 60
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 61
+\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 62
+\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 63
+\BOOKMARK [0][-]{appendix.A}{Test Parameters}{apdx_anchor.-1}% 64
+\BOOKMARK [0][-]{appendix.B}{2D Analysis from Model to Robot}{apdx_anchor.-1}% 65
+\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 66
+\BOOKMARK [0][-]{section*.132}{Bibliography}{backmatter_anchor.-1}% 67
+\BOOKMARK [0][-]{appendix*.134}{List of Acronyms}{backmatter_anchor.-1}% 68
