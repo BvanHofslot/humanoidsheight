@@ -1250,10 +1250,10 @@
             \put(0,-0.95){%
 %PH 24-10-11 REPLACED NEXT LINE
 %                \colorbox{black}{\makebox(1,.45){}}
-                \colorbox[cmyk]{1,1,1,1}{\makebox(1,.45){}}
+                \colorbox[cmyk]{1,1,1,1}{\makebox(1,.42){}}
            }%
             % Title text (white)
-            \put(0.05,-0.55){%
+            \put(0.05,-0.58){%
                 \begin{minipage}[t]{0.9\textwidth}%
                     \Huge{\fontfamily{pbk}\selectfont%
                     \setlength{\baselineskip}{1.3\baselineskip}%
@@ -1273,10 +1273,10 @@
                 }%
             }%      
             % cyan `oormerk' box
-            \put(-0.25,-0.5){%
+            \put(-0.25,-0.53){%
                 \colorbox{cyan}{\makebox(0.25,0.45){}}
             }%
-            \put(-0.05,-0.47){%
+            \put(-0.05,-0.5){%
                 \rotatebox{90}{%
                     \Large{\textsf{\color{white} Master of Science Thesis}}
                 }%
