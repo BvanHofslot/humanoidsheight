@@ -4,9 +4,10 @@
 In this chapter, a brief background is given on humanoid robot walking, humanoid robotics at \ac{IHMC} and related works to \ac{CoM} height variation.
 % Modeling of Walking
 \section{Walking Preliminaries}
+In this section, commonly used expressions in walking research are briefly presented, with a focus on humanoid robotics.
 % Ground Reference Points
-\subsection{Dynamics \& Ground Reference Points}\label{sec:grp}
-Ground contact forces are often summed up in a single \ac{GRF}, coming from a single point of application in the support polygon of the robot. The dynamics of the robot can assumed to be depending on the \ac{GRF} and the \ac{CoM} state. Ground reference points use both \ac{GRF} and \ac{CoM} state to describe the dynamics on a single point. 
+\subsection{Ground Reference Points}\label{sec:grp}
+The dynamics of a walker are often assumed to be depending on the forces resulting from ground contact, the \ac{CoM} state and the angular moment about the \ac{CoM} state. The contact forces are commonly summed up in a single \ac{GRF}, coming from a single point of application in the supporting area of the walker. Ground reference points are used to describe the dynamics of the system in a single point, using \ac{GRF} and \ac{CoM} states.
 
 % ZMP
 \paragraph{The zero moment point} is the point on the ground where the resulting \ac{GRF} does not produce any moment in the horizontal plane \cite{sardain2004forces}. By definition, this is also the point where the part of the \ac{GRF} does not cause angular momentum around the \ac{CoM} intersects with the ground surface. The \ac{ZMP} initially was introduced in \cite{vukobratovic1969contribution}. The \ac{ZMP} is formulated as:
@@ -20,25 +21,17 @@ In \figref{fig:zmpvscmp} the definition of the \ac{ZMP} is visualized for two di
 % CoP
 \paragraph{The center of pressure} coincides during walking over flat ground with the \ac{ZMP} \cite{vukobratovic2004zero}. The two points however are not equal in more complex environments. The \ac{CoP} is restricted to be located in the support polygon, while the \ac{ZMP} is restricted to lie on the ground plane  \cite{sardain2004forces}. Traditionally, the \ac{CoP} is a measured quantity from a force pressure plate under the foot. The \ac{CoP} is linked to the \ac{GRF}-moment, while the \ac{ZMP} is related to the effects of external forces on the \ac{CoM} state \cite{sardain2004forces}. In this thesis, the \ac{CoP} location is denoted as $\rcop = [x_{cop}, y_{cop}]^T$ and considered equal to $\rzmp$, as a flat walking surface is used as reference.
 
-% CMP
-\paragraph{The centroidal moment pivot} includes, unlike the \ac{ZMP} and \ac{CoP}, angular momentum around the \ac{CoM}  \cite{popovic2005ground}. This is defined as the point where a line passing through the \ac{CoM}, parallel to the \ac{GRF} intersects with the ground surface. Unlike the \ac{CoP}, the \ac{CMP} is not constrained to lie inside the support polygon. The \ac{CMP} is defined as:
-\begin{equation}
-    \rcmp=\cxy-\frac{\fgrxy}{\fgrz}z,
-    \label{eq:cmp}
-\end{equation}
-where $\rcmp =[x_{cmp}, y_{cmp}]^T$ is the \ac{CMP} location. In \figref{fig:3dlipfootinertia} the difference between the \ac{ZMP} and \ac{CMP} is graphically explained. Note that without body inertia in the model, the points coincide. Equivalently, if $\taucom=0$, the points coincide as well.
-
 \begin{figure}
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
-\includegraphics[width=.95\linewidth]{STYLESTUFF/3DCoPviz.png}
+\includegraphics[width=.9\linewidth]{STYLESTUFF/3DCoPviz.png}
 \caption{}
 \label{fig:3dlipfoot}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
 \centering
-\includegraphics[width=.95\linewidth]{STYLESTUFF/3DCMPCoPviz.png}	
+\includegraphics[width=.9\linewidth]{STYLESTUFF/3DCMPCoPviz.png}	
 \caption{}
 \label{fig:3dlipfootinertia}
 \end{subfigure}
@@ -46,6 +39,13 @@ where $\rcmp =[x_{cmp}, y_{cmp}]^T$ is the \ac{CMP} location. In \figref{fig:3dl
 \label{fig:zmpvscmp}
 \end{figure}
 
+% CMP
+\paragraph{The centroidal moment pivot} includes, unlike the \ac{ZMP} and \ac{CoP}, angular momentum around the \ac{CoM}  \cite{popovic2005ground}. This is defined as the point where a line passing through the \ac{CoM}, parallel to the \ac{GRF} intersects with the ground surface. Unlike the \ac{CoP}, the \ac{CMP} is not constrained to lie inside the support polygon. The \ac{CMP} is defined as:
+\begin{equation}
+    \rcmp=\cxy-\frac{\fgrxy}{\fgrz}z,
+    \label{eq:cmp}
+\end{equation}
+where $\rcmp =[x_{cmp}, y_{cmp}]^T$ is the \ac{CMP} location. In \figref{fig:3dlipfootinertia} the difference between the \ac{ZMP} and \ac{CMP} is graphically explained. Note that without body inertia in the model, the points coincide. Equivalently, if $\taucom=0$, the points coincide as well.
 
 %leg modeling
 \subsection{Inverted Pendulum-based Models}
@@ -57,7 +57,7 @@ The line between a ground reference point and the \ac{CoM} can be modeled as a m
 \label{eq:LIPeom}
 \end{equation}
 where $\ddcxy$ is the horizontal \ac{CoM} acceleration. At any horizontal position, a local virtual straight pendulum can be considered, so this motion is at a constant height and $l=z_0$  holds. In \figref{fig:3dlip} the \ac{3D} motion is visualized if the \ac{CoM} is relatively far from from the base. The virtual point-foot lies in the origin. Because the \ac{LIP} assumption holds, the vertical component of $\fgr$ has to cancel out gravity acceleration: $\fgrz=mg$.\\
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{STYLESTUFF/3DCoMwithoutfoot.png}
 \caption{\ac{3D} motion of \ac{LIP} model.}
@@ -87,7 +87,7 @@ Another way of writing the dynamics of the \ac{VHIP} is as a function of the ver
 	\label{eq:dynamicscaronstyle}
 \end{equation}
 where $\vect{g}=[0,0,-g]$ is the gravity force vector. The dynamical equation can be seen as a linear time-varying system. Examples of works that use the latter dynamical description for the \ac{VHIP} are \cite{hopkins2014humanoid} and \cite{caron2018balance}. Note that the two models are identical, but can be used for different purposes.
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{STYLESTUFF/3DCoMwithoutfootVHIP.png}
 \caption{\ac{3D} motion of \ac{VHIP} model.}
@@ -113,7 +113,7 @@ where $E_{LIP}$ is the \ac{LIP} orbital energy. Note that the expression resembl
 \label{eq:cp}
 \end{equation}
 where $\xcplip$ is the \ac{CP}. This is the point where the velocity of the point-mass is exactly driven to zero and the pendulum is upright, where neither crossing of the pendulum base ocurred nor turning of body velocity. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point. The \ac{CP} will be used for comparison with the \ac{VHIP} capture regions later in this report.
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{STYLESTUFF/2DICP.png}
 \caption{Visualization of the path to the \ac{CP}. }
@@ -231,7 +231,7 @@ where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the w
 \end{array}
 \end{equation}
 where $\ddqjntd$ are the desired joint accelerations, $\matr{Q}\bs{\rho} = \sum_i\matr{W}_{gr,i}$ is the basis vector matrix $\matr{Q}$ times the basis vector multipliers $\bs{\rho}$. The basis vector matrix $\matr{Q}$ consists of all basis vectors of the wrench cones from each ground contact point. In \figref{fig:wrenchcone}, the wrench cone for a single contact point is visually explained.
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{STYLESTUFF/wrenchcone.png}
 \caption{Approximation of the wrench cone with basis vectors $\boldsymbol{\beta}_{ij}$ for ground contact point $i$. The linear part of the ground reaction wrench, $\vect{f}_i$ in the drawing, is a positive multiplication of the basis vectors and lies inside the wrench cone \cite{koolen2016design}. }
@@ -276,12 +276,10 @@ The scope in this short literature survey is not limited to only the use of vert
 
 Traditionally, vertical motion is generated through PD-control \cite{kajita2003resolved, koolen2016design}: a dynamic reference plan exists, often based on the LIP model, and height variation are considered as disturbances on the model considered in the dynamic plan. Reasons to use height variations here include the guarantee of \textit{kinematic feasibility}: height variation allows the robot to step up platforms, and allows the robot to take larger steps. A noteworthy, more unique, example of height variation in non-predictive control is walking with straighter legs as in \cite{griffin2018straight}. The motivation in this work is to let the robot walk more \textit{human-like}, which could have more underlying benefits, such as kinematic reachability and metabolic energy consumption \cite{wang2012optimizing}.
 
-Because the constant height assumption from the \ac{LIP} is constraining the dynamics of the robotic system, efforts have been made to incorporate CoM height variation in the generation of a dynamic plan. Instead of using a LIP model, a more complicated model is used. \textit{Expected} height variations of the CoM can be incorporated in the dynamic planning problem, which improves the \textit{dynamic feasibility} of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. \ac{CoM} height variations from a walking pattern can be received from for example a reference trajectory over a height-varying terrain, or from a human-like walking pattern. 
-
-A very recent objective is the specific use of height variation in \textit{balance control}. Normally, traditional balance control strategies are taking a step, movement of the \ac{CoP}: `ankle' strategies and, to a lesser extent, changing the angular momentum about the \ac{CoM}, for example: `hip' strategies. Recently, efforts have been made to incorporate vertical \ac{CoM} motions as an additional strategy for balance control. This is the research of focus in this report.
-
 %var height terrain
 \subsection{Dynamic Planning \& Walking Pattern Generation}
+Because the constant height assumption from the \ac{LIP} is constraining the dynamics of the robotic system, efforts have been made to incorporate CoM height variation in the generation of a dynamic plan. Instead of using a LIP model, a more complicated model is used. \textit{Expected} height variations of the CoM can be incorporated in the dynamic planning problem, which improves the \textit{dynamic feasibility} of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. \ac{CoM} height variations from a walking pattern can be received from for example a reference trajectory over a height-varying terrain, or from a human-like walking pattern. 
+
 An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}, which is an extension of \ac{ICP} planning as in Section \ref{subsec:icpplan}. Additional reference points, similar to ground reference points as in \ref{sec:grp}, are designed and used in the planning method. The drawback from this method is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are straight lines. 
 
 Another work improved this aspect by introducing the time-varying \ac{DCM} \cite{hopkins2014humanoid}. The natural frequency of the \ac{LIP} was made time-varying, such that the dynamics of the \ac{DCM} became time-varying. However, a closed form solution using this method is not available anymore, as the used model is non-linear.
@@ -289,6 +287,8 @@ Another work improved this aspect by introducing the time-varying \ac{DCM} \cite
 The methods presented in \cite{brasseur2015robust} \cite{kajita2017biped} also show the objectives of walking with straighter legs in the dynamic planning problem. The objective in the optimization in \cite{brasseur2015robust} is to let the robot walk with the straightest legs as possible at any time. In \cite{kajita2017biped}, a \ac{2D} walking pattern is generated for walking with straighter legs. The third dimension is added, under the assumption that the dynamics in the sagittal plane and the frontal plane can be decoupled. 
 %balance
 \subsection{Balance Control}\label{subsec:heightbalance}
+A very recent objective is the specific use of height variation in \textit{balance control}. Normally, traditional balance control strategies are taking a step, movement of the \ac{CoP}: `ankle' strategies and, to a lesser extent, changing the angular momentum about the \ac{CoM}, for example: `hip' strategies. Recently, efforts have been made to incorporate vertical \ac{CoM} motions as an additional strategy for balance control. This is the research of focus in this report.
+
 In this section, the following three publications that consider height variations as control input for balance are discussed. The work proposed by: Koolen, Posa \& Tedrake in \cite{koolen2016balance},  Gao, Jia \& Fu in \cite{gao2017increase} and  Caron \& Mallein in \cite{caron2018balance}:
 
 % 2D polynomial
@@ -298,22 +298,22 @@ In this section, the following three publications that consider height variation
 \end{equation}
 where $E_{VHIP}$ is the \ac{VHIP} orbital energy. The virtual constraint $z=f(x)$ is used to make a closed-form solution possible for the energy. Furthermore, $\bar{f}(x)=f(x)-f'(x)x$. Unlike its \ac{LIP} cousin, this \ac{2D} orbital energy allows for \ac{CoM} height variation. Note that filling in a constant value for the function, $f(x)=z_0$, rewrites to the \ac{LIP} orbital energy.
 
-The function $f(x)$ is constrained to be a cubic polynomial by Koolen et al. in \cite{koolen2016balance}. Using this description, four constraints are presented, which are used in a matrix to solve for the polynomial constants. There is one constraint on the final height, one constraint on the initial height, one on the initial direction and one constraint on conservation of $E_{VHIP}$. The final position of the polynomial trajectory is above the \ac{CoP} and the final velocity is zero, such that the resulting polynomial trajectory is a \textit{capture trajectory}. Next to this, \textit{regions of attraction} for this controller are investigated: initial states in which this controller is still able to let the \ac{VHIP} converge to the unstable equilibrium. However, there are no kinematic constraints taken into account, such that the polynomial trajectories can become unrealistically high above the ground. Though, the analytic solution for the capture trajectory guarantees fast computations, which allow for the use in \ac{MPC}.
+The function $f(x)$ is constrained to be a cubic polynomial by Koolen et al. in \cite{koolen2016balance}. Using this description, four constraints are presented, which are used in a matrix to solve for the polynomial constants. There is one constraint on the final height, one constraint on the initial height, one on the initial direction and one constraint on conservation of $E_{VHIP}$. The final position of the polynomial trajectory is above the \ac{CoP} and the final velocity is zero, such that the resulting polynomial trajectory is a \textit{capture trajectory}. 
 
-\paragraph{Gao et al.} present different \ac{2D} strategies to use vertical motion in balance control. An example is the lowering of the \ac{CoM} height in the current step, to exert more force and raise the \ac{CoM} in the next step. In this way, the pendulum can stop closer to the current position than with a \ac{LIP} trajectory. Furthermore, the natural frequency of the \ac{LIP} is adjusted for the added vertical acceleration. To make the dynamical model closed-form solvable over time, a constant height is considered, as the deviations from the initial height are considered as relatively small.
+Next to this, \textit{regions of attraction} for this controller are investigated: initial states in which this controller is still able to let the \ac{VHIP} converge to the unstable equilibrium. However, there are no kinematic constraints taken into account, such that the polynomial trajectories can become unrealistically high above the ground. Though, the analytic solution for the capture trajectory guarantees fast computations, which allow for the use in \ac{MPC}.
+
+\paragraph{Gao et al.} present different \ac{2D} strategies to use vertical motion in balance control in \cite{gao2017increase}. An example is the lowering of the \ac{CoM} height in the current step, to exert more force and raise the \ac{CoM} in the next step. In this way, the pendulum can stop closer to the current position than with a \ac{LIP} trajectory. Furthermore, the natural frequency of the \ac{LIP} is adjusted for the added vertical acceleration. To make the dynamical model closed-form solvable over time, a constant height is considered, as the deviations from the initial height are considered as relatively small.
 
 % boundedness
-\paragraph{Caron \& Mallein} propose a \ac{3D} \ac{MPC} law based on a height varying version of the boundedness condition from Section \ref{sec:boundedness} \cite{lanari2014boundedness}. By using a time varying natural frequency of the pendulum $\omega(t)$, the authors combine the boundedness condition with the approach in \cite{hopkins2014humanoid}. By the nonlinearity of the problem, it is initially hard to solve. The problem function is reformulated and written as a function of an inverse of time, rather than as a function of time. Also, the capture trajectory is divided in $10$ segments, which are considered piece-wise time-invariant. The resulting problem is then solved using a nonlinear solver.
+\paragraph{Caron \& Mallein} propose a \ac{3D} \ac{MPC} law based on a height varying version of the boundedness condition from \cite{lanari2014boundedness}. In \cite{lanari2014boundedness}, the boundedness condition is based on the \ac{LIP} and presents a similar expression as the \ac{ICP}, but takes a time-varying ground reference point trajectory into account.  By using a time varying natural frequency of the pendulum $\omega(t)$, Caron \& Mallein combine the boundedness condition with the approach in \cite{hopkins2014humanoid}. By the nonlinearity of the problem, it is initially hard to solve real time. The problem function is reformulated and written as a function of an inverse of time, rather than as a function of time. Also, the capture trajectory is divided in $10$ segments, which are considered piece-wise time-invariant. The resulting problem is then solved using a nonlinear solver.
 
-This work is expanded in \cite{caron2018capturability}. The problem is extended from `0-step' problems to multi step problems. It is again heavily rewritten and sequential quadratic programming is used to allow for fast computation times, which makes the problem solvable online.
+This work is expanded in \cite{caron2018capturability}. The problem is extended from `0-step' problems to multi-step problems. The problem formulation is rewritten and sequential quadratic programming is used to allow for fast computation times, which makes the problem solvable real time.
 
 \subsection{Discussion}
-Either dynamic planning related or balance control related, all works mentioned in this section, have some challenges in common:
-\begin{itemize}
-	\item The works rely on a \ac{LIP} or \ac{VHIP} model: the dynamics of the robot are assumed to be depending on the line between a ground reference point and the \ac{CoM};
-	\item The works attempt to find a solution over time of the pendulum-based model. This `orbital energy' is used in both dynamic planning and \ac{MPC} in balance control. Depending on the constraints introduced, the trajectory can be found analytically or numerically.
-\end{itemize}
+The related works show that the use of \ac{CoM} height variations in dynamic planning is a relatively longer existing research than the use of  vertical \ac{CoM} motion in balance control. However, the difference between dynamic planning and \ac{MPC} can be small. The most notable difference between the two is that with \ac{MPC} replanning is conducted every control tick, while with dynamic planning this happens fewer times. Replanning every control tick allows to adjust the dynamic plan for disturbances applied on the system, which were not considered initially. The similarity between the two is that, in the works mentioned, both use a \ac{VHIP} or an adjusted \ac{LIP} model for computing the predicted dynamics of the system.
 
-More specifically in balance control related works,  Koolen et al. introduce a constraint on the shape of the trajectory, as well as constraining the model to by \ac{2D}. Gao et al. constrain the model used in prediction to have a constant height, despite the fact that vertical accelerations are use. Caron et al. constrain pieces of the trajectory to be time-invariant, after which the numerical solution to the problem is faster to solve.
+When going from the \ac{LIP} to the \ac{VHIP}, the problem arises of losing the explicit solution to the dynamics. To avoid large computation times due to numerical integration, in the works related to balance control, constraints are introduced to allow for faster solutions. More specifically, Koolen et al. constrain the \ac{2D} vertical position of the \ac{VHIP} to be a cubic polynomial function of its horizontal position. Gao et al. consider an adjusted constant natural frequency for the \ac{LIP} model to account for vertical acceleration. Caron et al. use piece-wise time-invariant natural frequencies to obtain fast solutions. Furthermore, the kinematic constraints of the robot, such as a maximum leg length, are approximated with a minimum and maximum \ac{CoM} height.
 
-Regarding the goal in this thesis to \textit{improve} balance control, the constraints introduced by the methods can be judged based on improvement compared with a constant height control. Also, the search for the predictability of the horizontal dynamics will be a central discussion point.
+Comparable with the \ac{LIP}-based `capture regions' in \cite{pratt2006capture}, \cite{koolen2012capturability} and `stable regions' \cite{stephens2007humanoid},  Koolen et al. investigate `regions of attraction' for the unconstrained \ac{VHIP} orbital energy trajectories. Traditional `capture regions' consider \ac{CoM} inertia to control the \ac{CP}. The \ac{VHIP} `regions of attraction' use \ac{CoM} height variation as a control input. The `regions of attraction' show an interesting insight in capture regions of the \ac{VHIP} model. However, only a constraint of contact unilaterality is considered and no additional constraints are introduced to take kinematic and torque limits of the robot into account. 
+
+In the next chapter, capture regions are presented for the \ac{VHIP} model, by considering additional constraints. Like in the approach of Caron et al., constraints on the kinematics and dynamics of the system are approximated with a constraint on vertical position and acceleration.

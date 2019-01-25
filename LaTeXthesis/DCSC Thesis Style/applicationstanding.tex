@@ -32,9 +32,9 @@ When this condition is met, the second `bang' is activated and $\ddot{z}_d=-\ddo
 \end{equation}
 Controlling to $\zmax$ allows the robot to apply more force on the ground, compared to controlling directly to $z_0$ again. The controller turns off if the \ac{ICP} error $\icpe$ is at a small value, a measure for stability. If the controller is turned off, the height is controlled to the default height and reference height $z_r=z_0$. Finally, the rate of $\ddot{z}_d$ is limited with the maximum allowed jerk and the desired vertical momentum rate is computed as $\dot{\mathbf{l}}_{d,z}=m\ddot{z}_d$. 
 
-The horizontal linear momentum rate is adjusted for the added vertical acceleration as follows:
+The desired horizontal linear momentum rate is adjusted for the added vertical acceleration as follows:
 \begin{equation}
-    \dotldxy= \frac{\cxy-\rcmpd}{z_0}(mg+\dot{\mathbf{l}}_{d,z}),
+    \dotldxy= \frac{\cxy-\rcmpd}{z_0}(mg+\dot{\mathbf{l}}_{d,z}).
 \end{equation}
 
 \section{Results}
@@ -51,7 +51,7 @@ In simulation the push duration is set to $0.15$ [s], as on hardware tests is fo
 The recovery improved after using the vertical motion controller in push directions coming from the back or the side of the robot. Remarkably, push recovery is worse for push directions coming from the front of the robot. Compared to the default setup, the vertical motion controller recovered of a $9$\% higher impulse for a push direction coming from the back of the robot, $4$\% for a push direction coming from the side and $-7$\% for a push direction coming from the front. The improvement in recovery is the best for a push coming from the back. Also, it is relatively easy to apply a push in the back on the real robot, compared to other parts of the robot. Valkyrie has a hard, flat back surface, which can handle larger impacts than other body parts. For those reasons, there is chosen to make a deeper evaluation of the specific push direction of $0$ degrees.
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{STYLESTUFF/roundStanding.png}
+\includegraphics[width=0.4\textwidth]{STYLESTUFF/roundStanding.png}
 \caption{Polar plot of maximum recoverable pushes with an increment of $5$ degrees. $0$ degrees is a push from the back. The radius is the normalized impulse $i$. }
 \label{fig:roundStanding}
 \end{figure}
@@ -64,10 +64,10 @@ The recovery improved after using the vertical motion controller in push directi
 \label{fig:valcomparephase}
 \end{figure}
 
-In \figref{fig:valcomparetime}, time response plots are shown for a push of $i=0.271$ [m/s]. For the vertical linear momentum rate $\dot{\mathbf{l}}_z$, the achieved has a little overshoot over the desired for both control setups. This may also be a reason why some overshoot can be observed in the plot for the height $z$ in the fourth row. There is a larger difference between the desired and achieved horizontal linear momentum rate $\dot{\mathbf{l}}_x$ for both control setups. If the achieved is compared between the two setups, the vertical motion controller achieves almost double the amount the default control setup achieves from $0.1$ [s] until $0.25$ [s]. There is a small difference in achieved angular momentum rate observable. However, if there is looked at the pelvis error $\theta_{pel,y}$ and the torso error $\theta_{torso,y}$ in the fifth and sixth row, the vertical motion controller has even less rotation error than the default setup. 
+In \figref{fig:valcomparetime}, time response plots are shown for a push of $i=0.271$ [m/s]. `Achieved' is the value after the \ac{QP} found a solution. For the vertical linear momentum rate $\dot{\mathbf{l}}_z$, the achieved tracks the desired fairly well. There is a larger difference between the desired and achieved horizontal linear momentum rate $\dot{\mathbf{l}}_x$ for both control setups. If the achieved is compared between the two setups, the vertical motion controller achieves almost double the amount the default control setup achieves from $0.1$ [s] until $0.25$ [s]. There is a small difference in achieved angular momentum rate observable. However, if there is looked at the pelvis error $\theta_{pel,y}$ and the torso error $\theta_{torso,y}$ in the fifth and sixth row, the vertical motion controller has even less rotation error than the default setup. 
 
 In the right column of the figure, from the ankle torque $\tau_{ak,y}$, knee torque ankle torque $\tau_{kn,y}$, hip torque $\tau_{hp,y}$ and back torque $\tau_{bk,y}$, the difference in ankle and knee torque is the most noteworthy. The ankle torque has a higher peak for the vertical motion controller. Also, the ankle torque returns to the steady state value earlier than the default control setup. Equivalently, the desired and measured \ac{CoP} returns to the steady state value earlier as well. This is an indication of a slight increase in robustness for the push, as is observed in the phase plot as well. The knee torque is on average lower for the vertical motion controller. Note that for that $\rcmpd=\rcopd$ for this comparison. On average, the \ac{ICP} error $\xi_{e,x}$ is smaller, as expected.
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=1.0\textwidth]{STYLESTUFF/valcomparetime.png}
 \caption{Time plots for a push of $i=0.271$ [m/s]. `Achieved' is the value of the variable after the \ac{QP} found a solution. The gray area is where the push is applied.}
@@ -76,7 +76,7 @@ In the right column of the figure, from the ankle torque $\tau_{ak,y}$, knee tor
 
 \subsection{Hardware} 
 Hardware tests are conducted by applying a push in the back at chest height on the physical robot. An iLoad Pro Digital load censor is used to measure the impulse of the push. The load sensor is mounted to a aluminum stick. On the other end of the load cell, a steel plate with a rubber surface is mounted. This prevents the robot from being damaged, and makes the push data less dependent on contact impacts. In \figref{fig:pushhead}, the end of the push stick with the load sensor is depicted. In \figref{fig:authorpush}, the test setup is shown. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.8$ is used for the prediction of the vertical dynamics. 
-\begin{figure}
+\begin{figure}[h]
 \centering
   \begin{subfigure}{0.495\textwidth}
   \centering
@@ -95,7 +95,7 @@ Hardware tests are conducted by applying a push in the back at chest height on t
 \end{figure}
 
 \paragraph{The maximum recoverable push} is determined by averaging a dozen cases, where the \ac{CoM} of the robot came closer than $5$ [mm] from the polygon edge, but the robot still recovered. In \figref{fig:imp1}, the average force profile with the standard deviation of the $12$ pushes is depicted for the default setup. The average impulse is $35.3$ [Ns], which equals a normalized impulse of $i=\frac{35.3}{127.3}=0.277$ [m/s]. This is a slightly higher value than the impulse recoverable in simulation. In \figref{fig:imp2}, the average force profile with the standard deviation is depicted for the vertical motion controller. The average impulse is $37.6$ [Ns], which equals $i=0.295$ [m/s], which is an increase in recoverable push of approximately $7$\%.
-\begin{figure}
+\begin{figure}[h]
 \centering
   \begin{subfigure}{0.32\textwidth}
   \centering
@@ -119,7 +119,7 @@ Hardware tests are conducted by applying a push in the back at chest height on t
   \label{fig:impulsecompare}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{STYLESTUFF/valcomparephaseHW.png}
 \caption{Phase plot of forward \ac{CoM} motion for a push of $i=0.261$ [m/s].}
@@ -161,7 +161,7 @@ In \figref{fig:val}, a time-lapse is shown for both control setups after these p
 Also note how each `bang', visible in the vertical linear momentum rate $\dot{\mathbf{l}}_z$, has a relatively a different length compared to the results observed in simulation. This might be a reason why are larger value of $\alpha_{\hat{\ddot{z}}_{c}}$ could be used. The $\dot{\mathbf{l}}_x$ plots are comparable with the simulation results. The achieved $\dot{\mathbf{k}}_y$ of the vertical motion controller has a relatively larger overshoot than in simulation. However, the resulting pelvis and torso rotation errors are not larger for the vertical motion controller compared to the default setup, which does shows no additional use of `hip' strategies. 
 
 In the right column of the figure, the torques have a desired and a measured value, as the torques of the robot are PD-controlled with electrical current as input. Again, the difference in ankle torque between the default setup and the vertical motion controller is the most noteworthy. For the vertical motion controller, the ankle torque returns quicker to steady state, just like the \ac{CoP}, which shows a slight increase in robustness for the applied push. Equivalently, the average \ac{ICP} error is again smaller for the vertical motion controller.
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=1.0\textwidth]{STYLESTUFF/valcomparetimeHW.png}
 \caption{Time plots for a push of $i=0.261$ [m/s]. All joint torques, except for the back, are the average over left and right.}
@@ -183,8 +183,41 @@ Note how the simulation rear push recovery even lies outside the height constrai
 \end{figure}
 
 \subsection{Atlas Results}
-- Test setup + calculation impulse
-- 2 Times time response like valkyrie
-- No recovery improvement, discuss cop and gain increase.
+Next to the Valkyrie tests, some tests are conducted on Boston Dynamics' Atlas humanoid robot. An alternative experimental setup is used to test push recovery on hardware. A medicine ball with mass $m_{ball}=13.6$ [kg] is hung from the ceiling at the robotics lab of \ac{IHMC}. To push the robot, the ball can be released from a certain distance, where the impulse on the robot is assumed to be only depending on the difference in potential energy of the ball. In \figref{fig:atlassetup}, the test setup is depicted. The length from the horizontal ball position to the dead point of the pendulum $\lball$ can be used to calculate the impulse applied on the robot.
+\begin{figure}
+\centering
+\includegraphics[width=0.95\textwidth]{STYLESTUFF/atlassetup.png}
+\caption{Experimental setup for hardware tests on Atlas.}
+\label{fig:atlassetup}
+\end{figure}
+
+A total of $50$ experiments are conducted, but no clear improvement in recovery compared to the default controller could be observed. Different initial heights for the robot are tried, by gradually lowering the default initial height of $z_0=1.12$ down to $z_0=1.05$. Compared to the default control setup, this improved recovery in simulation, but recovery on hardware did not improve. The increase in recoverable push compared to the default controller for these initial heights in simulation are in the range $6-10$ \%. In another attempt to improve recovery, the foot polygon size for the whole-body \ac{QP} was enlarged as well. The robot would handle larger impulses, but the difference observed between the two control setups was still neglectable.
+
+Additionally, in an attempt to improve recovery for the vertical motion controller, a gain for joint torque control is tuned. From the data collected from earlier tests, it was observed that the measured \ac{CoP} had a relatively large tracking error with $\rcopd$. The joint torques on Atlas are controlled using an input current $I$ and are computed as follows \cite{koolen2016design}:
+\begin{align}
+	I &= I_{\tau} + I_{\dot{q}},\\
+	I_{\tau} &= k_{ff_{\tau}}\tau_{d} + k_{\tau}(\tau_{d} - \tau),\\
+	I_{\dot{q}} &= k_{ff_{\dot{q}}} + k_{\dot{q}}\bigg(\int \ddot{q}_d dt - \dot{q} \bigg),
+\end{align}
+where $k_{ff_{\tau}}$ and $k_{\tau}$ are a feedforward and feedback gain on tracking of desired joint torques respectively. The gains $k_{ff_{\dot{q}}}$ and $k_{\dot{q}}$ are feedforward and feedback gains on desired joint velocities, where the desired joint velocity is computed by integration of the desired joint acceleration $\ddot{q}_d$, an output of the whole-body \ac{QP}. For the tests, \ac{CoP} tracking improved by increasing the gain $k_{\dot{q}}$ from $15.0$ to $40.0$. In \figref{fig:atlascop}, the difference in the \ac{CoP} tracking between the two gain values is depicted during the two `bangs' of the control law. Note how tracking improved during the second `bang' after increasing the gain. Unfortunately, recovery did not noticeably improve.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{STYLESTUFF/atlascop.png}
+\caption{\ac{CoP} tracking during the two `bangs' of the vertical motion control law. In the left column, $k_{\dot{q}}=15.0$. In the right column, $k_{\dot{q}}=40.0$. For illustration of the `bangs', $\dotldz$ is graphed. }
+\label{fig:atlascop}
+\end{figure}
+
+The approximate same magnitude of recoverable push on hardware for both setups is computed as follows. For an initial height of $z_0=1.10$ [m] and a maximum height of $\zmax=1.17$ [m], the average difference in recoverable ball height $\delta z_{ball}$ is:
+\begin{equation}
+	\delta z_{ball} = l_{rope} - \sqrt{l_{rope}^2-l_{ball}} = 6.12-\sqrt{6.12^2 - 2.79^2} = 0.673 \quad \text{[m]},
+\end{equation}
+where $l_{rope}$ is the length of the rope between the ceiling attachment point and the ball. The impulse applied on the robot is calculated as:
+\begin{equation}
+m_{ball}\dot{x}_{ball} = m_{ball}\sqrt{2g\delta z_{ball} } = 13.6\sqrt{2 \cdot 9.81 \cdot 0.673} = 49.4 \quad \text{[Ns]}.
+\end{equation}
+Normalizing the impulse, like with Valkyrie, results in a value of $i=\frac{49.4}{155.9}=0.317$ [m/s].
+
 \section{Discussion}
 Height variation can improve balance. Difference in push directions and \ac{MPC} versus bang bang control. Valkyrie would stand on toes on hardware.
+
