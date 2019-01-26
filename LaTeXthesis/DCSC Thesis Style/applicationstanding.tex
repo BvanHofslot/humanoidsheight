@@ -183,10 +183,10 @@ Note how the simulation rear push recovery even lies outside the height constrai
 \end{figure}
 
 \subsection{Atlas Results}
-Next to the Valkyrie tests, some tests are conducted on Boston Dynamics' Atlas humanoid robot. An alternative experimental setup is used to test push recovery on hardware. A medicine ball with mass $m_{ball}=13.6$ [kg] is hung from the ceiling at the robotics lab of \ac{IHMC}. To push the robot, the ball can be released from a certain distance, where the impulse on the robot is assumed to be only depending on the difference in potential energy of the ball. In \figref{fig:atlassetup}, the test setup is depicted. The length from the horizontal ball position to the dead point of the pendulum $\lball$ can be used to calculate the impulse applied on the robot.
+Next to the Valkyrie tests, some tests are conducted on Boston Dynamics' Atlas humanoid robot. An alternative experimental setup is used to test push recovery on hardware. A medicine ball with mass $m_{ball}=13.6$ [kg] is hung from the ceiling at the robotics lab of \ac{IHMC}. To push the robot, the ball can be released from a certain distance, where the impulse on the robot is assumed to be only depending on the difference in potential energy of the ball. To protect the robot from the impact of the ball, a wooden plate is mounted to the frame. In \figref{fig:atlassetup}, the test setup is depicted. The length from the horizontal ball position to the dead point of the pendulum $\lball$ can be used to calculate the impulse applied on the robot. 
 \begin{figure}
 \centering
-\includegraphics[width=0.95\textwidth]{STYLESTUFF/atlassetup.png}
+\includegraphics[width=0.99\textwidth]{STYLESTUFF/atlassetup.png}
 \caption{Experimental setup for hardware tests on Atlas.}
 \label{fig:atlassetup}
 \end{figure}
@@ -219,5 +219,15 @@ m_{ball}\dot{x}_{ball} = m_{ball}\sqrt{2g\delta z_{ball} } = 13.6\sqrt{2 \cdot 9
 Normalizing the impulse, like with Valkyrie, results in a value of $i=\frac{49.4}{155.9}=0.317$ [m/s].
 
 \section{Discussion}
-Height variation can improve balance. Difference in push directions and \ac{MPC} versus bang bang control. Valkyrie would stand on toes on hardware.
+Height variations can improve balance. Not earlier shown on hw.
+
+Difference model predictive control.
+
+Differences in capture regions. Numerical issues.
+
+Alternative evalutation of dynamics. Changing eigenvalue.
+
+Difference between atlas and valkyrie hardware.
+
+
 
