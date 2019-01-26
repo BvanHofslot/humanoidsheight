@@ -256,13 +256,15 @@ In \figref{fig:capcompare} the force constrained capture regions are compared wi
 
 %% Discussion
 \section{Discussion}
-In this chapter, different capture positions and capture regions for the \ac{VHIP} model are introduced. By comparing the capture positions, it can be observed how the addition of a constraint on the model can affect the capture region. Also, a high level comparison is made with angular momentum strategies.
+In this chapter, different capture positions and capture regions for the \ac{VHIP} model are introduced, by adding constraints to the \ac{VHIP} model. By comparing the capture positions, it can be observed how the addition of a constraint on the model can affect the capture region. Comparisons are made with the \ac{CP} and a high level comparison is made with angular momentum strategies.
 
-usefulness
+A constraint that is not considered in this chapter is a constraint on ground friction. The unilateral contact constraint constrains the vertical component of the \ac{GRF} to be larger than zero. The vertical force constraint limits the magnitude of the \ac{GRF}. However, a constraint on the direction of the \ac{GRF}, like a friction cone constraint, is not considered. As no angular momentum is considered in the model however, the direction of the \ac{GRF} would be just depending on the \ac{VHIP} mass en base position.
 
-friction cone constraint
+However, if \ac{CoM} height variation and angular momentum strategies would be combined, a constraint on ground friction might be worth considering.  A \ac{VHIP} plus flywheel model can be formulated as follows:
+\begin{equation}
+ \ddot{x} = \frac{g+\ddot{z}}{z}x - \frac{1}{mz}\tau_y.
+\end{equation}
+If the input torque $\tau_y$ would be used in a ballistic trajectory in any of the points presented in this chapter, the \ac{GRF} would become parallel to the ground plane. This would require infinite ground friction, which is in practice never the case.
 
-height variation and angular momentum
-
-0-step vs multistep
+Also, this chapter presents '0-step' capture points, unlike the work presented in \cite{koolen2012capturability}, where multiple steps are considered in the computation of the capture region. However, in a similar manner the capture points in this chapter are derived, expressions can be derived for multi-step strategies. After a height constrained capture point trajectory for example, if the final velocity would be nonzero, a ballistic fall and another impact influenced capture point could be considered. 
 
