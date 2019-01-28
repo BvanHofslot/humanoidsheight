@@ -76,8 +76,8 @@
 \contentsline {section}{\numberline {6-3}Results}{59}{section.6.3}
 \contentsline {section}{\numberline {6-4}Discussion}{60}{section.6.4}
 \contentsline {chapter}{\numberline {7}Conclusion}{65}{chapter.7}
-\contentsline {section}{\numberline {7-1}Recommendations}{65}{section.7.1}
+\contentsline {section}{\numberline {7-1}Recommendations}{66}{section.7.1}
 \contentsline {chapter}{\numberline {A}Test Parameters}{67}{appendix.A}
 \contentsline {chapter}{\numberline {B}2D Analysis from Model to Robot}{69}{appendix.B}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{79}{section*.147}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{83}{appendix*.149}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{79}{appendix*.153}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{79}{section*.152}
