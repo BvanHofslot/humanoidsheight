@@ -48,6 +48,7 @@ The following properties are observed, when applying pushes in different directi
 These properties are used as assumptions in the development of a control law.
 % Methods
 \section{Method}
+The control law of the previous chapter is first adjusted for desired \ac{CMP} positions outside the support polygon. Second, control variables are introduced, which are used to select one of three predefined control actions.
 
 \subsection{Avoiding Generating Additional Angular Momentum Rate}
 First, the control law of the previous chapter is made suitable for $\rcmpd$ locations outside the support polygon. The motivation in the development of a control law is to request as less as possible additional angular momentum rate compared to the default setup, when using \ac{CoM} height variations for balance control. Therefore, the vertical motion controller generates and added desired momentum rate on top of the default controller. Under the assumption that the difference in $\rcopd$ and $\rcmpd$ is directly related to the resulting torque about the \ac{CoM}, the following is derived:
@@ -186,7 +187,15 @@ This value for $\ddzd$ is used until $t_{z \rightarrow \zmin}<0$, after which th
 
 % Results
 \section{Results}
-The results are obtained by pushing the robot in \ac{SS} when the right foot is the support foot, as in the previous sections. Initially, the robot is pushed at entrance of \ac{SS}. Like with the standing tests, the maximum recoverable push is search for for every $5$ degrees change in push direction, and compared with the default controller. Additionally, pushes are applied in different moments in \ac{SS}, using the notation $\fracpush$ for the fraction of the swing time when the push is applied. To have a more instant change in error, a push duration of $\tpush=0.03$ is chosen. For a more reactive response on Valkyrie, the values $\ddzdmax=5.0$ [m/s$^2$] and $\dddzmax=200$ [m/s$^3$] are chosen to work with.
+The results are obtained by pushing the robot in \ac{SS} when the right foot is the support foot, as in the previous sections. Initially, the robot is pushed at entrance of \ac{SS}. Like with the standing tests, the maximum recoverable push is searched for for every $5$ degrees change in push direction, and compared with the default controller. To test if the robot recovered, there are four more steps taken after the current step, and checked if the robot did not fall over. Additionally, pushes are applied in different moments in \ac{SS}, using the notation $\fracpush$ for the fraction of the swing time when the push is applied. To have a more instant change in error, a push duration of $\tpush=0.03$ is chosen. For a more reactive response on Valkyrie, the values $\ddzdmax=5.0$ [m/s$^2$] and $\dddzmax=200$ [m/s$^3$] are chosen to work with.
+
+In \figref{fig:walkplot}, the vertical momentum rate inputs and the center of mass height resulting from the actions are shown.
+\begin{figure}
+     \centering
+        \includegraphics[width=0.99\textwidth]{STYLESTUFF/walkplot.png}
+    \caption{Desired vertical momentum rate and center of mass height from the positive alignment and the prepare strategy for the maximum recoverable pushes. The gray area is where the robot is pushed. The orange area shows where the robot is in \ac{DS}.}
+    \label{fig:walkplot}
+\end{figure}
 
 In \figref{fig:roundPushActions}, the maximum recoverable normalized impulses $i$ are plotted for the different actions together with the results for the default controller. Like with the standing tests, $\rcmpd$ is constrained to be inside the polygon and is assumed to coincide with $\rcopd$. The actions have less effect when the push is applied later in \ac{SS}, and results in even worse recovery than the default setup at $\fracpush=0.5$. Note that the recovery for a push around $200$ degrees is always worse when the vertical motion control law is enabled.
 \begin{figure}
@@ -205,14 +214,12 @@ In \figref{fig:roundPushAng}, the maximum recoverable pushes are shown for when 
 \end{figure}
 % Discussion
 \section{Discussion}
-Barely an example.
+In this chapter, the control law of Chapter \ref{chap:standing} is extended for the use in \ac{3D}, using predefined strategies that can be heuristically be selected. These strategies rely on the predefined step time and location used in the control framework.
 
-- Predefined swing time.
+Like in the previous chapter, certain configurations are considered as `worst-case' scenarios. Again, a similar comparison with \ac{MPC} can be made. 
 
-- Tuning of thresholds.
+The relative distance $\delta$ and the alignment angle $\phi$ allow for making a heuristic decision for the use of height control in different configurations. Considering a bang-bang control law these variables could introduce, the control strategy relies on the proportional control of the rest of the framework. Any misalignment with the error would result in additional error when introducing the bang-bang action. This error can be controlled with future $\rcmpd$ positions.
 
-- Relying on other control strategies in orthogonal direction. 
+From the results obtained for the step time and length considered, it seemed that height control in the beginning of \ac{SS} results in the most improvement compared to strategies that do not use \ac{CoM} height variation. The vertical motion controller performs worse than the default setup around the $200$ degree push direction for all push moments in swing $\fracpush$ considered. This may be a results of the chosen control actions based on the thresholds $\phimin$, $\phimax$ and $\deltamin$.
 
-- $200$ degree point.
-
-- \ac{CMP} and angular momentum usage.-> bang-bang control \ac{CMP}.
+Also a comparison is made for cases where $\rcmpd$ could leave the polygon. For the use of additional height variation, the $\rcmpd$ would be projected on the polygon to get a $\rcopd$, with the motivation that no additional angular momentum rate would be needed to achieve the commanded desired linear momentum rate on the robot. When the \ac{CMP} is outside the polygon, the robot uses torque about the \ac{CoM}, as can be derived from Section \ref{sec:grp}. However, only desired linear momentum rate is commanded in the framework based on $\rcmpd$, which results in the use of angular momentum rate by the robot to be highly depending on the weights chosen for the objectives in the \ac{QP}. The weights used for these tests are the default weights used on Valkyrie, see Appendix \ref{chap:params}.

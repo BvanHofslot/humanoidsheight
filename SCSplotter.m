@@ -5,6 +5,7 @@ fS=12;
 kGray=0.85;
 lastP= 1800;
 m=127.2996;
+DT=0.002;
 set(groot,'defaulttextinterpreter','latex');  
 dx = rootNormal.valkyrie.ExactCoMCalcualtor.exactCenterOfMassVelocityX;
 x = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CommonHumanoidReferenceFramesVisualizer.centerOfMassX;
@@ -65,10 +66,11 @@ exportfig(gcf,'valcomparephase.eps', opts)
 
 %%
 pW=1.3;
-fS=14;
+fS=18;
 kGray=0.85;
 i0=1;
 lastP= 626;
+DT=0.004;
 x = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CommonHumanoidReferenceFramesVisualizer.centerOfMassX;
 iF = length(x(i0:lastP));
 m=127.2996;
@@ -76,7 +78,7 @@ t=[];
 for k=1:iF
    t(k)=k*DT; 
 end
-figure('rend','painters','pos', [0 0 1000 850]);
+figure('rend','painters','pos', [0 0 1000 1400]);
 subplot(6,2,1)
 area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 hold on;
@@ -241,18 +243,18 @@ area([DT (0.15+DT)],[1000 1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','S
 hold on;
 area([DT (0.15+DT)],[-1000 -1000], 'FaceColor',[1 1 1]*kGray,'LineStyle','none','ShowBaseLine','off')
 
-ldx = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX;
-lax = rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX;
+ldx =rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX-rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX(1);
+lax= rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX-rootNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX(1);
 plot(t,ldx(i0:lastP),'Color','k','LineStyle','-','LineWidth',pW);
 hold on;
 plot(t,lax(i0:lastP),'Color','k','LineStyle','--','LineWidth',pW);
 
-ldx =rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX;
-lax= rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX;
+ldx =rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX-rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerFactory.HighLevelControlManagerFactory.BalanceManager.desiredCMPX(1);
+lax= rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX-rootHFBonNormal.valkyrie.DRCSimulation.DRCControllerThread.DRCMomentumBasedController.HumanoidHighLevelControllerManager.HighLevelHumanoidControllerToolbox.CenterOfPressureX(1);
 plot(t,ldx(i0:lastP),'Color','b','LineStyle','-','LineWidth',pW);
 hold on;
 plot(t,lax(i0:lastP),'Color','b','LineStyle','--','LineWidth',pW);
-axis([0 2.5 0 0.18])
+axis([0 2.5 -0.04 0.14])
 ylabel('$x_{cop}$ [m]','FontSize',fS)
 set(gca,'FontSize',fS)
 
