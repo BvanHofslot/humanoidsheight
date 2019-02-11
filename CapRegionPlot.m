@@ -28,9 +28,10 @@ tspanzmin = [0:0.001:tzmin];
 
 set(groot,'defaulttextinterpreter','latex');  
 %% Plot options
-withPolynomials = true;
-withPercentUpperLimit = false;
-withPercentLowerLimit = false;
+withPolynomials = false;
+withPercentUpperLimit = true;
+iterateUpperLimit=true;
+withPercentLowerLimit = true;
 withPercentPolynomial = false;
 withBalistic = true;
 withICP =true;
@@ -41,6 +42,8 @@ widthMainPlot=2;
 %% Plot
 tspan=[0:0.01:100];
 xicp = -sqrt(1/9.81);
+
+for j=1:100;
 figure('rend','painters','pos', [0 0 400 900]);
 area([0 1]*-sqrt(2)*xicp,[1.5 1.5],'FaceColor',[0.9,0.9,0.9],'LineStyle','none')
 
@@ -72,10 +75,10 @@ end
 
 if(withBalistic)
     [tbal,ybal]= ode45(@qfunbal, tspan, [0;1;1;0]);
-    pBal = plot(ybal(:,1),ybal(:,3),'LineWidth',widthMainPlot,'Color',[0, 0.4470, 0.7410]);
     x2 = [ybal(:,1), ybal(:,1)];
     inBetween = [15*ones(length(ybal(:,3)),1), ybal(:,3)];
     fill(x2, inBetween, 'w')
+    pBal = plot(ybal(:,1),ybal(:,3),'LineWidth',widthMainPlot,'Color',[1 0.9 0.3]);
     plot([1 1]*-sqrt(2)*xicp,[0 1.5],'Color','k','LineStyle', '-.')
     if(withVerticalLimits)
     plot([1 1]*-sqrt(2)*xicp,[0 2],'LineStyle', '-.','Color','k');
@@ -90,6 +93,33 @@ if(withPercentUpperLimit)
     end
     if(withHorizontalLimits)
     plot([0, 0.5],[1 1]*1.1,'LineStyle', '-.','Color','k');
+    end
+    
+    if(iterateUpperLimit)
+        if(j<5)
+    x = x0+dx0*dtspan*j;
+    z = z0+dz0*dtspan*j -0.5*9.81*(dtspan*j).^2;
+    pHeight=plot(x-x0,z,'Color','b','LineWidth',widthMainPlot);
+    plot([x(end)-x0 -x0],[z(end) 0],'LineWidth',1,'Color','k');
+    scatter(-x0,0,'filled','MarkerEdgeColor','k','MarkerFaceColor','k');
+    %draw com
+    r=0.03;
+    circle(x(end)-x0,z(end),r);
+    axis equal
+    elseif(j>4)
+        x1span = x0+dx0*dtspan*4;
+        z1span = z0+dz0*dtspan*4 -0.5*9.81*(dtspan*4).^2;
+        pHeight=plot(x1span-x0,z1span,'Color','b','LineWidth',widthMainPlot);
+        xicppart=xicppart+dx*dt(end);
+        dx = -(x0+xicppart)*sqrt(g/zmax);
+        if(xicppart>-x0)
+            xicppart=-x0;
+        end
+        plot([x1-x0-0.003 xicppart], [1 1]*1.1,'Color','b','LineWidth',widthMainPlot);
+        plot([xicppart -x0],[1.1 0],'LineWidth',1,'Color','k');
+        scatter(-x0,0,'filled','MarkerEdgeColor','k','MarkerFaceColor','k');
+        circle(xicppart,1.1,r); 
+        end
     end
 end
 
@@ -115,7 +145,7 @@ end
 
 
 axis equal
-axis([0 0.5 0 1.5])
+axis([0 0.5 0 1.3])
 ylabel('$z$ [m]','FontSize', 12)
 xlabel('Capture Position [m]','FontSize', 12)
 xticks([0:0.1:0.5])
@@ -123,13 +153,17 @@ yticks([0:0.1:1.5])
 grid off;
 % Specify legend
 legend([pICP pBal pMinHeight],{'LIP Capture Point','Unilateral Constrained Capture','Height Constrained Capture'})
-opts.Format = 'eps';
-opts.Color = 'CMYK';
-opts.Resolution = 10000000;
+% opts.Format = 'eps';
+% opts.Color = 'CMYK';
+% opts.Resolution = 10000000;
+% set(gca,'LineWidth',1)
+% set(gca,'GridAlpha',0.4)
+% exportfig(gcf,'CPLimits.eps', opts)
+
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'CPLimits.eps', opts)
-
+saveas(gcf,sprintf('CPupper%d.png',j)) 
+end
 
 
 
