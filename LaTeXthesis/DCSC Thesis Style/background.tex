@@ -4,11 +4,11 @@
 In this chapter, a brief background is given on legged systems, humanoid robotics at \ac{IHMC} and related works to \ac{CoM} height variation.
 % Modeling of Walking
 \section{Legged System Preliminaries}
-In this section, commonly used expressions in legged system research are briefly presented, with a focus on humanoid robotics.
+In this section, commonly used expressions and background related to legged systems are briefly presented.
 \subsection{Human Balancing Strategies}
 As humanoid robots are a derivation of the human, human balancing strategies are briefly discussed. In \figref{fig:human}, human balancing strategies are shown. The `ankle strategy', `hip strategy' and stepping strategy are most commonly considered as a balancing strategy. However, the figure includes the `suspensory strategy' \cite{hasson1994clinical}, which is less commonly considered. With the `suspensory strategy', the human is in a slightly lower configuration with bend knees to have more control authority of the ankles.
 
-Height variation is often not considered for a standing human. A reason for this might be that the human is often assumed to stand with straight legs. The goal of the `suspensory strategy' however, gives an interesting insight to the problem. If during the `suspensory strategy' the human would apply more force on the ground, such that a gain in height occurs, the effects of the `suspensory strategy' get smaller as the legs straighten. Therefore, height variations for balance control can be a trade-off between the application of additional force and the gain in height. 
+Height variation is often not considered for a standing human. A reason for this might be that the human is often assumed to stand with straight legs. The goal of the `suspensory strategy' however, gives an interesting insight to the problem. If during the `suspensory strategy' the human would apply more force on the ground, such that a gain in height occurs, the effect of the `suspensory strategy' will get smaller as the legs straighten. Therefore, height variations for balance control can be a trade-off between the application of additional force and the gain in height. 
 \begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{STYLESTUFF/humanbalance.jpg}
@@ -169,7 +169,7 @@ To support the methods and results presented later in this thesis, this section 
 %robots
 \subsection{Robots}
 There are two humanoid robots present at the institute at the moment of writing: Boston Dynamics' Atlas \cite{koolen2016design}, \cite{kuindersma2016optimization} and NASA's Valkyrie \cite{radford2015valkyrie}. An important difference between the two robots is that Atlas is hydraulically actuated, while Valkyrie relies on electric series elastic actuators. The actuation of Atlas is in general more powerful, which allows the robot to take higher steps. Valkyrie on the other hand, has more precise torque sensing, which is important for torque control on the robot. This ties to a similarity between the robots: both robots are torque controlled. Using a control framework, the actuators of the robots can be controlled using measured and reference torque. In \figref{fig:robots}, the two robots are shown.
-\begin{figure}[h]
+\begin{figure}
 \centering
   \begin{subfigure}{0.49\textwidth}
   \centering

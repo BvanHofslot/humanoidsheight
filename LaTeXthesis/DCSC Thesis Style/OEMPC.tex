@@ -169,7 +169,7 @@ In the chapter, a search algorithm is proposed that is able to find \ac{VHIP} or
 Noticeable is that the final gradient constraint gives a higher final velocity $\dot{x}_f$ compared to the default height constraint in \figref{fig:polheight}. This is caused by the polynomial shapes, as the blue plot, under constraint $z_f$, has a steeper gradient in the first part of the trajectory after $x_0$. This is the crucial part in the trajectory for a acceleration or deceleration action in $x$-direction, as is proven in the previous chapter.
 
 Another drawback to the constraint of the polynomial shape is that derivatives of the function, and thus also accelerations, depend on the function itself. In \figref{fig:polforce}, two plots are shown for $\dot{x}_f = 0$ [m/s], together with a plot of the vertical acceleration. The vertical acceleration has a shape that is desirable for a stopping behavior: high acceleration in the beginning of the trajectory and lower later. However, the acceleration at start is unrealistically high, assuming the approximations of possible vertical acceleration on human and robot in the previous chapter. This is even the case for the initial position that is relatively close to the \ac{CP}: $x_0=-0.3$ [m]. Also, the vertical acceleration barely goes below zero, so the polynomial does not make use of higher deceleration, which could lower the amount height variation.
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{STYLESTUFF/polynomialforce.png}
 \caption{Position plot (left) versus the resulting vertical acceleration (right).}

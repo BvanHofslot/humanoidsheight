@@ -1,6 +1,6 @@
 %
 % Another appendix chapter
-\chapter{Toward Application: Walking}\label{chap:walking}
+\chapter{Application: Walking}\label{chap:walking}
 The control strategy for a static, standing case presented in the previous chapter is two-dimensional. If the robot is walking, the horizontal \ac{CoM} position can lie outside the support polygon. The result of this is that the desired \ac{CoP} cannot always be placed in line with the \ac{ICP} error.  In this chapter, the bang-bang control law of Chapter \ref{chap:standing} is extended for the use while the robot is walking.
 % Experimental Setup
 \section{Experimental Setup}
@@ -151,7 +151,7 @@ The resulting vertical acceleration reads as:
 \end{equation}
 Assuming the sagittal acceleration $\ddot{x}$ is zero, the desired height acceleration is computed as:
 \begin{equation}
- \ddzd = -\frac{\dot{x}^2}{\sqrt{ l_{max}^2-x_{ankle}^2}} - \frac{x_{ankle}^2\dot{x}^2}{(l_{max}^2-x_{ankle}^2)^{1\frac{1}{2}}}
+ \ddzd = -\frac{\dot{x}^2}{\sqrt{ l_{max}^2-x_{ankle}^2}} - \frac{x_{ankle}^2\dot{x}^2}{(l_{max}^2-x_{ankle}^2)^{1\frac{1}{2}}}.
 \end{equation}
 \paragraph{The prepare action} uses the time it takes to accelerate from the minimum height constraint to the maximum height constraint. This time uses the kinetic and potential energy:
 \begin{equation}
