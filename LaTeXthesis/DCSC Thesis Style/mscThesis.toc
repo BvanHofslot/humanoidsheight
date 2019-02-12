@@ -1,4 +1,4 @@
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface \& Acknowledgments}{xiii}{chapter*.17}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Preface \& Acknowledgments}{ix}{chapter*.8}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1-1}Related Works}{2}{section.1.1}
 \contentsline {section}{\numberline {1-2}Research Objective}{2}{section.1.2}
@@ -7,43 +7,43 @@
 \contentsline {chapter}{\numberline {2}Background}{5}{chapter.2}
 \contentsline {section}{\numberline {2-1}Legged System Preliminaries}{5}{section.2.1}
 \contentsline {subsection}{\numberline {2-1-1}Human Balancing Strategies}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2-1-2}Ground Reference Points}{6}{subsection.2.1.2}
-\contentsline {paragraph}{The zero moment point}{6}{section*.33}
-\contentsline {paragraph}{The center of pressure}{6}{section*.35}
-\contentsline {paragraph}{The centroidal moment pivot}{7}{section*.39}
+\contentsline {subsection}{\numberline {2-1-2}Ground Reference Points}{5}{subsection.2.1.2}
+\contentsline {paragraph}{The zero moment point}{6}{section*.25}
+\contentsline {paragraph}{The center of pressure}{6}{section*.27}
+\contentsline {paragraph}{The centroidal moment pivot}{6}{section*.31}
 \contentsline {subsection}{\numberline {2-1-3}Inverted Pendulum-based Models}{7}{subsection.2.1.3}
-\contentsline {paragraph}{The linear inverted pendulum model}{7}{section*.40}
-\contentsline {paragraph}{Height varying models}{8}{section*.44}
+\contentsline {paragraph}{The linear inverted pendulum model}{7}{section*.32}
+\contentsline {paragraph}{Height varying models}{8}{section*.36}
 \contentsline {subsection}{\numberline {2-1-4}Orbital Energy \& the Capture Problem}{9}{subsection.2.1.4}
-\contentsline {paragraph}{The linear inverted pendulum orbital energy}{9}{section*.49}
-\contentsline {paragraph}{The linear inverted pendulum capture point}{9}{section*.50}
-\contentsline {paragraph}{A capture region}{10}{section*.53}
-\contentsline {paragraph}{The instantaneous capture point}{10}{section*.54}
-\contentsline {paragraph}{Orbital energy with height variation}{10}{section*.57}
+\contentsline {paragraph}{The linear inverted pendulum orbital energy}{9}{section*.41}
+\contentsline {paragraph}{The linear inverted pendulum capture point}{9}{section*.42}
+\contentsline {paragraph}{A capture region}{10}{section*.45}
+\contentsline {paragraph}{The instantaneous capture point}{10}{section*.46}
+\contentsline {paragraph}{Orbital energy with height variation}{10}{section*.49}
 \contentsline {section}{\numberline {2-2}Humanoid Robotics at IHMC}{11}{section.2.2}
 \contentsline {subsection}{\numberline {2-2-1}Robots}{11}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2-2-2}Planning}{11}{subsection.2.2.2}
-\contentsline {paragraph}{Footstep planning}{12}{section*.62}
-\contentsline {paragraph}{Instantaneous capture point planning}{12}{section*.63}
+\contentsline {paragraph}{Footstep planning}{11}{section*.54}
+\contentsline {paragraph}{Instantaneous capture point planning}{12}{section*.55}
 \contentsline {subsection}{\numberline {2-2-3}Instantaneous Capture Point Control}{12}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2-2-4}Momentum-based Whole-body Control}{13}{subsection.2.2.4}
-\contentsline {paragraph}{Centroidal dynamics}{13}{section*.65}
-\contentsline {paragraph}{The whole-body quadratic program}{13}{section*.66}
-\contentsline {paragraph}{Inverse dynamics}{14}{section*.68}
+\contentsline {paragraph}{Centroidal dynamics}{13}{section*.57}
+\contentsline {paragraph}{The whole-body quadratic program}{13}{section*.58}
+\contentsline {paragraph}{Inverse dynamics}{14}{section*.60}
 \contentsline {section}{\numberline {2-3}Related Works}{15}{section.2.3}
 \contentsline {subsection}{\numberline {2-3-1}Dynamic Planning \& Walking Pattern Generation}{15}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2-3-2}Balance Control}{16}{subsection.2.3.2}
-\contentsline {paragraph}{Koolen et al.}{16}{section*.70}
-\contentsline {paragraph}{Gao et al.}{17}{section*.72}
-\contentsline {paragraph}{Caron \& Mallein}{17}{section*.73}
+\contentsline {paragraph}{Koolen et al.}{16}{section*.62}
+\contentsline {paragraph}{Gao et al.}{17}{section*.64}
+\contentsline {paragraph}{Caron \& Mallein}{17}{section*.65}
 \contentsline {subsection}{\numberline {2-3-3}Discussion}{17}{subsection.2.3.3}
 \contentsline {chapter}{\numberline {3}Variable Height Inverted Pendulum Capture Regions}{19}{chapter.3}
 \contentsline {section}{\numberline {3-1}Unilateral Contact Constraint}{19}{section.3.1}
 \contentsline {section}{\numberline {3-2}Height Constraint}{22}{section.3.2}
 \contentsline {subsection}{\numberline {3-2-1}Maximum Height}{22}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3-2-2}Minimum Height}{23}{subsection.3.2.2}
-\contentsline {paragraph}{The impact influenced capture point}{23}{section*.80}
-\contentsline {paragraph}{The capture position under the minimum height constraint}{24}{section*.81}
+\contentsline {paragraph}{The impact influenced capture point}{23}{section*.72}
+\contentsline {paragraph}{The capture position under the minimum height constraint}{24}{section*.73}
 \contentsline {subsection}{\numberline {3-2-3}Bounds on Region}{24}{subsection.3.2.3}
 \contentsline {section}{\numberline {3-3}Vertical Force Constraint}{25}{section.3.3}
 \contentsline {section}{\numberline {3-4}Capturability Comparison}{27}{section.3.4}
@@ -59,36 +59,36 @@
 \contentsline {section}{\numberline {5-1}Method}{39}{section.5.1}
 \contentsline {section}{\numberline {5-2}Results}{41}{section.5.2}
 \contentsline {subsection}{\numberline {5-2-1}Simulation}{41}{subsection.5.2.1}
-\contentsline {paragraph}{The maximum recoverable impulses}{41}{section*.102}
-\contentsline {paragraph}{A comparison of the response after equal push magnitudes}{41}{section*.104}
+\contentsline {paragraph}{The maximum recoverable impulses}{41}{section*.94}
+\contentsline {paragraph}{A comparison of the response after equal push magnitudes}{41}{section*.96}
 \contentsline {subsection}{\numberline {5-2-2}Hardware}{43}{subsection.5.2.2}
-\contentsline {paragraph}{The maximum recoverable push}{43}{section*.109}
-\contentsline {paragraph}{A comparison of the response after equal push magnitudes}{43}{section*.113}
+\contentsline {paragraph}{The maximum recoverable push}{43}{section*.101}
+\contentsline {paragraph}{A comparison of the response after equal push magnitudes}{43}{section*.105}
 \contentsline {subsection}{\numberline {5-2-3}Comparison with Capture Regions}{46}{subsection.5.2.3}
 \contentsline {subsection}{\numberline {5-2-4}Atlas Hardware Results}{48}{subsection.5.2.4}
-\contentsline {section}{\numberline {5-3}Discussion}{50}{section.5.3}
+\contentsline {section}{\numberline {5-3}Discussion}{52}{section.5.3}
 \contentsline {chapter}{\numberline {6}Application: Walking}{55}{chapter.6}
 \contentsline {section}{\numberline {6-1}Experimental Setup}{55}{section.6.1}
-\contentsline {section}{\numberline {6-2}Method}{57}{section.6.2}
+\contentsline {section}{\numberline {6-2}Method}{56}{section.6.2}
 \contentsline {subsection}{\numberline {6-2-1}Avoiding Generating Additional Angular Momentum Rate}{57}{subsection.6.2.1}
 \contentsline {subsection}{\numberline {6-2-2}Alignment Angle and Relative Distance}{57}{subsection.6.2.2}
 \contentsline {subsection}{\numberline {6-2-3}Actions}{58}{subsection.6.2.3}
-\contentsline {paragraph}{The positive alignment action}{60}{section*.140}
-\contentsline {paragraph}{The prepare action}{61}{section*.141}
+\contentsline {paragraph}{The positive alignment action}{60}{section*.131}
+\contentsline {paragraph}{The prepare action}{61}{section*.132}
 \contentsline {section}{\numberline {6-3}Results}{61}{section.6.3}
-\contentsline {paragraph}{The maximum recoverable impulses}{62}{section*.142}
-\contentsline {paragraph}{A comparison of the response after equal impulses}{62}{section*.146}
+\contentsline {paragraph}{The maximum recoverable impulses}{62}{section*.133}
+\contentsline {paragraph}{A comparison of the response after equal impulses}{62}{section*.137}
 \contentsline {subsection}{\numberline {6-3-1}Atlas Hardware Results}{62}{subsection.6.3.1}
 \contentsline {section}{\numberline {6-4}Discussion}{65}{section.6.4}
 \contentsline {chapter}{\numberline {7}Conclusion}{69}{chapter.7}
 \contentsline {section}{\numberline {7-1}Recommendations}{70}{section.7.1}
 \contentsline {subsection}{\numberline {7-1-1}Extending the Proposed Approach }{70}{subsection.7.1.1}
-\contentsline {subsubsection}{Extension of Capture Regions}{70}{section*.157}
-\contentsline {subsubsection}{Improving Push Recovery Tests}{70}{section*.158}
-\contentsline {subsubsection}{Standing Tests for Lowering Center of Mass Height}{71}{section*.159}
-\contentsline {subsubsection}{Analysis of Results}{71}{section*.160}
+\contentsline {subsubsection}{Extension of Capture Regions}{70}{section*.148}
+\contentsline {subsubsection}{Improving Push Recovery Tests}{70}{section*.149}
+\contentsline {subsubsection}{Standing Tests for Lowering Center of Mass Height}{71}{section*.150}
+\contentsline {subsubsection}{Analysis of Results}{71}{section*.151}
 \contentsline {subsection}{\numberline {7-1-2}Outlook}{71}{subsection.7.1.2}
 \contentsline {chapter}{\numberline {A}Test Parameters}{73}{appendix.A}
 \contentsline {chapter}{\numberline {B}2D Analysis from Model to Robot}{75}{appendix.B}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{85}{section*.163}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{89}{appendix*.165}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{85}{section*.154}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{89}{appendix*.156}

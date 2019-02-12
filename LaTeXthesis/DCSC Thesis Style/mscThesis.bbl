@@ -1,26 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{oldatlas}
-``{Image of the Atlas humanoid robot}.'' \url{http://robots.ihmc.us/}.
-\newblock Accessed: 27/01/2019.
-
-\bibitem{valkyrie}
-``{Image of the Valkyrie humanoid robot}.''
-  \url{https://spectrum.ieee.org/automaton/robotics/humanoids/video-friday-ihmc-valkyrie-harvard-arthropods-flying-wheeled-robot}.
-\newblock Accessed: 27/01/2019.
-
-\bibitem{koolen2016design}
-T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
-  and J.~Pratt, ``Design of a momentum-based control framework and application
-  to the humanoid robot atlas,'' {\em International Journal of Humanoid
-  Robotics}, vol.~13, no.~01, p.~1650007, 2016.
-
-\bibitem{koolen2016balance}
-T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
-  height variation: limitations imposed by unilateral contact,'' in {\em
-  IEEE-RAS International Conference on Humanoid Robots (Humanoids)}, pp.~8--15,
-  2016.
-
 \bibitem{behnke2008humanoid}
 S.~Behnke, ``Humanoid robots-from fiction to reality?,'' {\em KI}, vol.~22,
   no.~4, pp.~5--9, 2008.
@@ -76,6 +55,12 @@ M.~A. Hopkins, D.~W. Hong, and A.~Leonessa, ``Humanoid locomotion on uneven
   IEEE-RAS International Conference on Humanoid Robots (Humanoids)},
   pp.~266--272, 2014.
 
+\bibitem{koolen2016balance}
+T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
+  height variation: limitations imposed by unilateral contact,'' in {\em
+  IEEE-RAS International Conference on Humanoid Robots (Humanoids)}, pp.~8--15,
+  2016.
+
 \bibitem{gao2017increase}
 W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
   through active vertical flexion and extension motions,'' {\em Robotica},
@@ -129,6 +114,12 @@ Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for
 W.~J. Schwind, {\em Spring loaded inverted pendulum running: A plant model.}
 \newblock PhD thesis, University of Michigan, 1998.
 
+\bibitem{koolen2016design}
+T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
+  and J.~Pratt, ``Design of a momentum-based control framework and application
+  to the humanoid robot atlas,'' {\em International Journal of Humanoid
+  Robotics}, vol.~13, no.~01, p.~1650007, 2016.
+
 \bibitem{kuindersma2016optimization}
 S.~Kuindersma, R.~Deits, M.~Fallon, A.~Valenzuela, H.~Dai, F.~Permenter,
   T.~Koolen, P.~Marion, and R.~Tedrake, ``Optimization-based locomotion
@@ -140,6 +131,15 @@ N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
   Donnan, J.~Holley, J.~Sanchez, V.~Nguyen, L.~Bridgwater, {\em et~al.},
   ``Valkyrie: Nasa's first bipedal humanoid robot,'' {\em Journal of Field
   Robotics}, vol.~32, no.~3, pp.~397--419, 2015.
+
+\bibitem{oldatlas}
+``{Image of the Atlas humanoid robot}.'' \url{http://robots.ihmc.us/}.
+\newblock Accessed: 27/01/2019.
+
+\bibitem{valkyrie}
+``{Image of the Valkyrie humanoid robot}.''
+  \url{https://spectrum.ieee.org/automaton/robotics/humanoids/video-friday-ihmc-valkyrie-harvard-arthropods-flying-wheeled-robot}.
+\newblock Accessed: 27/01/2019.
 
 \bibitem{seyde2018inclusion}
 T.~Seyde, A.~Shrivastava, J.~Englsberger, S.~Bertrand, J.~Pratt, and R.~J.
