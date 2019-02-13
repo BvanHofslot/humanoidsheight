@@ -44,10 +44,10 @@ The two control setups used in this chapter are:
 \section{Results}
 Tests are conducted by applying a push at chest height on Valkyrie. The parameters and settings used for the tests can be found in Appendix \ref{chap:params}. Additionally, some tests are conducted on Atlas.
 
-\subsection{Simulation}
+\subsection{Valkyrie Simulation}
 In simulation, the push duration is set to $\tpush=0.15$ [s], as on hardware tests is found that approximately the same push duration can be applied. The push force profile in simulation is constant. A vertical acceleration constant of $\ddzc=2.4$ [m/s$^2$] is used, as this was also found to work well on hardware. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.4$ was used for the prediction of vertical motion.
 
-\paragraph{The maximum recoverable impulses} for the vertical motion controller and the default control setup are shown in \figref{fig:roundStanding}. The results are obtained with a search for the maximum push that the robot could still recover from. This search is conducted every $5$ degrees. The radius of the plot is the normalized impulse $i$ applied to the robot:
+\subsubsection{Maximum Recoverable Push} for the vertical motion controller and the default control setup are shown in \figref{fig:roundStanding}. The results are obtained with a search for the maximum push that the robot could still recover from. This search is conducted every $5$ degrees. The radius of the plot is the normalized impulse $i$ applied to the robot:
 \begin{equation}
 	i = \frac{\int \fpush d\tpush}{\mrobot},
 \end{equation}
@@ -61,7 +61,7 @@ The recovery improved when using the vertical motion controller after the defaul
 \label{fig:roundStanding}
 \end{figure}
 
-\paragraph{A comparison of the response after equal push magnitudes} is shown in \figref{fig:valcomparephase}, as a phase plot for the horizontal \ac{CoM} state in the sagittal plane. The area covered by the phase plot is smaller with the vertical motion controller for a push of $i=0.271$ [m/s]. With the larger push of $i=0.295$ [m/s], the default control setup does not manage to stabilize and diverges, while the vertical motion controlled setup recovers.
+\subsubsection{Comparison of Equal Push} is shown in \figref{fig:valcomparephase}, as a phase plot for the horizontal \ac{CoM} state in the sagittal plane. The area covered by the phase plot is smaller with the vertical motion controller for a push of $i=0.271$ [m/s]. With the larger push of $i=0.295$ [m/s], the default control setup does not manage to stabilize and diverges, while the vertical motion controlled setup recovers.
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{STYLESTUFF/valcomparephase.png}
@@ -79,7 +79,7 @@ In \figref{fig:valcomparetime}, time response plots are shown for a push of $i=0
 
 In the right column of the figure, from the ankle torque $\tau_{ak,y}$, knee torque ankle torque $\tau_{kn,y}$, hip torque $\tau_{hp,y}$ and back torque $\tau_{bk,y}$, the difference in ankle and knee torque is the most noteworthy. The ankle torque has a higher peak for the vertical motion controller. Also, the ankle torque returns to the steady state value earlier than the default control setup. Equivalently, the desired and measured \ac{CoP} returns to the steady state value earlier as well. This is an indication of a slight increase in robustness for the push, as is observed in the phase plot as well. The knee torque is on average lower for the vertical motion controller. On average, the \ac{ICP} error $\xi_{e,x}$ is smaller, as expected.
 
-\subsection{Hardware} 
+\subsection{Valkyrie Hardware} 
 Hardware tests are conducted by applying a push in the back at chest height on the physical robot. An iLoad Pro Digital load censor \cite{iload} is used to measure the impulse of the push. The load sensor is mounted to a aluminum stick. On the other end of the load cell, a steel plate with a rubber surface is mounted. This prevents the robot from being damaged, and makes the push data less dependent on contact impacts. In \figref{fig:pushhead}, the end of the push stick with the load sensor is depicted. In \figref{fig:authorpush}, the test setup is shown. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.8$ is used for the prediction of the vertical dynamics. 
 \begin{figure}
 \centering
@@ -99,7 +99,7 @@ Hardware tests are conducted by applying a push in the back at chest height on t
   \label{fig:pushsetup}
 \end{figure}
 
-\paragraph{The maximum recoverable push} is determined by averaging a dozen cases, where the \ac{CoM} of the robot came closer than $5$ [mm] from the polygon edge, but the robot still recovered. In \figref{fig:imp1}, the average force profile with the standard deviation of the $12$ pushes is depicted for the default setup. The average impulse is $35.3$ [Ns], which equals a normalized impulse of $i=\frac{35.3}{127.3}=0.277$ [m/s]. This is a slightly higher value than the impulse recoverable in simulation. In \figref{fig:imp2}, the average force profile with the standard deviation is depicted for the vertical motion controller. The average impulse is $37.6$ [Ns], which equals $i=0.295$ [m/s], which is an increase in recoverable push of approximately $7$\% compared to the default setup.
+\subsubsection{Maximum Recoverable Push} is determined by averaging a dozen cases, where the \ac{CoM} of the robot came closer than $5$ [mm] from the polygon edge, but the robot still recovered. In \figref{fig:imp1}, the average force profile with the standard deviation of the $12$ pushes is depicted for the default setup. The average impulse is $35.3$ [Ns], which equals a normalized impulse of $i=\frac{35.3}{127.3}=0.277$ [m/s]. This is a slightly higher value than the impulse recoverable in simulation. In \figref{fig:imp2}, the average force profile with the standard deviation is depicted for the vertical motion controller. The average impulse is $37.6$ [Ns], which equals $i=0.295$ [m/s], which is an increase in recoverable push of approximately $7$\% compared to the default setup.
 \begin{figure}
 \centering
   \begin{subfigure}{0.32\textwidth}
@@ -159,7 +159,7 @@ Hardware tests are conducted by applying a push in the back at chest height on t
   \label{fig:val}
 \end{figure}
 
-\paragraph{A comparison of the response after equal push magnitudes} is conducted by selecting a force profile from each setup, where the integrated force is approximately equal and the force profiles have a comparable shape. In \figref{fig:imp3}, the two compared force profiles are shown and have an impulse of $33.2$ [Ns], which is equal to $i=0.261$ [m/s]. In \figref{fig:valcomparephaseHW}, a phase plot for the sagittal horizontal motion is depicted. Again, the vertical motion covers a smaller area. 
+\subsubsection{Comparison of Equal Push} is conducted by selecting a force profile from each setup, where the integrated force is approximately equal and the force profiles have a comparable shape. In \figref{fig:imp3}, the two compared force profiles are shown and have an impulse of $33.2$ [Ns], which is equal to $i=0.261$ [m/s]. In \figref{fig:valcomparephaseHW}, a phase plot for the sagittal horizontal motion is depicted. Again, the vertical motion covers a smaller area. 
 
 In \figref{fig:val}, a time-lapse is shown for both control setups after these pushes. The letters under each column match with the letters next to the vertical lines in \figref{fig:valcomparetimeHW}. In \figref{fig:valcomparetimeHW}, time response plots are shown for the pushes of $i=0.261$ [m/s]. Note how the vertical lines leave the gray area, when in the \figref{fig:val} the red encircled push head loses contact with the robot. 
 \begin{figure}
@@ -186,7 +186,7 @@ Considering the assumptions mentioned above, in \figref{fig:regioncomparison}, t
 
 Note how the simulation rear push recovery even lies outside the height constrained bound in this plot. The average improvement on hardware lies just inside the height constrained bound. The side push recovers about equal to the comparable force constrained capture position of $\ddzc'=\frac{1}{4}$. The frontal push recovers worse than the default control setup and is not comparable with the capture regions presented in Chapter \ref{chap:regions}.
 
-\subsection{Atlas Hardware Results}
+\subsection{Atlas Hardware}
 Next to the Valkyrie tests, some tests are conducted on Boston Dynamics' Atlas humanoid robot. An alternative experimental setup is used to test push recovery on hardware. A medicine ball with mass $m_{ball}=13.6$ [kg] is hung from the ceiling at the robotics lab of \ac{IHMC}. To push the robot, the ball can be released from a certain distance. The impulse on the robot is assumed to be only depending on the difference in potential energy of the ball between release and its lowest position. To protect the robot from the impact of the ball, a wooden plate is mounted on the frame of the robot. In \figref{fig:atlassetup}, the test setup is depicted. The length from the horizontal ball position to the dead point of the pendulum $\lball$ is used to calculate the impulse applied on the robot. To release the ball, a simple mechanism is made in an attempt to get a more constant initial ball position. This mechanism is depicted in \figref{fig:ballrelease}. By pulling the aluminum pin, the loop on the rope will slide off the pin.
 \begin{figure}
 \centering
@@ -201,6 +201,7 @@ Next to the Valkyrie tests, some tests are conducted on Boston Dynamics' Atlas h
 \label{fig:ballrelease}
 \end{figure}
 
+\subsubsection{Maximum Recoverable Push}
 A total of $50$ experiments are conducted, but no clear improvement in recovery compared to the default controller could be observed. Different initial heights for the robot are tried, by gradually lowering the default initial height of $z_0=1.12$ [m] down to $z_0=1.05$ [m]. Lowering the initial height made the relative increase in recoverable push compared to the default setup larger in simulation, but recovery on hardware did not improve. The increase in recoverable push compared to the default controller for these initial heights in simulation are in the range $6-10$ \%. In another attempt to improve recovery, the foot polygon size for the whole-body \ac{QP} was enlarged as well. The robot would handle larger impulses, but the difference observed between the two control setups was still neglectable.
 
 Additionally, in an attempt to improve recovery for the vertical motion controller, a gain for joint torque control is tuned. From the data collected from earlier tests, it was observed that the measured \ac{CoP} had a relatively large tracking error with $\rcopd$, especially during the second `bang' of the control law. The joint torques on Atlas are controlled using an input current $I$ and are computed as follows \cite{koolen2016design}:
@@ -218,6 +219,7 @@ where $k_{ff_{\tau}}$ and $k_{\tau}$ are a feedforward and feedback gain on trac
 \label{fig:atlascop}
 \end{figure}
 
+\subsubsection{Comparison of Equal Push}
 For an initial height of $z_0=1.10$ [m] and a maximum height of $\zmax=1.17$ [m], a series of $20$ tests for each control setup are conducted to investigate the responses after an equal push. For these tests, an initial ball position of $\lball=2.54$ [m] is used. The difference in ball height $\delta z_{ball}$ is computed as follows:
 \begin{equation}
 	\delta z_{ball} = l_{rope} - \sqrt{l_{rope}^2-l_{ball}} = 6.12-\sqrt{6.12^2 - 2.54^2} = 0.543 \quad \text{[m]},

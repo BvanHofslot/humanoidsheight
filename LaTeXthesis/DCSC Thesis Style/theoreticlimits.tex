@@ -106,7 +106,7 @@ Simplifying leads to:
 %minheight
 \subsection{Minimum Height}
 First the impact influenced capture point is presented, which is used to formulate a capture point following the minimum height constraint.
-\paragraph{The impact influenced capture point} is computed as follows. Temporally, the constraint on zero initial vertical velocity is neglected and the initial vertical velocity is set to a negative value. Under the assumption that this vertical velocity is directly driven to zero after an impact of the leg, the resulting capture position is computed as follows:
+\subsubsection{Impact Influenced Capture Point} is computed as follows. Temporally, the constraint on zero initial vertical velocity is neglected and the initial vertical velocity is set to a negative value. Under the assumption that this vertical velocity is directly driven to zero after an impact of the leg, the resulting capture position is computed as follows:
 \begin{equation}
 x_{cp,I} = \sqrt{\frac{z}{g}}(\dot{x}_0+\dxi),
 \end{equation}
@@ -120,7 +120,7 @@ x_{cp,I} &= \frac{\sqrt{\frac{z_0}{g}}}{1+\frac{\dzi}{z_0}\sqrt{\frac{z_0}{g}}}\
 			&= \frac{z_0}{\sqrt{z_0g}-\dot{z}_0}\dot{x}_0.
 \end{align}
 
-\paragraph{The capture position under the minimum height constraint} is computed by considering a ballistic trajectory initially, after which the impact influenced capture point is computed at the minimum height. Using Equation \eqref{eq:tbal}, the vertical velocity after the ballistic fall until the minimum height constraint reads as follows:
+\subsubsection{Minimum Height Capture Point} is computed by considering a ballistic trajectory initially, after which the impact influenced capture point is computed at the minimum height. Using Equation \eqref{eq:tbal}, the vertical velocity after the ballistic fall until the minimum height constraint reads as follows:
 \begin{equation}
 	\dot{z}_{\zmin} = -gt_{bal,z_{min}} = -g\sqrt{\frac{2\delta{\zmin}}{g}} = -\sqrt{2g\delta{\zmin}},
 \end{equation}
@@ -147,13 +147,13 @@ Considering the \ac{VHIP} dynamics of Equation \eqref{eq:dynamicscaronstyle}, $\
 For any capture position $x_{cp}$, $x\dot{x}<0$ \cite{koolen2016balance} and $0>x_0\geq-x_{bal}$ from Equation \eqref{eq:xcpuni}. 
 We use that $x \leq 0, \forall t$ and $x\rightarrow 0$ along any trajectory. From the \ac{VHIP} dynamical equation, and $z>0$, it follows that any input $u$ will slow $\dot{x}$ down. Showing that $\frac{x}{z}\rightarrow 0, \forall t$ will prove that $\ddot{z}=-g$ for the longest possible time $t$ will lead to the farthest $x_{cp}$, and a maximum $\ddot{z}$ at the earliest possible $t$ will lead to the closest $x_{cp}$. 
 
-For $\ddot{z}=0$, $z$ remains constant and $\frac{x}{z}\rightarrow 0$. For $\ddot{z}>0$, $z$ will grow and $\frac{x}{z}\rightarrow 0$. If $\ddot{z}<0$, we can show with the derivative of $\frac{x}{z}$ that this is always increasing:
+For $\ddot{z}=0$, $z$ remains constant and $\frac{x}{z}\rightarrow 0$. For $\ddot{z}>0$, $z$ will grow and $\frac{x}{z}\rightarrow 0$. If $\ddot{z}<0$, it can be shown with the derivative of $\frac{x}{z}$ that this is always increasing:
 \begin{equation}
 \frac{d\frac{x}{z}}{dt}= \frac{z\dot{x}-x\dot{z}}{z^2},
 \end{equation}
 where $x \leq 0$ and $z \dot{x} \geq 0$. Taking the extreme case $u=0$ leads to:
 \begin{align}
-	z\dot{x}-x\dot{z} &= (z_0 - \frac{1}{2}gt^2)\dot{x}_0 + (x_0 + \dot{x}_0 t)gt\\
+	z\dot{x}-x\dot{z} &= (z_0 - \frac{1}{2}gt^2)\dot{x}_0 + (x_0 + \dot{x}_0 t)gt,\\
 	&= (z_0 +\frac{1}{2}gt^2)\dot{x}_0 + x_0gt.
 \end{align}
 Noting that all terms are positive except for $x_0$, which has the largest negative value for $x_0=-x_{bal}$. Filling this in gives:
