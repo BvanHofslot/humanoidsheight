@@ -6,9 +6,11 @@ In this chapter, a brief background is given on legged systems, humanoid robotic
 \section{Legged System Preliminaries}
 In this section, commonly used expressions and background related to legged systems are briefly presented.
 \subsection{Human Balancing Strategies}
-As humanoid robots are a derivation of the human, human balancing strategies are briefly discussed. In \figref{fig:human}, human balancing strategies are shown. The `ankle strategy', `hip strategy' and stepping strategy are most commonly considered as a balancing strategy. However, the figure includes the `suspensory strategy' \cite{hasson1994clinical}, which is less commonly considered. With the `suspensory strategy', the human is in a slightly lower configuration with bend knees to have more control authority of the ankles.
+As humanoid robots are a derivation of humans, human balancing strategies are briefly discussed. In \figref{fig:human}, balancing strategies are shown for a standing human. The `ankle strategy', `hip strategy' and stepping strategy are most commonly considered as a balancing strategy. However, the figure includes the `suspensory strategy' \cite{hasson1994clinical}, which is less commonly considered. With the `suspensory strategy', the human is in a slightly lower configuration with bent knees to have more control authority of the ankles.
 
-Height variation is often not considered for a standing human. A reason for this might be that the human is often assumed to stand with straight legs. The goal of the `suspensory strategy' however, gives an interesting insight to the problem. If during the `suspensory strategy' the human would apply more force on the ground, such that a gain in height occurs, the effect of the `suspensory strategy' will get smaller as the legs straighten. Therefore, height variations for balance control can be a trade-off between the application of additional force and the gain in height. 
+Height variation is often not considered for a standing human. A reason for this might be that the human is often assumed to stand with straight legs. The goal of the `suspensory strategy' however, gives an interesting insight to the problem. Using height changes for balance control, the control authority of the ankles will change. Therefore, height variations for balance control could be a trade-off between the application of additional force and the gain in height. 
+
+For dynamic cases, like walking or jumping, \ac{CoM} height variations for balance on a human can be observed in, for example, the landing after a long jump. Bending the legs and lowering the height is crucial for not falling backwards.
 \begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{STYLESTUFF/humanbalance.jpg}
@@ -17,10 +19,11 @@ Height variation is often not considered for a standing human. A reason for this
 \end{figure}
 % Ground Reference Points
 \subsection{Ground Reference Points}\label{sec:grp}
-In biped locomotion, the dynamics of the system are often assumed to be depending on the forces resulting from ground contact, the \ac{CoM} location and the angular moment about the \ac{CoM}. The contact forces are commonly summed up in a single \ac{GRF}, coming from a single point of application in the supporting area of the walker. Ground reference points are used to describe the dynamics of the system in a single point, using \ac{GRF} and \ac{CoM} states.
+In biped locomotion, the dynamics of the system are often simplified by considering the forces resulting from ground contact, the \ac{CoM} location and the angular moment about the \ac{CoM}. The contact forces are commonly summed up in a single \ac{GRF}, coming from a single point of application in the supporting area of the walker. Ground reference points are used to describe the dynamics of the system in a single point, using \ac{GRF} and \ac{CoM} states.
 
 % ZMP
-\paragraph{The zero moment point} is the point on the ground where the resulting \ac{GRF} does not produce any moment in the horizontal plane at the point of application \cite{sardain2004forces}. By definition, this is the point where the part of the \ac{GRF} that does not cause angular momentum around the \ac{CoM} intersects with the ground surface. The \ac{ZMP} was initially introduced in \cite{vukobratovic1969contribution}. The \ac{ZMP} is formulated as:
+\subsubsection{Zero Moment Point \& Center of Pressure} 
+The point on the ground where the resulting \ac{GRF} does not produce any moment in the horizontal plane at the point of application, is referred to as the \ac{ZMP} \cite{sardain2004forces}. By definition, this is the point where the part of the \ac{GRF} that does not cause angular momentum around the \ac{CoM} intersects with the ground surface. The \ac{ZMP} was initially introduced in \cite{vukobratovic1969contribution}. The \ac{ZMP} is formulated as:
 \begin{equation}
     \rzmp=\cxy-\frac{\fgrxy}{\fgrz}z+\frac{\taucom}{\fgrz},
 \end{equation}
@@ -29,7 +32,7 @@ where $\rzmp = [x_{zmp}, y_{zmp}]^T$ is the \ac{ZMP} location, $\fgrxy=[\fgrx,\f
 In \figref{fig:zmpvscmp} the definition of the \ac{ZMP} is visualized for two different modeling choices, using both a connection between the ankle and the \ac{CoM} as a prismatic joint. In \figref{fig:3dlipfoot}, no inertia is considered around the \ac{CoM} and the \ac{GRF} $\fgr$ coming from the \ac{ZMP} intersect with the mass $m$. The difference in position between the ankle location and the \ac{ZMP} is affected by the ankle torque $\tauankle$. In \figref{fig:3dlipfootinertia}, body inertia of the system is approximated by adding a flywheel with inertia $\inert = [I_x, I_y]^T$ to the model. The \ac{GRF}, coming from the \ac{ZMP}, can be pointed away from the \ac{CoM} by using the body torque $\taucom = [\tau_x, \tau_y]^T$ as input. 
 
 % CoP
-\paragraph{The center of pressure} coincides during walking over flat ground with the \ac{ZMP} \cite{vukobratovic2004zero}. The two points however are not equal in more complex environments. The \ac{CoP} is restricted to be located in the support polygon, while the \ac{ZMP} is restricted to be located on the ground plane  \cite{sardain2004forces}. Traditionally, the \ac{CoP} is a measured quantity from a force pressure plate under the foot. In this thesis, the \ac{CoP} location is denoted as $\rcop = [x_{cop}, y_{cop}]^T$ and considered equal to $\rzmp$, as a flat contact surface is used as reference.
+The \ac{CoP} coincides during walking over flat ground with the \ac{ZMP} \cite{vukobratovic2004zero}. The two points however are not equal in more complex environments. The \ac{CoP} is restricted to be located in the support polygon, while the \ac{ZMP} is restricted to be located on the ground plane  \cite{sardain2004forces}. Traditionally, the \ac{CoP} is a measured quantity from a force pressure plate under the foot. In this thesis, the \ac{CoP} location is denoted as $\rcop = [x_{cop}, y_{cop}]^T$ and considered equal to $\rzmp$, as a flat contact surface is used as reference.
 %The \ac{CoP} is linked to the \ac{GRF}-moment, while the \ac{ZMP} is related to the effects of external forces on the \ac{CoM} state \cite{sardain2004forces}. 
 \begin{figure}
 \centering
@@ -50,7 +53,8 @@ In \figref{fig:zmpvscmp} the definition of the \ac{ZMP} is visualized for two di
 \end{figure}
 
 % CMP
-\paragraph{The centroidal moment pivot} includes, unlike the \ac{ZMP} and \ac{CoP}, angular momentum around the \ac{CoM}  \cite{popovic2005ground}. This is defined as the point where a line passing through the \ac{CoM}, parallel to the \ac{GRF} intersects with the ground surface. Unlike the \ac{CoP}, the \ac{CMP} is not constrained to lie inside the support polygon. The \ac{CMP} is defined as:
+\subsubsection{Centroidal Moment Pivot} 
+The \acf{CMP} includes, unlike the \ac{ZMP} and \ac{CoP}, angular momentum about the \ac{CoM}  \cite{popovic2005ground}. This is defined as the point where a line passing through the \ac{CoM}, parallel to the \ac{GRF} intersects with the ground surface. Unlike the \ac{CoP}, the \ac{CMP} is not constrained to lie inside the support polygon. The \ac{CMP} is defined as:
 \begin{equation}
     \rcmp=\cxy-\frac{\fgrxy}{\fgrz}z,
     \label{eq:cmp}
@@ -61,7 +65,8 @@ where $\rcmp =[x_{cmp}, y_{cmp}]^T$ is the \ac{CMP} location. In \figref{fig:3dl
 \subsection{Inverted Pendulum-based Models}
 The line between a ground reference point and the \ac{CoM} can be modeled as an inverted pendulum. In this thesis, this line is also called the \textit{virtual leg}.
 
-\paragraph{The linear inverted pendulum model} is widely used in walking research and especially in legged robotics \cite{kajita20013d}. The \ac{LIP} provides fast, closed-form solutions when integrating over time. In the \ac{LIP} equations of motion, the horizontal motion of the pendulum tip does not affect the pendulum length $l$:
+\subsubsection{Linear Inverted Pendulum Model} 
+For its fast, closed-form solutions, the \ac{LIP} model \cite{kajita20013d} is widely used in walking research and especially in legged robotics. The \ac{LIP} equations of motion are:
 \begin{equation}
 \ddcxy=\frac{g}{l}\cxy,
 \label{eq:LIPeom}
@@ -74,10 +79,11 @@ where $\ddcxy$ is the horizontal \ac{CoM} acceleration. At any horizontal positi
 \label{fig:3dlip}
 \end{figure}
 
-To model body inertia of the robot, sometimes a flywheel is added to the \ac{LIP} \cite{pratt2006capture}, \cite{stephens2007humanoid}, \cite{koolen2012capturability}. By controlling the torque applied on the flywheel, the \ac{CoM} dynamics can be controlled.
+To model body inertia of the robot, sometimes a flywheel is added to the \ac{LIP} \cite{pratt2006capture, stephens2007humanoid, koolen2012capturability}. By controlling the torque applied on the flywheel, a control authority  over the \ac{CoM} dynamics becomes available. 
 
 % height var model
-\paragraph{Height varying models} consider, unlike the \ac{LIP}, height variation of the \ac{CoM}. Three examples of such models are:
+\subsubsection{Height Varying Models} 
+Unlike the \ac{LIP}, height variation of the \ac{CoM} can be included in modeling of the virtual leg. Three examples of such models are:
 \begin{itemize}
 	\item The, not linearized, inverted pendulum model \cite{kuo2005energetic};
 	\item The \ac{SLIP} model \cite{liu2015trajectory};
@@ -91,7 +97,7 @@ Throughout this report, special focus is given to the \ac{VHIP}. In \figref{fig:
 	m\ddot{z} &= \fgrtwo\frac{z}{\sqrt{x^2 + z^2}} - mg,
 	\label{eq:dynamicsprattstyle}
 \end{align}
-where $\fgrtwo=[\fgrx, \fgrz]^T$ is the \ac{GRF} of the \ac{2D}  model. Works that use this style of writing are, for example, \cite{pratt2007derivation} and \cite{koolen2016balance}.
+where $\fgrtwo=[\fgrx, \fgrz]^T$ is the \ac{GRF} of the \ac{2D}  model. Works that use this equation are, for example, \cite{pratt2007derivation} and \cite{koolen2016balance}.
 
 Another way of writing the dynamics of the \ac{VHIP} is as a function of the vertical acceleration $\ddot{z}$:
 \begin{equation}
@@ -111,20 +117,22 @@ where $\vect{g}=[0,0,-g]$ is the gravity force vector. The dynamical equation ca
 An advantage of the \ac{LIP} is that closed-form solutions to the dynamics exists. The \ac{LIP} orbital energy is an example of such a closed-form solution. This energy can be used to determine the ability of the pendulum to converge to its unstable mode: the capture problem \cite{pratt2006capture}, \cite{koolen2012capturability}.
 
 % LIP orbital energy
-\paragraph{The linear inverted pendulum orbital energy}\label{subsec:liporbit} is originally derived in \cite{kajita1992dynamic} and shows one of the main advantages of the use of a \ac{LIP} model.  This energy reads as follows
+\subsubsection{Linear Inverted Pendulum Orbital Energy}\label{subsec:liporbit} 
+The \ac{LIP} orbital energy is originally derived in \cite{kajita1992dynamic} and shows one of the main advantages of the use of a \ac{LIP} model.  This energy reads as follows
 \begin{equation}
 \Elip = \int (\ddot{x}-\frac{g}{l}x)\dot{x} dt = \frac{1}{2}\dot{x}^2-\frac{g}{2z_0}x^2,
 \label{eq:Elip}
 \end{equation}
-where $E_{LIP}$ is the \ac{LIP} orbital energy. Note that the expression resembles kinetic and potential energy: one term depends on velocity, the other on position. If $E_{LIP}>0$, the point mass will cross the horizontal position of the pendulum base with its current velocity. If $E_{LIP}<0$, the point mass will not cross the pendulum base and will have a turning point where the velocity becomes zero.
+where $E_{LIP}$ is the \ac{LIP} orbital energy. This orbital energy is a conserved quantity if no contact change occurs. Note that the expression resembles kinetic and potential energy: one term depends on velocity, the other on position. If $E_{LIP}>0$, the point mass will cross the horizontal position of the pendulum base with its current velocity. If $E_{LIP}<0$, the point mass will not cross the pendulum base and will have a turning point where the velocity becomes zero.
 
 % ICP
-\paragraph{The linear inverted pendulum capture point} is derived more than a decade later from $\Elip$ in \cite{pratt2006capture}. Taking $E_{LIP}=0$ and taking the square root of Equation \eqref{eq:Elip} gives
+\subsubsection{Capture Point \& Capture Region} 
+More than a decade later than the first mention of the \ac{LIP} orbital energy, the \ac{CP} was presented in  \cite{pratt2006capture}. Taking $E_{LIP}=0$ and taking the square root of Equation \eqref{eq:Elip} gives
 \begin{equation}
 \xcplip=\sqrt{ \frac{z_0}{g}}\dot{x} 
 \label{eq:cp}
 \end{equation}
-where $\xcplip$ is the `capture point', in this thesis referred to as the \ac{CP}. This is the point where the velocity of the point-mass is exactly driven to zero and the pendulum is upright, where neither crossing of the pendulum base ocurred nor turning of body velocity. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point. The \ac{CP} will be used for comparison with the \ac{VHIP} capture regions later in this report.
+where $\xcplip$ is the `capture point', in this thesis referred to as the \ac{CP}. If the \ac{CoP} is held constant at the \ac{CP}, the velocity of the point-mass will be exactly driven to zero when it is above the \ac{CoP}. In \figref{fig:2dicp} a \ac{2D} visual explanation is given of this point. The \ac{CP} will be used for comparison with the \ac{VHIP} capture regions later in this report.
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{STYLESTUFF/2DCP.png}
@@ -132,9 +140,10 @@ where $\xcplip$ is the `capture point', in this thesis referred to as the \ac{CP
 \label{fig:2dicp}
 \end{figure}
 
-\paragraph{A capture region} will traditionally appear if the \ac{LIP} plus flywheel model is used \cite{pratt2006capture}, \cite{stephens2007humanoid}, \cite{koolen2012capturability}. As the control authority of the flywheel can change the \ac{CoM} dynamics, a set of capture points become reachable.
+A capture region will traditionally appear if the \ac{LIP} plus flywheel model is used \cite{pratt2006capture, stephens2007humanoid, koolen2012capturability}. As the control authority of the flywheel can change the \ac{CoM} dynamics, a set of capture points become reachable.
 
-\paragraph{The instantaneous capture point} was introduced in \cite{koolen2012capturability}, which gives a slightly different description of the \ac{CP}:
+\subsubsection{Instantaneous Capture Point} 
+The \ac{ICP} was introduced in \cite{koolen2012capturability}, which gives a slightly different description of the \ac{CP}:
 \begin{equation}
 \icp=\cxy+\sqrt{\frac{z_0}{g}}\dot{\mathbf{c}}_{xy} 
 \label{eq:icp}
@@ -160,7 +169,8 @@ where $\dot{\icp}$ is the \ac{ICP} velocity and $\vect{r}$ is a ground reference
 %The initial condition, which is equal to the \ac{ICP}, has to be related to $r(t)$ by this expression.
 
 %nonlinear orbital
-\paragraph{Orbital energy with height variation}\label{subsec:nonorbit} is more difficult to derive than its linear counterpart.  Examples of attempts to include \ac{CoM} height variations in the solution to the dynamics are the time-varying \ac{DCM} \cite{hopkins2014humanoid}, the orbital energy under a virtual constraint \cite{pratt2007derivation} and the height varying boundedness condition \cite{caron2018balance}. These works are discussed in Section 
+\subsubsection{Orbital Energy with Height Variation}\label{subsec:nonorbit} 
+Allowing height variation of the \ac{CoM}, an expression for orbital energy is more difficult to derive than its linear counterpart.  Examples of attempts to include \ac{CoM} height variations in the solution to the dynamics are the time-varying \ac{DCM} \cite{hopkins2014humanoid}, the orbital energy under a virtual constraint \cite{pratt2007derivation} and the height varying boundedness condition \cite{caron2018balance}. These works are discussed in Section 
 \ref{sec:relatedworksheight}, since they are highly related to the research of focus.
 
 % Control Framework IHMC
@@ -189,11 +199,13 @@ There are two humanoid robots present at the institute at the moment of writing:
 
 % planning
 \subsection{Planning}
-In contrary to running, with walking there is a state in every cycle with two feet in contact with the ground. This is the \ac{DS} state and the state where only one leg is on the ground is the \ac{SS} state. Additionally, other states within either the \ac{DS} or \ac{SS} state are considered, like toe-off in the transition from \ac{DS} to \ac{SS}. In \ac{SS}, the leg in contact with ground is the support leg and the foot taking a step is the swing leg. The transition between those states and the duration in each state play an important role in the generation of a dynamic plan. Planning of the robots motion is conducted by separating footstep planning from dynamic planning. The dynamic plan is in this case an \ac{ICP} reference trajectory \cite{seyde2018inclusion}.
+In contrary to running, with walking there is a state in every cycle with two feet in contact with the ground. This is the \ac{DS} state and the state where only one leg is on the ground is the \ac{SS} state. Additionally, other states within either the \ac{DS} or \ac{SS} state are considered, like toe-off in the transition from \ac{DS} to \ac{SS}. In \ac{SS}, the leg in contact with ground is the support leg and the foot taking a step is the swing leg. The transition between those states and the duration in each state play an important role in the generation of a dynamic plan. Planning of the robots motion is conducted by separating footstep planning from dynamic planning. The dynamic plan in this case is an \ac{ICP} reference trajectory \cite{seyde2018inclusion}.
 %footstepplan
-\paragraph{Footstep planning} is the generation of a sequence of footsteps for the robot to follow. A Light Detection and Ranging sensor on the head of the robot provides terrain information. One way to generate a footstep plan is to let the user define each footstep via a graphical user interface. Via relatively simple algorithmic checks on for example kinematic reachability, the user interface can show whether a to be placed footstep is feasible or not. To make this process more autonomous, recently developments have been made in the creation of a footstep planner based on a A* search algorithm. 
+\subsubsection{Footstep Planning}
+Footstep planning is the generation of a sequence of footsteps for the robot to follow. A Light Detection and Ranging sensor on the head of the robot provides terrain information. One way to generate a footstep plan is to let the user define each footstep via a graphical user interface. Via relatively simple algorithmic checks on for example kinematic reachability, the user interface can show whether a footstep is feasible or not. To make this process more autonomous, recently developments have been made in the creation of a footstep planner based on a A* search algorithm. 
 %icpplanning
-\paragraph{Instantaneous capture point planning}\label{subsec:icpplan} is the generation of a dynamic plan for the robot. It relies on the solution to the linear differential equation of the \ac{ICP} dynamics of Equation \eqref{eq:icpdyn}:
+\subsubsection{Instantaneous Capture Point Planning}\label{subsec:icpplan} 
+The generation of a dynamic plan for the robot is conducted by computing an \ac{ICP} reference trajectory. This trajectory relies on the solution to the linear differential equation of the \ac{ICP} dynamics of Equation \eqref{eq:icpdyn}:
 \begin{equation}\label{eq:icpsol}
 	\icp(t)=e^{\omega_0t}(\icp_0- \vect{r}_0) + \vect{r}_0,
 \end{equation}
@@ -201,7 +213,7 @@ where $\omega_0=\sqrt{\frac{g}{z_0}}$ is the natural frequency of the \ac{LIP} a
 
 Under the assumption of constant ground reference point locations, the ground reference knot-points, multiple methods have been developed over the years and improvements are being made. The most traditional \ac{ICP} reference trajectory is calculated with a single \ac{ZMP} knot-point \cite{englsberger2012integration} for each footstep. For each \ac{ZMP} knot-point, an \ac{ICP} knot-point is computed by integrating the \ac{ICP} dynamics backwards in time from the last footstep to the first. Using Equation \eqref{eq:icpsol}, the local \ac{ICP} reference value can be computed at any time instance within the plan. 
 
-The above mentioned method is extended in \cite{englsberger2014trajectory}, where multiple \ac{CMP} knotpoints per foot are considered and \ac{SS} and \ac{DS} transitions are interpolated using splines. In the most recent improvements, continous \ac{CMP} reference trajectories are used for the generation of the \ac{ICP} trajectory \cite{seyde2018inclusion}. An estimate of the angular momentum generated during the walking motion is incorporated in the generation of the \ac{CMP} reference. At the time of writing, the latter method is the one currently in use, and which is used for the experiments in Chapter \ref{chap:walking}.
+The above mentioned method is extended in \cite{englsberger2014trajectory}, where multiple \ac{CMP} knotpoints per foot are considered and \ac{SS} and \ac{DS} transitions are interpolated using splines. In the most recent improvements, continous \ac{CMP} reference trajectories are used for the generation of the \ac{ICP} trajectory \cite{seyde2018inclusion}. An estimate of the angular momentum generated during the walking motion is incorporated in the generation of the \ac{CMP} reference. At the time of writing, the latter method is the one currently in use at \ac{IHMC}, and which is used for the experiments in Chapter \ref{chap:walking}.
 % icp control
 \subsection{Instantaneous Capture Point Control}\label{sec:icpcontrol}
 Based on a \ac{CMP} and \ac{ICP} reference trajectory, the following proportional control law is used to generate a desired \ac{CMP}:
@@ -213,13 +225,15 @@ where $\rcmpd$ is the desired \ac{CMP}, $\rcmpr$ and $\icpr$ are the reference \
 \begin{equation}\label{eq:dotldxy}
     \dotldxy = \frac{\cxy-\rcmpd}{z_0}mg,
 \end{equation}
-where $\dotldxy$ is the desired horizontal linear momentum rate of change, which is the desired horizontal force on the \ac{CoM} of the robot. This value is send to the whole-body \ac{QP}. Note that this value is computed based on the \ac{LIP} equations of motion. 
+where $\dotldxy$ is the desired horizontal linear momentum rate of change, which is the desired horizontal force on the \ac{CoM} of the robot. This value is sent to the whole-body \ac{QP}. Note that this value is computed based on the \ac{LIP} equations of motion. 
 
 % momentum control
-\subsection{Momentum-based Whole-body Control}
+\subsection{Momentum-Based Whole-body Control}
 The desired horizontal linear momentum rate of change $\dotldxy$, the output of \ac{ICP} control, is one of the inputs for the the whole-body \ac{QP}. The whole-body \ac{QP} finds desired joint accelerations and desired \ac{GRF}, which are translated to desired joint torques by a Newton-Euler inverse dynamics algorithm.
+
 %centroidal
-\paragraph{Centroidal dynamics} \cite{orin2013centroidal} describe the dynamics on and about the \ac{CoM} of the robot as a result of external forces like gravity and \ac{GRF}. To find the \ac{CoM} dynamics for the robotic chain of the humanoid, a short introduction is given to joint to end-effector mapping. The mapping between joint velocities and end-effector motion plays a crucial role in any robotic system:
+\subsubsection{Centroidal Dynamics}
+The constraint on the dynamics of the robot in the whole-body \ac{QP} is based on centroidal dynamics \cite{orin2013centroidal}. Centroidal dynamics describe the dynamics on and about the \ac{CoM} of the robot as a result of external forces like gravity and \ac{GRF}. To explain the \ac{CoM} dynamics for the robotic chain of the humanoid, a short introduction is given to joint to end-effector mapping. The mapping between joint velocities and end-effector motion plays a crucial role in any robotic system:
 \begin{equation}\label{eq:jacobian}
 \matr{T}=\begin{bmatrix}\bs{\omega} \\ \bs{\upsilon} \end{bmatrix} = \matr{J}(\qjnt)\dqjnt \in \mathbb{R}^6,
 \end{equation}
@@ -233,7 +247,8 @@ where $\dqjnt$ are the joint velocities, $\matr{J}(\qjnt)$ is the Jacobian that 
 \end{equation}
 where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the wrench exterted by the total \ac{GRF}, as a sum from the wrench at each contact point considered. The other external wrenches $\sum_i \matr{W}_{ext,i}$ can be caused for example by other contacts than ground. These are considered zero in this thesis: $\sum_i \matr{W}_{ext,i}=\vect{0}$.
 %qp
-\paragraph{The whole-body quadratic program} \cite{koolen2016design} optimizes between momentum rate objectives and motion objectives to find desired joint accelerations and desired \ac{GRF}. The optimization is formulated as follows:
+\subsubsection{Whole-Body Quadratic Program} 
+The whole-body \ac{QP} \cite{koolen2016design} optimizes between momentum rate objectives and motion objectives to find desired joint accelerations and desired \ac{GRF}. The optimization is formulated as follows:
 \begin{equation}
 \begin{array}{rlcl}
 \displaystyle \min_{\bs{\ddot{q}}_d,\bs{\rho}} & \multicolumn{3}{l}{J_{\bs{\dot{h}}_d} + J_{\bs{J}} + J_{\bs{\rho}} + J_{\bs{\ddot{q}}_d} } \\%+ J_p} \\
@@ -269,11 +284,12 @@ An important note considering the research of focus is the generation of vertica
 where $k_p, k_d$ are the PD-control gains and $z_r$ is the reference height coming from a reference trajectory. Decision variables for this trajectory are for example kinematic reachability and height changes in terrain, but maintaining the robot's balance is \textit{not} a part of those decision variables.
 
 
-\paragraph{Inverse dynamics} translate desired joint accelerations and end-effector wrenches to desired joint torques. Desired joint torques $\bs{\tau}_d$ are calculated via a revursive Newton-Euler algorithm using the solution of whole-body \ac{QP}: $\ddqjntd$ and $\bs{\rho}$.
+\subsubsection{Inverse Dynamics} 
+To translate desired joint accelerations and end-effector wrenches to desired joint torques, a recursive Newton-Euler inverse dynamics algorithm is used. Desired joint torques $\bs{\tau}_d$ are calculated using the solution of whole-body \ac{QP}, $\ddqjntd$ and $\bs{\rho}$, as follows:
 \begin{equation}
     \bs{\tau}_d = \matr{M}(\qjnt)\ddqjntd + \matr{C}(\qjnt,\dqjnt)\dqjnt + \matr{G}(\qjnt) + \matr{J}^T \vect{W}_{gr}.
 \end{equation}
-With the desired joint torques, the actuators of the robot are PD-controlled using a electrical current as input and joint torque and joint velocity measurements.
+These desired joint torques are used by the torque controllers for each actuator.
 
 A high-level overview of the control framework is shown in \figref{fig:framework}. The `high level controller' block consists for example of the \ac{ICP} controller of Section \ref{sec:icpcontrol} and the height control law of Equation \eqref{eq:defaultheightcontrol}.
 \begin{figure}[h]
@@ -284,7 +300,7 @@ A high-level overview of the control framework is shown in \figref{fig:framework
 \end{figure}
 
 % CoM Height Variation
-\section{Related Works}\label{sec:relatedworksheight}
+\section{Related Work}\label{sec:relatedworksheight}
 In this short literature survey, the scope is not limited to only the use of vertical \ac{CoM} motion in balance control. Other goals of improvement, like improving dynamic planning for motions over rough-terrain or for more human-like motions, are discussed as well. The models and strategies used in these works can be insightful for the problem considered in this thesis.
 
 Traditionally, vertical \ac{CoM} motion is generated through PD-control as in Equation \eqref{eq:defaultheightcontrol} \cite{kajita2003resolved, koolen2016design}: a dynamic reference plan exists, often based on the LIP model, and height variations are considered as disturbances on the model considered in the dynamical plan. Reasons to use height variations here include the guarantee of \textit{kinematic feasibility}: height variation allows the robot to step up platforms, and allows the robot to take larger steps. A noteworthy, more unique, example of height variation in non-predictive control is walking with straighter legs as in \cite{griffin2018straight}. The motivation in this work is to let the robot walk more \textit{human-like}, which could have more underlying benefits, such as kinematic reachability and metabolic energy consumption \cite{wang2012optimizing}.

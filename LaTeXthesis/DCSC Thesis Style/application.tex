@@ -137,7 +137,8 @@ For the maximum height constraint $\zmax$, the same parameters as for the standi
    \caption{Height constraints through \acf{SS}}
     \label{fig:heightconstraints}
 \end{figure} 
-\subsubsection{Positive Alignment Action} introduces the bang-bang control law of the previous chapter, using the $\zmax$ as explained above. After the second `bang', the height is not controlled to the maximum height $\zmax$, but is given a feedforward downward acceleration computed with a circle as follows. Consider the distance from the ankle of the robot to the sagittal \ac{CoM} position $x_{ankle}$ and the maximum leg length $l_{max}$. The horizontal position relates to the vertical position as:
+\subsubsection{Positive Alignment Action} 
+Using $\zmax$ as specified above, a similar bang-bang control law as in the previous chapter is introduced with the positive alignment action. After the second `bang', the height is not controlled to the maximum height $\zmax$, but is given a feedforward downward acceleration computed with a circle as follows. Consider the distance from the ankle of the robot to the sagittal \ac{CoM} position $x_{ankle}$ and the maximum leg length $l_{max}$. The horizontal position relates to the vertical position as:
 \begin{equation}
 z^2 = l_{max}^2-x_{ankle}^2.
 \end{equation}
@@ -153,7 +154,8 @@ Assuming the sagittal acceleration $\ddot{x}$ is zero, the desired height accele
 \begin{equation}
  \ddzd = -\frac{\dot{x}^2}{\sqrt{ l_{max}^2-x_{ankle}^2}} - \frac{x_{ankle}^2\dot{x}^2}{(l_{max}^2-x_{ankle}^2)^{1\frac{1}{2}}}.
 \end{equation}
-\subsubsection{Prepare Action} uses the time it takes to accelerate from the minimum height constraint to the maximum height constraint. This time uses the kinetic and potential energy:
+\subsubsection{Prepare Action} 
+When the future errors are more suitable for using vertical \ac{CoM} motion for balance, the \ac{CoM} height is prepared for applying more force later and therefore lowered. The control action uses the time it takes to accelerate from the minimum height constraint to the maximum height constraint. This time uses the kinetic and potential energy:
 \begin{equation}
 	\zmin + \frac{1}{2}\ddzc t_{\zmin \rightarrow \zmax}^2 + \frac{1}{2}\frac{(\ddzc t_{\zmin \rightarrow \zmax})^2}{\ddzalpha \ddzc} = \zmax,
 \end{equation}
@@ -180,11 +182,13 @@ This value for $\ddzd$ is used until $t_{z \rightarrow \zmin}<0$, after which th
 
 % Results
 \section{Results}
+To test all presented control actions, push recovery is tested on Valkyrie in simulation. Additionally, the positive alignment action is tested on Atlas on hardware.
 \subsection{Valkyrie Simulation}
 The results are obtained by pushing the robot in \ac{SS} when the right foot is the support foot, as in the previous sections. Initially, the robot is pushed at entrance of \ac{SS}. Like with the standing tests, the maximum recoverable push is searched for for every $5$ degrees change in push direction, and compared with the default controller. To test if the robot recovered, there are four more steps taken after the current step, and checked if the robot did not fall over. Additionally, pushes are applied in different moments in \ac{SS}, using the notation $\fracpush$ for the fraction of the swing time when the push is applied. To have a more instant change in error, a push duration of $\tpush=0.03$ is chosen. For a more reactive response on Valkyrie, the values $\ddzdmax=5.0$ [m/s$^2$] and $\dddzmax=200$ [m/s$^3$] are chosen to work with.
 
 
-\subsubsection{Maximum Recoverable Push} are plotted for the different actions together with the results for the default controller \figref{fig:roundPushActions}. Like with the standing tests, $\rcmpd$ is constrained to be inside the polygon and is assumed to coincide with $\rcopd$. The actions have less effect when the push is applied later in \ac{SS}, and results in even worse recovery than the default setup at $\fracpush=0.5$. Note that the recovery for a push around $200$ degrees is always worse when the vertical motion control law is enabled.
+\subsubsection{Maximum Recoverable Push}
+Like in the previous chapter,  the maximum recoverable pushes are searched for every $5$ degrees. The results for both controller setups are shown in \figref{fig:roundPushActions}. Like with the standing tests from the previous chapter, $\rcmpd$ is constrained to be inside the polygon and is assumed to coincide with $\rcopd$. The actions have less effect when the push is applied later in \ac{SS}, and results in even worse recovery than the default setup at $\fracpush=0.5$. Note that the recovery for a push around $200$ degrees is always worse when the vertical motion control law is enabled.
 \begin{figure}
      \centering
         \includegraphics[width=0.85\textwidth]{STYLESTUFF/rounActions.png}
@@ -200,7 +204,8 @@ In \figref{fig:roundPushAng}, the maximum recoverable pushes are shown for when 
         \label{fig:roundPushAng}
 \end{figure}
 
-\subsubsection{Comparison of Equal Push} is again conducted by applying the push where the default setup just recovered. A rear and frontal push are chosen to make a deeper evaluation of, which have a recoverable impulse of $i=0.156$ [m/s] and $0.315$ [m/s] respectively. In \figref{fig:walkplot}, time responses are shown for these applied impulses. For the vertical motion controller, the positive alignment action is used for the rear push and the prepare action is used for the frontal push, which can also be observed in \figref{fig:roundPushActions}. For the back push, the desired vertical linear momentum rate $\dotldz$ from a circle is clearly visible after the second `bang'. The maximum height violates the maximum allowed height for the controller slightly halfway swing. For the prepare action however, the minimum height stays above the minimum height constraint. From the reference and measured \ac{ICP} $\icpr$ and $\icp$ in the sagittal direction, it can be observed that the final \ac{ICP} error is smaller for the vertical motion controller.
+\subsubsection{Comparison of Equal Push} 
+A deeper evaluation is again made for the responses after an equal push for certain push directions. A rear and frontal push are chosen to make a deeper evaluation of, which have a recoverable impulse of $i=0.156$ [m/s] and $0.315$ [m/s] respectively. In \figref{fig:walkplot}, time responses are shown for these applied impulses. For the vertical motion controller, the positive alignment action is used for the rear push and the prepare action is used for the frontal push, which can also be observed in \figref{fig:roundPushActions}. For the back push, the desired vertical linear momentum rate $\dotldz$ from a circle is clearly visible after the second `bang'. The maximum height violates the maximum allowed height for the controller slightly halfway swing. For the prepare action however, the minimum height stays above the minimum height constraint. From the reference and measured \ac{ICP} $\icpr$ and $\icp$ in the sagittal direction, it can be observed that the final \ac{ICP} error is smaller for the vertical motion controller.
 \begin{figure}
      \centering
         \includegraphics[width=0.99\textwidth]{STYLESTUFF/walkplot.png}

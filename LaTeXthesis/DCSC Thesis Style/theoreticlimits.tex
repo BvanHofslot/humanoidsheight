@@ -106,7 +106,7 @@ Simplifying leads to:
 %minheight
 \subsection{Minimum Height}
 First the impact influenced capture point is presented, which is used to formulate a capture point following the minimum height constraint.
-\subsubsection{Impact Influenced Capture Point} is computed as follows. Temporally, the constraint on zero initial vertical velocity is neglected and the initial vertical velocity is set to a negative value. Under the assumption that this vertical velocity is directly driven to zero after an impact of the leg, the resulting capture position is computed as follows:
+\subsubsection{Impact Influenced Capture Point} Temporally, the constraint on zero initial vertical velocity is neglected and the initial vertical velocity is set to a negative value. Under the assumption that this vertical velocity is directly driven to zero after an impact of the leg, the resulting capture position is computed as follows:
 \begin{equation}
 x_{cp,I} = \sqrt{\frac{z}{g}}(\dot{x}_0+\dxi),
 \end{equation}
@@ -120,7 +120,8 @@ x_{cp,I} &= \frac{\sqrt{\frac{z_0}{g}}}{1+\frac{\dzi}{z_0}\sqrt{\frac{z_0}{g}}}\
 			&= \frac{z_0}{\sqrt{z_0g}-\dot{z}_0}\dot{x}_0.
 \end{align}
 
-\subsubsection{Minimum Height Capture Point} is computed by considering a ballistic trajectory initially, after which the impact influenced capture point is computed at the minimum height. Using Equation \eqref{eq:tbal}, the vertical velocity after the ballistic fall until the minimum height constraint reads as follows:
+\subsubsection{Minimum Height Constrained Capture Point} 
+Considering a minimum height constraint on the \ac{CoM}, a point can be computed that follows a ballistic trajectory initially, after which the impact influenced capture point is computed at the minimum height. Using Equation \eqref{eq:tbal}, the vertical velocity after the ballistic fall until the minimum height constraint reads as follows:
 \begin{equation}
 	\dot{z}_{\zmin} = -gt_{bal,z_{min}} = -g\sqrt{\frac{2\delta{\zmin}}{g}} = -\sqrt{2g\delta{\zmin}},
 \end{equation}

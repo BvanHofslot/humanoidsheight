@@ -475,7 +475,7 @@ end
 set(groot,'defaulttextinterpreter','latex'); 
 set(groot, 'defaultAxesTickLabelInterpreter','latex');  
 set(groot, 'defaultLegendInterpreter','latex');
-figure('rend','painters','pos', [0 0 800 400],'DefaultAxesPosition', [0.1, 0.15, 0.88, 0.8]);;
+figure('rend','painters','pos', [0 0 800 400],'DefaultAxesPosition', [0.1, 0.15, 0.88, 0.84]);;
 box on;
 n=21;
 fS=14;
@@ -507,7 +507,8 @@ hor =sqrt((x-x(1)).^2+(y-y(1)).^2);
 dhor= sign(dx).*sqrt((dx-dx(1)).^2+(dy-dy(1)).^2);
 HOR(i,:)=hor(s:s+N);
 DHOR(i,:)=dhor(s:s+N);
-plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0,0,0.3]);
+p1=plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0,0,0.3]);
+set(get(get(p1,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
 end
 
 % for i=2:length(HOR(1,:))-1
@@ -547,7 +548,8 @@ dhor= sign(dx).*sqrt((dx-dx(1)).^2+(dy-dy(1)).^2);
 HORh(i,:)=hor(s:s+N);
 DHORh(i,:)=dhor(s:s+N);
 %plot(hor,dhor,'Color','b');
-plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0.18,1,0.3]);
+p2=plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0.18,1,0.3]);
+set(get(get(p2,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
 alpha(0.9)
 end
 
@@ -559,9 +561,9 @@ end
 %     dxmax=mean(DHORh(:,i-1:i+1))+std(DHORh(:,i-1:i+1));
 %     %fill([xmin';flipud(xmax')],[dxmin';flipud(dxmax')],[0.6 0.6 .98],'linestyle','none');
 % end
-p2=plot(median(HOR),median(DHOR),'Color','k','LineWidth',3);
-p1=plot(median(HORh),median(DHORh),'Color',[0 0.18 1],'LineWidth',3);
-
+plot(median(HOR),median(DHOR),'Color','k','LineWidth',3);
+plot(median(HORh),median(DHORh),'Color',[0 0.18 1],'LineWidth',3);
+columnlegend(2, cellstr({'Default','Vertical Motion'}), 'location','northoutside','fontsize',fS);
 axis([0 0.13 -0.25 0.5])
 xlabel('$x$ [m]','FontSize',fS);
 ylabel('$\dot{x}$ [m/s]','FontSize',fS);

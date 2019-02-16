@@ -29,7 +29,7 @@ p2=plot([1 -CPreg2/xcp],1+a,'Color','k','LineStyle','--')
 p3=plot([1 -CPreg3/xcp],1+a,'Color','k','LineStyle','-.')
 plot([1 -CP1reg4/xcp],1-a,'Color','k','LineStyle','--')
 plot([1 -CP1reg3/xcp],1-a,'Color','k','LineStyle','-.')
-plot([xcp xcp]/xcp,[0 2],'Color','k')
+%plot([xcp xcp]/xcp,[0 2],'Color','k')
  
 axis equal
 axis([0.5 1.5 0 2])

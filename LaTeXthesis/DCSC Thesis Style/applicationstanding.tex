@@ -38,20 +38,20 @@ Controlling to $\zmax$ allows the robot to apply more force on the ground, compa
 \end{equation}
 The two control setups used in this chapter are:
 \begin{itemize}
-\item \textit{The vertical motion controller}: the control law presented in this section. Results are depicted in blue.
-\item \textit{The default control law}: the control law as presented in Section \ref{sec:ihmc}. Results are depicted in black.
+\item \textbf{Vertical motion}: the control law presented in this section. Results are depicted in blue.
+\item \textbf{Default}: the control law as presented in Section \ref{sec:ihmc}. Results are depicted in black.
 \end{itemize}
 \section{Results}
-Tests are conducted by applying a push at chest height on Valkyrie. The parameters and settings used for the tests can be found in Appendix \ref{chap:params}. Additionally, some tests are conducted on Atlas.
-
-\subsection{Valkyrie Simulation}
-In simulation, the push duration is set to $\tpush=0.15$ [s], as on hardware tests is found that approximately the same push duration can be applied. The push force profile in simulation is constant. A vertical acceleration constant of $\ddzc=2.4$ [m/s$^2$] is used, as this was also found to work well on hardware. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.4$ was used for the prediction of vertical motion.
-
-\subsubsection{Maximum Recoverable Push} for the vertical motion controller and the default control setup are shown in \figref{fig:roundStanding}. The results are obtained with a search for the maximum push that the robot could still recover from. This search is conducted every $5$ degrees. The radius of the plot is the normalized impulse $i$ applied to the robot:
+Tests are conducted by applying a push at chest height on Valkyrie. The parameters and settings used for the tests can be found in Appendix \ref{chap:params}. Additionally, some tests are conducted on Atlas. To measure the impulse applied on the robot, a normalized impulse $i$ is used:
 \begin{equation}
 	i = \frac{\int \fpush d\tpush}{\mrobot},
 \end{equation}
-where $\fpush$ is the push force and $\mrobot$ the robot mass. Valkyrie has a total mass of $\mrobot=127.3$ [kg].
+where $\fpush$ is the push force and $\mrobot$ the robot mass.
+\subsection{Valkyrie Simulation}
+In simulation, the push duration is set to $\tpush=0.15$ [s], as on hardware tests is found that approximately the same push duration can be applied. The push force profile in simulation is constant. A vertical acceleration constant of $\ddzc=2.4$ [m/s$^2$] is used, as this was also found to work well on hardware. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.4$ was used for the prediction of vertical motion. Valkyrie has a total mass of $\mrobot=127.3$ [kg].
+
+\subsubsection{Maximum Recoverable Push} 
+A search is used in simulation to find the maximum push force where the robot could still recover from. This search is conducted every $5$ degrees.  In \figref{fig:roundStanding}, a polar plot is shown for the maximum recoverable impulses for the default setup and the vertical motion controller. A push in the back corresponds with $0$ degrees and a frontal push with $180$ degrees.
 
 The recovery improved when using the vertical motion controller after the default controller in push directions coming from the back or the side of the robot. Remarkably, push recovery is worse for push directions coming from the front of the robot. Compared to the default setup, the vertical motion controller recovered of a $9$\% higher impulse for a push direction coming from the back of the robot, a $4$\% higher impulse for a push direction coming from the side and a $7$\% lower impulse for a push direction coming from the front. The improvement in maximum recoverable push is the best for a push coming from the back. Also, it is relatively easy to apply a push in the back on the real robot, compared to other parts of the robot. Valkyrie has a hard, flat back surface, which can handle larger impacts than other body parts. For those reasons, there is chosen to make a deeper evaluation of the specific push direction of $0$ degrees in simulation too.
 \begin{figure}
@@ -61,7 +61,8 @@ The recovery improved when using the vertical motion controller after the defaul
 \label{fig:roundStanding}
 \end{figure}
 
-\subsubsection{Comparison of Equal Push} is shown in \figref{fig:valcomparephase}, as a phase plot for the horizontal \ac{CoM} state in the sagittal plane. The area covered by the phase plot is smaller with the vertical motion controller for a push of $i=0.271$ [m/s]. With the larger push of $i=0.295$ [m/s], the default control setup does not manage to stabilize and diverges, while the vertical motion controlled setup recovers.
+\subsubsection{Comparison of Equal Push}
+To evaluate the responses after a push in the back of the robot, pushes of equal magnitudes are applied on both control setups. In \figref{fig:valcomparephase}, a phase plot is shown for the horizontal \ac{CoM} state in the sagittal plane. One impulse is the maximum recoverable push for the default setup, the other for the vertical motion controller. The area covered by the phase plot is smaller with the vertical motion controller for a push of $i=0.271$ [m/s]. With the larger push of $i=0.295$ [m/s], the default control setup does not manage to stabilize and diverges, while the vertical motion controlled setup recovers.
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{STYLESTUFF/valcomparephase.png}
@@ -99,7 +100,8 @@ Hardware tests are conducted by applying a push in the back at chest height on t
   \label{fig:pushsetup}
 \end{figure}
 
-\subsubsection{Maximum Recoverable Push} is determined by averaging a dozen cases, where the \ac{CoM} of the robot came closer than $5$ [mm] from the polygon edge, but the robot still recovered. In \figref{fig:imp1}, the average force profile with the standard deviation of the $12$ pushes is depicted for the default setup. The average impulse is $35.3$ [Ns], which equals a normalized impulse of $i=\frac{35.3}{127.3}=0.277$ [m/s]. This is a slightly higher value than the impulse recoverable in simulation. In \figref{fig:imp2}, the average force profile with the standard deviation is depicted for the vertical motion controller. The average impulse is $37.6$ [Ns], which equals $i=0.295$ [m/s], which is an increase in recoverable push of approximately $7$\% compared to the default setup.
+\subsubsection{Maximum Recoverable Push}
+To find the maximum recoverable push on hardware, a dozen test results are averaged where the \ac{CoM} of the robot came closer than $5$ [mm] from the polygon edge, but the robot still recovered. In \figref{fig:imp1}, the average force profile with the standard deviation of the $12$ pushes is depicted for the default setup. The average impulse is $35.3$ [Ns], which equals a normalized impulse of $i=\frac{35.3}{127.3}=0.277$ [m/s]. This is a slightly higher value than the impulse recoverable in simulation. In \figref{fig:imp2}, the average force profile with the standard deviation is depicted for the vertical motion controller. The average impulse is $37.6$ [Ns], which equals $i=0.295$ [m/s], which is an increase in recoverable push of approximately $7$\% compared to the default setup.
 \begin{figure}
 \centering
   \begin{subfigure}{0.32\textwidth}
@@ -159,7 +161,8 @@ Hardware tests are conducted by applying a push in the back at chest height on t
   \label{fig:val}
 \end{figure}
 
-\subsubsection{Comparison of Equal Push} is conducted by selecting a force profile from each setup, where the integrated force is approximately equal and the force profiles have a comparable shape. In \figref{fig:imp3}, the two compared force profiles are shown and have an impulse of $33.2$ [Ns], which is equal to $i=0.261$ [m/s]. In \figref{fig:valcomparephaseHW}, a phase plot for the sagittal horizontal motion is depicted. Again, the vertical motion covers a smaller area. 
+\subsubsection{Comparison of Equal Push} 
+By selecting a force profile from each setup where the integrated force is approximately equal and the force profiles have a comparable shape, a comparison can be made of the behaviors of the controllers after a similar disturbance. In \figref{fig:imp3}, the two compared force profiles are shown and have an impulse of $33.2$ [Ns], which is equal to $i=0.261$ [m/s]. In \figref{fig:valcomparephaseHW}, a phase plot for the sagittal horizontal motion is depicted. Again, the vertical motion covers a smaller area. 
 
 In \figref{fig:val}, a time-lapse is shown for both control setups after these pushes. The letters under each column match with the letters next to the vertical lines in \figref{fig:valcomparetimeHW}. In \figref{fig:valcomparetimeHW}, time response plots are shown for the pushes of $i=0.261$ [m/s]. Note how the vertical lines leave the gray area, when in the \figref{fig:val} the red encircled push head loses contact with the robot. 
 \begin{figure}
@@ -230,7 +233,7 @@ m_{ball}\dot{x}_{ball} = m_{ball}\sqrt{2g\delta z_{ball} } = 13.6\sqrt{2 \cdot 9
 \end{equation}
 Normalizing the impulse, like with Valkyrie, results in a value of $i=\frac{44.4}{155.9}=0.285$ [m/s]. From the logging camera it is observed that the push duration is about $0.03-0.05$ [s].
 
-In \figref{fig:atlasphaseHW}, phase plots are shown for these tests. The thin transparent lines show the responses after each individual test. The bold plots show the average of all results. The average phase plot for the vertical motion controller covers a slightly smaller area. However, the individual responses have a wider distribution, which shows a less predictable behavior. A reason for this could be that the robot moves when using height variation, which might cause larger sensing and actuation errors.
+In \figref{fig:atlasphaseHW}, phase plots are shown for these tests. The thin transparent lines show the responses after each individual test. The bold plots show the average of all results. The average phase plot for the vertical motion controller covers a slightly smaller area. However, the individual responses have a wider distribution, which shows a less predictable behavior. The wider distribution was also visible on the robot, as sometimes the robot would visibly almost fall over, and sometimes recover relatively quick. A reason for this could be that the robot moves when using height variation, which might cause larger sensing and actuation errors.
 
 \begin{figure}
 \centering

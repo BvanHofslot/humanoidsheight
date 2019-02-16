@@ -1,20 +1,20 @@
 %%
-dCPthes1=[];
+CPthes1=[];
 g=9.81;
 a_vect=[1 5 10 50]
 for j=1:50
 zmax=1+j*0.02;
 zmin=1-j*0.02;
-dx0=0.5;
+x0=-0.5;
 incr =0.02;
 cost=[];
-dX0=[];
+X0=[];
 S=[];
 tspan3=[0 5];
-a=9.81;
+a=3.3;
         
 for i=1:10000;
-dx0=dx0+incr;
+x0=x0+incr;
   
 t=[];
 x1=[];
@@ -30,7 +30,7 @@ t1=sqrt(2*(zmax-1)/(aplus+aplus*aplus/-amin));
 t2=t1*aplus/-amin;
 tspan1=[0 t1];
 tspan2=[0 t2];
-[t,x1] = ode45(@(t,x) penDynFcn(t,x,aplus),tspan1,[-sqrt(1/9.81),dx0,1.0,0.0]);
+[t,x1] = ode45(@(t,x) penDynFcn(t,x,aplus),tspan1,[x0,1.0,1.0,0.0]);
 
 [t,x2] = ode45(@(t,x) penDynFcn(t,x,amin),tspan2,x1(end,:));
 
@@ -45,25 +45,25 @@ else
     cost(i)=(xf(s,1))^2;
 end
 
-dX0(i)=dx0;
+X0(i)=x0;
 
 if(cost(i)<10^-10)
-    dx0=dx0-incr;
+    x0=x0-incr;
     S(i)=s;
     break;
 end
 
 if(length(cost)>1)
     if((cost(i-1)<cost(i)))
-        dx0=dx0-incr;
+        x0=x0-incr;
         incr=incr/2;
     elseif((cost(i)>99))
-        dx0=dx0-incr;
+        x0=x0-incr;
         incr=incr/2;
     end
 end
 end
-dCPthes1(j)=dx0;
+CPthes1(j)=x0;
 end
 %%
 figure('rend','painters','pos', [0 0 600 400]);
@@ -148,18 +148,19 @@ set(gca,'TickLabelInterpreter','latex')
 %%
 g=9.81;
 a_vect=[1 5 10 50]
-for j=45:50
+CPthes2=[];
+for j=1:50
 zmax=1+j*0.02;
 zmin=1-j*0.02;
-dx0=0.7;
+x0=-0.7;
 incr =0.02;
 cost=[];
 X0=[];
 S=[];
 tspan3=[0 5];
-a=2.4;
+a=3.3;
 for i=1:10000;
-dx0=dx0+incr;
+x0=x0+incr;
   
 t=[];
 x1=[];
@@ -175,7 +176,7 @@ t1=sqrt(2*(zmin-1)/(amin+amin*amin/-aplus));
 t2=t1*amin/-aplus;
 tspan1=[0 t1];
 tspan2=[0 t2];
-[t,x1] = ode45(@(t,x) penDynFcn(t,x,amin),tspan1,[-sqrt(1/9.81),dx0,1.0,0.0]);
+[t,x1] = ode45(@(t,x) penDynFcn(t,x,amin),tspan1,[x0,1.0,1.0,0.0]);
 
 [t,x2] = ode45(@(t,x) penDynFcn(t,x,aplus),tspan2,x1(end,:));
 
@@ -183,32 +184,31 @@ tspan2=[0 t2];
 
 s = find(xf(:,2) <0.00001,1);
 
-
 if(length(s)==0)
     cost(i)=100;
 else
     cost(i)=(xf(s,1))^2;
 end
 
-X0(i)=dx0;
+X0(i)=x0;
 
-if(cost(i)<10^-9)
-    dx0=dx0-incr;
+if(cost(i)<10^-8)
+    x0=x0-incr;
     S(i)=s;
     break;
 end
 
 if(length(cost)>1)
     if((cost(i-1)<cost(i)))
-        dx0=dx0-incr;
+        x0=x0-incr;
         incr=incr/2;
     elseif((cost(i)>99))
-        dx0=dx0-incr;
+        x0=x0-incr;
         incr=incr/2;
     end
 end
 end
-dCPthes3(j)=dx0
+CPthes2(j)=x0
 end
 %%
 set(groot,'defaulttextinterpreter','latex');  
@@ -277,3 +277,10 @@ opts.Format = 'eps';
 opts.Color = 'CMYK';
 opts.Resolution = 10000000;
 exportfig(gcf,'CPZvsForce.eps', opts)
+
+
+%%
+
+
+
+for t

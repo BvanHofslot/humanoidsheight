@@ -10,9 +10,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="102.98484mm"
-   height="18.991444mm"
-   viewBox="0 0 102.98484 18.991444"
+   width="106.18817mm"
+   height="21.425474mm"
+   viewBox="0 0 106.18817 21.425474"
    version="1.1"
    id="svg1408"
    sodipodi:docname="legend.svg"
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="374.2126"
-     inkscape:cy="-209.11291"
+     inkscape:zoom="1.979899"
+     inkscape:cx="124.84115"
+     inkscape:cy="38.457006"
      inkscape:document-units="mm"
      inkscape:current-layer="g1916"
      showgrid="false"
@@ -36,7 +36,7 @@
      fit-margin-bottom="0"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <defs
@@ -54,7 +54,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(65.117959,74.543635)"
+     transform="translate(66.968843,75.516606)"
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
@@ -561,6 +561,14 @@
                    id="path900-2"
                    d="M -249.32562,2364.0391 H -69.631186"
                    style="fill:none;stroke:#002dff;stroke-width:13.21350288;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   style="opacity:0.98000004;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.06940556;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+                   id="rect926"
+                   width="820.29395"
+                   height="161.46327"
+                   x="-262.44711"
+                   y="-2488.3782"
+                   transform="scale(1,-1)" />
               </g>
             </g>
           </g>
@@ -640,7 +648,7 @@
    id="path46099" />
 <polygon
    style="fill:#000000;stroke-width:0"
-   points="209.48,664.29 210.44,664.29 210.44,664.68 209.08,664.68 209.08,654.75 210.44,654.75 210.44,655.15 209.48,655.15 "
+   points="210.44,655.15 209.48,655.15 209.48,664.29 210.44,664.29 210.44,664.68 209.08,664.68 209.08,654.75 210.44,654.75 "
    id="polygon46101" />
 <path
    style="fill:#000000;stroke-width:0"
@@ -654,7 +662,7 @@
    id="path46105" />
 <polygon
    style="fill:#000000;stroke-width:0"
-   points="223.26,664.29 223.26,655.15 222.29,655.15 222.29,654.75 223.65,654.75 223.65,664.68 222.29,664.68 222.29,664.29 "
+   points="222.29,664.68 222.29,664.29 223.26,664.29 223.26,655.15 222.29,655.15 222.29,654.75 223.65,654.75 223.65,664.68 "
    id="polygon46107" />
 </g>  </g>
 </svg>
