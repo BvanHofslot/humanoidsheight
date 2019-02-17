@@ -4,7 +4,7 @@
 \BOOKMARK [0][-]{toc_anchor.0}{Table of Contents}{frontmatter_anchor.-1}% 4
 \BOOKMARK [0][-]{lof_anchor.0}{List of Figures}{frontmatter_anchor.-1}% 5
 \BOOKMARK [0][-]{lot_anchor.0}{List of Tables}{frontmatter_anchor.-1}% 6
-\BOOKMARK [0][-]{chapter*.17}{Preface \046 Acknowledgments}{frontmatter_anchor.-1}% 7
+\BOOKMARK [0][-]{chapter*.18}{Preface \046 Acknowledgments}{frontmatter_anchor.-1}% 7
 \BOOKMARK [-1][]{mainmatter_anchor.-1}{Main Matter}{}% 8
 \BOOKMARK [0][-]{chapter.1}{Introduction}{mainmatter_anchor.-1}% 9
 \BOOKMARK [1][-]{section.1.1}{Center of Mass Height Variation}{chapter.1}% 10
@@ -15,58 +15,57 @@
 \BOOKMARK [1][-]{section.2.1}{Legged System Preliminaries}{chapter.2}% 15
 \BOOKMARK [2][-]{subsection.2.1.1}{Human Balancing Strategies}{section.2.1}% 16
 \BOOKMARK [2][-]{subsection.2.1.2}{Ground Reference Points}{section.2.1}% 17
-\BOOKMARK [2][-]{subsection.2.1.3}{Inverted Pendulum-based Models}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.3}{Inverted Pendulum-Based Models}{section.2.1}% 18
 \BOOKMARK [2][-]{subsection.2.1.4}{Orbital Energy \046 the Capture Problem}{section.2.1}% 19
 \BOOKMARK [1][-]{section.2.2}{Humanoid Robotics at IHMC}{chapter.2}% 20
 \BOOKMARK [2][-]{subsection.2.2.1}{Robots}{section.2.2}% 21
 \BOOKMARK [2][-]{subsection.2.2.2}{Planning}{section.2.2}% 22
 \BOOKMARK [2][-]{subsection.2.2.3}{Instantaneous Capture Point Control}{section.2.2}% 23
-\BOOKMARK [2][-]{subsection.2.2.4}{Momentum-Based Whole-body Control}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.4}{Momentum-Based Whole-Body Control}{section.2.2}% 24
 \BOOKMARK [1][-]{section.2.3}{Related Work}{chapter.2}% 25
-\BOOKMARK [2][-]{subsection.2.3.1}{Dynamic Planning \046 Walking Pattern Generation}{section.2.3}% 26
+\BOOKMARK [2][-]{subsection.2.3.1}{Dynamic Planning}{section.2.3}% 26
 \BOOKMARK [2][-]{subsection.2.3.2}{Balance Control}{section.2.3}% 27
-\BOOKMARK [2][-]{subsection.2.3.3}{Discussion}{section.2.3}% 28
-\BOOKMARK [0][-]{chapter.3}{Variable Height Inverted Pendulum Capture Regions}{mainmatter_anchor.-1}% 29
-\BOOKMARK [1][-]{section.3.1}{Unilateral Contact Constraint}{chapter.3}% 30
-\BOOKMARK [1][-]{section.3.2}{Height Constraint}{chapter.3}% 31
-\BOOKMARK [2][-]{subsection.3.2.1}{Maximum Height}{section.3.2}% 32
-\BOOKMARK [2][-]{subsection.3.2.2}{Minimum Height}{section.3.2}% 33
-\BOOKMARK [2][-]{subsection.3.2.3}{Bounds on Region}{section.3.2}% 34
-\BOOKMARK [1][-]{section.3.3}{Vertical Force Constraint}{chapter.3}% 35
-\BOOKMARK [1][-]{section.3.4}{Capturability Comparison}{chapter.3}% 36
-\BOOKMARK [2][-]{subsection.3.4.1}{Comparison without Angular Momentum}{section.3.4}% 37
-\BOOKMARK [2][-]{subsection.3.4.2}{Comparison with Angular Momentum}{section.3.4}% 38
-\BOOKMARK [1][-]{section.3.5}{Discussion}{chapter.3}% 39
-\BOOKMARK [0][-]{chapter.4}{Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 40
-\BOOKMARK [1][-]{section.4.1}{Constraint Matrix with Final Velocity}{chapter.4}% 41
-\BOOKMARK [2][-]{subsection.4.1.1}{Maximum Height Constraint}{section.4.1}% 42
-\BOOKMARK [2][-]{subsection.4.1.2}{Maximum Leg Length Constraint}{section.4.1}% 43
-\BOOKMARK [1][-]{section.4.2}{Discussion}{chapter.4}% 44
-\BOOKMARK [0][-]{chapter.5}{Application: Standing}{mainmatter_anchor.-1}% 45
-\BOOKMARK [1][-]{section.5.1}{Method}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.2}{Results}{chapter.5}% 47
-\BOOKMARK [2][-]{subsection.5.2.1}{Valkyrie Simulation}{section.5.2}% 48
-\BOOKMARK [2][-]{subsection.5.2.2}{Valkyrie Hardware}{section.5.2}% 49
-\BOOKMARK [2][-]{subsection.5.2.3}{Comparison with Capture Regions}{section.5.2}% 50
-\BOOKMARK [2][-]{subsection.5.2.4}{Atlas Hardware}{section.5.2}% 51
-\BOOKMARK [1][-]{section.5.3}{Discussion}{chapter.5}% 52
-\BOOKMARK [0][-]{chapter.6}{Application: Walking}{mainmatter_anchor.-1}% 53
-\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 54
-\BOOKMARK [1][-]{section.6.2}{Method}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.2.1}{Avoiding Generating Additional Angular Momentum Rate}{section.6.2}% 56
-\BOOKMARK [2][-]{subsection.6.2.2}{Alignment Angle and Relative Distance}{section.6.2}% 57
-\BOOKMARK [2][-]{subsection.6.2.3}{Actions}{section.6.2}% 58
-\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 59
-\BOOKMARK [2][-]{subsection.6.3.1}{Valkyrie Simulation}{section.6.3}% 60
-\BOOKMARK [2][-]{subsection.6.3.2}{Atlas Hardware}{section.6.3}% 61
-\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 62
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 63
-\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 64
-\BOOKMARK [2][-]{subsection.7.1.1}{Extending the Proposed Approach }{section.7.1}% 65
-\BOOKMARK [2][-]{subsection.7.1.2}{Outlook}{section.7.1}% 66
-\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 67
-\BOOKMARK [0][-]{appendix.A}{Test Parameters}{apdx_anchor.-1}% 68
-\BOOKMARK [0][-]{appendix.B}{2D Analysis from Model to Robot}{apdx_anchor.-1}% 69
-\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 70
-\BOOKMARK [0][-]{section*.163}{Bibliography}{backmatter_anchor.-1}% 71
-\BOOKMARK [0][-]{appendix*.165}{List of Acronyms}{backmatter_anchor.-1}% 72
+\BOOKMARK [0][-]{chapter.3}{Variable Height Inverted Pendulum Capture Regions}{mainmatter_anchor.-1}% 28
+\BOOKMARK [1][-]{section.3.1}{Unilateral Contact Constraint}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.2}{Height Constraints}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.2.1}{Maximum Height}{section.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.2.2}{Minimum Height}{section.3.2}% 32
+\BOOKMARK [2][-]{subsection.3.2.3}{Bounds on Region}{section.3.2}% 33
+\BOOKMARK [1][-]{section.3.3}{Vertical Force Constraints}{chapter.3}% 34
+\BOOKMARK [1][-]{section.3.4}{Capturability Comparison}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.4.1}{Comparison without Angular Momentum}{section.3.4}% 36
+\BOOKMARK [2][-]{subsection.3.4.2}{Comparison with Angular Momentum}{section.3.4}% 37
+\BOOKMARK [1][-]{section.3.5}{Discussion}{chapter.3}% 38
+\BOOKMARK [0][-]{chapter.4}{Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 39
+\BOOKMARK [1][-]{section.4.1}{Constraint Matrix with Final Velocity}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.1.1}{Maximum Height Constraint}{section.4.1}% 41
+\BOOKMARK [2][-]{subsection.4.1.2}{Maximum Leg Length Constraint}{section.4.1}% 42
+\BOOKMARK [1][-]{section.4.2}{Discussion}{chapter.4}% 43
+\BOOKMARK [0][-]{chapter.5}{Application: Standing}{mainmatter_anchor.-1}% 44
+\BOOKMARK [1][-]{section.5.1}{Method}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.2}{Results}{chapter.5}% 46
+\BOOKMARK [2][-]{subsection.5.2.1}{Valkyrie Simulation}{section.5.2}% 47
+\BOOKMARK [2][-]{subsection.5.2.2}{Valkyrie Hardware}{section.5.2}% 48
+\BOOKMARK [2][-]{subsection.5.2.3}{Comparison with Capture Regions}{section.5.2}% 49
+\BOOKMARK [2][-]{subsection.5.2.4}{Atlas Hardware}{section.5.2}% 50
+\BOOKMARK [1][-]{section.5.3}{Discussion}{chapter.5}% 51
+\BOOKMARK [0][-]{chapter.6}{Application: Walking}{mainmatter_anchor.-1}% 52
+\BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 53
+\BOOKMARK [1][-]{section.6.2}{Method}{chapter.6}% 54
+\BOOKMARK [2][-]{subsection.6.2.1}{Avoiding Generating Additional Angular Momentum Rate}{section.6.2}% 55
+\BOOKMARK [2][-]{subsection.6.2.2}{Alignment Angle and Effective Distance}{section.6.2}% 56
+\BOOKMARK [2][-]{subsection.6.2.3}{Actions}{section.6.2}% 57
+\BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 58
+\BOOKMARK [2][-]{subsection.6.3.1}{Valkyrie Simulation}{section.6.3}% 59
+\BOOKMARK [2][-]{subsection.6.3.2}{Atlas Hardware}{section.6.3}% 60
+\BOOKMARK [1][-]{section.6.4}{Discussion}{chapter.6}% 61
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{mainmatter_anchor.-1}% 62
+\BOOKMARK [1][-]{section.7.1}{Recommendations}{chapter.7}% 63
+\BOOKMARK [2][-]{subsection.7.1.1}{Extending the Proposed Approach }{section.7.1}% 64
+\BOOKMARK [2][-]{subsection.7.1.2}{Outlook}{section.7.1}% 65
+\BOOKMARK [-1][]{apdx_anchor.-1}{Appendices}{}% 66
+\BOOKMARK [0][-]{appendix.A}{Test Parameters}{apdx_anchor.-1}% 67
+\BOOKMARK [0][-]{appendix.B}{2D Analysis from Model to Robot}{apdx_anchor.-1}% 68
+\BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 69
+\BOOKMARK [0][-]{section*.166}{Bibliography}{backmatter_anchor.-1}% 70
+\BOOKMARK [0][-]{appendix*.168}{List of Acronyms}{backmatter_anchor.-1}% 71

@@ -66,7 +66,7 @@ where $\xcpuni$ is a unilateral contact constrained capture position. In \figref
 \end{figure}
 
 %% Height Constrained
-\section{Height Constraint}
+\section{Height Constraints}
 To further constrain the \ac{VHIP} model, kinematic constraints are taken into account. Under the assumption that kinematic limits of the robotic system can be approximated with a minimum and maximum \ac{CoM} height, in this section a \textit{minimum} and \textit{maximum} height constraint are added to the unilateral contact constrained capture region of the previous section. The capture points that will be presented are a combination of impacts, ballistic trajectories and \ac{LIP} capture trajectories, such that closed-form solutions become available. 
 
 \subsection{Maximum Height}
@@ -172,7 +172,7 @@ In \figref{fig:capregion}, the discussed capture regions are visualized. The LIP
 \end{figure}
 
 % Vertical Force
-\section{Vertical Force Constraint}\label{sec:verticalforce}
+\section{Vertical Force Constraints}\label{sec:verticalforce}
 Because the height constrained capture region does not take joint torque limits into account, the \ac{VHIP} dynamics can be further constrained to narrow the gap between model and robot. Under the assumption that the robot specific limitations on joint torques can be approximated with a minimum and maximum vertical force on the \ac{CoM}, constraints on the minimum and maximum vertical acceleration are added to the \ac{VHIP} dynamics. From Lemma 1, any vertical acceleration extremum at the earliest convenience will lead to staying closer to a height constrained bound, which makes the vertical force constrained capture region larger. Therefore, a bang-bang control law is introduced.
      
 In \cite{pratt2006capture,stephens2007humanoid,koolen2012capturability}, a bang-bang control law is used to regulate the angular momentum in the body of model. Instead of using this strategy, a bang-bang control law is used to regulate the vertical acceleration:
