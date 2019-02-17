@@ -246,9 +246,7 @@ Additionally, some hardware tests on Atlas are conducted, triggering the positiv
 \end{figure}
 % Discussion
 \section{Discussion}
-In this chapter, the control law of Chapter \ref{chap:standing} is extended for the use in \ac{3D}, using predefined strategies that can be heuristically be selected. These strategies rely on the predefined step time and location used in the control framework.
-
-Like in the previous chapter, certain configurations are considered as `worst-case' scenarios. Again, a similar comparison with \ac{MPC} can be made. 
+In this chapter, the control law of Chapter \ref{chap:standing} is extended for the use in \ac{3D}, using predefined strategies that can be heuristically be selected. These strategies rely on the predefined step time and location used in the control framework. Like in the previous chapter, control actions are chosen based on the violation of certain thresholds. 
 
 The relative distance $\delta$ and the alignment angle $\phi$ allow for making a heuristic decision for the use of height control in different configurations. Considering a bang-bang control law these variables could introduce, the control strategy relies on the proportional control of the rest of the framework. Any misalignment with the error would result in additional error when introducing the bang-bang action. This error can be controlled with future $\rcmpd$ positions.
 

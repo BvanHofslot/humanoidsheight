@@ -24,14 +24,14 @@ The objective of this work is to improve balance of a humanoid robot using verti
 \section{Contributions}
 The contributions in this work propose novel capture regions for the \ac{VHIP} model, which addresses the theoretical part of the research objective. Also, results are presented on hardware using \ac{CoM} height variation for balance control, which addresses the applied part of the research objective. More specifically, relating to theoretical contribution, this work presents:
 \begin{itemize}
-	\item \textbf{\ac{VHIP} capture regions}: bounds on the initial states of a \ac{VHIP} model, from which convergence to the unstable mode is possible. The regions are obtained by incrementally adding constraints to the \ac{VHIP} model. 
-      \item \textbf{Constrained orbital energy trajectories}: with the method of \cite{koolen2016balance} a \ac{MPC} law is introduced that takes kinematic constraints into account. This method is not further used in application.
+	\item \textbf{\ac{VHIP} capture regions}: bounds on the initial states of a \ac{VHIP} model, from which convergence to the unstable mode is possible. The regions are obtained by incrementally adding constraints to the \ac{VHIP} model. First, only unilateral contact constraints are considered. After this, height constraints are added and finally, vertical force constraints are added.
+      \item \textbf{Constrained orbital energy trajectories}: with the method of \cite{koolen2016balance} a \ac{MPC} law is introduced that takes kinematic constraints into account. This method is not further used in application, as is the polynomial function used in the control law is overly constraining the system dynamics.
 \end{itemize}
 
-And relating to application, this work presents:
+Relating to the objective of comparison of applied results, this work presents:
 \begin{itemize}
-	\item \textbf{A method that uses \ac{CoM} height variation for balance while standing}: this method is tested by conducting push recovery on NASA's Valkyrie humanoid robot and Boston Dynamics' Atlas in simulation and on hardware.
-	\item \textbf{A method that uses \ac{CoM} height variation for balance while walking}: an extension of the standing method for walking scenarios. This method is tested on Valkyrie in simulation. For visualization, a hardware result on Atlas is presented.
+	\item \textbf{A method that uses \ac{CoM} height variation for balance while standing}: a bang-bang control law on vertical acceleration. This control law is tested by conducting push recovery on NASA's Valkyrie humanoid robot and Boston Dynamics' Atlas in simulation and on hardware.
+	\item \textbf{A method that uses \ac{CoM} height variation for balance while walking}: an extension of the standing method for walking scenarios. This method is tested on Valkyrie in simulation. Additionally, one hardware result on Atlas is presented.
 \end{itemize}
 \section{Thesis Outline}
 The remainder of this thesis is structured as follows. In Chapter \ref{chap:background}, a brief background is given on commonly used expressions in humanoid robot walking, on humanoid robotics at \ac{IHMC} and on related works to \ac{CoM} height variation. In Chapter \ref{chap:regions}, capture regions are derived for the \ac{VHIP} model. In Chapter \ref{chap:mpc}, a \ac{2D} \ac{MPC} law is derived, which is not further used in application. In Chapter \ref{chap:standing}, a controller for \ac{2D} is presented and push recovery is tested on NASA's Valkyrie while the robot is standing, with additional results shown on Boston Dynamics' Atlas. In Chapter \ref{chap:walking}, the \ac{2D} controller is extended to \ac{3D} and push recovery is tested on Valkyrie during walking in simulation. Additionally, a hardware result on Atlas is presented. The final chapter, Chapter \ref{chap:conclusion}, presents the conclusion and recommendations for future work.
