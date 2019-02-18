@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {1-4}Thesis Outline}{3}{section.1.4}
 \contentsline {chapter}{\numberline {2}Background}{5}{chapter.2}
 \contentsline {section}{\numberline {2-1}Legged System Preliminaries}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2-1-1}Human Balancing Strategies}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2-1-1}Human Balance Strategies}{5}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2-1-2}Ground Reference Points}{6}{subsection.2.1.2}
 \contentsline {subsubsection}{Zero Moment Point \& Center of Pressure}{6}{section*.34}
 \contentsline {subsubsection}{Centroidal Moment Pivot}{7}{section*.39}

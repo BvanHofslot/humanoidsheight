@@ -1,10 +1,10 @@
 %%
-CPthes1=[];
+dCPthes1=[];
 g=9.81;
 for j=1:50
 zmax=1+j*0.02;
 zmin=1-j*0.02;
-x0=-0.5;
+dx0=0.4;
 incr =0.02;
 cost=[];
 X0=[];
@@ -13,7 +13,7 @@ tspan3=[0 5];
 a=4.9;
         
 for i=1:10000;
-x0=x0+incr;
+dx0=dx0+incr;
   
 t=[];
 x1=[];
@@ -29,7 +29,7 @@ t1=sqrt(2*(zmax-1)/(aplus+aplus*aplus/-amin));
 t2=t1*aplus/-amin;
 tspan1=[0 t1];
 tspan2=[0 t2];
-[t,x1] = ode45(@(t,x) penDynFcn(t,x,aplus),tspan1,[x0,1.0,1.0,0.0]);
+[t,x1] = ode45(@(t,x) penDynFcn(t,x,aplus),tspan1,[-sqrt(1/g),dx0,1.0,0.0]);
 
 [t,x2] = ode45(@(t,x) penDynFcn(t,x,amin),tspan2,x1(end,:));
 
@@ -44,25 +44,25 @@ else
     cost(i)=(xf(s,1))^2;
 end
 
-X0(i)=x0;
+X0(i)=dx0;
 
 if(cost(i)<10^-10)
-    x0=x0-incr;
+    dx0=dx0-incr;
     S(i)=s;
     break;
 end
 
 if(length(cost)>1)
     if((cost(i-1)<cost(i)))
-        x0=x0-incr;
+        dx0=dx0-incr;
         incr=incr/2;
     elseif((cost(i)>99))
-        x0=x0-incr;
+        dx0=dx0-incr;
         incr=incr/2;
     end
 end
 end
-CPthes1(j)=x0;
+dCPthes1(j)=dx0;
 end
 %%
 figure('rend','painters','pos', [0 0 600 400]);
@@ -147,11 +147,11 @@ set(gca,'TickLabelInterpreter','latex')
 %%
 g=9.81;
 a_vect=[1 5 10 50]
-CPthes2=[];
+dCPthes2=[];
 for j=1:50
 zmax=1+j*0.02;
 zmin=1-j*0.02;
-x0=-0.7;
+dx0=0.5;
 incr =0.02;
 cost=[];
 X0=[];
@@ -159,7 +159,7 @@ S=[];
 tspan3=[0 5];
 a=4.9;
 for i=1:10000;
-x0=x0+incr;
+dx0=dx0+incr;
   
 t=[];
 x1=[];
@@ -175,7 +175,7 @@ t1=sqrt(2*(zmin-1)/(amin+amin*amin/-aplus));
 t2=t1*amin/-aplus;
 tspan1=[0 t1];
 tspan2=[0 t2];
-[t,x1] = ode45(@(t,x) penDynFcn(t,x,amin),tspan1,[x0,1.0,1.0,0.0]);
+[t,x1] = ode45(@(t,x) penDynFcn(t,x,amin),tspan1,[-sqrt(1/g),dx0,1.0,0.0]);
 
 [t,x2] = ode45(@(t,x) penDynFcn(t,x,aplus),tspan2,x1(end,:));
 
@@ -189,25 +189,25 @@ else
     cost(i)=(xf(s,1))^2;
 end
 
-X0(i)=x0;
+X0(i)=dx0;
 
 if(cost(i)<10^-8)
-    x0=x0-incr;
+    dx0=dx0-incr;
     S(i)=s;
     break;
 end
 
 if(length(cost)>1)
     if((cost(i-1)<cost(i)))
-        x0=x0-incr;
+        dx0=dx0-incr;
         incr=incr/2;
     elseif((cost(i)>99))
-        x0=x0-incr;
+        dx0=dx0-incr;
         incr=incr/2;
     end
 end
 end
-CPthes2(j)=x0
+dCPthes2(j)=dx0
 end
 %%
 set(groot,'defaulttextinterpreter','latex');  
@@ -276,9 +276,3 @@ opts.Format = 'eps';
 opts.Color = 'CMYK';
 opts.Resolution = 10000000;
 exportfig(gcf,'CPZvsForce.eps', opts)
-
-
-%%
-
-
-

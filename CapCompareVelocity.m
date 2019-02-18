@@ -31,7 +31,7 @@ plot([1 dCPthes3],1-a,'Color','k','LineStyle','-.')
 plot([xcp xcp]/xcp,[0 2],'Color','k')
  
 axis equal
-axis([0.92 1.14 0.98 1.08])
+axis([0.5 1.8 0 2])
 xlabel("Capture Velocity $\dot{x}'$ [-]")
 ylabel("$z'_{min} \leftarrow z_0' \rightarrow z'_{max}$ [-]",'FontSize',15)
 legend([p1 p2 p3],{'Bound',"$\ddot{z}_c'=1$","$\ddot{z}_c'=\frac{1}{4}$"})

@@ -226,9 +226,15 @@ First, an approximation is made of what would be achievable for a human being. A
 In the left plot in \figref{fig:caplimits}, the height constrained bounds are shown, together with the approximations of what is realistic for vertical acceleration constraints on a human and on the robot. Note how the capture positions relate differently under a minimum height constraint than under a maximum height constraint. Also note how the capture position linking to the approximation of allowed vertical acceleration for a robot, seems to approach a minimum and maximum value quite soon after changing height. The point $[1,1]$ in the plot is the \ac{CP}. In the right plot, the \textit{capture velocity} is shown. This is the initial velocity, after which the resulting capture point is equal to the \ac{CP}. The capture velocity is used later in this report for comparison with applied results.
 \begin{figure}
       \centering
-      \includegraphics[width=5.2in]{STYLESTUFF/caplimits1.png}
+      \includegraphics[width=0.9\textwidth]{STYLESTUFF/caplimits1.png}
       \caption{Plot of reachable dimensionless capture positions for $\dot{x}_0'=1$ (left) and capture velocities for $x_0' = 1$ (right). }
       \label{fig:caplimits}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{STYLESTUFF/capcompare.png}
+\caption{Comparison of capture region with angular momentum versus vertical force constrained capture. $\delta \zmax' =\delta \zmin'$ and $I_y' = \frac{1}{6}$. The solid plots show the first bound on the region and the dotted plots the second bound.}
+\label{fig:capcompare}
 \end{figure}
 
 \subsection{Comparison with Angular Momentum}
@@ -236,12 +242,6 @@ An estimation of the effects of angular momentum strategies can be performed as 
 \begin{equation}
 \delta\xcmp' = (1-2e^{-\delta \tbang'}+e^{-2\delta \tbang'})\delta \xcmpmax',
 \end{equation}
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{STYLESTUFF/capcompare.png}
-\caption{Comparison of capture region with angular momentum versus vertical force constrained capture. $\delta \zmax' =\delta \zmin'$ and $I_y' = \frac{1}{6}$. The solid plots show the first bound on the region and the dotted plots the second bound.}
-\label{fig:capcompare}
-\end{figure}
 where $\delta \xcmpmax'$ is the maximum dimensionless offset of the \ac{CMP} with the \ac{CoP} and $\delta \tbang'$ is the time of each `bang' of the control law. The average dimensionless \ac{CMP} offset to account for in computation of the \ac{CP} is $\delta \xcmp'$. The time $\delta \tbang'$ can be determined by:
 
 \begin{equation}
