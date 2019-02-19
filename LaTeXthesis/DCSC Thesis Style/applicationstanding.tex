@@ -38,8 +38,8 @@ Controlling to $\zmax$ allows the robot to apply more force on the ground, compa
 \end{equation}
 In the remainder of this chapter, this control law will be compared with the default, constant height, control law that uses \ac{CoP} only. The two control setups will be referred to as:
 \begin{itemize}
-\item \textbf{Vertical motion}: the control law presented in this section. Results are depicted in blue.
-\item \textbf{Default}: the control law as presented in Section \ref{sec:ihmc}. Results are depicted in black.
+\item \textbf{Vertical motion}: the control law presented in this section. Results are depicted in blue, unless stated different.
+\item \textbf{Default}: the control law as presented in Section \ref{sec:ihmc}. Results are depicted in black, unless stated different.
 \end{itemize}
 \section{Results}
 Tests are conducted by applying a push at chest height on Valkyrie. The parameters and settings used for the tests on Valkyrie can be found in Appendix \ref{chap:params}. Additionally, some tests are conducted on Atlas. To measure the impulse applied on the robot, a normalized impulse $i$ is used:
@@ -176,19 +176,6 @@ Also note how the timing of each `bang', visible in the vertical linear momentum
 
 In the right column of the figure, the torques have a desired and a measured value, as the torques of the robot are PD controlled with electrical current as input. Like in simulation, the differences in ankle torque and knee torque between the default setup and the vertical motion controller are the most noteworthy. For the vertical motion controller, the ankle torque has a higher peak, but returns quicker to steady-state, like in simulation.  The \ac{CoP} also returns earlier to steady state, which shows a slight increase in robustness for the applied push. Equivalently, the average \ac{ICP} error is again smaller for the vertical motion controller.
 
-\subsection{Comparison with Capture Regions}
-On all tests, the time until the \ac{ICP} error turns can be seen as the part that is crucial for recovery, as the \ac{ICP} error would not turn and diverge if the robot falls over. If in this crucial part the assumption is made that the \ac{CoP} is at a constant location and the impulse $i$ is an instant impulse, a comparison can be made with the capturability comparison in Section \ref{sec:capcomparenoinertia}. Also, the assumption is made that the difference in recovery between the default setup and the vertical motion controller is comparable with the difference between the \ac{CP} and the vertical force constrained capture position of Section \ref{sec:verticalforce} for the same $\ddzc$ as used on the Valkyrie tests. Therefore, the maximum recoverable pushes for the vertical motion controller in the considered push directions are normalized to the maximum recoverable pushes for the default setup in the specific direction.
-
-Considering the assumptions mentioned above, in \figref{fig:regioncomparison}, the differences in recovery for the experiments are plotted in a zoomed-in version of the capture velocity graph of \figref{fig:capcompare}. Note that the point $[1,1]$ in the plot corresponds to either the \ac{CP}, or the recovery of the default setup for the corresponding push direction. The dimensionless acceleration $\ddzc'=\frac{1}{4}$ roughly corresponds with the value of $\ddzc=2.4$ [m/s$^2$] used on the experiments on Valkyrie. The dimensionless maximum height on Valkyrie was approximately $1.065/1.0=1.065$, there fore the results are plotted at this height $\zmax'$.
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{STYLESTUFF/regioncomparison.png}
-\caption{Difference in recovery of Valkyrie in simulation (rectangle) and on hardware (triangle) between the vertical motion controller and the default setup versus the capture velocity plot of Section \ref{sec:capcomparenoinertia}.}
-\label{fig:regioncomparison}
-\end{figure}
-
-Note how the simulation rear push recovery even lies outside the height constrained bound in this plot. The average improvement on hardware lies just inside the height constrained bound. The increase in recovery for the side push is about equal to the comparable force constrained capture position of $\ddzc'=\frac{1}{4}$. The frontal push recovers worse than the default control setup and is not comparable with the capture regions presented in Chapter \ref{chap:regions}.
-
 \subsection{Atlas Hardware}
 Next to the Valkyrie tests, tests are conducted on Boston Dynamics' Atlas humanoid robot. An alternative experimental setup is used to test push recovery on hardware. A medicine ball with mass $m_{ball}=13.6$ [kg] is hung from the ceiling at the robotics lab of \ac{IHMC}. To push the robot, the ball can be released from a certain distance. The impulse on the robot is assumed to be only depending on the difference in potential energy of the ball between release and its lowest position. To protect the robot from the impact of the ball, a wooden plate is mounted on the frame of the robot. In \figref{fig:atlassetup}, the test setup is depicted. The length $\lball$ from the horizontal release location to the dead point of the pendulum is used to calculate the impulse applied on the robot. To release the ball, a simple mechanism is made in an attempt to get a more constant initial ball position. This mechanism is depicted in \figref{fig:ballrelease}. By pulling the aluminum pin, the loop on the rope will slide off the pin.
 \begin{figure}
@@ -223,7 +210,7 @@ where $k_{ff_{\tau}}$ and $k_{\tau}$ are a feedforward and feedback gain on trac
 \end{figure}
 
 \subsubsection{Comparison of Equal Push}
-For an initial height of $z_0=1.10$ [m] and a maximum height of $\zmax=1.17$ [m], a series of $20$ tests for each control setup are conducted to investigate the responses after an equal push. For these tests, an initial ball position of $\lball=2.54$ [m] is used. The difference in ball height $\delta z_{ball}$ is computed as follows:
+For an initial height of $z_0=1.10$ [m] and a maximum height of $\zmax=1.17$ [m], a series of $20$ tests for each control setup are conducted to investigate the responses after an equal push. The increase in recoverable push for this initial height and height change in simulation is approximately $8$\%, which shows that there is a noticable difference for the two control setups for this configuration. For the hardware tests, an initial ball position of $\lball=2.54$ [m] is used. The difference in ball height $\delta z_{ball}$ is computed as follows:
 \begin{equation}
 	\delta z_{ball} = l_{rope} - \sqrt{l_{rope}^2-l_{ball}^2} = 6.12-\sqrt{6.12^2 - 2.54^2} = 0.543 \quad \text{[m]},
 \end{equation}
@@ -241,6 +228,24 @@ In \figref{fig:atlasphaseHW}, phase plots are shown for these tests. The thin tr
 \caption{Phase plots of $20$ Atlas hardware tests for each setup (thin transparent) with the averaged data for each setup (bold).}
 \label{fig:atlasphaseHW}
 \end{figure}
+
+\subsection{Comparison with Capture Regions}
+If is assumed that the difference in recovery between the default setup and the vertical motion controller is equal to the difference between the LIP and the \ac{VHIP}, a comparison can be made between the push recovery tests and the \ac{VHIP} capture regions of Chapter \ref{chap:regions}.
+
+Considering this assumption, the results on Atlas and Valkyrie are compared with the vertical force constrained capture region with the same $\ddot{z}_c$ in the bang-bang control law. The following dimensionless vertical acceleration and maximum height are use for both robots:
+\begin{itemize}
+	\item \textbf{Valkyrie}: $\ddzc=2.4$ [m/s$^2$] $\rightarrow$ $\ddzc'=\frac{1}{4}$, \quad $\zmax' = \frac{1.065\text{[m]}}{1.0\text{[m]}}=1.065$;
+	\item \textbf{Atlas}: $\ddzc=5$ [m/s$^2$] $\rightarrow$ $\ddzc'=\frac{1}{2}$, \quad $\zmax' = \frac{1.17\text{[m]}}{1.10\text{[m]}}=1.064$.
+\end{itemize}
+In \figref{fig:regioncomparison}, the increase in recoverable push for both robots are plotted in a zoomed-in version of the capture velocity plot of \figref{fig:caplimits}. Unlike for Valkyrie, for Atlas in simulation only back push recovery results are shown, as other directions are not discussed in this chapter. The difference in push recovery differs from the \ac{VHIP}-\ac{LIP} difference for both robots. For Atlas, the simulation result is located on the height constrained bound and the hardware result shows no increase in recoverable push.
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{STYLESTUFF/regioncomparison1.png}
+\caption{Difference in recovery of Valkyrie and Atlas in simulation and on hardware between the vertical motion controller and the default setup versus the capture velocity plot of \figref{fig:caplimits}.}
+\label{fig:regioncomparison}
+\end{figure}
+
+Note how the simulation rear push recovery for Valkyrie even lies outside the height constrained bound in this plot. The average improvement on hardware for Valkyrie lies just inside the height constrained bound. The increase in recovery for the side push in simulation is about equal to the comparable force constrained capture position of $\ddzc'=\frac{1}{4}$. The frontal push recovers worse than the default control setup and is not comparable with the capture regions presented in Chapter \ref{chap:regions}.
 
 \section{Discussion}
 In this chapter, a simple control law is presented, that activates a bang-bang action if a predefined threshold is met. Using the bang-bang controller, the vertical \ac{CoM} dynamics are explicitly solvable and can be computed every tick. Also, hardware results are presented, which have not earlier been shown considering the research topic. 

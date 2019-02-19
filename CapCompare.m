@@ -25,10 +25,11 @@ hold on;
 p1=plot(xcpminz/xcp,1-a,'Color','b');
 plot(xcpmaxz/xcp,1+a,'Color','b');
 a=[0.0:0.02:1]
-p2=plot([1 -CPreg2/xcp],1+a,'Color','k','LineStyle','--')
-p3=plot([1 -CPreg3/xcp],1+a,'Color','k','LineStyle','-.')
-plot([1 -CP1reg4/xcp],1-a,'Color','k','LineStyle','--')
-plot([1 -CP1reg3/xcp],1-a,'Color','k','LineStyle','-.')
+p2=plot([1 -CPthes1/xcp],1+a,'Color','k','LineStyle','--')
+a=[0.0:0.02:0.9]
+p3=plot([1 -CPthes2/xcp],1-a,'Color','k','LineStyle','--')
+% plot([1 -CP1reg4/xcp],1-a,'Color','k','LineStyle','--')
+% plot([1 -CP1reg3/xcp],1-a,'Color','k','LineStyle','-.')
 %plot([xcp xcp]/xcp,[0 2],'Color','k')
  
 axis equal
@@ -46,7 +47,7 @@ opts.Color = 'CMYK';
 opts.Resolution = 10000000;
 set(gca,'LineWidth',1)
 set(gca,'GridAlpha',0.4)
-exportfig(gcf,'caplimits.eps', opts)
+exportfig(gcf,'caplimits1.eps', opts)
 % surf(dx,1-a,xcpminz)
 % hold on;
 % surf(dx,1+a,xcpmaxz)

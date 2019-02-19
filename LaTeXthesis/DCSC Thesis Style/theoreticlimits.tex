@@ -25,9 +25,9 @@ Neglecting torque limits, the velocity of the point-mass can be instantly change
 where $\dxi$ and $\dzi$ are the horizontal and vertical velocity change, resulting from an impact by the \ac{VHIP}.
 
 To find the first bound on the unilateral contact constrained capture region, the closest possible capture point is explored. Using Equation \eqref{eq:vhipi}, if an initial impact of the leg directly stops the horizontal motion of the mass, $\dot{x}_0+\dxi$ is zero. Using this, the first bound on the region can be found by considering an infinite impact of the leg:
-\begin{equation}
+\begin{empheq}[box = {\Garybox[Unilateral Contact Constrained First Bound]}]{equation}
 	\lim_{\dzi \to \infty} \xcpunif = \frac{z_0}{\dzi}\dot{x}_0 = 0,
-\end{equation}
+\end{empheq}
 where $\xcpunif$ is the first bound on the unilateral contact constrained capture region.
 
 For the second bound on the region, the minimum possible vertical acceleration of  $\ddot{z} = -g$ is used. With this vertical acceleration, the dynamics of the point-mass depend on gravitational forces only: the point-mass follows a \textit{ballistic} trajectory. After this ballistic trajectory, the mass can be stopped by an impact of the \ac{VHIP} at $z=0$. The time after which the point-mass touches the ground is:
@@ -40,9 +40,9 @@ The horizontal location at this time is:
 	\label{eq:xbal}
 \end{equation}
 where $x_{bal}$ is the ballistic touchdown point. This point is the second bound on the unilateral contact constrained region. In theory, the \ac{VHIP} can apply an impact just before the point-mass touches the ground, assuming the \ac{VHIP} is aligned with the velocity of the point-mass at that moment. Also, this point has a special relationship with the \ac{CP}:
-\begin{equation}
-    \xcpunis = x_{bal}=\sqrt{2}\xcplip,
-\end{equation}
+\begin{empheq}[box = {\Garybox[Unilateral Contact Constrained Second Bound]}]{equation}
+    \xcpunis = x_{bal}=\sqrt{\frac{2z_0}{g}}\dot{x}_0=\sqrt{2}\xcplip,
+\end{empheq}
 where $\xcpunis$ is the second bound on the unilateral contact constrained capture region.
 
 %This can also be reasoned from a virtual leg force perspective, as no horizontal energy is subtracted from the point-mass during its travel. Using this problem formulation and inserting a final velocity in the \ac{LIP} orbital energy Equation \eqref{eq:Elip} gives:
@@ -53,7 +53,7 @@ where $\xcpunis$ is the second bound on the unilateral contact constrained captu
 
 The capture region spanned between these two bounds reads as follows:
 \begin{equation}
-\xcpuni \in \Bigg(0, \dot{x}_0\sqrt{\frac{2z_0}{g}} \Bigg),
+\xcpuni \in \Bigg(0, \sqrt{\frac{2z_0}{g}}\dot{x}_0 \Bigg),
 \label{eq:xcpuni}
 \end{equation}
 where $\xcpuni$ is a unilateral contact constrained capture position. In \figref{fig:cpbal} this region and the \ac{CP} are visualized. With gray plots, made with the method of \cite{koolen2016balance}, possible intermediate trajectories are shown. It can be observed how the trajectories can become very high, when approaching the left side of the bound.  
@@ -61,7 +61,7 @@ where $\xcpuni$ is a unilateral contact constrained capture position. In \figref
 \begin{figure}
 \centering
 \includegraphics[width=3.0in]{STYLESTUFF/CPvsBalistic4.png}
-\caption{Unilateral contact constrained capture region (gray area). The thin black lines visualize possible intermediate trajectories and are made with the method of \cite{koolen2016balance}.}
+\caption{Visualization of feasible final point-mass locations for the unilateral contact constrained capture region (gray area). The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used. The thin black lines visualize possible intermediate trajectories and are made with the method of \cite{koolen2016balance}.}
 \label{fig:cpbal}
 \end{figure}
 
@@ -100,9 +100,9 @@ Finally, to write the point in terms of the initial state gives:
  x_{cp,\zmax}  = \frac{\frac{\sqrt{2g\delta z_{max}}}{g}+\sqrt{\frac{\zmax}{g}}}{ 1+\Big(\frac{\sqrt{2g\delta z_{max}}}{g}+\sqrt{\frac{\zmax}{g}}\Big)\frac{\sqrt{2g\delta z_{max}}}{z_0}}\dot{x}_0.
 \end{equation}
 Simplifying leads to:
-\begin{equation}
+\begin{empheq}[box = {\Garybox[Maximum Height Constrained Capture Point]}]{equation}
 	 x_{cp,\zmax} = \frac{z_0(\sqrt{2\delta{\zmax}}+\sqrt{z_{max}})}{\sqrt{g}(z_0 + 2\delta{\zmax} + \sqrt{2z_{max}\delta{\zmax}})}\dot{x}_0.
-\end{equation}
+\end{empheq}
 %minheight
 \subsection{Minimum Height}
 First the impact influenced capture point is presented, which is used to formulate a capture point following the minimum height constraint.
@@ -115,25 +115,29 @@ where $x_{cp,I}$ is the impact influenced capture point. The added velocity $\dx
 x_{cp,I} = \sqrt{\frac{z_0}{g}}\Big(\dot{x}_0-\frac{x_{cp,I}}{z_0}\dzi\Big).
 \end{equation}
 Under the assumption that the vertical velocity is driven to zero instantaneously by the impact, $\dzi=-\dot{z}_0$. Taking $x_{cp,I}$ to the left-hand side leads to:
-\begin{align}\label{eq:xcpimpact}
-x_{cp,I} &= \frac{\sqrt{\frac{z_0}{g}}}{1+\frac{\dzi}{z_0}\sqrt{\frac{z_0}{g}}}\dot{x}_0,\\
-			&= \frac{z_0}{\sqrt{z_0g}-\dot{z}_0}\dot{x}_0.
-\end{align}
+\begin{equation}\label{eq:xcpimpact}
+x_{cp,I} = \frac{\sqrt{\frac{z_0}{g}}}{1+\frac{\dzi}{z_0}\sqrt{\frac{z_0}{g}}}\dot{x}_0,
+\end{equation}
+and simplifying gives:
+\begin{empheq}[box = {\Garybox[Impact Influenced Capture Point]}]{equation}
+x_{cp,I} = \frac{z_0}{\sqrt{z_0g}-\dot{z}_0}\dot{x}_0.
+\end{empheq}
 
 \subsubsection{Minimum Height Constrained Capture Point} 
-Considering a minimum height constraint on the \ac{CoM}, a point can be computed that follows a ballistic trajectory initially, after which the impact influenced capture point is computed at the minimum height. Using Equation \eqref{eq:tbal}, the vertical velocity after the ballistic fall until the minimum height constraint reads as follows:
+Considering a minimum height constraint on the \ac{CoM}, a point can be computed that follows a ballistic trajectory initially, after which the impact influenced capture point is computed at the minimum height. Using Equation \eqref{eq:tbal}, the vertical velocity after a ballistic fall until the minimum height constraint reads as follows:
 \begin{equation}
 	\dot{z}_{\zmin} = -gt_{bal,z_{min}} = -g\sqrt{\frac{2\delta{\zmin}}{g}} = -\sqrt{2g\delta{\zmin}},
 \end{equation}
 where $t_{bal,\zmin}$ and $\dot{z}_{\zmin}$ are the time and vertical velocity at the minimum height constraint and $\delta{\zmin}=z_0-z_{min}$. The impact influenced capture point of Equation \eqref{eq:xcpimpact} after the ballistic fall reads as follows:
 \begin{equation}
 \label{eq:xcpizmin}
-	x_{cp,I}(z_{min}, \dot{z}_{\zmin})= \frac{\zmin}{\sqrt{\zmin}+\sqrt{2g\delta{\zmin}}}\dot{x}_0.
+	x_{cp,I}(z_{min}, \dot{z}_{\zmin})= \frac{\zmin}{\sqrt{\zmin g}+\sqrt{2g\delta{\zmin}}}\dot{x}_0.
 \end{equation} 
-The horizontal position after the ballistic fall is $\sqrt{\frac{2\delta \zmin}{g}}\dot{x}_0$. Using this and Equation \eqref{eq:xcpizmin}, the capture point following the minimum height constraint is computed as follows:
-\begin{equation}
- x_{cp,\zmin}=\Bigg(\sqrt{\frac{2\delta{\zmin}}{g}} +\frac{\zmin}{\sqrt{\zmin g}+\sqrt{2g\delta{\zmin}}}\Bigg)\dot{x}_0.
-\end{equation}
+The horizontal position after the ballistic fall is $x=\sqrt{\frac{2\delta \zmin}{g}}\dot{x}_0$. Using this and Equation \eqref{eq:xcpizmin}, the capture point following the minimum height constraint is computed as follows:
+\begin{empheq}[box = {\Garybox[Minimum Height Constrained Capture Point]}]{equation}
+ x_{cp,\zmin}=\Bigg(\sqrt{\frac{2\delta{\zmin}}{g}} +\frac{\zmin}{\sqrt{\zmin g}+\sqrt{2g\delta{\zmin}}}\Bigg)\dot{x}_0,
+\end{empheq}
+where $ x_{cp,\zmin}$ is the capture point following the minimum height constraint.
 %maxheight
 
 \subsection{Bounds on Region}
@@ -146,7 +150,7 @@ Considering the \ac{VHIP} dynamics of Equation \eqref{eq:dynamicscaronstyle}, $\
 %proof
 \begin{proof}
 For any capture position $x_{cp}$, $x\dot{x}<0$ \cite{koolen2016balance} and $0>x_0\geq-x_{bal}$ from Equation \eqref{eq:xcpuni}. 
-We use that $x \leq 0, \forall t$ and $x\rightarrow 0$ along any trajectory. From the \ac{VHIP} dynamical equation, and $z>0$, it follows that any input $u$ will slow $\dot{x}$ down. Showing that $\frac{x}{z}\rightarrow 0, \forall t$ will prove that $\ddot{z}=-g$ for the longest possible time $t$ will lead to the farthest $x_{cp}$, and a maximum $\ddot{z}$ at the earliest possible $t$ will lead to the closest $x_{cp}$. 
+The configuration is used that $x \leq 0, \forall t$ and $x\rightarrow 0$ along any trajectory. From the \ac{VHIP} dynamical equation, and $z>0$, it follows that any input $u$ will slow $\dot{x}$ down. Showing that $\frac{x}{z}\rightarrow 0, \forall t$ will prove that $\ddot{z}=-g$ for the longest possible time $t$ will lead to the farthest capture point $x_{cp}$, and a maximum $\ddot{z}$ at the earliest possible $t$ will lead to the closest $x_{cp}$. 
 
 For $\ddot{z}=0$, $z$ remains constant and $\frac{x}{z}\rightarrow 0$. For $\ddot{z}>0$, $z$ will grow and $\frac{x}{z}\rightarrow 0$. If $\ddot{z}<0$, it can be shown with the derivative of $\frac{x}{z}$ that this is always increasing:
 \begin{equation}
@@ -163,11 +167,11 @@ Noting that all terms are positive except for $x_0$, which has the largest negat
 \end{align}
 which is always greater than or equal to zero for all $t$. Therefore, $\xcpzmax$ is the first bound and $\xcpzmin$ is the second bound on the height constrained capture region.
 \end{proof}
-In \figref{fig:capregion}, the discussed capture regions are visualized. The LIP capture point lies inside the height constrained region, which lies inside the unilateral contact constrained region.
+In \figref{fig:capregion}, the discussed capture regions are visualized. The LIP capture point lies inside the height constrained region, which lies inside the unilateral contact constrained region. Again, possible intermediate trajectories are shown with the method of \cite{koolen2016balance} and show that the final points are located inside the height constrained capture region, if the same minimum and maximum height $\zmin$ and $\zmax$ are considered.
 \begin{figure}
       \centering
       \includegraphics[width=3in]{STYLESTUFF/CPLimitsDark1.png}
-      \caption{Visualization of the analytic capture regions for $\dot{x}_0=1$ [m/s] and $\dot{z}_0=0$ [m/s]. The light gray area shows the unilateral contact constrained capture region (Section \ref{eq:xcpuni}). The dark gray area shows the height constrained capture region (Lemma \ref{lem:regionz})  for $0.7<z<1.1$ [m]. The dotted plots are made with the \textit{orbital energy controller} of \cite{koolen2016balance} and show that the final points are inside the height constrained region.}
+      \caption{Visualization of feasible final point-mass locations for the analytic capture regions. The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used. The light gray area shows the feasible final points in the unilateral contact constrained capture region (Section \ref{eq:xcpuni}). The dark gray area shows the feasible final points in the height constrained capture region (Lemma \ref{lem:regionz})  for $0.7<z<1.1$ [m]. The dotted plots are made with the \textit{orbital energy controller} of \cite{koolen2016balance} and show that the final points are inside the height constrained region.}
       \label{fig:capregion}
 \end{figure}
 
@@ -191,7 +195,7 @@ where $z_{const}=\zmin$ if $\ddzcf <0$ and $z_{const}=\zmax$ otherwise. The time
 \begin{figure}
       \centering
       \includegraphics[width=3.2in]{STYLESTUFF/CPLimitsForce.png}
-      \caption{Vertical acceleration constrained capture positions versus the height constrained bounds. The acceleration $\ddzc=|\ddzcf|=|\ddzcs|$ if $\ddzc \leq g$ and else the `bang' with the negative sign is set to $-g$.}
+      \caption{Vertical acceleration constrained capture positions relative to the height constrained bounds. The acceleration $\ddzc=|\ddzcf|=|\ddzcs|$ if $\ddzc \leq g$ and else the negative `bang' is set to $-g$. The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used.}
       \label{fig:zvsf}
 \end{figure}
 
@@ -207,7 +211,7 @@ The following dimensionless height and vertical acceleration are use for the \ac
 \begin{equation}
  z' = \frac{z}{z_0}, \qquad \ddot{z}'=\frac{\ddot{z}}{g}.
 \end{equation}
-And the following dimensionless in inertia and \ac{CoM} torque are used for the \ac{LIP} plus flywheel model:
+And the following dimensionless inertia and \ac{CoM} torque are used for the \ac{LIP} plus flywheel model:
 \begin{equation}
 I_y'=\frac{I_y}{mz_0^2}, \qquad \tau_y' = \frac{\tau_y}{mgz_0}.
 \end{equation}
@@ -219,20 +223,23 @@ Instead of the \ac{CoM} torque, a dimensionless \ac{CMP} offset is used:
 where $\delta \xcmp'$ is the dimensionless \ac{CMP} offset. The dimensionless \ac{CoP} $\xcop'$ is assumed to be saturated and at a constant location.
 
 \subsection{Comparison without Angular Momentum}\label{sec:capcomparenoinertia}
-To make a comparison between the \ac{CP}, the height constrained capture positions and the vertical force constrained capture positions, the dimensionless vertical acceleration $\ddzc'$ of each `bang' for the vertical force constrained capture positions is set equal. For comparison, a rough estimate is made of realistic values of vertical forces that are achievable on both human and robot.
+A comparison is made between the \ac{CP}, the height constrained capture positions and the vertical force constrained capture positions. The dimensionless vertical acceleration $\ddzc'$ of each `bang' for the vertical force constrained capture positions is set to equal magnitude. For comparison, a rough estimate is made of realistic values of vertical forces that are achievable on both humans and robots.
 
-First, an approximation is made of what would be achievable for a human being. A human jumping vertically with maximum effort generates approximately $2mg$ ground reaction force \cite{linthorne2001analysis}. If the assumption is made that this value can also be used in recovery, the value $\ddot{z}_c'=1$ can be taken for a human. Second, an approximation is made of what is possible on the robot. On hardware experiments on NASA's Valkyrie in Chapter \ref{chap:walking} is found that $\ddot{z}_c'=\frac{1}{4}$ is near the maximum what is applicable on Valkyrie. Larger accelerations would result in the robot to shake and did not improve recovery. 
+First, an approximation is made of what would be achievable for a human being. A human jumping vertically with maximum effort generates approximately $2mg$ ground reaction force \cite{linthorne2001analysis}. If the assumption is made that this value can also be used in recovery, the value $\ddot{z}_c'=1$ can be taken for a human. Second, an approximation is made of what is possible on the robot. On hardware experiments on NASA's Valkyrie in Chapter \ref{chap:walking} is found that $\ddot{z}_c'=\frac{1}{4}$ is near the maximum what is applicable on Valkyrie. Larger accelerations would result in the robot to shake and did not improve recovery. On hardware experiments on Boston Dynamics' Atlas, accelerations of approximately $\ddot{z}_c'=\frac{1}{2}$ are still applicable.
 
-In the left plot in \figref{fig:caplimits}, the height constrained bounds are shown, together with the approximations of what is realistic for vertical acceleration constraints on a human and on the robot. Note how the capture positions relate differently under a minimum height constraint than under a maximum height constraint. Also note how the capture position linking to the approximation of allowed vertical acceleration for a robot, seems to approach a minimum and maximum value quite soon after changing height. The point $[1,1]$ in the plot is the \ac{CP}. In the right plot, the \textit{capture velocity} is shown. This is the initial velocity, after which the resulting capture point is equal to the \ac{CP}. The capture velocity is used later in this report for comparison with applied results.
+In the left plot in \figref{fig:caplimits}, the height constrained bounds are shown, together with the approximations of what is realistic for vertical acceleration constraints on humans and on Valkyrie and Atlas. Deviations from $z'=1$ show which values for the constraints $\zmin'$ and $\zmax'$ are used in the computation of the capture points. Note how the capture positions relate differently under a minimum height constraint than under a maximum height constraint. Also note how the capture position linking to the approximation of allowed vertical acceleration for the robots, seem to approach a minimum and maximum value quite soon after changing height. The point $[1,1]$ in the plot is the \ac{CP}. 
+
+In the right plot, the \textit{capture velocity} is shown. This is the initial velocity, after which the resulting capture point is equal to the \ac{CP}. This in an inverse capture problem: instead of finding a point-foot location where the point-mass would come to a stop, an initial velocity is found that will come to a stop for a fixed point-foot location. The differences between initial velocity for the capture points that use height variation compared with the \ac{CP} can be seen as a difference in robustness for an applied disturbance. The capture velocity is used later in this report for comparison with applied results, where push recovery is tested on Valkyrie and Atlas.
+
 \begin{figure}
       \centering
-      \includegraphics[width=0.9\textwidth]{STYLESTUFF/caplimits1.png}
-      \caption{Plot of reachable dimensionless capture positions for $\dot{x}_0'=1$ (left) and capture velocities for $x_0' = 1$ (right). }
+      \includegraphics[width=0.9\textwidth]{STYLESTUFF/caplimits2.png}
+      \caption{Reachable dimensionless capture positions for $\dot{x}_0'=1$ (left) and capture velocities for $x_0' = 1$ (right) without angular momentum. Deviations from $z'=1$ show which minimum or maximum height constraints are used in the computation of the capture points, $z_0'=1$.}
       \label{fig:caplimits}
 \end{figure}
 \begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth]{STYLESTUFF/capcompare.png}
+\includegraphics[width=0.8\textwidth]{STYLESTUFF/capcompare.png}
 \caption{Comparison of capture region with angular momentum versus vertical force constrained capture. $\delta \zmax' =\delta \zmin'$ and $I_y' = \frac{1}{6}$. The solid plots show the first bound on the region and the dotted plots the second bound.}
 \label{fig:capcompare}
 \end{figure}
@@ -259,7 +266,7 @@ In \figref{fig:capcompare}, the force constrained capture regions are compared w
 
 %% Discussion
 \section{Discussion}
-In this chapter, capture positions and capture regions for the \ac{VHIP} model are introduced, by adding constraints to the \ac{VHIP} model. By comparing the capture positions, it can be observed how the that addition of constraints to the model affect the capture region. Comparisons are made with the \ac{CP} and a high level comparison is made with angular momentum strategies, which bring \ac{CoM} height variations for balance in perspective with other balancing strategies.
+In this chapter, capture positions and capture regions for the \ac{VHIP} model are introduced, by adding constraints to the \ac{VHIP} model. By comparing the capture positions, it can be observed that addition of constraints to the model affect the capture region. Comparisons are made with the \ac{CP} and a high level comparison is made with angular momentum strategies, which bring \ac{CoM} height variations for balance in perspective with other balancing strategies.
 
 The unilateral contact and height constrained capture regions consider impacts of the \ac{VHIP}. This has some resemblance with the work presented in \cite{kuo2005energetic}, where the influences of impacts on the energetics of the inverted pendulum are investigated. The impact influenced capture point presented in this chapter, shows how an impact influences the \ac{CP} instead of the inverted pendulum.
 

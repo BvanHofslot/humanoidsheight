@@ -143,6 +143,35 @@
 %\usepackage[breaklinks]{hyperref}
 %\def\UrlBreaks{\do\/\do-}
 
+\usepackage{mathtools}
+\usepackage[amsmath]{empheq}
+\usepackage{xcolor}
+
+\definecolor{shadecolor}{cmyk}{0.05,0.1,0.15,0}
+\definecolor{light-blue}{cmyk}{0.25,0,0,0}
+\newsavebox{\mysaveboxM}
+\newsavebox{\mysaveboxT}
+\newcommand*\Garybox[2][A Nice Box]{%
+  \sbox{\mysaveboxM}{#2}%
+  \sbox{\mysaveboxT}{\fcolorbox{black}{light-blue}{#1}}%
+  \sbox{\mysaveboxM}{%
+    \parbox[b][\ht\mysaveboxM+0.5\ht\mysaveboxT+0.5\dp\mysaveboxT][b]{%
+      \wd\mysaveboxM}{#2}%
+  }%
+  \sbox{\mysaveboxM}{%
+    \fcolorbox{black}{shadecolor}{%
+      \makebox[\linewidth-17.5em]{\usebox{\mysaveboxM}}%
+    }%
+  }%
+  \usebox{\mysaveboxM}%
+  \makebox[0pt][r]{%
+    \makebox[\wd\mysaveboxM][c]{%
+      \raisebox{\ht\mysaveboxM-0.5\ht\mysaveboxT
+                +0.5\dp\mysaveboxT-0.5\fboxrule}{\usebox{\mysaveboxT}}%
+    }%
+  }%
+}
+
 % replace the previous line with the next to include a signature page
 %\documentclass{mscThesis}
 % use the option 'nosignatures' to turn off the signatures page
