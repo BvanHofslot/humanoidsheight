@@ -1,11 +1,11 @@
 %
 % Another appendix chapter
-\chapter{Constrained Orbital Energy Trajectories}\label{chap:mpc}
+\chapter{Kinematic Constrained Orbital Energy Trajectories}\label{chap:mpc}
 The height constrained capture bounds cannot be used directly in control, as they consider impacts with no constraints on force. The force constrained bang-bang control law has to be integrated numerically to have knowledge of future states. Therefore, it is interesting to explore an additional method that has knowledge over future states, without the drawback of numerical integration. This chapter proposes an extension to the work of Koolen, Posa \& Tedrake \cite{koolen2016balance}, which relies for an important part on the work by Pratt \& Drakunov \cite{pratt2007derivation}: the \textit{orbital energy} of the \ac{VHIP}.
 
 %% Constraint matrix/polynomial
 \section{Constraint Matrix with Final Velocity}
-In \cite{koolen2016balance}, the final horizontal velocity $\dot{x}_f$ is set to zero, as this leads to a \textit{capture trajectory}: a trajectory that leads to convergence to the unstable equilibrium of the \ac{VHIP}. However, the trajectories are unconstrained and can become unrealistically high above the ground, as shown in \figref{fig:cpbal}. To take kinematic limits of the system into account, constraints on the configuration of the \ac{VHIP} have to be added. In this section, the final horizontal velocity of the \ac{VHIP} orbital energy is left undetermined, and used to find trajectories that do not violate kinematic constraints.
+In \cite{koolen2016balance}, the final horizontal velocity $\dot{x}_f$ is set to zero, as this leads to a \textit{capture trajectory}: a trajectory that leads to convergence of the unstable equilibrium of the \ac{VHIP}. However, the trajectories are unconstrained and can become unrealistically high above the ground, as shown in \figref{fig:cpbal}. To take kinematic limits of the system into account, constraints on the configuration of the \ac{VHIP} have to be added. In this section, the final horizontal velocity of the \ac{VHIP} orbital energy is left undetermined, and used to find trajectories that do not violate kinematic constraints.
 
 Leaving the final horizontal velocity open can be used in constrained optimization. Using the \ac{VHIP} orbital energy of Equation \eqref{eq:evhip}, but setting the final horizontal position $x_f$ zero gives:
 \begin{equation}
@@ -98,7 +98,7 @@ In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \re
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{STYLESTUFF/polynomialHeightViz.png}
-\caption{Resulting polynomials as output from Algorithm \ref{alg:h} with two different constraints on the final value. Initial conditions are $x_0=-0.25$ [m], $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=0.552$ [m/s], red plot: $\dot{x}_f=0.576$ [m/s], $z_{max}=1.1$ [m]. }
+\caption{Resulting polynomials as output from Algorithm \ref{alg:h} with two different constraints on the final value. The dash-dotted line shows the height constraint. Initial conditions are $x_0=-0.25$ [m], $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=0.552$ [m/s], red plot: $\dot{x}_f=0.576$ [m/s], $z_{max}=1.1$ [m]. }
 \label{fig:polheight}
 \end{figure}
 
@@ -119,11 +119,11 @@ where the value $N=30$ resulted in reasonable precision, as shown in for example
 
 % leg length constraint
 \subsection{Maximum Leg Length Constraint}
-Instead of a constraint on the height of the pendulum, also a constraint on the length can be added as kinematic constraint, which can simulate the maximum leg length. The virtual leg length as a function of $x$ can be expressed using the Pythagorean theorem:
+Instead of a constraint on the height of the pendulum, also a kinematic constraint on the length can be added, which can simulate the maximum leg length. The virtual leg length as a function of $x$ can be expressed using the Pythagorean theorem:
 \begin{equation}
 	l^2(x) = f(x)^2 + x^2,
 \end{equation}
-where $l$ the length of the virtual leg. The solution to $f(x)^2$ is:
+where $l$ is the length of the virtual leg. The solution to $f(x)^2$ is:
 \begin{equation}
 f(x)^2=(\sum_{n=0}^3 c_n x^n)^2 = \sum_{n=0}^3 c_n^2 x^{2n} + 2\sum_{\substack{n=1 \\ i+j=n \\ i < j}}^5 c_i c_j x^n. 
 \end{equation}
@@ -133,12 +133,12 @@ However, as the gradient of $l^2(x)$ needs to be computed to obtain the location
 \end{equation*}
 With this formulation of the squared function, the squared horizontal position $x_{l_{max}}$ in $l(x)^2$ where the maximum pendulum length lies, is computed as follows:
 \begin{align}
-	\frac{d(f(x)^2+x^2)}{dx}&=0,\\
-	\frac{d(f(x)^2+x^2)x}{dx}&=0,\\
-	6c_3^2 x^4 + 4 c_2^2 x^2 + 2+2c_1^2 &= 0,\\
-	6c_3^2 (x^2)^2 + 4 c_2^2 (x^2) + 2+2c_1^2 &= 0,
+	\frac{d(f(x_{l_{max}})^2+x_{l_{max}}^2)}{dx}&=0,\\
+	\frac{d(f(x_{l_{max}})^2+x_{l_{max}}^2)}{dx}\frac{1}{x_{l_{max}}}&=0,\\
+	6c_3^2 x_{l_{max}}^4 + 4 c_2^2 x_{l_{max}}^2 + 2+2c_1^2 &= 0,\\
+	6c_3^2 (x_{l_{max}}^2)^2 + 4 c_2^2 (x_{l_{max}}^2) + 2+2c_1^2 &= 0,
 \end{align}
-where the positive solution of $x^2$ corresponds with the location $x_{l_{max}}^2$.
+where $x_{l_{max}}^2$ is the squared location of the approximated maximum pendulum length $l_{max}$.
 
 Again, the value of the maximum peak lies on the highest $x$ value of the two locations where the gradient is zero, this time in $l(x)^2$. Algorithm \ref{alg:ll} shows how the polynomial constants can be found under the leg length constraint. In Figure \ref{fig:pollength}, it can be seen that the resulting polynomials do not violate the maximum length constraint.
 \begin{algorithm}
@@ -159,14 +159,14 @@ Again, the value of the maximum peak lies on the highest $x$ value of the two lo
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{STYLESTUFF/polynomialLengthViz.png}
-\caption{Resulting polynomials as output from Algorithm \ref{alg:ll} with two different initial values under the final height constraint $z_f=1.0$. Other initial conditions are $\dot{x}_0=1.4$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=1.107$ [m/s], red plot: $\dot{x}_f=0.724$ [m/s], $l_{max}=1.15$ [m]. }
+\caption{Resulting polynomials as output from Algorithm \ref{alg:ll} with two different initial values under the final height constraint $z_f=1.0$. The dash-dotted line shows the length constraint $l_{max}$. Other initial conditions are $\dot{x}_0=1.4$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=1.107$ [m/s], red plot: $\dot{x}_f=0.724$ [m/s], $l_{max}=1.15$ [m]. }
 \label{fig:pollength}
 \end{figure}
 % discussion
 \section{Discussion}
-In the chapter, a search algorithm is proposed that is able to find \ac{VHIP} orbital energy trajectories, extending the work in \cite{koolen2016balance}. The horizontal velocity of the orbital energy at $x=0$ is left undetermined, such that this could used as a variable in the search. Choosing the search increment using knowledge of Chapter \ref{chap:regions}, constrained trajectories could be generated in a time that is suitable for online use. 
+In this chapter, a search algorithm is proposed that is able to find \ac{VHIP} orbital energy trajectories under additional constraints, extending the work in \cite{koolen2016balance}. The horizontal velocity of the orbital energy at $x=0$ is left undetermined, such that this could used as a variable in the search. Choosing the search increment using knowledge of Chapter \ref{chap:regions}, constrained trajectories could be generated in a time that is suitable for online use. 
 
-Noticeable is that the final gradient constraint gives a higher final velocity $\dot{x}_f$ compared to the default height constraint in \figref{fig:polheight}. This is caused by the polynomial shapes, as the blue plot, under constraint $z_f$, has a steeper gradient in the first part of the trajectory after $x_0$. This is the crucial part in the trajectory for a acceleration or deceleration action in $x$-direction, as is proven in the previous chapter.
+Noticeable is that the final gradient constraint gives a higher final velocity $\dot{x}_f$ compared to the default height constraint in \figref{fig:polheight}. This is caused by the polynomial shapes, as the blue plot, under constraint $z_f$, has a steeper gradient in the first part of the trajectory after $x_0$. This is the crucial part in the trajectory for an acceleration or deceleration action in $x$-direction, as is proven in the previous chapter.
 
 Another drawback to the constraint of the polynomial shape is that derivatives of the function, and thus also accelerations, depend on the function itself. In \figref{fig:polforce}, two plots are shown for $\dot{x}_f = 0$ [m/s], together with a plot of the vertical acceleration. The vertical acceleration has a shape that is desirable for a stopping behavior: high acceleration in the beginning of the trajectory and lower later. However, the acceleration at start is unrealistically high, assuming the approximations of possible vertical acceleration on human and robot in the previous chapter. This is even the case for the initial position that is relatively close to the \ac{CP}: $x_0=-0.3$ [m]. Also, the vertical acceleration barely goes below zero, so the polynomial does not make use of higher deceleration, which could lower the amount height variation.
 \begin{figure}
@@ -175,8 +175,5 @@ Another drawback to the constraint of the polynomial shape is that derivatives o
 \caption{Position plot (left) versus the resulting vertical acceleration (right).}
 \label{fig:polforce}
 \end{figure}
-
-Also, the orbital energy gives precise knowledge of future states of the \ac{VHIP}. In an applied setting, the desired accelerations on the \ac{CoM} go to multiple control steps before reaching realized joint torques, like for example the momentum-based whole-body control framework. Having knowledge of the precise differences between the \ac{LIP} and \ac
-{VHIP} model over time might be outweighed against all uncertainties that come with the real system. 
 
 For those reasons, the methods proposed in this chapter are not used in application in Chapter \ref{chap:standing} and Chapter \ref{chap:walking}.

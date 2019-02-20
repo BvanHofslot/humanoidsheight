@@ -4,7 +4,7 @@
 Using simple models for a walking humanoid robot, it has been a common approach to study point-foot placements where it is possible to come to a stop. Such a point-foot location is referred to as a capture point in \cite{pratt2006capture}. In the case of the \ac{LIP} model, only one capture point exists: the \ac{CP}. If a torque controlled flywheel is added to this model, a control input is available and reaching a set of capture points will become possible. This set of capture points is referred to as a capture region, also called a stability region in \cite{stephens2007humanoid}. A control input however can also become available without addition of a flywheel to the \ac{LIP}.
 
 
-Taking away the height constraint of the \ac{LIP}, results in the \ac{VHIP}. Height variations can be used to control the capture region. Equation \eqref{eq:dynamicscaronstyle}, written in \ac{2D}, reads as follows:
+Taking away the height constraint of the \ac{LIP}, results in the \ac{VHIP}. Height variations can be used to influence the capture region. Equation \eqref{eq:dynamicscaronstyle}, written in \ac{2D}, reads as follows:
 \begin{equation}
 	\label{eq:vhip2d}
 	\ddot{x}=\frac{g+\ddot{z}}{z}x.
@@ -28,7 +28,7 @@ To find the first bound on the unilateral contact constrained capture region, th
 \begin{empheq}[box = {\Garybox[Unilateral Contact Constrained First Bound]}]{equation}
 	\lim_{\dzi \to \infty} \xcpunif = \frac{z_0}{\dzi}\dot{x}_0 = 0,
 \end{empheq}
-where $\xcpunif$ is the first bound on the unilateral contact constrained capture region.
+where $\xcpunif$ is the first bound on the unilateral contact constrained capture region. In other words: when the point-mass approaching the base is infinitely close to the base, an infinite vertical impact is needed to stop the horizontal motion.
 
 For the second bound on the region, the minimum possible vertical acceleration of  $\ddot{z} = -g$ is used. With this vertical acceleration, the dynamics of the point-mass depend on gravitational forces only: the point-mass follows a \textit{ballistic} trajectory. After this ballistic trajectory, the mass can be stopped by an impact of the \ac{VHIP} at $z=0$. The time after which the point-mass touches the ground is:
 \begin{equation}\label{eq:tbal}
@@ -61,7 +61,7 @@ where $\xcpuni$ is a unilateral contact constrained capture position. In \figref
 \begin{figure}
 \centering
 \includegraphics[width=3.0in]{STYLESTUFF/CPvsBalistic4.png}
-\caption{Visualization of feasible final point-mass locations for the unilateral contact constrained capture region (gray area). The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used. The thin black lines visualize possible intermediate trajectories and are made with the method of \cite{koolen2016balance}.}
+\caption{Visualization of feasible final point-mass locations for the unilateral contact constrained capture region (gray area). The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used. The thin black lines are made with the method of \cite{koolen2016balance} and visualize possible intermediate trajectories.}
 \label{fig:cpbal}
 \end{figure}
 
@@ -156,7 +156,7 @@ For $\ddot{z}=0$, $z$ remains constant and $\frac{x}{z}\rightarrow 0$. For $\ddo
 \begin{equation}
 \frac{d\frac{x}{z}}{dt}= \frac{z\dot{x}-x\dot{z}}{z^2},
 \end{equation}
-where $x \leq 0$ and $z \dot{x} \geq 0$. Taking the extreme case $u=0$ leads to:
+where $x \leq 0$ and $z \dot{x} \geq 0$. Taking the extreme case $\ddot{z}=-g$ leads to:
 \begin{align}
 	z\dot{x}-x\dot{z} &= (z_0 - \frac{1}{2}gt^2)\dot{x}_0 + (x_0 + \dot{x}_0 t)gt,\\
 	&= (z_0 +\frac{1}{2}gt^2)\dot{x}_0 + x_0gt.
@@ -191,15 +191,15 @@ which is the solution of:
 \begin{equation}
 	z_0+\frac{1}{2}\ddzcf t_1^2 - \frac{1}{2}\frac{(\ddzcf t_1)^2}{\ddzcs}= z_{const},
 \end{equation}
-where $z_{const}=\zmin$ if $\ddzcf <0$ and $z_{const}=\zmax$ otherwise. The time $t_2=(1-\frac{\ddzcf}{\ddzcs})t_1$, as the second `bang` needs to drive the vertical velocity resulting from the first bang to zero. 
+where $z_{const}=\zmin$ if $\ddzcf <0$ and $z_{const}=\zmax$ otherwise. The time $t_2=(1-\frac{\ddzcf}{\ddzcs})t_1$, as the second `bang' needs to drive the vertical velocity resulting from the first bang to zero. 
 \begin{figure}
       \centering
       \includegraphics[width=3.2in]{STYLESTUFF/CPLimitsForce.png}
-      \caption{Vertical acceleration constrained capture positions relative to the height constrained bounds. The acceleration $\ddzc=|\ddzcf|=|\ddzcs|$ if $\ddzc \leq g$ and else the negative `bang' is set to $-g$. The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used.}
+      \caption{Vertical force constrained capture positions relative to the height constrained bounds. The acceleration $\ddzc=|\ddzcf|=|\ddzcs|$ if $\ddzc \leq g$ and else the negative `bang' is set to $-g$. The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used.}
       \label{fig:zvsf}
 \end{figure}
 
-By inserting a constraint on vertical acceleration, the solution to a capture position is computed using a search similar to a binary search. In this search, instead of finding an index, the search is stopped when the used cost function is below a certain threshold. There is iterated over the initial position, given the initial velocity. The cost function used is $x^2$ at the time instance that $\dot{x}=0$.  If $\dot{x}$ is never zero, which happens when the point-mass crosses the pendulum base, the cost is set to a high value. The authors of \cite{gao2017increase} give analytic solutions using vertical acceleration, but consider a constant height in the model. For comparison with applied results later in this thesis, this constant height assumption is not considered. In Figure \ref{fig:zvsf}, simulation results are shown in perspective with the earlier presented capture regions. Note that when the bang-bang control inputs are larger, both trajectory and capture position come closer to the height constrained bounds.
+By inserting a constraint on vertical acceleration, the solution to a capture position is computed using a search similar to a binary search. In this search, instead of finding an index, the search is stopped when a specified cost function is below a certain threshold. There is iterated over the initial position, given the initial velocity. The cost function used is $x^2$ at the time instance that $\dot{x}=0$.  If $\dot{x}$ is never zero, which happens when the point-mass crosses the pendulum base, the cost is set to a high value. The authors of \cite{gao2017increase} give analytic solutions using vertical acceleration, but consider a constant height in the model. For comparison with applied results later in this thesis, this constant height assumption is not considered. In Figure \ref{fig:zvsf}, simulation results are shown in perspective with the earlier presented capture regions. Note that when the bang-bang control inputs are larger, both trajectory and capture position come closer to the height constrained bounds.
 
 %% Cap comparison
 \section{Capturability Comparison}

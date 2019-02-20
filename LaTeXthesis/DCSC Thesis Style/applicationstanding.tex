@@ -4,7 +4,7 @@ In this chapter, a bang-bang control law on vertical acceleration is implemented
 \section{Method}
 As the polynomial trajectories of the previous chapter are constraining the vertical acceleration, these are not used in application. Instead, a bang-bang control law for vertical acceleration is designed, similar to the bang-bang control law for the vertical force constrained capture positions in Chapter \ref{sec:verticalforce}.
 
-The desired \ac{CMP} $\rcmpd$ of Equation \eqref{eq:rcmpd} is constrained to be inside the support polygon and is assumed to coincide with a desired \ac{CoP} $\rcopd$. The \ac{CoM} height is initially controlled using the default \ac{CoM} height PD control law of Equation \eqref{eq:defaultheightcontrol}.  While the robot is standing still, the control law controls to the default, nominal height:
+The desired \ac{CMP} $\rcmpd$ of Equation \eqref{eq:rcmpd} is constrained to be inside the support polygon. Therefore, it is assumed that the angular momentum rate of change is zero, $\dot{\mathbf{k}}_y=0$ [Nm], and that $\rcmpd$ coincides with a desired \ac{CoP} $\rcopd$. The \ac{CoM} height is initially controlled using the default \ac{CoM} height PD control law of Equation \eqref{eq:defaultheightcontrol}.  While the robot is standing still, the control law controls to the default, nominal height:
 \begin{equation}
 \ddzd =k_p(z_0-z) - k_d\dot{z},
 \end{equation}
@@ -48,7 +48,7 @@ Tests are conducted by applying a push at chest height on Valkyrie. The paramete
 \end{equation}
 where $\fpush$ is the push force and $\mrobot$ the robot mass.
 \subsection{Valkyrie Simulation}
-For Valkyrie in simulation, the push duration is set to $\tpush=0.15$ [s], as on hardware tests is found that approximately the same push duration can be applied. The push force profile in simulation is constant. A vertical acceleration constant of $\ddzc=2.4$ [m/s$^2$] and a jerk limit of $\dddot{z}_{max}=80.0$ [m/s$^3$] are used, as this was also found to work well on hardware. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.4$ is used for the prediction of the vertical \ac{CoM} motion. Valkyrie has a total mass of $\mrobot=127.3$ [kg]. Also, an initial height of $z_0=1.0$ [m] is used and a maximum height of $\zmax=1.065$ [m]. 
+For Valkyrie in simulation, the push duration is set to $\tpush=0.15$ [s], as on hardware tests it is found that approximately the same push duration can be applied. The push force profile in simulation is constant. A vertical acceleration constant of $\ddzc=2.4$ [m/s$^2$] and a jerk limit of $\dddot{z}_{max}=80.0$ [m/s$^3$] are used, as this was also found to work well on hardware. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.4$ is used for the prediction of the vertical \ac{CoM} motion. Valkyrie has a total mass of $\mrobot=127.3$ [kg]. Also, an initial height of $z_0=1.0$ [m] is used and a maximum height of $\zmax=1.065$ [m]. 
 
 \subsubsection{Maximum Recoverable Push} 
 A search is used in simulation to find the maximum push force where the robot could still recover from. This search is conducted every $5$ degrees.  In \figref{fig:roundStanding}, a polar plot is shown for the maximum recoverable impulses $i$ for the default setup and the vertical motion controller. A push in the back corresponds with $0$ degrees and a frontal push with $180$ degrees.
@@ -70,15 +70,15 @@ To evaluate the responses after a push in the back of the robot, pushes of equal
 \label{fig:valcomparephase}
 \end{figure}
 
-In \figref{fig:valcomparetime}, time response plots are shown for a push of $i=0.271$ [m/s]. `Achieved' is the value after the \ac{QP} found a solution. For the vertical linear momentum rate $\dot{\mathbf{l}}_z$, the achieved tracks the desired fairly well. There is a larger difference between the desired and achieved horizontal linear momentum rate $\dot{\mathbf{l}}_x$ for both control setups. If the achieved is compared between the two setups, the vertical motion controller achieves almost double the amount $\dot{\mathbf{l}}_x$ the default control setup achieves from $0.1$ [s] until $0.25$ [s]. There is a small difference in achieved angular momentum rate observable. However, if there is looked at the pelvis error $\theta_{pel,y}$ and the torso error $\theta_{torso,y}$ in the fifth and sixth row, the vertical motion controller has even a little less rotation error than the default setup, which shows no additional use of angular momentum strategies.
+In \figref{fig:valcomparetime}, time response plots are shown for a push of $i=0.271$ [m/s]. `Achieved' is the value after the \ac{QP} found a solution. For the vertical linear momentum rate $\dot{\mathbf{l}}_z$, the achieved tracks the desired fairly well. There is a larger difference between the desired and achieved horizontal linear momentum rate $\dot{\mathbf{l}}_x$ for both control setups. If the achieved is compared between the two setups, the vertical motion controller achieves almost double the amount $\dot{\mathbf{l}}_x$ the default control setup achieves from $0.1$ [s] until $0.25$ [s]. There is a small difference in achieved angular momentum rate observable. However, if there is looked at the pelvis error $\theta_{pel,y}$ and the torso error $\theta_{torso,y}$ in the fifth and sixth row, the vertical motion controller has a little less rotation error than the default setup, which shows no additional use of angular momentum strategies.
 \begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{STYLESTUFF/valcomparetime.png}
-\caption{Time response plots for a push of $i=0.271$ [m/s]. `Achieved' is the value of the variable after the \ac{QP} found a solution. The gray area is where the push is applied.}
+\caption{Time response plots for a push of $i=0.271$ [m/s] for the default setup (black) and the vertical motion controller (blue). `Achieved' is the value of the variable after the \ac{QP} found a solution. The gray area is where the push is applied.}
 \label{fig:valcomparetime}
 \end{figure}
 
-In the right column of the figure, from the ankle torque $\tau_{ak,y}$, knee torque ankle torque $\tau_{kn,y}$, hip torque $\tau_{hp,y}$ and back torque $\tau_{bk,y}$, the difference in ankle and knee torque between both setups is the most noteworthy. The ankle torque has a higher peak for the vertical motion controller. Also, the ankle torque returns to the steady state value earlier than the default control setup. Similarly, the desired and measured \ac{CoP} returns to the steady state value earlier. This is an indication of an increase in robustness for the push, as is observed in the phase plot as well. The knee torque is on average lower for the vertical motion controller. On average, the \ac{ICP} error $\xi_{e,x}$ is smaller, as expected.
+In the right column of the figure, from the ankle torque $\tau_{ak,y}$, knee torque ankle torque $\tau_{kn,y}$, hip torque $\tau_{hp,y}$ and back torque $\tau_{bk,y}$, the difference in ankle and knee torque between both setups is the most noteworthy. The ankle torque has a higher peak for the vertical motion controller. Also, the ankle torque returns to the steady state value earlier than the default control setup. Similarly, the desired and measured \ac{CoP} returns to the steady state value earlier. This may be an indication of an increase in robustness for the push, as is observed in the phase plot as well. The knee torque is on average lower for the vertical motion controller. On average, the \ac{ICP} error $\xi_{e,x}$ is smaller, as expected.
 
 \subsection{Valkyrie Hardware} 
 Hardware tests on Valkyrie are conducted by applying a push in the back at chest height on the physical robot. An iLoad Pro Digital load censor \cite{iload} is used to measure the impulse of the push. The load sensor is mounted to an aluminum stick. On the other side of the load cell, a steel plate with a rubber surface is mounted. This prevents the robot from being damaged, and makes the push force data less dependent on contact impacts. In \figref{fig:pushhead}, the end of the push stick with the load sensor is depicted. In \figref{fig:authorpush}, the test setup is shown. A value of $\alpha_{\hat{\ddot{z}}_{c}}=0.8$ is used for the prediction of the vertical dynamics. The rest of the parameters are set to the same values as used in simulation.
@@ -106,19 +106,19 @@ To find the maximum recoverable push on hardware, a dozen test results are avera
 \centering
   \begin{subfigure}{0.32\textwidth}
   \centering
-  \includegraphics[width=.9\linewidth]{STYLESTUFF/impulsecompare1.png}
+  \includegraphics[width=.95\linewidth]{STYLESTUFF/impulsecompare1.png}
    \caption{}
     \label{fig:imp1}
   \end{subfigure}
     \begin{subfigure}{0.32\textwidth}
   \centering
-  \includegraphics[width=.9\linewidth]{STYLESTUFF/impulsecompare2.png}
+  \includegraphics[width=.95\linewidth]{STYLESTUFF/impulsecompare2.png}
    \caption{}
     \label{fig:imp2}
   \end{subfigure}
   \begin{subfigure}{0.32\textwidth}
     \centering
-  \includegraphics[width=.9\linewidth]{STYLESTUFF/impulsecompare3.png}
+  \includegraphics[width=.95\linewidth]{STYLESTUFF/impulsecompare31.png}
   \caption{}
    \label{fig:imp3}
   \end{subfigure}
@@ -168,7 +168,7 @@ In \figref{fig:val}, a time-lapse is shown for both control setups after these p
 \begin{figure}
 \centering
 \includegraphics[width=1.0\textwidth]{STYLESTUFF/valcomparetimeHW.png}
-\caption{Time plots for a push of $i=0.261$ [m/s]. All joint torques, except for the back, are the average over left and right.}
+\caption{Time response plots for a push of $i=0.261$ [m/s] for the default setup (black) and the vertical motion controller (blue). All joint torques, except for the back, are the average over left and right.}
 \label{fig:valcomparetimeHW}
 \end{figure}
 
@@ -210,7 +210,7 @@ where $k_{ff_{\tau}}$ and $k_{\tau}$ are a feedforward and feedback gain on trac
 \end{figure}
 
 \subsubsection{Comparison of Equal Push}
-For an initial height of $z_0=1.10$ [m] and a maximum height of $\zmax=1.17$ [m], a series of $20$ tests for each control setup are conducted to investigate the responses after an equal push. The increase in recoverable push for this initial height and height change in simulation is approximately $8$\%, which shows that there is a noticable difference for the two control setups for this configuration. For the hardware tests, an initial ball position of $\lball=2.54$ [m] is used. The difference in ball height $\delta z_{ball}$ is computed as follows:
+For an initial height of $z_0=1.10$ [m], a maximum height of $\zmax=1.17$ [m] and a vertical acceleration of $\ddzc=[5.0]$ [m/s$^2$], a series of $20$ tests for each control setup are conducted to investigate the responses after an equal push. The increase in recoverable push for these parameters in simulation is approximately $8$\%, which shows that there is a noticable difference for the two control setups for this configuration. For the hardware tests, an initial ball position of $\lball=2.54$ [m] is used. The difference in ball height $\delta z_{ball}$ is computed as follows:
 \begin{equation}
 	\delta z_{ball} = l_{rope} - \sqrt{l_{rope}^2-l_{ball}^2} = 6.12-\sqrt{6.12^2 - 2.54^2} = 0.543 \quad \text{[m]},
 \end{equation}
@@ -220,7 +220,7 @@ m_{ball}\dot{x}_{ball} = m_{ball}\sqrt{2g\delta z_{ball} } = 13.6\sqrt{2 \cdot 9
 \end{equation}
 where $\dot{x}_{ball}$ is the velocity of the ball. Normalizing the impulse, like with the Valkyrie tests, results in a value of $i=\frac{44.4}{155.9}=0.285$ [m/s]. From the logging camera it is observed that the push duration is about $0.03-0.05$ [s].
 
-In \figref{fig:atlasphaseHW}, phase plots are shown for these tests. The thin transparent lines show the responses after each individual test. The bold plots show the average of all results. The average phase plot for the vertical motion controller covers a slightly smaller area. However, the individual responses have a wider distribution, which shows a less predictable behavior. The wider distribution was also visible on the robot, as sometimes the robot would visibly almost fall over, and sometimes recover relatively quick. A reason for this could be that the robot moves when using height variation, which might cause larger sensing and actuation errors.
+In \figref{fig:atlasphaseHW}, phase plots are shown for these tests. The thin transparent lines show the responses after each individual test. The bold plots show the averages of all results. The average phase plot for the vertical motion controller covers a slightly smaller area. However, the individual responses have a wider distribution, which shows a less predictable behavior. The wider distribution was also visible on the robot, as sometimes the robot would visibly almost fall over, and sometimes recover relatively quick. A reason for this could be that the robot moves when using height variation, which might cause larger sensing and actuation errors. Also, for the vertical motion controller, there is a slight increase in velocity observable after approximately $x=0.06$ [m] in the upper half of the phase plot. Assuming no angular momentum change in the robot, an increase in velocity can be caused by the \ac{CoP} still tracking poorly. A reason for this could be that for the tests in the phase plot a vertical acceleration of $\ddzc=5.0$ [m/s$^2$] was used, instead of the $\ddzc=3.2$ [m/s$^2$] used in the tuning of the gain $k_{\dot{q}}$, where tracking of the \ac{CoP} was relatively better.
 
 \begin{figure}
 \centering
@@ -248,7 +248,7 @@ In \figref{fig:regioncomparison}, the increase in recoverable push for both robo
 Note how the simulation rear push recovery for Valkyrie even lies outside the height constrained bound in this plot. The average improvement on hardware for Valkyrie lies just inside the height constrained bound. The increase in recovery for the side push in simulation is about equal to the comparable force constrained capture position of $\ddzc'=\frac{1}{4}$. The frontal push recovers worse than the default control setup and is not comparable with the capture regions presented in Chapter \ref{chap:regions}.
 
 \section{Discussion}
-In this chapter, a simple control law is presented, that activates a bang-bang action if a predefined threshold is met. Using the bang-bang controller, the vertical \ac{CoM} dynamics are explicitly solvable and can be computed every tick. Also, hardware results are presented, which have not earlier been shown considering the research topic. 
+In this chapter, a simple control law is presented that activates a bang-bang action if a predefined threshold is met. Using the bang-bang controller, the vertical \ac{CoM} dynamics are explicitly solvable and can be computed every tick. Also, hardware results are presented, which have not earlier been shown considering the research topic. 
 
 A difference between the related works in Section \ref{sec:relatedworksheight} is that most other existing control strategies use \ac{MPC}. With \ac{MPC} however, it all comes down to problem formulation. Caron \& Mallein \cite{caron2018balance} present a method that generates capture trajectories based on the current \ac{CoM} position and velocity, and the support polygon information. The objective is to minimize height variations, which results in the robot to only use vertical \ac{CoM} motion if the desired \ac{ZMP} is placed on the polygon edge. Using this problem formulation though, the resulting capture trajectory is always under the assumption that the previously applied disturbance stopped disturbing. In the case of a push though, the increase in error is not an instant event and happens over time.
 
@@ -260,7 +260,7 @@ Testing push recovery, Valkyrie and Atlas showed a similar behavior in simulatio
 
 On hardware however, larger differences were observed when comparing the responses of Valkyrie and Atlas. Valkyrie matched the simulation data with more accuracy, which could be a cause of the torque sensing of the series elastic actuators. However, while performing the tests it is observed that Valkyrie is more sensitive to tuning of the maximum vertical acceleration, maximum jerk and, for example, foot polygon size used in the whole-body \ac{QP}. With careless tuning, Valkyrie could stand on its toes when recovering from a push. Also, the actuators could turn in a state of over-excitation which resulted in the need to restart the robot. Using Atlas, less care had to be taken for tuning and the robot performed well in all tests in terms of internal stability. The less accurate sensing and the stiction in the hydraulic system on Atlas could be a cause that the differences observed between hardware and simulation are larger than on Valkyrie.
 
-To analyze the responses on hardware, phase plots of the horizontal \ac{CoM} state of the robots and different time responses are evaluated. The phase plots give insight in the ability of the robot to return to the desired steady-state configuration. The time-response plots show the behavior of momentum rates, joint pitch torques and \ac{CoP} and \ac{ICP} positions over time. However, no traditional system evaluations are conducted, such as a bode plot or other frequency analysis methods. A reason for this is that in the control method, the eigenvalue of the system is time-variant.
+To analyze the responses on hardware, phase plots of the horizontal \ac{CoM} state of the robots and different time responses are evaluated. The phase plots give insight in the ability of the robot to return to the desired steady-state configuration. The time response plots show the behavior of momentum rates, joint pitch torques and \ac{CoP} and \ac{ICP} positions over time. However, no traditional system evaluations are conducted, such as a bode plot or other frequency analysis methods. A reason for this is that in the control method, the eigenvalue of the system is time-variant.
 
 On most tests the improvement in recovery of the vertical motion control law versus the default control setup differs  from the difference in the \ac{CP} and the vertical force constraint capture points. Reasons for this could include numerical integration in simulation, unmodeled dynamics such as ground contact or a bug in the software.
 

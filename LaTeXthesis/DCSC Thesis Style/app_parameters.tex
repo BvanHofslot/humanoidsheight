@@ -1,10 +1,10 @@
 %
 % Another appendix chapter
 \chapter{Test Parameters}\label{chap:params}
-In Table \ref{tab:params}, control framework parameters are shown which are used on the Valkyrie tests.  If the weights are denoted as a vector, the entries are the $xyz$-components.
+In Table \ref{tab:params}, control framework parameters are shown which are used on the Valkyrie tests.  If the weights are denoted as a vector, the entries are the $xyz$-components. The wrench cone basis vector multiplier $\boldsymbol{\rho}$ is used to  compute the desired \ac{GRF}, as explained in Section \ref{sec:ihmc}.
 
 \begin{table}[h]
-\caption{Control Framework Parameters}
+\caption{Control framework parameters for the Valkyrie tests.}
 \label{tab:params}
 \begin{center}
 \begin{tabular}{llcc}
@@ -22,9 +22,9 @@ Motion angular & Foot swing & $k_p=200, k_d=20$ & [2.0 2.0 2.0]\\
 Motion linear & Foot swing & $k_p=150, k_d=17$ & [80.0 80.0 80.0]\\
 Motion joint& Spine & $k_p=50, k_d=11$ & $10.0$\\
 Regularization & Joint acceleration & - & $5 \cdot 10^{-3}$\\
-Regularization & Joint jerk & - & $1.6 \cdot 10^-{6}$\\
-Regularization & $\boldsymbol{\rho}$ & - & $1.0 \cdot 10^-{5}$\\
-Regularization & $\boldsymbol{\rho}$ rate & - & $5.0 \cdot 10^-{5}$\\
+Regularization & Joint jerk & - & $1.6 \cdot 10^{-6}$\\
+Regularization & $\boldsymbol{\rho}$ & - & $1.0 \cdot 10^{-5}$\\
+Regularization & $\boldsymbol{\rho}$ rate & - & $5.0 \cdot 10^{-5}$\\
 \hline
 \end{tabular}
 \end{center}

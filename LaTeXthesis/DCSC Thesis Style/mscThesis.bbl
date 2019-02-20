@@ -28,7 +28,7 @@ T.~Koolen, T.~De~Boer, J.~Rebula, A.~Goswami, and J.~Pratt,
 
 \bibitem{hof2008extrapolated}
 A.~L. Hof, ``The ‘extrapolated center of mass’ concept suggests a simple
-  control of balance in walking,'' {\em Human movement science}, vol.~27,
+  control of balance in walking,'' {\em Human Movement Science}, vol.~27,
   no.~1, pp.~112--125, 2008.
 
 \bibitem{takenaka2009real}
@@ -36,6 +36,18 @@ T.~Takenaka, T.~Matsumoto, and T.~Yoshiike, ``Real time motion generation and
   control for biped robot-1 st report: Walking gait pattern generation,'' in
   {\em IEEE/RSJ International Conference on Intelligent Robots and Systems
   (IROS)}, pp.~1084--1091, 2009.
+
+\bibitem{koolen2016design}
+T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
+  and J.~Pratt, ``Design of a momentum-based control framework and application
+  to the humanoid robot atlas,'' {\em International Journal of Humanoid
+  Robotics}, vol.~13, no.~01, p.~1650007, 2016.
+
+\bibitem{kuindersma2016optimization}
+S.~Kuindersma, R.~Deits, M.~Fallon, A.~Valenzuela, H.~Dai, F.~Permenter,
+  T.~Koolen, P.~Marion, and R.~Tedrake, ``Optimization-based locomotion
+  planning, estimation, and control design for the atlas humanoid robot,'' {\em
+  Autonomous Robots}, vol.~40, no.~3, pp.~429--455, 2016.
 
 \bibitem{pratt2007derivation}
 J.~E. Pratt and S.~V. Drakunov, ``Derivation and application of a conserved
@@ -65,18 +77,6 @@ T.~Koolen, M.~Posa, and R.~Tedrake, ``Balance control using center of mass
 S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
   variations: A convex boundedness approach,'' in {\em IEEE International
   Conference on Robotics and Automation (ICRA)}, pp.~1779--1784, 2018.
-
-\bibitem{koolen2016design}
-T.~Koolen, S.~Bertrand, G.~Thomas, T.~De~Boer, T.~Wu, J.~Smith, J.~Englsberger,
-  and J.~Pratt, ``Design of a momentum-based control framework and application
-  to the humanoid robot atlas,'' {\em International Journal of Humanoid
-  Robotics}, vol.~13, no.~01, p.~1650007, 2016.
-
-\bibitem{kuindersma2016optimization}
-S.~Kuindersma, R.~Deits, M.~Fallon, A.~Valenzuela, H.~Dai, F.~Permenter,
-  T.~Koolen, P.~Marion, and R.~Tedrake, ``Optimization-based locomotion
-  planning, estimation, and control design for the atlas humanoid robot,'' {\em
-  Autonomous Robots}, vol.~40, no.~3, pp.~429--455, 2016.
 
 \bibitem{hasson1994clinical}
 S.~M. Hasson, {\em Clinical exercise physiology}.
@@ -120,6 +120,10 @@ Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for
 \bibitem{schwind1998spring}
 W.~J. Schwind, {\em Spring loaded inverted pendulum running: A plant model.}
 \newblock PhD thesis, University of Michigan, 1998.
+
+\bibitem{scs}
+``{IHMC's open-source software}.'' \url{https://github.com/ihmcrobotics}.
+\newblock Accessed: 19/02/2019.
 
 \bibitem{radford2015valkyrie}
 N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
@@ -214,7 +218,7 @@ N.~P. Linthorne, ``Analysis of standing vertical jumps using a force
 \bibitem{gard2004comparison}
 S.~A. Gard, S.~C. Miff, and A.~D. Kuo, ``Comparison of kinematic and kinetic
   methods for computing the vertical motion of the body center of mass during
-  walking,'' {\em Human movement science}, vol.~22, no.~6, pp.~597--610, 2004.
+  walking,'' {\em Human Movement Science}, vol.~22, no.~6, pp.~597--610, 2004.
 
 \bibitem{griffin2017natural}
 R.~J. Griffin, {\em Natural, Efficient Walking for Compliant Humanoid Robots}.

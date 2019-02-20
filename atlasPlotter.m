@@ -507,7 +507,7 @@ hor =sqrt((x-x(1)).^2+(y-y(1)).^2);
 dhor= sign(dx).*sqrt((dx-dx(1)).^2+(dy-dy(1)).^2);
 HOR(i,:)=hor(s:s+N);
 DHOR(i,:)=dhor(s:s+N);
-p1=plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0,0,0.3]);
+p1=plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0,0,0.31],'LineWidth',1.15);
 set(get(get(p1,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
 end
 
@@ -548,7 +548,7 @@ dhor= sign(dx).*sqrt((dx-dx(1)).^2+(dy-dy(1)).^2);
 HORh(i,:)=hor(s:s+N);
 DHORh(i,:)=dhor(s:s+N);
 %plot(hor,dhor,'Color','b');
-p2=plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0.18,1,0.3]);
+p2=plot(hor(s:s+N),dhor(s:s+N),'Color',[0,0.18,1,0.31],'LineWidth',1.15);
 set(get(get(p2,'Annotation'),'LegendInformation'),'IconDisplayStyle','off');
 alpha(0.9)
 end

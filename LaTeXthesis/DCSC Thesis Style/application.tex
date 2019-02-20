@@ -6,7 +6,7 @@ The control strategy for a static, standing case presented in the previous chapt
 \section{Experimental Setup}
 In this section, to determine when to activate a similar bang-bang control law as in the previous chapter,  tests are conducted preliminary to developing a controller. In the tests, a push is applied in the beginning of \ac{SS} while the robot is walking. The stepping parameters used for the tests are given in Table \ref{tab:stepping}, which are the default stepping parameters while testing in simulation. In \figref{fig:valwalkingtest}, the test setup in simulation is shown. The limited foothold options display that footstep location adjustment is not available as a balance strategy and that other balance strategies, such as \ac{CoM} height variation, might be needed to recover. In \figref{fig:3foot}, the \ac{ICP} reference trajectory, the \ac{CMP} reference trajectory and the measured \ac{CoM} trajectory, are made visible for foot hold where the push will be applied. 
 \begin{table}
-\caption{Stepping Parameters} % title of Table
+\caption{Stepping parameters for the walking tests.} % title of Table
 \centering % used for centering table
 \begin{tabular}{c c c } % centered columns (4 columns)
 \hline\hline %inserts double horizontal lines
@@ -31,16 +31,16 @@ Step Width & 0.25 & [m]\\
 \begin{figure}[h]
 \centering
   \includegraphics[width=.8\linewidth]{STYLESTUFF/ICPplan3StepComICPrSS.png}
-   \caption{Trajectories during \ac{SS} in the horizontal plane (gray dotted lines). The gray area is the current footstep position.}
+   \caption{Trajectories during \ac{SS} in the horizontal plane (gray dotted lines). The gray area is the current, right, footstep position where the push will be applied.}
     \label{fig:3foot}
 \end{figure}
 %Preliminary observations
 
-The following properties are observed, when applying pushes in different direction in the start of \ac{SS}:
+The following properties are observed, when applying pushes in different directions in the start of \ac{SS}:
 \begin{enumerate}
 	\item The direction of the \ac{ICP} error stays often approximately the same until transition to \ac{DS}.
 	\item If the \ac{ICP} error is directed in the sagittal plane, the desired \ac{CMP} often remains somewhat in the same location.
-	\item If the \ac{ICP} error is directed  in the coronal plane, the desired \ac{CMP} slides from back to the forth of the foot.
+	\item If the \ac{ICP} error is directed  in the coronal plane, the desired \ac{CMP} slides from back to the front of the foot.
 	\item The configuration and velocity near transition to \ac{DS} affects the robots ability to put its swing leg down at the desired time. 
 \end{enumerate}
 These properties are used as assumptions in the development of a control law.
@@ -66,7 +66,7 @@ In Figure \ref{fig:rcopdvsrcmpd}, it is visually explained how this computation 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{STYLESTUFF/2DControlStrategyViz.png}
-\caption{The \ac{GRF} resulting from the default desired momentum rate (black) versus the modified desired momentum rate for \ac{CoM} height variation (red). The thin arrows show the part of the \ac{GRF} that intersects with the \ac{CoM}, which is used for height changes. The equal scalar offset $a$ shows that the same angular momentum rate will be requested about the \ac{CoM}.}
+\caption{Explanatory drawing of the \ac{GRF} resulting from the default desired momentum rate (black) versus the modified desired momentum rate for \ac{CoM} height variation (red). The thin arrows show the part of the \ac{GRF} that intersects with the \ac{CoM}, which is used for height changes. The equal scalar offset $a$ shows that the same angular momentum rate will be requested about the \ac{CoM}.}
 \label{fig:rcopdvsrcmpd}
 \end{figure}
 \subsection{Alignment Angle and Effective Distance}
@@ -76,7 +76,7 @@ If the \ac{CoM} is outside the support polygon, the local virtual leg between $\
 	\item \textbf{Effective distance} $\delta$: the distance between $\rcopd$ and $\cxy$ in the direction of the \ac{ICP} error $\icpe$.
 \end{itemize}
 
-In \figref{fig:phiViz}a-b, the two variables are graphically explained using the stance foot position and configuration of \figref{fig:3foot}. The desired \ac{CMP} $\rcmpd$ is allowed to move a small distance outside the polygon. In \figref{fig:phiVizc}, the angle $\phi$ is zero and the distance $\delta$ is relatively large. This is a relatively suitable error for height control, as the alignment angle is aligned and the local \ac{VHIP} tip is relatively far from the base. In \figref{fig:phiVizd}, the angle $\phi$ is $90$ degrees and therefore the distance $\delta$ is zero. In this configuration, \ac{CoM} height variation would not help driving the error back. Furthermore, an additional error would occur orthogonal to the current $\icpe$. Therefore, this error is not considered suitable for using \ac{CoM} height variation for balance control.
+In \figref{fig:phiViz}a-b, the two variables are graphically explained using the stance foot position and configuration of \figref{fig:3foot}. The desired \ac{CMP} $\rcmpd$ is allowed to move a small distance outside the polygon. In \figref{fig:phiVizc}, the angle $\phi$ is zero and the distance $\delta$ is relatively large. This is a relatively suitable error for height control, as the alignment angle is aligned and the local \ac{VHIP} tip is relatively far from the base. In \figref{fig:phiVizd}, the angle $\phi$ is $90$ degrees and therefore the distance $\delta$ is zero. In this configuration, \ac{CoM} height variation would not help drive the error back. Furthermore, an additional error would occur orthogonal to the current $\icpe$. Therefore, this error is not considered suitable for using \ac{CoM} height variation for balance control.
 \begin{figure}[h]
 \centering
   \begin{subfigure}{0.49\textwidth}
@@ -115,7 +115,7 @@ In \figref{fig:phiViz}a-b, the two variables are graphically explained using the
     \caption{}
      \label{fig:phiVizf}
   \end{subfigure}
-  \caption{Vizualizations of $\phi$ and $\delta$ for the configuration at start of \ac{SS}.}
+  \caption{Explanatory visualizations of $\phi$ and $\delta$ for the configuration at start of \ac{SS} with different \ac{ICP} error directions.}
   \label{fig:phiViz}
 \end{figure}
 
@@ -124,20 +124,20 @@ The alignment angle $\phi$ and the effective distance $\delta$ are used to selec
 \begin{itemize}
 	\item \textbf{Positive alignment}: At the current control tick, $\phi$ is relatively aligned and $\delta$ relatively large for a push in the sagittal plane, or $\delta$ is relatively large for a push in the coronal plane. Also, $\phi$ has to be smaller than $\frac{1}{2}\pi$ [rad], as the virtual leg must be in direction of the \ac{ICP} error to make additional force effective. A bang-bang action is activated, similar to the control law of the previous chapter. The thresholds related to this action are $\phimin < \phi < \phimax$ (for a push in the sagittal direction) and $\delta > \deltamin$, where $\phimin$, $\phimax$ and $\deltamin$ are parameters for the minimum and maximum $\phi$ and minimum $\delta$.
 	\item \textbf{Prepare}: At the current control tick, $\phi$ is relatively misaligned or $\delta$ is relatively small, but $\phi_f$ and $\delta_f$ are at values suitable for the positive alignment action. The \ac{CoM} height is gradually lowered to the minimum height, after which a positive `bang' is used. The the thresholds related to this action are $\phimin<\phi_f<\phimax$ and $\delta_f>\deltamin$.
-	\item \textbf{Default}: All decisions variables $\phi$, $\delta$, $\phi_f$ and $\delta_f$ are at such values, that vertical \ac{CoM} motion does not improve recovery. The default height control law is used and no additional height changes are considered. The threshold related to this action is if the prepare or the positive alignment thresholds do not hold.
+	\item \textbf{Default}: All decisions variables $\phi$, $\delta$, $\phi_f$ and $\delta_f$ are at such values that vertical \ac{CoM} motion does not improve recovery. The default height control law is used and no additional height changes are considered. The threshold related to this action is if the prepare or the positive alignment thresholds do not hold.
 \end{itemize}
 
-In \figref{fig:phiViz}, six cases of \ac{ICP} errors are shown to explain which actions will be used. In \figref{fig:phiVizc}, the positive alignment action is used, as the $\delta$ is relatively large and $\phi$ relatively small. In \figref{fig:phiVizd}, the default action is introduced, as $\delta$ is zero and $\phi$ is misaligned. In \figref{fig:phiViza}, the error is a result of a back push. A positive alignment action is introduced, as $\phi$ is relatively small and $\delta$ relatively large. In \figref{fig:phiViza}, a push is applied frontally on the robot. The prepare action is used, as $\delta_f$ and $\phi_f$ are more suitable for height control. In \figref{fig:phiVize}, the robot is pushed from the left. The positive alignment action is used, as the current $\delta$ is relatively large. In \figref{fig:phiVizf}, the error is a result from a push from the right. The default action is activated, as $\delta$ is small throughout \ac{SS}.
+In \figref{fig:phiViz}, six cases of \ac{ICP} errors are shown to explain which actions will be used. In \figref{fig:phiVizc}, the positive alignment action is used, as the $\delta$ is relatively large and $\phi$ relatively small. In \figref{fig:phiVizd}, the default action is introduced, as $\delta$ is zero and $\phi$ is misaligned. In \figref{fig:phiViza}, the error is a result of a back push. A positive alignment action is introduced, as $\phi$ is relatively small and $\delta$ relatively large. In \figref{fig:phiVizb}, a push is applied frontally on the robot. The prepare action is used, as $\delta_f$ and $\phi_f$ are more suitable for height control. In \figref{fig:phiVize}, the robot is pushed from the left. The positive alignment action is used, as the current $\delta$ is relatively large. In \figref{fig:phiVizf}, the error is a result from a push from the right. The default action is activated, as $\delta$ is small throughout \ac{SS}.
 
 The bang-bang control law considered in the actions is similar to the control law of the previous chapter. However, height constraints are slightly modified. For the maximum height constraint $\zmax$, the same constant parameter as for the standing tests is used in the first half of \ac{SS}. In the second half, the maximum height constraint is linearly interpolated between the maximum height constraint for standing and a maximum height constraint at the end of \ac{SS}.  For the minimum height constraint $\zmin$, a constant value is considered throughout \ac{SS}. The height constraints are visually explained in \figref{fig:heightconstraints}.
 \begin{figure}
 \centering
   \includegraphics[width=.4\linewidth]{STYLESTUFF/heightconstraints.png}
-   \caption{Height constraints through \acf{SS}}
+   \caption{Height constraints through \acf{SS} for the vertical motion controller while the robot is walking.}
     \label{fig:heightconstraints}
 \end{figure} 
 \subsubsection{Positive Alignment Action} 
-Using $\zmax$ as specified above, a similar bang-bang control law as in the previous chapter is introduced with the positive alignment action. After the second `bang', the height is not controlled to the maximum height $\zmax$, but is given a feedforward downward acceleration computed from a circle. This is done to avoid singularity of the stance leg, and the swing leg at touch down. Consider the distance from the ankle of the robot to the sagittal \ac{CoM} position $x_{ankle}$ and the maximum leg length $l_{max}$. If is assumed that the \ac{CoM} height $z$ is located at the hip, the horizontal position relates to the vertical position as:
+Using $\zmax$ as specified above, a similar bang-bang control law as in the previous chapter is introduced with the positive alignment action. After the second `bang', the height is not controlled to the maximum height $\zmax$, but is given a feedforward downward acceleration computed from a circle around the ankle. Using the circle acceleration, the swing leg singularity can be approximated and the downward velocity at touchdown will not be as high as after a free fall. This is done to avoid singularity of the stance leg, and the swing leg at touch down. Consider the distance from the ankle of the robot to the sagittal \ac{CoM} position $x_{ankle}$ and the maximum leg length $l_{max}$. If is assumed that the \ac{CoM} height $z$ is located at the hip, the horizontal position relates to the vertical position as:
 \begin{equation}
 z^2 = l_{max}^2-x_{ankle}^2.
 \end{equation}
@@ -191,29 +191,29 @@ Like in the previous chapter,  the maximum recoverable pushes are searched for e
 \begin{figure}
      \centering
         \includegraphics[width=0.85\textwidth]{STYLESTUFF/rounActions.png}
-    \caption{Recoverable pushes for the default controller (black) and the vertical motion controller (blue). The radial lines show the actions used by the vertical motion control law.}
+    \caption{Polar plots of the maximum recoverable impulses $i$ (radius) for the default controller (black) and the vertical motion controller (blue) for pushes applied at different moments in \ac{SS}. The colors of the radial lines show the actions used by the vertical motion control law.}
     \label{fig:roundPushActions}
 \end{figure}
 \begin{figure}
      \centering
         \includegraphics[width=0.85\textwidth]{STYLESTUFF/roundAng.png}
-        \caption{Recoverable of the recoverable pushes for the default controller (black) and vertical motion controller (blue). A comparison is shown for when the desired \ac{CMP} is constrained to be inside the polygon, and when the desired \ac{CMP} is allowed to leave the polygon $0.05$ [m].}
+        \caption{Polar plots of the maximum recoverable impulses $i$ (radius) for the default controller (black) and vertical motion controller (blue). A comparison is shown for when the desired \ac{CMP} is constrained to be inside the polygon, and when the desired \ac{CMP} is allowed to leave the polygon $0.05$ [m].}
         \label{fig:roundPushAng}
 \end{figure}
 
-In \figref{fig:roundPushAng}, the maximum recoverable pushes are shown when $\rcmpd$ is constrained to be inside the polygon, like in the previous figure, and when $\rcmpd$ is allowed to leave the polygon $5$ [cm]. This distance outside the polygon is commonly used at \ac{IHMC} \cite{griffin2017natural}. Allowing $\rcmpd$ to leave the polygon requests angular momentum rate from the robot to achieve the desired linear momentum rate. However, how much of is achieved is highly depending on the weights used in the whole-body \ac{QP}. Note how the plots with larger possible $\rcmpd$ locations seem to match shape with the plots where $\rcmpd$ is inside the polygon. Also note how for push directions coming from the back, the recovery is about the same for the default controller with larger $\rcmpd$ locations compared with the vertical motion controller where $\rcmpd$ is constrained to be inside the polygon.
+In \figref{fig:roundPushAng}, the maximum recoverable pushes are shown when $\rcmpd$ is constrained to be inside the polygon, like in the previous figure, and when $\rcmpd$ is allowed to leave the polygon $5$ [cm]. This distance outside the polygon is commonly used at \ac{IHMC} \cite{griffin2017natural}. Allowing $\rcmpd$ to leave the polygon requests angular momentum rate from the robot to achieve the desired linear momentum rate. However, how much of it is achieved is highly depending on the weights used in the whole-body \ac{QP}. Note how the plots with larger possible $\rcmpd$ locations seem to match shape with the plots where $\rcmpd$ is inside the polygon. Also note how for push directions coming from the back, the recovery is about the same for the default controller with larger $\rcmpd$ locations compared with the vertical motion controller where $\rcmpd$ is constrained to be inside the polygon.
 
 \subsubsection{Comparison of Equal Push} 
 A deeper evaluation is again made for the responses after an equal push for certain push directions. A rear and frontal push at the start of \ac{SS} are chosen to make a deeper evaluation of, which have a recoverable impulse of $i=0.156$ [m/s] and $0.315$ [m/s] respectively. In \figref{fig:walkplot}, time responses are shown for these applied impulses. For the vertical motion controller, the positive alignment action is used for the rear push and the prepare action is used for the frontal push, which can also be observed in \figref{fig:roundPushActions}. For the back push, the desired vertical linear momentum rate $\dotldz$ from a circle is clearly visible after the second `bang'. The maximum height violates the maximum allowed height for the controller slightly halfway \ac{SS}. For the prepare action however, the minimum height of the trajectory stays above the minimum height constraint. From the reference and measured \ac{ICP} $\icpr$ and $\icp$ in the sagittal direction, it can be observed that the final \ac{ICP} error is smaller for the vertical motion controller.
 \begin{figure}
      \centering
         \includegraphics[width=0.99\textwidth]{STYLESTUFF/walkplot.png}
-    \caption{Responses after a rear push of $i=0.156$ [m/s] and a frontal push of $0.315$ [m/s] is applied on Valkyrie for both control setups. The push is applied in the dark gray area and the light gray area shows where the robot is in \ac{DS}.}
+    \caption{Time responses after a rear push of $i=0.156$ [m/s] and a frontal push of $0.315$ [m/s] are applied on Valkyrie for both control setups. The push is applied in the dark gray area and the light gray area shows when the robot is in \ac{DS}.}
     \label{fig:walkplot}
 \end{figure}
 
 \subsection{Atlas Hardware}
-Additionally, some hardware tests on Atlas are conducted, triggering the positive alignment action. These tests are conducted on Atlas, as Atlas is able to walk faster than Valkyrie due to its more powerful actuation. Walking faster allows for \ac{CoM} positions at further distance from the \ac{CoP} positions, in which \ac{CoM} height variations have more effect on balance control. Unlike in the Valkyrie simulations, a step length of $0.4$ [m] is used. The same \ac{SS} and \ac{DS} times as in the Valkyrie simulations are used, which are about the maximum what the robot could do. In \figref{fig:walk3D}, the walking pattern and $\dotldz$ are depicted for the test. Intermediate local pendulums between $\rcmpd$ and the \ac{CoM} are depicted in the walking pattern after the push is applied with a constant time interval of $0.2$ [s]. The yellow lines show the projections on the $xz$-plane of the pendulums. The letters above the yellow lines match with letters below the images in \figref{fig:atw}; the pendulums are the $\rcmpd-\cxyz$ configurations for the images. At $a$ the push is applied and at $b$ released. The height change and the bang-bang control law of the positive alignment action are clearly visible. Instead of using the acceleration from a circle after the second `bang', a constant feedforward value is used on desired acceleration.
+Additionally, some hardware tests on Atlas are conducted, triggering the positive alignment action. These tests are conducted on Atlas, as Atlas is able to walk faster than Valkyrie due to its more powerful actuation. Walking faster allows for \ac{CoM} positions at further distance from the \ac{CoP} positions, in which \ac{CoM} height variations have more effect on balance control. Unlike in the Valkyrie simulations, a step length of $0.4$ [m] is used. The same \ac{SS} and \ac{DS} times as in the Valkyrie simulations are used, which are about the maximum what the robot could do. In \figref{fig:walk3D}, the walking pattern and $\dotldz$ are depicted for the test. Intermediate local pendulums between $\rcmpd$ and the \ac{CoM} are depicted in the walking pattern after the push is applied with a constant time interval of $0.2$ [s]. The yellow lines show the projections on the $xz$-plane of the pendulums. The letters above the yellow lines match with letters below the images in \figref{fig:atw}; the pendulums are the $\rcmpd-\cxyz$ configurations for the images. At $a$ the push is applied and at $b$ released. The height change and the bang-bang control law of the positive alignment action are clearly visible. Instead of using the acceleration from a circle after the second `bang', a constant feedforward value is used on desired acceleration, because this was found to be simpler for tuning on the robot.
 \begin{figure}
      \centering
         \includegraphics[width=0.99\textwidth]{STYLESTUFF/walk3D2.png}
@@ -251,4 +251,4 @@ The effective distance $\delta$ and the alignment angle $\phi$ allow for making 
 
 From the results obtained for the step time and length considered, it seemed that height control in the beginning of \ac{SS} results in the most improvement compared to strategies that do not use \ac{CoM} height variation. The vertical motion controller performs worse than the default setup around the $200$ degree push direction for all push moments in swing considered. This may be a results of the chosen control actions based on the thresholds $\phimin$, $\phimax$ and $\deltamin$, which are constant.
 
-For the hardware tests on hardware, the control law was difficult to compare to the default setup, and therefore there is chosen to only show an example of a result using the vertical motion controller. For the standing tests, it is assumed that the direction orthogonal to the push is constrained and the recovery problem is in \ac{2D}. For the walking test, the \ac{CoM} is located outside the support polygon if the push is applied and can also move orthogonal to the push direction. Furthermore, the robot is moving while the push is applied. Any small difference in the moment when the push is applied, the push location or the push direction can make a large difference in how the robot recovers. Therefore, a reliable comparison with the default setup on hardware for the walking tests could not be made and might be interesting to consider in the future. 
+For the Atlas tests on hardware, the control law was difficult to compare to the default setup, and therefore there is chosen to only show an example of a result using the vertical motion controller. For the standing tests, it is assumed that the direction orthogonal to the push is constrained and the recovery problem is in \ac{2D}. For the walking test, the \ac{CoM} is located outside the support polygon if the push is applied and can also move orthogonal to the push direction. Furthermore, the robot is moving while the push is applied. Any small difference in the moment when the push is applied, the push location or the push direction can make a large difference in how the robot recovers. Therefore, a reliable comparison with the default setup on hardware for the walking tests could not be made and might be interesting to consider in the future. 
