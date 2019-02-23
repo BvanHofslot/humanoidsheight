@@ -1,13 +1,13 @@
 %
 % Another appendix chapter
-\chapter{Kinematic Constrained Orbital Energy Trajectories}\label{chap:mpc}
-The height constrained capture bounds cannot be used directly in control, as they consider impacts with no constraints on force. The force constrained bang-bang control law has to be integrated numerically to have knowledge of future states. Therefore, it is interesting to explore an additional method that has knowledge over future states, without the drawback of numerical integration. This chapter proposes an extension to the work of Koolen, Posa \& Tedrake \cite{koolen2016balance}, which relies for an important part on the work by Pratt \& Drakunov \cite{pratt2007derivation}: the \textit{orbital energy} of the \ac{VHIP}.
+\chapter{Kinematically Constrained Orbital Energy Trajectories}\label{chap:mpc}
+The height constrained capture bounds cannot be used directly in control, as they consider impacts with no constraints on force. The force constrained bang-bang control law has to be integrated numerically to obtain future state information. Therefore, it is interesting to explore an additional method that has knowledge over future states, without the drawback of numerical integration. This chapter proposes an extension to the work of Koolen, Posa \& Tedrake \cite{koolen2016balance}, which relies for an important part on the work by Pratt \& Drakunov \cite{pratt2007derivation}: the \textit{orbital energy} of the \ac{VHIP}.
 
 %% Constraint matrix/polynomial
 \section{Constraint Matrix with Final Velocity}
-In \cite{koolen2016balance}, the final horizontal velocity $\dot{x}_f$ is set to zero, as this leads to a \textit{capture trajectory}: a trajectory that leads to convergence of the unstable equilibrium of the \ac{VHIP}. However, the trajectories are unconstrained and can become unrealistically high above the ground, as shown in \figref{fig:cpbal}. To take kinematic limits of the system into account, constraints on the configuration of the \ac{VHIP} have to be added. In this section, the final horizontal velocity of the \ac{VHIP} orbital energy is left undetermined, and used to find trajectories that do not violate kinematic constraints.
+In \cite{koolen2016balance}, the final horizontal velocity $\dot{x}_f$ is set to zero, as this leads to a \textit{capture trajectory}: a trajectory that leads to convergence of the unstable equilibrium of the \ac{VHIP}. However, the trajectories have no constraints on kinematics and can become unrealistically high above the ground, as shown in \figref{fig:cpbal}. To take kinematic limits of the system into account, constraints on the configuration of the \ac{VHIP} have to be added. In this section, the final horizontal velocity of the \ac{VHIP} orbital energy is left undetermined, which is used to add kinematic constraints to the orbital energy trajectory.
 
-Leaving the final horizontal velocity open can be used in constrained optimization. Using the \ac{VHIP} orbital energy of Equation \eqref{eq:evhip}, but setting the final horizontal position $x_f$ zero gives:
+First, the orbital energy is derived for nonzero final velocity. Using the \ac{VHIP} orbital energy of Equation \eqref{eq:evhip}, but setting the final horizontal position $x_f$ zero gives:
 \begin{equation}
     \frac{1}{2}\dot{x}^2\bar{f}^2(x)+gx^2f(x) - 3g\int_{0}^xf(\xi)\xi d\xi = \frac{1}{2}\dot{x}_f^2\bar{f}^2(0).
 \end{equation}
@@ -45,12 +45,12 @@ and in terms of the cubic polynomial as:
 \end{align}
 where $k$ is the last entry of vector $\vect{b}$. 
 
-Using the polynomial description, and having a nonzero final velocity $\dot{x}_f$, the final height constraint $z_f$ results in a final height velocity $\dot{z}_f$ relative to the gradient of the polynomial at $x_f=0$:
+Using the polynomial description and having a nonzero final velocity $\dot{x}_f$, the final height constraint $z_f$ results in a final vertical velocity $\dot{z}_f$ relative to the gradient of the polynomial at $x_f=0$:
 \begin{align}
  	f'(0) &= \frac{\dot{z}_f}{\dot{x}_f},\\
  	\dot{z}_f &= f'(0)\dot{x}_f.
 \end{align}
-It could be undesirable that $\dot{z}_f$ is depending on $\dot{x}_f$. When $\dot{x}_f \neq 0$, additional future actions have to be taken, like taking a step, to come to a stop. High vertical velocities can result in for example high impacts, which can be undesirable. Therefore, it could be useful to have zero vertical velocity at this point. The constraint $f(0)=z_f$ in the first row in Equation \eqref{eq:amatrix} can be replaced with the following constraint:
+It could be undesirable that $\dot{z}_f$ is depending on $\dot{x}_f$. When $\dot{x}_f \neq 0$, additional future actions have to be taken to come to a stop, like taking a step. High vertical velocities can result in, for example, high impacts, which can be undesirable. Therefore, it could be useful to have zero vertical velocity at this point. The constraint $f(0)=z_f$ in the first row in Equation \eqref{eq:amatrix} can be replaced with the following constraint on the final gradient:
 \begin{equation}
     \underbrace{\begin{bmatrix}0 & 1 & 0 & 0 \\ 
      1 & x_0 & x_0^2 & x_0^3\\
@@ -71,16 +71,16 @@ It could be undesirable that $\dot{z}_f$ is depending on $\dot{x}_f$. When $\dot
      \end{bmatrix}}_{\vect{b}}
      \label{eq:a1matrix}.
 \end{equation}
-
+Note that $z_f$ still appear in $k$. For the results presented in the following sections, $z_f$ is set equal to the constraint on maximum height or maximum leg length.
 %\begin{equation}
 %    u = \frac{g + f''(x)\dot{x}^2}{\bar{f}(x)}
 %\end{equation}
 
 % Height Constraint
 \subsection{Maximum Height Constraint}
-Using the previous two descriptions of the problem constraints, Equation \eqref{eq:amatrix} and \eqref{eq:a1matrix}, with an undetermined final velocity $\dot{x}_f$, a height constraint is added to the problem. Algorithm \ref{alg:h} shows how the polynomial values can be found under this constraint. The maximum height of the trajectory being optimized over is at location $x_{\zmax}$, which is the location in the trajectory where the derivative of the polynomial is zero. The initial guess for the final horizontal velocity is determined based on the \ac{LIP} orbital energy. 
+Using the previous two descriptions of the problem constraints with an undetermined final velocity $\dot{x}_f$, Equation \eqref{eq:amatrix} and Equation \eqref{eq:a1matrix}, a height constraint is added to the problem. Algorithm \ref{alg:h} shows how the polynomial values can be found under this constraint. The maximum height of the trajectory being optimized over is at location $x_{z_{peak}}$, which is the location in the trajectory where the derivative of the polynomial is zero. The initial guess for the final horizontal velocity is determined based on the \ac{LIP} orbital energy. 
 
-In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \ref{alg:h}: one with the final height constraint and one for the constraint on the final gradient. Notice that the maximum of $f(x)$ in both plots lies on the highest $x$-value of the extrema of the plots. Therefore, in Algorithm \ref{alg:h} the solution that corresponds to this peak is sufficient to consider a constraint on maximum height. In the figure, the entire polynomial is shown for explanatory reasons. In control however, only the part depicted with a solid line would be used, as this is the part of the function after the initial condition.
+In \figref{fig:polheight}, two resulting polynomials are shown from Algorithm \ref{alg:h}: one with the final height constraint and one for the constraint on the final gradient. Notice that the maximum of $f(x)$ in both plots lies on the highest $x$-value of the extrema of the polynomial functions. Therefore, in Algorithm \ref{alg:h}, the solution corresponding to this peak is used in the computation of the location $x_{z_{peak}}$ of the maximum height in the trajectory. In the figure, the entire polynomial is shown for explanatory reasons. In control however, only the part depicted with a solid line would be used, as this is the part of the function after the initial condition.
 \begin{algorithm}
 \caption{Find cubic polynomial constants under height constraint}
 \label{alg:h}
@@ -88,8 +88,8 @@ In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \re
     \State $\dot{x}_{f}\gets \sqrt{\dot{x}_0^2-\frac{g}{z_0}x_0^2}$\Comment{Initial guess based on $\Elip$}
         \Repeat
             \State $\vect{c}\gets \matr{A}^{-1}\vect{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
-            \State $x_{\zmax}\gets \frac{-2c_2 - \sqrt{4c_2^2-12c_3c_1}}{6c_3}$ \Comment{Traj. peak lies on highest $x$}
-            \State $z_{peak} \gets c_0 + c_1x_{\zmax} + c_2x_{\zmax}^2+ c_3x_{\zmax}^3$ \Comment{Corresponding height}
+            \State $x_{z_{peak}}\gets \frac{-2c_2 - \sqrt{4c_2^2-12c_3c_1}}{6c_3}$ \Comment{Traj. peak lies on highest $x$}
+            \State $z_{peak} \gets c_0 + c_1x_{z_{peak}} + c_2x_{z_{peak}}^2+ c_3x_{z_{peak}}^3$ \Comment{Corresponding height}
             \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Velocity increment}
         \Until{$z_{peak}<z_{max}$}\\
     \Return $\vect{c}$
@@ -98,32 +98,32 @@ In \figref{fig:polheight} two resulting polynomials are shown from Algorithm \re
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{STYLESTUFF/polynomialHeightViz.png}
-\caption{Resulting polynomials as output from Algorithm \ref{alg:h} with two different constraints on the final value. The dash-dotted line shows the height constraint. Initial conditions are $x_0=-0.25$ [m], $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=0.552$ [m/s], red plot: $\dot{x}_f=0.576$ [m/s], $z_{max}=1.1$ [m]. }
+\caption{Resulting polynomials as output from Algorithm \ref{alg:h} with two different constraints on the final value. The dash-dotted line shows the height constraint $z_{max}=1.1$ [m]. Initial conditions are $x_0=-0.25$ [m], $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=0.552$ [m/s], red plot: $\dot{x}_f=0.576$ [m/s], $g=9.81$ [m/s$^2$]. }
 \label{fig:polheight}
 \end{figure}
 
-It is challenging to find a gradient of the function $\dot{x}_f$. Therefore, there is not chosen to determine the size of increment $\alpha$ based on the gradient of $\dot{x}_f$. Using the final velocity of the \ac{LIP} orbital energy and a final velocity after the influence of an impact as in $x_{cp,\zmax}$, an increment can be derived. 
+It is challenging to find a local gradient of the function $\dot{x}_f$ for optimization purposes. Therefore, there is not chosen to determine the size of increment $\alpha$ based on the gradient of $\dot{x}_f$. Using the final velocity of the \ac{LIP} orbital energy and a final velocity after the influence of an impact as in $x_{cp,\zmax}$, an increment can be derived. 
 The final velocity according to the \ac{LIP} orbital energy is:
 \begin{equation}
 	\dot{x}_{f,lip} = \sqrt{\dot{x}_0^2-\frac{g}{z_0}x_0^2},
 \end{equation}
-where $\dot{x}_{f,lip}$ is the \ac{LIP} final velocity. The final velocity of a height constrained bound as in $x_{cp,\zmax}$ can be calculated as follows:
+where $\dot{x}_{f,lip}$ is the final velocity according to the \ac{LIP} model. The final velocity of a height constrained bound as in $x_{cp,\zmax}$ can be calculated as follows:
 \begin{equation}
 	\dot{x}_{f,\zmax} = \sqrt{\dot{x}_{0,I}^2-\frac{g}{\zmax}(x_0+\frac{\dot{z}_I}{g}\dot{x}_{0,I})^2},
 \end{equation}
-where $\dot{x}_{0,I}=\dot{x}_0 - \frac{x}{z}\dot{z}_I$ is the initial horizontal velocity influenced by the impact of the lag and $\dot{z}_I = \sqrt{2g\delta \zmax}$ is the vertical velocity resulting from the impact of the leg such that the constraint $\zmax$ is not violated. The increment $\alpha$ is calculated by a linear interpolation of the velocity differences:
+where $\dot{x}_{0,I}=\dot{x}_0 + \frac{x_0}{z_0}\dot{z}_I$ is the initial horizontal velocity influenced by the impact by the \ac{VHIP} and $\dot{z}_I = \sqrt{2g(\zmax-z_0)}$ is the vertical velocity resulting from the impact of the leg such that the constraint $\zmax$ is not violated. The increment $\alpha$ is calculated by a linear interpolation of the velocity differences:
 \begin{equation}
-	\alpha =\frac{\dot{x}_{f,cp} -\dot{x}_{f,\zmax}}{N},
+	\alpha =\frac{\dot{x}_{f,lip} -\dot{x}_{f,\zmax}}{N},
 \end{equation}
-where the value $N=30$ resulted in reasonable precision, as shown in for example \figref{fig:polheight}, and a computation time of an average of $0.51$ [ms] in Java.
+where the value $N=30$ resulted in reasonable precision, as shown in for example \figref{fig:polheight}. Also, this value resulted in an average computation time of $0.51$ [ms] in Java, which could be suitable for a controller running on $250$ [Hz] as is used at \ac{IHMC}.
 
 % leg length constraint
 \subsection{Maximum Leg Length Constraint}
-Instead of a constraint on the height of the pendulum, also a kinematic constraint on the length can be added, which can simulate the maximum leg length. The virtual leg length as a function of $x$ can be expressed using the Pythagorean theorem:
+Instead of a constraint on the height of the \ac{VHIP}, also a constraint on the length can be added, which can simulate the maximum leg length. The virtual leg length as a function of $x$ can be expressed using the Pythagorean theorem:
 \begin{equation}
 	l^2(x) = f(x)^2 + x^2,
 \end{equation}
-where $l$ is the length of the virtual leg. The solution to $f(x)^2$ is:
+where $l$ is the length of the \ac{VHIP}. The solution to $f(x)^2$ is:
 \begin{equation}
 f(x)^2=(\sum_{n=0}^3 c_n x^n)^2 = \sum_{n=0}^3 c_n^2 x^{2n} + 2\sum_{\substack{n=1 \\ i+j=n \\ i < j}}^5 c_i c_j x^n. 
 \end{equation}
@@ -131,16 +131,22 @@ However, as the gradient of $l^2(x)$ needs to be computed to obtain the location
 \begin{equation*}
 	f(x)^2\approx \sum_{n=0}^3 c_n^2 x^{2n}.
 \end{equation*}
-With this formulation of the squared function, the squared horizontal position $x_{l_{max}}$ in $l(x)^2$ where the maximum pendulum length lies, is computed as follows:
+With this formulation of the squared function, the squared horizontal position $x_{l_{peak}}^2$ in $l(x)^2$ where the approximated maximum pendulum length $l_{peak}$ lies, is computed as follows:
 \begin{align}
-	\frac{d(f(x_{l_{max}})^2+x_{l_{max}}^2)}{dx}&=0,\\
-	\frac{d(f(x_{l_{max}})^2+x_{l_{max}}^2)}{dx}\frac{1}{x_{l_{max}}}&=0,\\
-	6c_3^2 x_{l_{max}}^4 + 4 c_2^2 x_{l_{max}}^2 + 2+2c_1^2 &= 0,\\
-	6c_3^2 (x_{l_{max}}^2)^2 + 4 c_2^2 (x_{l_{max}}^2) + 2+2c_1^2 &= 0,
+	\frac{d(f(x_{l_{peak}})^2+x_{l_{peak}}^2)}{dx}&=0,\\
+	\frac{d(f(x_{l_{peak}})^2+x_{l_{peak}}^2)}{dx}\frac{1}{x_{l_{peak}}}&=0,\\
+	6c_3^2 x_{l_{peak}}^4 + 4 c_2^2 x_{l_{peak}}^2 + 2+2c_1^2 &= 0,\\
+	6c_3^2 (x_{l_{peak}}^2)^2 + 4 c_2^2 (x_{l_{peak}}^2) + 2+2c_1^2 &= 0,
 \end{align}
-where $x_{l_{max}}^2$ is the squared location of the approximated maximum pendulum length $l_{max}$.
+where $x_{l_{peak}}^2$ is the squared location of the approximated maximum pendulum length $l_{peak}$.
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{STYLESTUFF/polynomialLengthViz.png}
+\caption{Resulting polynomials as output from Algorithm \ref{alg:ll} with two different initial values under the final height constraint $z_f=1.0$. The dash-dotted line shows the length constraint $l_{max}=1.15$ [m]. Other initial conditions are $\dot{x}_0=1.4$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0.0$ [m/s]. Blue plot: $\dot{x}_f=1.107$ [m/s], red plot: $\dot{x}_f=0.724$ [m/s], $g=9.81$ [m/s$^2$]. }
+\label{fig:pollength}
+\end{figure}
 
-Again, the value of the maximum peak lies on the highest $x$ value of the two locations where the gradient is zero, this time in $l(x)^2$. Algorithm \ref{alg:ll} shows how the polynomial constants can be found under the leg length constraint. In Figure \ref{fig:pollength}, it can be seen that the resulting polynomials do not violate the maximum length constraint.
+Again, the value of the peak lies on the highest $x$ value of the two locations where the gradient is zero, this time in $l(x)^2$. Algorithm \ref{alg:ll} shows how the polynomial constants can be found under the leg length constraint. In Figure \ref{fig:pollength}, it can be seen that the resulting polynomials do not violate the maximum length constraint.
 \begin{algorithm}
 \caption{Find cubic polynomial constants under leg length constraint}
 \label{alg:ll}
@@ -148,31 +154,25 @@ Again, the value of the maximum peak lies on the highest $x$ value of the two lo
     \State $\dot{x}_{f}\gets \sqrt{\dot{x}_0^2-\frac{g}{z_0}x_0^2}$\Comment{Initial guess based on $\Elip$}
         \Repeat
             \State $\vect{c}\gets \matr{A}^{-1}\vect{b}(\dot{x}_{f})$ \Comment{Find polynomial constants}
-            \State $x_{\lmax}^2 \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}  
-            \State $x_{\lmax}\gets-|\sqrt{x_{\lmax^2}}|$                \Comment{Complex solutions}
-            \State $l_{peak}^2 \gets x_{\lmax}^2 + (c_0 + c_1x_{\lmax} + c_2x_{\lmax}^2+ c_3x_{\lmax}^3)^2$ 
+            \State $x_{l_{peak}}^2 \gets \frac{-4c_2^2+\sqrt{16c_2^4-24c_3^2(2+2c_1^2)}}{12c_3^2}$ \Comment{$d(f(x)^2+x^2)/dx=0$}  
+            \State $x_{l_{peak}}\gets-|\sqrt{x_{l_{peak}^2}}|$                \Comment{Complex solutions}
+            \State $l_{peak}^2 \gets x_{l_{peak}}^2 + (c_0 + c_1x_{l_{peak}} + c_2x_{l_{peak}}^2+ c_3x_{l_{peak}}^3)^2$ 
             \State $\dot{x}_{f} \gets \dot{x}_{f}+\alpha$   \Comment{Velocity increment}
         \Until{$l_{peak}^2<l_{max}^2$}\\
     \Return $\vect{c}$    
 \end{algorithmic}
 \end{algorithm}
-\begin{figure}
-\centering
-\includegraphics[width=0.6\textwidth]{STYLESTUFF/polynomialLengthViz.png}
-\caption{Resulting polynomials as output from Algorithm \ref{alg:ll} with two different initial values under the final height constraint $z_f=1.0$. The dash-dotted line shows the length constraint $l_{max}$. Other initial conditions are $\dot{x}_0=1.4$ [m/s], $z_0=1.0$ [m] and $\dot{z}_0=0$ [m/s]. Blue plot: $\dot{x}_f=1.107$ [m/s], red plot: $\dot{x}_f=0.724$ [m/s], $l_{max}=1.15$ [m]. }
-\label{fig:pollength}
-\end{figure}
 % discussion
 \section{Discussion}
-In this chapter, a search algorithm is proposed that is able to find \ac{VHIP} orbital energy trajectories under additional constraints, extending the work in \cite{koolen2016balance}. The horizontal velocity of the orbital energy at $x=0$ is left undetermined, such that this could used as a variable in the search. Choosing the search increment using knowledge of Chapter \ref{chap:regions}, constrained trajectories could be generated in a time that is suitable for online use. 
+In this chapter, a search algorithm is proposed that is able to find \ac{VHIP} orbital energy trajectories under additional constraints, extending the work in \cite{koolen2016balance}. The horizontal velocity of the orbital energy at the final position $x_f=0$ is left undetermined, such that this could used as a variable in the search. Choosing the search increment using knowledge obtained in Chapter \ref{chap:regions}, constrained trajectories could be generated in a time that is suitable for online use. 
 
 Noticeable is that the final gradient constraint gives a higher final velocity $\dot{x}_f$ compared to the default height constraint in \figref{fig:polheight}. This is caused by the polynomial shapes, as the blue plot, under constraint $z_f$, has a steeper gradient in the first part of the trajectory after $x_0$. This is the crucial part in the trajectory for an acceleration or deceleration action in $x$-direction, as is proven in the previous chapter.
 
-Another drawback to the constraint of the polynomial shape is that derivatives of the function, and thus also accelerations, depend on the function itself. In \figref{fig:polforce}, two plots are shown for $\dot{x}_f = 0$ [m/s], together with a plot of the vertical acceleration. The vertical acceleration has a shape that is desirable for a stopping behavior: high acceleration in the beginning of the trajectory and lower later. However, the acceleration at start is unrealistically high, assuming the approximations of possible vertical acceleration on human and robot in the previous chapter. This is even the case for the initial position that is relatively close to the \ac{CP}: $x_0=-0.3$ [m]. Also, the vertical acceleration barely goes below zero, so the polynomial does not make use of higher deceleration, which could lower the amount height variation.
+Another drawback of the constraint of the polynomial shape is that derivatives of the function, and thus also accelerations, depend on the function itself. In \figref{fig:polforce}, two trajectories are shown for $\dot{x}_f = 0$ [m/s], together with a corresponding plot of the vertical accelerations. The vertical acceleration has a shape that is desirable for a stopping behavior: high acceleration in the beginning of the trajectory and lower later. However, the acceleration in the beginning of the trajectory is unrealistically high, assuming the approximations of possible vertical acceleration on humans and robots in the previous chapter. This is even the case for the initial position that is relatively close to the \ac{CP}: $x_0=-0.3$ [m], as in the example figure. Also, the vertical acceleration barely goes below zero. Therefore, there is no high deceleration in the trajectory, which could result in more height change than for example the vertical acceleration profile of the bang-bang control law for the vertical force constrained capture region presented in the previous chapter.
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{STYLESTUFF/polynomialforce.png}
-\caption{Position plot (left) versus the resulting vertical acceleration (right).}
+\caption{Position plot (left) versus the resulting vertical acceleration (right) with $x_0=-0.3$ [m], $z_0=1.0$ [m], $\dot{x}_0=1.0$ [m/s], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$].}
 \label{fig:polforce}
 \end{figure}
 

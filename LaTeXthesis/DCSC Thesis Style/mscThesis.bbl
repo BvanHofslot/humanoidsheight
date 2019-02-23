@@ -121,6 +121,18 @@ Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for
 W.~J. Schwind, {\em Spring loaded inverted pendulum running: A plant model.}
 \newblock PhD thesis, University of Michigan, 1998.
 
+\bibitem{seyde2018inclusion}
+T.~Seyde, A.~Shrivastava, J.~Englsberger, S.~Bertrand, J.~Pratt, and R.~J.
+  Griffin, ``Inclusion of angular momentum during planning for capture point
+  based walking,'' in {\em IEEE International Conference on Robotics and
+  Automation (ICRA)}, pp.~1791--1798, 2018.
+
+\bibitem{englsberger2012integration}
+J.~Englsberger and C.~Ott, ``Integration of vertical com motion and angular
+  momentum in an extended capture point tracking controller for bipedal
+  walking,'' in {\em IEEE-RAS International Conference on Humanoid Robots
+  (Humanoids),}, pp.~183--189, 2012.
+
 \bibitem{scs}
 ``{IHMC's open-source software}.'' \url{https://github.com/ihmcrobotics}.
 \newblock Accessed: 19/02/2019.
@@ -139,18 +151,6 @@ N.~A. Radford, P.~Strawser, K.~Hambuchen, J.~S. Mehling, W.~K. Verdeyen, A.~S.
 ``{Image of the Valkyrie humanoid robot}.''
   \url{https://spectrum.ieee.org/automaton/robotics/humanoids/video-friday-ihmc-valkyrie-harvard-arthropods-flying-wheeled-robot}.
 \newblock Accessed: 27/01/2019.
-
-\bibitem{seyde2018inclusion}
-T.~Seyde, A.~Shrivastava, J.~Englsberger, S.~Bertrand, J.~Pratt, and R.~J.
-  Griffin, ``Inclusion of angular momentum during planning for capture point
-  based walking,'' in {\em IEEE International Conference on Robotics and
-  Automation (ICRA)}, pp.~1791--1798, 2018.
-
-\bibitem{englsberger2012integration}
-J.~Englsberger and C.~Ott, ``Integration of vertical com motion and angular
-  momentum in an extended capture point tracking controller for bipedal
-  walking,'' in {\em IEEE-RAS International Conference on Humanoid Robots
-  (Humanoids),}, pp.~183--189, 2012.
 
 \bibitem{englsberger2014trajectory}
 J.~Englsberger, T.~Koolen, S.~Bertrand, J.~Pratt, C.~Ott, and
@@ -201,10 +201,6 @@ W.~Gao, Z.~Jia, and C.~Fu, ``Increase the feasible step region of biped robots
 L.~Lanari, S.~Hutchinson, and L.~Marchionni, ``Boundedness issues in planning
   of locomotion trajectories for biped robots,'' in {\em IEEE-RAS International
   Conference on Humanoid Robots (Humanoids)}, pp.~951--958, 2014.
-
-\bibitem{caron2018capturability}
-S.~Caron, A.~Escande, L.~Lanari, and B.~Mallein, ``Capturability-based pattern
-  generation for walking with variable height.'' Submitted, Oct. 2018.
 
 \bibitem{mcmahon1983size}
 T.~A. McMahon and J.~T. Bonner, {\em On size and life}.

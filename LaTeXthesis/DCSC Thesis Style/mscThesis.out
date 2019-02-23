@@ -36,7 +36,7 @@
 \BOOKMARK [2][-]{subsection.3.4.1}{Comparison without Angular Momentum}{section.3.4}% 36
 \BOOKMARK [2][-]{subsection.3.4.2}{Comparison with Angular Momentum}{section.3.4}% 37
 \BOOKMARK [1][-]{section.3.5}{Discussion}{chapter.3}% 38
-\BOOKMARK [0][-]{chapter.4}{Kinematic Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 39
+\BOOKMARK [0][-]{chapter.4}{Kinematically Constrained Orbital Energy Trajectories}{mainmatter_anchor.-1}% 39
 \BOOKMARK [1][-]{section.4.1}{Constraint Matrix with Final Velocity}{chapter.4}% 40
 \BOOKMARK [2][-]{subsection.4.1.1}{Maximum Height Constraint}{section.4.1}% 41
 \BOOKMARK [2][-]{subsection.4.1.2}{Maximum Leg Length Constraint}{section.4.1}% 42
@@ -53,7 +53,7 @@
 \BOOKMARK [1][-]{section.6.1}{Experimental Setup}{chapter.6}% 53
 \BOOKMARK [1][-]{section.6.2}{Method}{chapter.6}% 54
 \BOOKMARK [2][-]{subsection.6.2.1}{Avoiding Generating Additional Angular Momentum Rate}{section.6.2}% 55
-\BOOKMARK [2][-]{subsection.6.2.2}{Alignment Angle and Effective Distance}{section.6.2}% 56
+\BOOKMARK [2][-]{subsection.6.2.2}{Decision Variables}{section.6.2}% 56
 \BOOKMARK [2][-]{subsection.6.2.3}{Actions}{section.6.2}% 57
 \BOOKMARK [1][-]{section.6.3}{Results}{chapter.6}% 58
 \BOOKMARK [2][-]{subsection.6.3.1}{Valkyrie Simulation}{section.6.3}% 59
@@ -67,5 +67,5 @@
 \BOOKMARK [0][-]{appendix.A}{Test Parameters}{apdx_anchor.-1}% 67
 \BOOKMARK [0][-]{appendix.B}{2D Analysis from Model to Robot}{apdx_anchor.-1}% 68
 \BOOKMARK [-1][]{backmatter_anchor.-1}{Back Matter}{}% 69
-\BOOKMARK [0][-]{section*.166}{Bibliography}{backmatter_anchor.-1}% 70
-\BOOKMARK [0][-]{appendix*.168}{List of Acronyms}{backmatter_anchor.-1}% 71
+\BOOKMARK [0][-]{section*.169}{Bibliography}{backmatter_anchor.-1}% 70
+\BOOKMARK [0][-]{appendix*.171}{List of Acronyms}{backmatter_anchor.-1}% 71
