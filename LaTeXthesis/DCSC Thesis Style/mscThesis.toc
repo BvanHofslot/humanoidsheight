@@ -80,13 +80,13 @@
 \contentsline {chapter}{\numberline {7}Conclusion}{71}{chapter.7}
 \contentsline {section}{\numberline {7-1}Recommendations}{72}{section.7.1}
 \contentsline {subsection}{\numberline {7-1-1}Extending the Proposed Approach }{72}{subsection.7.1.1}
-\contentsline {subsubsection}{Extension of Capture Regions}{72}{section*.161}
-\contentsline {subsubsection}{Improving Push Recovery Tests}{73}{section*.162}
-\contentsline {subsubsection}{Improving State Estimation and Center of Pressure Control}{73}{section*.163}
-\contentsline {subsubsection}{Standing Tests for Lowering Center of Mass Height}{73}{section*.165}
-\contentsline {subsubsection}{Analysis of Results}{73}{section*.166}
-\contentsline {subsection}{\numberline {7-1-2}Outlook}{73}{subsection.7.1.2}
+\contentsline {subsubsection}{Extension of Capture Regions}{72}{section*.160}
+\contentsline {subsubsection}{Improving Push Recovery Tests}{73}{section*.161}
+\contentsline {subsubsection}{Improving State Estimation and Center of Pressure Control}{73}{section*.162}
+\contentsline {subsubsection}{Standing Tests for Lowering Center of Mass Height}{73}{section*.164}
+\contentsline {subsubsection}{Analysis of Results}{73}{section*.165}
+\contentsline {subsection}{\numberline {7-1-2}Outlook}{74}{subsection.7.1.2}
 \contentsline {chapter}{\numberline {A}Test Parameters}{75}{appendix.A}
 \contentsline {chapter}{\numberline {B}2D Analysis from Model to Robot}{77}{appendix.B}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{87}{section*.169}
-\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{91}{appendix*.171}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Bibliography}{87}{section*.168}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }List of Acronyms}{91}{appendix*.170}

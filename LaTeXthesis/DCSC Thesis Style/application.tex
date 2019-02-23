@@ -41,7 +41,7 @@ The following properties are observed, when applying pushes in different directi
 	\item The direction of the \ac{ICP} error stays often approximately the same until transition to double support;
 	\item If the \ac{ICP} error is directed in the sagittal plane, the desired \ac{CMP} often remains somewhat in the same location;
 	\item If the \ac{ICP} error is directed  in the coronal plane, the desired \ac{CMP} slides from back to the front of the foot;
-	\item The configuration and velocity near transition to double support affects the robots ability to put its swing leg down at the desired time. 
+	\item The configuration and velocity near transition to double support affect the robots ability to put its swing leg down at the desired time. 
 \end{enumerate}
 These properties are used as assumptions in the development of a control law.
 % Methods
@@ -195,17 +195,17 @@ The results on Valkyrie in simulation are obtained by pushing the robot in singl
   
 
 \subsubsection{Maximum Recoverable Push}
-Like in the previous chapter,  the maximum recoverable pushes are searched for every $5$ degrees. The results for both control setups are shown in \figref{fig:roundPushActions}, with the radial lines showing the push directions and actions used by the vertical motion controller. Like with the standing tests, $\rcmpd$ is constrained to be inside the support polygon and is assumed to coincide with $\rcopd$. It can be observed that the actions have relatively less effect when the push is applied later in single support, and often result in even worse recovery than the default setup at $\fracpush=0.5$. Note that the recovery for a push around $200$ degrees is always worse when the vertical motion control law is enabled when $\fracpush>0.0$.
+Like in the previous chapter,  the maximum recoverable pushes are searched for every $5$ degrees and the normalized impulse $i = \frac{\int \fpush d\tpush}{\mrobot}$ is used. The results for both control setups are shown in \figref{fig:roundPushActions}, with the radial lines showing the push directions and actions used by the vertical motion controller. The right foot is the support foot. For the push directions, $0$ degrees is a rear push, $90$ degrees is a push from the right, $180$ degrees is a frontal push and $270$ degrees is a push from the left. For these results, $\rcmpd$ is constrained to be inside the support polygon and is assumed to coincide with $\rcopd$. It can be observed that the actions have less effect when the push is applied later in single support, and often result in worse recovery than the default setup at $\fracpush=0.5$. The recovery for a push around $200$ degrees is worse when the vertical motion control law is enabled when $\fracpush>0.0$.
 \begin{figure}
      \centering
         \includegraphics[width=0.85\textwidth]{STYLESTUFF/rounActions.png}
-    \caption{Polar plots of the maximum recoverable impulses $i$ (radius) for the default controller (black) and the vertical motion controller (blue) for pushes applied at different moments in single support. The colors of the radial lines show the actions used by the vertical motion control law.}
+    \caption{Polar plots of the maximum recoverable impulses $i$ (radius) for the default controller (black) and the vertical motion controller (blue) for pushes applied at different moments in single support. The right foot is the support foot and $0$ degrees corresponds with a push from the back. The colors of the radial lines show the actions used by the vertical motion control law.}
     \label{fig:roundPushActions}
 \end{figure}
 \begin{figure}
      \centering
         \includegraphics[width=0.85\textwidth]{STYLESTUFF/roundAng.png}
-        \caption{Polar plots of the maximum recoverable impulses $i$ (radius) for the default controller (black) and vertical motion controller (blue). A comparison is shown for when the desired \ac{CMP} is constrained to be inside the polygon, and when the desired \ac{CMP} is allowed to leave the polygon $0.05$ [m].}
+        \caption{Polar plots of the maximum recoverable impulses $i$ (radius) for the default controller (black) and vertical motion controller (blue). The right foot is the support foot and $0$ degrees corresponds with a rear push. A comparison is shown for when the desired \ac{CMP} is constrained to be inside the polygon, and when the desired \ac{CMP} is allowed to leave the polygon $0.05$ [m].}
         \label{fig:roundPushAng}
 \end{figure}
 
@@ -259,10 +259,10 @@ In \figref{fig:walk3D}, a \ac{3D} plot of the walking pattern and a time respons
 \end{figure}
 % Discussion
 \section{Discussion}
-In this chapter, the control law presented in Chapter \ref{chap:standing} is extended for the use during walking, using predefined strategies that can be heuristically be selected. These strategies rely on the predefined step time and step location used in the control framework. Like in the previous chapter, control actions are chosen based on the violation of certain thresholds. 
+Chapter \ref{chap:walking} presented a control law for the use during walking, extending the method introduced in Chapter \ref{chap:standing}. This control law uses predefined strategies, that can be heuristically be selected. These strategies rely on the predefined step time and step location used in the control framework. Like in the previous chapter, control actions are chosen based on the violation of certain thresholds. 
 
 The effective distance $\delta$ and the alignment angle $\phi$ allow for making a heuristic decision for the use of \ac{CoM} height variation for balance control in different configurations. These variables are depending on the already existing \ac{ICP} control law. Based on these variables, a control action is selected. Any misalignment with the error would result in additional error when using \ac{CoM} height variation for balance. This error is controlled with with future $\rcmpd$ positions. For the future, it could be interesting to already adjust for these additional errors by modifying $\rcmpd$ in advance.
 
 From the results obtained for the step time and length considered, it seemed that the proposed control actions in the beginning of single support resulted in the most improvement compared to strategies that do not use \ac{CoM} height variation for balance. The vertical motion controller performs worse than the default setup around the $200$ degree push direction for all push moments in swing considered. This may be a results of the chosen control actions based on the thresholds $\phimin$, $\phimax$ and $\deltamin$, which are constant during the swing phase.
 
-For the Atlas tests on hardware, the control law was difficult to compare with the default setup, and therefore the choice is made to only show one example of a result using the vertical motion controller. For the standing tests, it is assumed that the direction orthogonal to the push is constrained and the recovery problem is in \ac{2D}. For the walking test, the \ac{CoM} is located outside the support polygon if the push is applied and can also move orthogonal to the push direction. Furthermore, the robot is moving while the push is applied during walking. Any small difference in the moment when the push is applied, the push location or the push direction can make a large difference in how the robot recovers. Therefore, a reliable comparison with the default setup on hardware for the walking tests could not be made and might be interesting to consider in the future. 
+For the Atlas tests on hardware, the control law was difficult to compare with the default setup, and therefore the choice was made to only show one example of a result using the vertical motion controller. For the standing tests in Chapter \ref{chap:standing}, it was assumed that the direction orthogonal to the push is constrained and the recovery problem is in \ac{2D}. For the walking tests, the \ac{CoM} is located outside the support polygon if the push is applied and can also move orthogonal to the push direction. Furthermore, the robot is moving while the push is applied during walking. Any small difference in the moment when the push is applied, the push location or the push direction can make a large difference in how the robot recovers. Therefore, a reliable comparison with the default setup on hardware for the walking tests could not be made and might be interesting to consider in the future. 

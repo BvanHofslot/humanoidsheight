@@ -61,7 +61,7 @@ where $\xcpuni$ is a unilateral contact constrained capture position. In \figref
 \begin{figure}
 \centering
 \includegraphics[width=3.0in]{STYLESTUFF/CPvsBalistic4.png}
-\caption{Visualization of feasible final point-mass locations for the unilateral contact constrained capture region (gray area). The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used. The thin black lines are made with the method of \cite{koolen2016balance} and visualize possible intermediate trajectories.}
+\caption{Visualization of feasible final point-mass locations for the unilateral contact constrained capture region (gray area). The values $\dot{x}_0=1.0$ [m/s], $z_0=1.0$ [m], $\dot{z}_0=0.0$ [m/s] and $g=9.81$ [m/s$^2$] are used. The thin black lines are made with the method presented in \cite{koolen2016balance} and visualize possible intermediate trajectories.}
 \label{fig:cpbal}
 \end{figure}
 
@@ -242,7 +242,7 @@ In the right plot, the \textit{capture velocity} is shown. This is the initial v
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{STYLESTUFF/capcompare.png}
-\caption{Comparison of capture region with angular momentum versus vertical force constrained capture. $\delta \zmax' =\delta \zmin'$ and $I_y' = \frac{1}{6}$. The solid plots show the first bound on the region and the dotted plots the second bound.}
+\caption{Comparison of capture region with angular momentum versus vertical force constrained capture. The height constraints are set equal, $\delta \zmin' =\delta \zmax'$ and $I_y' = \frac{1}{6}$. The solid plots show the first bound on the region and the dotted plots the second bound.}
 \label{fig:capcompare}
 \end{figure}
 
@@ -268,13 +268,13 @@ In \figref{fig:capcompare}, vertical force constrained capture regions are compa
 
 %% Discussion
 \section{Discussion}
-In this chapter, capture positions and capture regions for the \ac{VHIP} model were introduced, by adding constraints to the \ac{VHIP} model. By comparing the capture positions, it can be observed that addition of constraints to the model affect the capture region. Comparisons are made with the \ac{CP} and a high-level comparison is made with angular momentum strategies, which bring \ac{CoM} height variations for balance in perspective with other balancing strategies.
+Chapter \ref{chap:regions} presented capture positions and capture regions for the \acf{VHIP} model, by adding constraints to the \ac{VHIP} model. By comparing the capture positions, it can be observed that addition of constraints to the model affect the capture region. Comparisons were made with the \ac{CP} and a high-level comparison is made with angular momentum strategies, which bring \ac{CoM} height variations for balance in perspective with other balancing strategies.
 
 The unilateral contact and height constrained capture regions consider impacts of the \ac{VHIP}. This has some resemblance with the work presented in \cite{kuo2005energetic}, where the influences of impacts on the energetics of the inverted pendulum are investigated. The impact influenced capture point presented in this chapter, shows how an impact influences the \ac{CP} instead of the inverted pendulum.
 
-For the vertical force constrained capture regions, joint torque limits of the robot are approximated with a constant constraint on minimum and maximum vertical force. This approximation of the torque limit can be closer to the real torque limit if height changes are relatively small, as the change in configuration of the robotic chain is relatively small. For large changes in height, a more complicated function might be worth considering as constraint on vertical force over time. Additionally, it could be interesting to explore closed-form solutions for the vertical force constrained capture points. In this chapter, the points are found numerically. A closed-form expression allows for faster computation times, which could allow for the use in control.
+For the vertical force constrained capture regions, joint torque limits of the robot are approximated with a constant constraint on minimum and maximum vertical force. This approximation of the torque limit can be closer to the real torque limit if height changes are relatively small, as the change in configuration of the robotic chain is relatively small. For large changes in height, a more complicated function might be worth considering as constraint on vertical force over time. Additionally, it could be interesting to explore closed-form solutions for the vertical force constrained capture points. In this chapter, the points were found numerically. A closed-form expression allows for faster computation times, which could allow for the use in control.
 
-A constraint that is not considered in this chapter is a constraint on ground friction. The unilateral contact constraint constrains the vertical component of the \ac{GRF} to be larger than zero. The vertical force constraint limits the magnitude of the \ac{GRF}. However, a constraint on the direction of the \ac{GRF}, like a friction cone constraint, is not considered. As no inertia is used in the model however, the direction of the \ac{GRF} is just depending on the \ac{VHIP} configuration.
+A constraint that was not considered in this chapter is a constraint on ground friction. The unilateral contact constraint constrains the vertical component of the \ac{GRF} to be larger than zero. The vertical force constraint limits the magnitude of the \ac{GRF}. However, a constraint on the direction of the \ac{GRF}, like a friction cone constraint, was not considered. As no inertia is used in the model however, the direction of the \ac{GRF} is just depending on the \ac{VHIP} configuration.
 
 However, if \ac{CoM} height variation and angular momentum strategies would be combined, a constraint on ground friction might be worth considering.  A \ac{VHIP} plus flywheel model can be formulated as follows:
 \begin{equation}
@@ -282,6 +282,6 @@ However, if \ac{CoM} height variation and angular momentum strategies would be c
 \end{equation}
 If the input torque $\tau_y$ would be used during a ballistic trajectory, where $\ddot{z}=-g$, the \ac{GRF} would become parallel to the ground plane. This would require infinite ground friction, which is in practice never the case.
 
-Also, this chapter presents `0-step' capture regions, unlike the work presented in \cite{koolen2012capturability, gao2017increase}, where multiple steps are considered in the computation of the capture region. However, in a similar manner the capture points in this chapter are derived, expressions can be derived for multi-step strategies. Using a combination of impacts, ballistic trajectories and \ac{LIP} trajectories, a multi-step strategy can be computed closed-form.
+Also, this chapter presented `0-step' capture regions, unlike the work presented in \cite{koolen2012capturability, gao2017increase}, where multiple steps are considered in the computation of the capture region. However, in a similar manner the capture points in this chapter were derived, expressions can be derived for multi-step strategies. Using a combination of impacts, ballistic trajectories and \ac{LIP} trajectories, a multi-step strategy can be computed closed-form.
 
 In the next chapter, the height constrained capture point $\zmax$ is used to compute the step size for a \ac{MPC} law.

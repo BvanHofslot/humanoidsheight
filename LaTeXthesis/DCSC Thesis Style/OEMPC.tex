@@ -111,7 +111,7 @@ where $\dot{x}_{f,lip}$ is the final velocity according to the \ac{LIP} model. T
 \begin{equation}
 	\dot{x}_{f,\zmax} = \sqrt{\dot{x}_{0,I}^2-\frac{g}{\zmax}(x_0+\frac{\dot{z}_I}{g}\dot{x}_{0,I})^2},
 \end{equation}
-where $\dot{x}_{0,I}=\dot{x}_0 + \frac{x_0}{z_0}\dot{z}_I$ is the initial horizontal velocity influenced by the impact by the \ac{VHIP} and $\dot{z}_I = \sqrt{2g(\zmax-z_0)}$ is the vertical velocity resulting from the impact of the leg such that the constraint $\zmax$ is not violated. The increment $\alpha$ is calculated by a linear interpolation of the velocity differences:
+where $\dot{x}_{0,I}=\dot{x}_0 + \frac{x_0}{z_0}\dot{z}_I$ is the initial horizontal velocity influenced by the impact by the \ac{VHIP} and $\dot{z}_I = \sqrt{2g(\zmax-z_0)}$ is the vertical velocity resulting from the impact of the leg such that the constraint $\zmax$ is not violated. The velocity $\dot{x}_{f,\zmax}$ is the final velocity when a similar trajectory as in $x_{cp,\zmax}$ would be followed. The increment $\alpha$ is calculated by a linear interpolation of the velocity differences:
 \begin{equation}
 	\alpha =\frac{\dot{x}_{f,lip} -\dot{x}_{f,\zmax}}{N},
 \end{equation}
@@ -164,7 +164,7 @@ Again, the value of the peak lies on the highest $x$ value of the two locations 
 \end{algorithm}
 % discussion
 \section{Discussion}
-In this chapter, a search algorithm is proposed that is able to find \ac{VHIP} orbital energy trajectories under additional constraints, extending the work in \cite{koolen2016balance}. The horizontal velocity of the orbital energy at the final position $x_f=0$ is left undetermined, such that this could used as a variable in the search. Choosing the search increment using knowledge obtained in Chapter \ref{chap:regions}, constrained trajectories could be generated in a time that is suitable for online use. 
+Chapter \ref{chap:mpc} presented a a method for finding \ac{VHIP} orbital energy trajectories under kinematic constraints, extending the work in \cite{koolen2016balance}. The horizontal velocity of the orbital energy at the final position $x_f=0$ was left undetermined, such that this could be used as a variable in a search. Choosing the search increment using the knowledge obtained in Chapter \ref{chap:regions}, constrained trajectories could be generated in a time that is suitable for online use. 
 
 Noticeable is that the final gradient constraint gives a higher final velocity $\dot{x}_f$ compared to the default height constraint in \figref{fig:polheight}. This is caused by the polynomial shapes, as the blue plot, under constraint $z_f$, has a steeper gradient in the first part of the trajectory after $x_0$. This is the crucial part in the trajectory for an acceleration or deceleration action in $x$-direction, as is proven in the previous chapter.
 

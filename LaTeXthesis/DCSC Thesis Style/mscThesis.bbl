@@ -82,6 +82,11 @@ S.~Caron and B.~Mallein, ``Balance control using both zmp and com height
 S.~M. Hasson, {\em Clinical exercise physiology}.
 \newblock Mosby Inc, 1994.
 
+\bibitem{kuo2005energetic}
+A.~D. Kuo, J.~M. Donelan, and A.~Ruina, ``Energetic consequences of walking
+  like an inverted pendulum: step-to-step transitions,'' {\em Exercise and
+  Sport Sciences Reviews}, vol.~33, no.~2, pp.~88--97, 2005.
+
 \bibitem{sardain2004forces}
 P.~Sardain and G.~Bessonnet, ``Forces acting on a biped robot. center of
   pressure-zero moment point,'' {\em Transactions on Systems, Man, and
@@ -105,11 +110,6 @@ M.~B. Popovic, A.~Goswami, and H.~Herr, ``Ground reference points in legged
 \bibitem{stephens2007humanoid}
 B.~Stephens, ``Humanoid push recovery,'' in {\em IEEE-RAS International
   Conference on Humanoid Robots (Humanoids)}, pp.~589--595, 2007.
-
-\bibitem{kuo2005energetic}
-A.~D. Kuo, J.~M. Donelan, and A.~Ruina, ``Energetic consequences of walking
-  like an inverted pendulum: step-to-step transitions,'' {\em Exercise and
-  Sport Sciences Reviews}, vol.~33, no.~2, pp.~88--97, 2005.
 
 \bibitem{liu2015trajectory}
 Y.~Liu, P.~M. Wensing, D.~E. Orin, and Y.~F. Zheng, ``Trajectory generation for

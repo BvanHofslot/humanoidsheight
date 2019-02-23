@@ -8,7 +8,7 @@ In this section, commonly used expressions and background related to legged syst
 \subsection{Human Balance Strategies}
 As humanoid robots are a derivation of humans, human balance strategies are briefly discussed. In \figref{fig:human}, balance strategies are shown for a standing human. The `ankle strategy', `hip strategy' and stepping strategy are most commonly considered as a balance strategy. However, the figure includes the `suspensory strategy' \cite{hasson1994clinical}, which is less commonly considered. With the `suspensory strategy', the human is in a slightly lower configuration with bent knees to have more control authority of the ankles.
 
-For balancing, height variation is often not considered for a standing human. A reason for this might be that often the assumption is made that the legs are straight. The goal of the `suspensory strategy' however, gives an interesting insight to the problem. Using height changes for balancing, the control authority of the ankles will change. Therefore, height variations for balance control could be a trade-off between the application of additional force and the gain in height. 
+For balancing, height variation is often not considered for a standing human. A reason for this might be that often the assumption is made that the legs are straight \cite{kuo2005energetic}. The goal of the `suspensory strategy' however, gives an interesting insight to the problem. Using height changes for balancing, the control authority of the ankles will change. Therefore, height variations for balance control could be a trade-off between the application of additional force and the gain in height. 
 
 For dynamic cases, like walking or jumping, \ac{CoM} height variations for balance on a human can be observed in the landing after a long jump. Bending the legs and lowering the height is crucial for not falling backwards and to land above the feet.
 \begin{figure}
@@ -120,7 +120,7 @@ An advantage of the \ac{LIP} is that closed-form solutions to the dynamics exist
 \subsubsection{Linear Inverted Pendulum Orbital Energy}\label{subsec:liporbit} 
 The \ac{LIP} orbital energy is originally derived in \cite{kajita1992dynamic} and shows one of the main advantages of the use of a \ac{LIP} model.  This energy reads as follows:
 \begin{equation}
-\Elip = \int (\ddot{x}-\frac{g}{l}x)\dot{x} dt = \frac{1}{2}\dot{x}^2-\frac{g}{2z_0}x^2,
+\Elip = \int (\ddot{x}-\frac{g}{z_0}x)\dot{x} dt = \frac{1}{2}\dot{x}^2-\frac{g}{2z_0}x^2,
 \label{eq:Elip}
 \end{equation}
 where $E_{LIP}$ is the \ac{LIP} orbital energy. This orbital energy is a conserved quantity if no contact change occurs. Note that the expression resembles kinetic and potential energy: one term depends on velocity, the other on position. If $E_{LIP}>0$, the point-mass will cross the horizontal position of the pendulum base with its current velocity. If $E_{LIP}<0$, the point-mass will not cross the pendulum base and will have a turning point where the velocity changes direction.
@@ -177,7 +177,7 @@ Allowing height variation of the \ac{CoM}, an expression for orbital energy is m
 To support the methods and results presented later in this thesis, this section presents a brief background on humanoid robotics at \ac{IHMC}. Most algorithms are written in Java and simulations are run in \ac{SCS} \cite{scs}.
 %robots
 \subsection{Robots}
-There are two humanoid robots present at the institute at the moment of writing: Boston Dynamics' Atlas \cite{koolen2016design}, \cite{kuindersma2016optimization} and NASA's Valkyrie \cite{radford2015valkyrie}. An important difference between the two robots is that Atlas is hydraulically actuated, while Valkyrie relies on electric series elastic actuators. The actuation of Atlas is in general more powerful, which allows the robot to take higher steps. Valkyrie on the other hand has more precise torque sensing, which is important for torque control on the robot. This ties to a similarity between the robots: both robots are torque controlled. Using a control framework, the actuators of the robots can be controlled using measured and reference torques. In \figref{fig:robots}, the two robots are shown.
+There are two humanoid robots present at the institute at the moment of writing: Boston Dynamics' Atlas \cite{koolen2016design, kuindersma2016optimization} and NASA's Valkyrie \cite{radford2015valkyrie}. An important difference between the two robots is that Atlas is hydraulically actuated, while Valkyrie relies on electric series elastic actuators. The actuation of Atlas is in general more powerful, which allows the robot to take higher steps. Valkyrie on the other hand has more precise torque sensing, which is important for torque control on the robot. This ties to a similarity between the robots: both robots are torque controlled. Using a control framework, the actuators of the robots can be controlled using measured and reference torques. In \figref{fig:robots}, the two robots are shown.
 \begin{figure}
 \centering
   \begin{subfigure}{0.49\textwidth}
@@ -192,7 +192,7 @@ There are two humanoid robots present at the institute at the moment of writing:
   \caption{}
    \label{fig:valkyrie}
   \end{subfigure}
-  \caption{(a) Atlas \cite{oldatlas} and (b) Valkyrie \cite{valkyrie} walking over an un-even cinder block field at \ac{IHMC}. }
+  \caption{(a) Atlas \cite{oldatlas} and (b) Valkyrie \cite{valkyrie} walking over an uneven cinder block field at \ac{IHMC}. }
   \label{fig:robots}
 \end{figure}
 
@@ -240,11 +240,11 @@ where $\dqjnt$ are the joint velocities, $\matr{J}(\qjnt)$ is the Jacobian that 
 \begin{equation}
 \vect{h}=\begin{bmatrix}\vect{k} \\ \vect{l} \end{bmatrix} =\matr{A}(\qjnt)\dqjnt \in \mathbb{R}^6,
 \end{equation}
- where $\matr{A}=\matr{I}\matr{J}$, as introduced in \cite{orin2013centroidal},  is the inertia matrix $\matr{I}$ times the jacobian. The centroidal momentum $\vect{h}$ consists of the angular part $\vect{k} \in \mathbb{R}^3$ and the linear part $\vect{l} \in \mathbb{R}^3$. The time derivative of the centroidal momentum, the centroidal momentum rate of change, is the constraint on the dynamics of the robot in the \ac{QP} currently in use \cite{koolen2016design}:
+ where $\matr{A}=\matr{I}\matr{J}$, as introduced in \cite{orin2013centroidal},  is the inertia matrix $\matr{I}$ times the Jacobian. The centroidal momentum $\vect{h}$ consists of the angular part $\vect{k} \in \mathbb{R}^3$ and the linear part $\vect{l} \in \mathbb{R}^3$. The time derivative of the centroidal momentum, the centroidal momentum rate of change, is the constraint on the dynamics of the robot in the \ac{QP} currently in use \cite{koolen2016design}:
 \begin{equation}
 \dot{\vect{h}}=\begin{bmatrix}\dot{\vect{k}}\\ \dot{\vect{l}} \end{bmatrix} =\matr{A}\ddot{\vect{q}} +\dot{\matr{A}}\dot{\vect{q}} = \matr{W}_g + \sum_i\matr{W}_{gr,i} + \sum_i \matr{W}_{ext,i}, 
 \end{equation}
-where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the wrench exterted by the total \ac{GRF}, as a sum of the wrenches of each ground contact point considered. The other external wrenches $\sum_i \matr{W}_{ext,i}$ are caused by other contacts than ground. These are considered zero in this thesis: $\sum_i \matr{W}_{ext,i}=\vect{0}$.
+where $\matr{W}_g$ is the gravitational wrench and $\sum_i\matr{W}_{gr,i}$ the wrench exerted by the total \ac{GRF}, as a sum of the wrenches of each ground contact point considered. The other external wrenches $\sum_i \matr{W}_{ext,i}$ are caused by other contacts than ground. These are considered zero in this thesis: $\sum_i \matr{W}_{ext,i}=\vect{0}$.
 %qp
 \subsubsection{Whole-Body Quadratic Program} 
 The whole-body \ac{QP} \cite{koolen2016design} optimizes between momentum rate objectives and motion objectives to find desired joint accelerations and desired \ac{GRF}. The optimization is formulated as follows:
@@ -306,7 +306,7 @@ Traditionally, vertical \ac{CoM} motion is generated through PD control as in Eq
 
 %var height terrain
 \subsection{Dynamic Planning}
-Because the constant height assumption of the \ac{LIP} is constraining the dynamics of the robotic system, efforts have been made to incorporate CoM height variation in the generation of a dynamic plan. Instead of using a LIP model, a more complicated model is used. Expected height variations of the CoM can be incorporated in the dynamic planning problem, which improves the dynamic feasibility of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. Deviations from the \ac{LIP} in the \ac{CoM} reference trajectory can be incorporated in the plan. These deviations can come, for example, from an un-even terrain or a human-like walking pattern.
+Because the constant height assumption of the \ac{LIP} is constraining the dynamics of the robotic system, efforts have been made to incorporate \ac{CoM} height variation in the generation of a dynamic plan. Instead of using a LIP model, a more complicated model is used. Expected height variations of the \ac{CoM} can be incorporated in the dynamic planning problem, which improves the dynamic feasibility of the plan. In theory, the reference dynamics are closer to the real dynamics of the robot. Deviations from the \ac{LIP} in the \ac{CoM} reference trajectory can be incorporated in the plan. These deviations can come, for example, from an uneven terrain or a human-like walking pattern.
 
 An example of incorporating height variations in terrain in the dynamic planning problem can be found in \cite{englsberger2013three}, which is an extension of \ac{ICP} planning as in Section \ref{subsec:icpplan}. Additional reference points, similar to ground reference points as in Section \ref{sec:grp}, are designed and used in the planning method. The drawback of this method is that still a linearized model is considered and the trajectories between footsteps for the dynamical plan are constrained to be straight lines. 
 
@@ -339,4 +339,4 @@ Comparable with the \ac{LIP}-based `capture regions' in \cite{pratt2006capture, 
 
 Even though the work presented in \cite{caron2018balance} is the closest to application (\ac{3D} control law, kinematic and force constraints), no applied results are shown. Additionally, for the presented control laws, no comparison is made with a traditional constant height control law. Therefore, the question remains what the advantages are of the presented \ac{MPC} law compared to using a \ac{LIP}-based proportional controller for example. In Chapter \ref{chap:standing} and Chapter \ref{chap:walking} of this report, \ac{CoM} height variations in balance control are compared with constant height approaches on humanoid robots.
 
-Comparable with the `regions of attraction' \cite{koolen2016balance}, capture regions are presented for the \ac{VHIP} model in the next chapter. Like in the approach presented in \cite{caron2018balance}, constraints on the kinematics and dynamics of the system are approximated with a constraint on vertical position and acceleration.
+Comparable with the `regions of attraction' \cite{koolen2016balance}, capture regions are presented for the \ac{VHIP} model in the next chapter. Like in the approach presented in \cite{caron2018balance}, constraints on the kinematics and dynamics of the system are approximated with constraints on vertical position and vertical acceleration.
